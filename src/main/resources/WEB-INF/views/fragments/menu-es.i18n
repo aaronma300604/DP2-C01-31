@@ -11,6 +11,7 @@
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anónimo
+master.menu.estrella = 49133812Q:Angel Postigo, Estrella
 master.menu.anonymous.favourite-link = Enlace favorito
 
 # master.menu.administrator ###################################################

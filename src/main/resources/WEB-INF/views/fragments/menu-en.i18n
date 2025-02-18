@@ -11,6 +11,12 @@
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
+master.menu.estrella = 49133812Q:Angel Postigo, Estrella
+master.menu.anonymous.favourite-link = Favourite link
+
+# master.menu.anonymous #######################################################
+
+master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
 
 # master.menu.administrator ###################################################
