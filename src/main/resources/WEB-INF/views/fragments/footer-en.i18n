@@ -8,9 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-master.footer.title.about = About us
-master.footer.label.company = Company
-master.footer.label.license = License
+master.footer.title.about = About Us
+master.footer.label.company = About the company
+master.footer.label.license = License information
 master.footer.title.social = Social
 master.footer.url.linkedin = http://www.linkedin.com
 master.footer.label.linked-in = Linked-In
