@@ -1,21 +1,42 @@
-# README.txt
-#
-# Copyright (C) 2012-2025 Rafael Corchuelo.
-#
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+# Acme ANS Project:
 
-This is a starter project.  It is intended to be a core learning asset for the students
-who have enrolled the Design and Testing subject of the Software Engineering curriculum of the 
-University of Seville.  This project helps them start working on their new information system 
-projects.
+# Introduction:
 
-To get this project up and running, please follow the guideline in the theory/lab materials,
-taking into account that you must link the appropriate version of the Acme-Framework excluding 
-the following resources:
-
-- **/fragments/**
+Acme AirNav Solutions, Inc.(Acme ANS, Inc. for short) is a fictitious company that specialises 
+in helping airports manage their resources and coordinate operations through the development of 
+software solutions. 
  
+The goal of this project is to develop a WIS to assist airports in managing logistics for charter flights.  
+This includes flight scheduling, booking management, crew management, incident reporting and resolution, 
+as well as aircraft maintenance.  
+
+# Members:
+
+Student #1:
+- Name: López Ramos, Daniel
+- GitHubName: danilr16
+- Roles: Analyst, Developer, Manager
+
+Student #2:
+- Name: Ángel Postigo, Estrella
+- GitHubName: LWH9900
+- Roles: Developer, Tester, Analyst
+
+Student #3:
+- Name: Miranda Balastegui, Iván
+- GitHubName: Ivanmbus
+- Roles: Tester, Developer, Operator
+
+Student #4:
+- Name: Terrón Hernández, Diego
+- GitHubName: diegoterron
+- Roles: Operator, Developer, Tester
+
+Student #5:
+- Name: Mayoral Ansias, Aarón
+- GitHubName: aaronma300604
+- Roles: Manager, Analyst, Developer
+
+# Useful links:
+
+Planning dashboard: https://github.com/users/aaronma300604/projects/2/views/1

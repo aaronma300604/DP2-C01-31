@@ -14,6 +14,7 @@ master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
 master.menu.anonymous.favourite-link-dani = 4913*****: López Ramos, Daniel
 master.menu.anonymous.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
+master.menu.provider.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
 
 # master.menu.administrator ###################################################
 
@@ -28,12 +29,14 @@ master.menu.administrator.shut-system-down = Parar el sistema
 master.menu.provider = Proveedor
 master.menu.provider.favourite-link = Enlace favorito
 master.menu.provider.favourite-link-dani = 4913*****: López Ramos, Daniel
+master.menu.provider.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
 
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 master.menu.consumer.favourite-link-dani = 4913*****: López Ramos, Daniel
+master.menu.provider.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
 
 # master.menu.user-account ####################################################
 
