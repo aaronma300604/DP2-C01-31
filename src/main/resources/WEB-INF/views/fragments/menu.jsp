@@ -19,10 +19,13 @@
 <acme:menu-bar>
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
-			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-dani" action="https://www.informatica.us.es/"/>
-		</acme:menu-option>
+     		<acme:menu-suboption code="master.menu.anonymous.favourite-link-estrella" action="https://pointerpointer.com"/>
+			<acme:menu-suboption code="master.menu.provider.favourite-link-aaron" action="https://www.youtube.com"/>
+			<acme:menu-suboption code="master.menu.provider.favourite-link-ivan" action="https://github.com/"/>
 
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
@@ -33,13 +36,17 @@
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
-			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="master.menu.provider.favourite-link-dani" action="https://www.informatica.us.es/"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link-estrella" action="https://pointerpointer.com"/>
+			<acme:menu-suboption code="master.menu.provider.favourite-link-aaron" action="https://www.youtube.com"/>
+			<acme:menu-suboption code="master.menu.provider.favourite-link-ivan" action="https://github.com/"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
-			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-suboption code="master.menu.consumer.favourite-link-dani" action="https://www.informatica.us.es/"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link-estrella" action="https://pointerpointer.com"/>
+			<acme:menu-suboption code="master.menu.provider.favourite-link-aaron" action="https://www.youtube.com"/>
+			<acme:menu-suboption code="master.menu.provider.favourite-link-ivan" action="https://github.com/"/>
 		</acme:menu-option>
 	</acme:menu-left>
 
