@@ -13,9 +13,9 @@
 master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link-dani = 4913*****: López Ramos, Daniel
 master.menu.anonymous.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
-master.menu.provider.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
-master.menu.provider.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
-
+master.menu.anonymous.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
+master.menu.anonymous.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
+master.menu.anonymous.favourite-link-diego = 5443*****: Terrón Hernández, Diego
 
 # master.menu.administrator ###################################################
 
@@ -29,17 +29,19 @@ master.menu.administrator.shut-system-down = Shut system down
 
 master.menu.provider = Provider
 master.menu.provider.favourite-link-dani = 4913*****: López Ramos, Daniel
-master.menu.anonymous.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
+master.menu.provider.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
 master.menu.provider.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
 master.menu.provider.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
+master.menu.provider.favourite-link-diego = 5443*****: Terrón Hernández, Diego
 
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link-dani = 4913*****: López Ramos, Daniel
-master.menu.anonymous.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
-master.menu.provider.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
-master.menu.provider.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
+master.menu.consumer.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
+master.menu.consumer.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
+master.menu.consumer.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
+master.menu.consumer.favourite-link-diego = 5443*****: Terrón Hernández, Diego
 
 # master.menu.user-account ####################################################
 
