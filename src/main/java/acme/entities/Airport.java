@@ -4,18 +4,15 @@ package acme.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.Length;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.Phone;
-import acme.constraints.ValidShortText;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,14 +25,13 @@ public class Airport extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidShortText
+	@ValidString(min = 1, max = 50)
 	private String				name;
 
 	@Mandatory
 	@Automapped
-	@Length(min = 3, max = 3)
+	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")
 	@Column(unique = true)
-	@Pattern(regexp = "^[A-Z]{3}$", message = "IATA code must be a unique three-uppercase-letter identifier")
 	private String				iata;
 
 	@Mandatory
@@ -45,12 +41,12 @@ public class Airport extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidShortText
+	@ValidString(min = 1, max = 50)
 	private String				city;
 
 	@Mandatory
 	@Automapped
-	@ValidShortText
+	@ValidString(min = 1, max = 50)
 	private String				country;
 
 	@Optional

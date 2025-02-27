@@ -1,67 +1,60 @@
 
 package acme.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
-import acme.constraints.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Airline extends AbstractEntity {
+public class Aircraft extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@Automapped
 	@ValidString(min = 1, max = 50)
-	private String				name;
+	private String				model;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{2}X$")
+	@ValidString(min = 1, max = 50)
 	@Column(unique = true)
-	private String				iata;
+	private String				registrationNumber;
 
 	@Mandatory
 	@Automapped
-	@ValidUrl
-	private String				website;
+	private Integer				capacity;
 
 	@Mandatory
 	@Automapped
-	@Valid
-	private AirlineType			type;
+	@DecimalMin(value = "2.0")
+	@DecimalMax(value = "50.0")
+	private Double				cargo;
 
 	@Mandatory
 	@Automapped
-	@Temporal(TemporalType.TIMESTAMP)
-	@ValidMoment(past = true)
-	private Date				foundation;
+	private Boolean				isActive;
 
 	@Optional
 	@Automapped
-	@ValidEmail
-	private String				email;
+	@ValidString(min = 1, max = 255)
+	private String				details;
 
-	@Optional
-	@Automapped
+	@Mandatory
 	@Valid
-	private Phone				phone;
+	@ManyToOne(optional = false)
+	private Airline				airline;
 }
