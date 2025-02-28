@@ -3,6 +3,8 @@ package acme.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -51,4 +53,15 @@ public class FlightCrewMember extends AbstractEntity {
 	@Automapped
 	private Integer				experienceYears;
 
+	//Relationships
+
+	@Mandatory
+	@Valid
+	@OneToMany
+	private ActivityLog			activityLog;
+
+	@Mandatory
+	@Valid
+	@OneToMany
+	private FlightAssignment	flightAssignment;
 }
