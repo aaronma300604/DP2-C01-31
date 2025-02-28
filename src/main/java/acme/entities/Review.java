@@ -57,6 +57,12 @@ public class Review extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	Boolean						recommended;
+	Boolean						isRecommended;
+
+	//Derived Attributes ------------------------
+
+	//RelationShips------------------------------
+
+	//TODO: add a relationship with Client squad
 
 }
