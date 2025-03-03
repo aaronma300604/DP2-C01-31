@@ -1,55 +1,56 @@
 
 package acme.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.constraints.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Customer extends AbstractEntity {
+public class Booking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z0-9]{6,8}$")
 	@Column(unique = true)
-	private String				identifier;
+	private String				locatorCode;
+
+	@Mandatory
+	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment(past = true)
+	private Date				purchaseMoment;
 
 	@Mandatory
 	@Automapped
 	@Valid
-	private Phone				phone;
+	private TravelClassType		travelClass;
 
 	@Mandatory
+	@ValidMoney(min = 0)
 	@Automapped
-	@ValidString(min = 1, max = 255)
-	private String				address;
-
-	@Mandatory
-	@Automapped
-	@ValidString(min = 1, max = 50)
-	private String				city;
-
-	@Mandatory
-	@Automapped
-	@ValidString(min = 1, max = 50)
-	private String				country;
+	private Money				price;
 
 	@Optional
 	@Automapped
-	@ValidNumber(min = 0, max = 500000)
-	private Integer				points;
+	@ValidNumber(integer = 4, fraction = 0)
+	private Integer				lastCreditCardNibble;
 
 }
