@@ -1,71 +1,60 @@
 
 package acme.entities;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Column;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import lombok.Getter;
-import lombok.Setter;
+import acme.constraints.Phone;
 
-@Entity
-@Getter
-@Setter
-public class Review extends AbstractEntity {
+public class Technician extends AbstractRole {
 
 	//Serialisation version  -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
 	//Attributes -------------------------------------------
+
+	@Mandatory
+	@Automapped
+	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@Column(unique = true)
+	String						licenseNumber;
+
+	@Mandatory
+	@Automapped
+	@Valid
+	Phone						phone;
+
 	@Mandatory
 	@Automapped
 	@ValidString(min = 1, max = 50)
-	String						reviewerName;
-
-	@Mandatory
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
+	String						specialisation;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
-	String						subject;
+	@Valid
+	Boolean						hasPassedHealthCheck;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 255)
-	String						text;
-
-	@Optional
-	@Automapped
+	@Valid
 	@Min(0)
-	@Max(10)
-	@Digits(integer = 2, fraction = 2)
-	@Valid
-	Double						score;
+	@Max(75)
+	Integer						yearsOfExperience;
 
 	@Optional
 	@Automapped
-	@Valid
-	Boolean						isRecommended;
+	@ValidString(max = 255)
+	String						certifications;
 
 	//Derived Attributes ------------------------
 
 	//RelationShips------------------------------
-
-	//TODO: add a relationship with Client squad
 
 }
