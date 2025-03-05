@@ -3,7 +3,6 @@ package acme.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
@@ -60,15 +59,4 @@ public class FlightCrewMember extends AbstractRole {
 	@Min(value = 0)
 	private Integer				experienceYears;
 
-	//Relationships
-
-	@Mandatory
-	@Valid
-	@ManyToOne
-	private ActivityLog			activityLog;
-
-	@Mandatory
-	@Valid
-	@ManyToOne
-	private FlightAssignment	flightAssignment;
 }
