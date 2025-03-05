@@ -3,8 +3,10 @@ package acme.entities;
 
 import java.util.Date;
 
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -19,6 +21,7 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private Duty				duty;
 
 	@Mandatory
@@ -29,11 +32,17 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private CurrentStatus		currentStatus;
 
 	@Optional
 	@Automapped
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	private String				remarks;
+
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private FlightCrewMember	flightCrewMember;
 
 }

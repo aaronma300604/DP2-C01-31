@@ -3,14 +3,17 @@ package acme.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractRole;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
+import acme.constraints.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +24,7 @@ public class FlightCrewMember extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
+	//TODO: ask about the first letters of the name restriction
 	@Mandatory
 	@Column(unique = true)
 	@Automapped
@@ -29,16 +33,17 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
-	private String				phoneNumber;
+	@Valid
+	private Phone				phone;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 0, max = 255)
+	@ValidString(min = 1, max = 255)
 	private String				languageSkills;
 
 	@Mandatory
 	@Automapped
+	@Valid
 	private AvaliabilityStatus	abStat;
 
 	@Mandatory
@@ -47,21 +52,23 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	private Integer				salary;
+	@Valid
+	private Money				salary;
 
 	@Optional
 	@Automapped
+	@Min(value = 0)
 	private Integer				experienceYears;
 
 	//Relationships
 
 	@Mandatory
 	@Valid
-	@OneToMany
+	@ManyToOne
 	private ActivityLog			activityLog;
 
 	@Mandatory
 	@Valid
-	@OneToMany
+	@ManyToOne
 	private FlightAssignment	flightAssignment;
 }

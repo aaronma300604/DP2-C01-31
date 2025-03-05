@@ -3,8 +3,10 @@ package acme.entities;
 
 import java.util.Date;
 
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -26,12 +28,12 @@ public class ActivityLog extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	private String				incident;
 
 	@Mandatory
 	@Automapped
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	private String				description;
 
 	@Mandatory
@@ -40,4 +42,8 @@ public class ActivityLog extends AbstractEntity {
 	@Max(value = 10)
 	private Integer				securityLevel;
 
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private FlightCrewMember	flightCrewMember;
 }
