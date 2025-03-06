@@ -105,7 +105,7 @@ bg=pink</panel_attributes>
       <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-AirlineManager
+AirlineManager {ValidManager}
 --
 + employeeCode: String {Mandatory, Column(unique = true)}
 + experience: Integer {Mandatory, Automapped, Min(0)}

@@ -15,19 +15,20 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidUrl;
+import acme.constraints.ValidManager;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@ValidManager
 public class AirlineManager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Column(unique = true)
 	@Mandatory
-	//TODO: constraint(pattern "^[A-Z]{2-3}\d{6}$", where the first two or three letters correspond to their initials)
 	private String				employeeCode;
 
 	@Mandatory

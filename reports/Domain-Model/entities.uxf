@@ -162,7 +162,7 @@ bg=green</panel_attributes>
       <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Leg
+Leg {ValidLeg}
 --
 + flightNumber: String {Mandatory, Column(unique = true)}
 + scheduledDeparture: Date {Mandatory, Temporal(TIMESTAMP)}
@@ -178,12 +178,12 @@ bg=green</panel_attributes>
       <x>606</x>
       <y>618</y>
       <w>30</w>
-      <h>78</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=1..*</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
