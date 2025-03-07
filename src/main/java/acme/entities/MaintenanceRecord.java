@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Future;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -36,7 +37,8 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
-	@ValidMoment //TODO: force this to be a future moment
+	@ValidMoment
+	@Future
 	Date						nextInspection;
 
 	@Mandatory
