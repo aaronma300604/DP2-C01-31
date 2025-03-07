@@ -46,7 +46,7 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	String						notes;
 
 	//Derived Attributes ------------------------
