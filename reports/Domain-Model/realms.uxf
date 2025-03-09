@@ -30,7 +30,7 @@ bg=pink</panel_attributes>
       <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Squad&gt;&gt;
-Employer
+Employee
 --
 + AirlineManager
 + FlightCrewMember
@@ -163,7 +163,7 @@ bg=pink</panel_attributes>
       <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-AssistenceAgent
+AssistanceAgent
 --
 + employee-code: String {Mandatory}
 + languages: String {Mandatory}
