@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -44,7 +45,7 @@ public class Booking extends AbstractEntity {
 	private TravelClassType		travelClass;
 
 	@Mandatory
-	@ValidMoney(min = 0)
+	@ValidMoney(min = 1)
 	@Automapped
 	private Money				price;
 
@@ -52,5 +53,10 @@ public class Booking extends AbstractEntity {
 	@Automapped
 	@ValidNumber(integer = 4, fraction = 0)
 	private Integer				lastCreditCardNibble;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Customer			customer;
 
 }

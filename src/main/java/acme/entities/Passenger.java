@@ -4,8 +4,10 @@ package acme.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -48,5 +50,15 @@ public class Passenger extends AbstractRole {
 	@Automapped
 	@ValidString(max = 51)
 	private String				specialNeeds;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Flight				flight;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Booking				booking;
 
 }
