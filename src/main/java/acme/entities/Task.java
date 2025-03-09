@@ -1,71 +1,64 @@
 
 package acme.entities;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.realms.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Review extends AbstractEntity {
+public class Task extends AbstractEntity {
 
 	//Serialisation version  -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
 	//Attributes -------------------------------------------
-	@Mandatory
-	@Automapped
-	@ValidString(min = 1, max = 50)
-	String						reviewerName;
-
-	@Mandatory
-	@ValidMoment(past = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
-	String						subject;
+	@Valid
+	TaskType					type;
 
 	@Mandatory
 	@Automapped
 	@ValidString(min = 1, max = 255)
-	String						text;
+	String						description;
 
-	@Optional
+	@Mandatory
 	@Automapped
 	@Min(0)
 	@Max(10)
-	@Digits(integer = 2, fraction = 2)
 	@Valid
-	Double						score;
+	Integer						priority;
 
-	@Optional
+	@Mandatory
 	@Automapped
+	@Min(1)
 	@Valid
-	Boolean						isRecommended;
+	Integer						estimatedDuration;
 
 	//Derived Attributes ------------------------
 
-	//RelationShips------------------------------
+	//Relationships------------------------------
 
-	//TODO: add a relationship with Client squad
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	Technician					technician;
 
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	MaintenanceRecord			maintenanceRecord;
 }

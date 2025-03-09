@@ -4,18 +4,19 @@ package acme.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Future;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,49 +24,45 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Review extends AbstractEntity {
+public class MaintenanceRecord extends AbstractEntity {
 
 	//Serialisation version  -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
 	//Attributes -------------------------------------------
-	@Mandatory
-	@Automapped
-	@ValidString(min = 1, max = 50)
-	String						reviewerName;
 
 	@Mandatory
-	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				moment;
+	@ValidMoment(past = true)
+	Date						date;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
-	String						subject;
+	@Valid
+	MaintenanceStatus			status;
 
 	@Mandatory
+	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment
+	@Future
+	Date						nextInspection;
+
+	@Mandatory
+	@Automapped
+	@ValidMoney
+	Money						estimatedCost;
+
+	@Optional
 	@Automapped
 	@ValidString(min = 1, max = 255)
-	String						text;
-
-	@Optional
-	@Automapped
-	@Min(0)
-	@Max(10)
-	@Digits(integer = 2, fraction = 2)
-	@Valid
-	Double						score;
-
-	@Optional
-	@Automapped
-	@Valid
-	Boolean						isRecommended;
+	String						notes;
 
 	//Derived Attributes ------------------------
 
-	//RelationShips------------------------------
+	//Relationships------------------------------
 
-	//TODO: add a relationship with Client squad
-
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	Aircraft					aircraft;
 }
