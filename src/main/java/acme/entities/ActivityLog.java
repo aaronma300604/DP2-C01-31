@@ -46,10 +46,9 @@ public class ActivityLog extends AbstractEntity {
 	@ManyToOne
 	private FlightCrewMember	flightCrewMember;
 
-	// Waiting for Leg entity
-	//	@Mandatory
-	//	@Valid
-	//	@ManyToOne
-	//	private Leg					leg;
+	@Mandatory
+	@Valid
+	@ManyToOne
+	private Leg					leg;
 
 }
