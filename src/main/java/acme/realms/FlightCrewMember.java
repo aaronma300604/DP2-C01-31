@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,8 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
 import acme.constraints.Phone;
+import acme.entities.Airline;
+import acme.entities.AvaliabilityStatus;
 import lombok.Getter;
 import lombok.Setter;
 

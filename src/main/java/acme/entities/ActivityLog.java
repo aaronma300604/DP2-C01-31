@@ -15,6 +15,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.realms.FlightCrewMember;
 
 public class ActivityLog extends AbstractEntity {
 

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Employer extends AbstractSquad {
+public class Client extends AbstractSquad {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,7 @@ public class Employer extends AbstractSquad {
 	public Set<Class<? extends AbstractRole>> getMembers() {
 		Set<Class<? extends AbstractRole>> result;
 
-		result = Set.of(AirlineManager.class, FlightCrewMember.class, Technician.class);
+		result = Set.of();
 
 		return result;
 	}
