@@ -26,7 +26,7 @@ public class Client extends AbstractSquad {
 	public Set<Class<? extends AbstractRole>> getMembers() {
 		Set<Class<? extends AbstractRole>> result;
 
-		result = Set.of();
+		result = Set.of(Customer.class, Passenger.class);
 
 		return result;
 	}

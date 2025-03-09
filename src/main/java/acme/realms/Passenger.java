@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.realms;
 
 import java.util.Date;
 
@@ -16,6 +16,8 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.entities.Booking;
+import acme.entities.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +30,7 @@ public class Passenger extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidString(max = 256)
+	@ValidString(min = 1, max = 255)
 	private String				name;
 
 	@Mandatory
@@ -48,7 +50,7 @@ public class Passenger extends AbstractRole {
 
 	@Optional
 	@Automapped
-	@ValidString(max = 51)
+	@ValidString(min = 1, max = 50)
 	private String				specialNeeds;
 
 	@Mandatory
