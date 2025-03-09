@@ -2,6 +2,7 @@
 package acme.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -12,7 +13,12 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
 import acme.constraints.Phone;
+import lombok.Getter;
+import lombok.Setter;
 
+@Entity
+@Getter
+@Setter
 public class Technician extends AbstractRole {
 
 	//Serialisation version  -----------------------------------------
