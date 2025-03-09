@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>330</y>
-      <w>230</w>
-      <h>150</h>
+      <x>992</x>
+      <y>392</y>
+      <w>184</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Customer
@@ -24,10 +24,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
-      <y>190</y>
-      <w>190</w>
-      <h>120</h>
+      <x>608</x>
+      <y>280</y>
+      <w>152</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Squad&gt;&gt;
 Employer
@@ -42,10 +42,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>980</x>
-      <y>210</y>
-      <w>190</w>
-      <h>100</h>
+      <x>1112</x>
+      <y>296</y>
+      <w>152</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Squad&gt;&gt;
 Client
@@ -59,10 +59,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1090</x>
-      <y>330</y>
-      <w>330</w>
-      <h>130</h>
+      <x>1200</x>
+      <y>392</y>
+      <w>264</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Passenger
@@ -78,10 +78,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>910</x>
-      <y>500</y>
-      <w>340</w>
-      <h>170</h>
+      <x>1056</x>
+      <y>528</y>
+      <w>272</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 BannedPassenger
@@ -99,28 +99,28 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>330</y>
-      <w>330</w>
-      <h>120</h>
+      <x>288</x>
+      <y>392</y>
+      <w>392</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-AirlineManager
+AirlineManager {ValidManager}
 --
-+ identifier: String {Mandatory}
-+ experience: Integer {Mandatory}
-+ birth: Date {Mandatory, Temporal(TIMESTAMP)}
-+ link: String {Optional}
++ employeeCode: String {Mandatory, Column(unique = true)}
++ experience: Integer {Mandatory, Automapped, Min(0)}
++ birth: Date {Mandatory, Temporal(TIMESTAMP), ValidMoment(past = true)}
++ link: String {Optional, Automapped, ValidUrl}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>330</y>
-      <w>300</w>
-      <h>150</h>
+      <x>696</x>
+      <y>392</y>
+      <w>240</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 FlightCrewMember
@@ -137,10 +137,30 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>460</y>
-      <w>380</w>
-      <h>150</h>
+      <x>712</x>
+      <y>528</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Technician
+--
++ license-number: String {Mandatory}
++ phone: String {Mandatory}
++ specialisation: String {Mandatory}
++ passed: Boolean {Mandatory}
++ experience: Integer {Mandatory}
++ certifications: String {Optional}
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>392</x>
+      <y>528</y>
+      <w>304</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 AssistenceAgent
@@ -151,27 +171,6 @@ AssistenceAgent
 + brief-bio: String {Optional}
 + salary: Double {Optional}
 + link: String {Optional}
-bg=pink</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>400</x>
-      <y>540</y>
-      <w>490</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Role&gt;&gt;
-Technician
---
-+ license-number: String {Mandatory,Automapped,
-ValidString(pattern = "^[A-Z]{2-3}\\d{6}$"),Column(unique = true)}
-+ phone: String {Mandatory,Automapped,Valid}
-+ specialisation: String {Mandatory,Automapped,ValidString(min=1,max=50)}
-+ passed: Boolean {Mandatory,Automapped,Valid}
-+ experience: Integer {Mandatory,Automapped,Min(0),Max(75),Valid}
-+ certifications: String {Optional,Automapped,ValidString(max=255)}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
