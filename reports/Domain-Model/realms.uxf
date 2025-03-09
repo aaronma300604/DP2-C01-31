@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>370</y>
-      <w>230</w>
-      <h>150</h>
+      <x>992</x>
+      <y>392</y>
+      <w>184</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Customer
@@ -24,10 +24,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>380</x>
-      <y>230</y>
-      <w>190</w>
-      <h>120</h>
+      <x>608</x>
+      <y>280</y>
+      <w>152</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Squad&gt;&gt;
 Employer
@@ -42,10 +42,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1010</x>
-      <y>250</y>
-      <w>190</w>
-      <h>100</h>
+      <x>1112</x>
+      <y>296</y>
+      <w>152</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Squad&gt;&gt;
 Client
@@ -59,10 +59,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>370</y>
-      <w>330</w>
-      <h>130</h>
+      <x>1200</x>
+      <y>392</y>
+      <w>264</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Passenger
@@ -78,10 +78,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
-      <y>540</y>
-      <w>340</w>
-      <h>170</h>
+      <x>1056</x>
+      <y>528</y>
+      <w>272</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 BannedPassenger
@@ -99,28 +99,28 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>370</y>
-      <w>330</w>
-      <h>120</h>
+      <x>288</x>
+      <y>392</y>
+      <w>392</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-AirlineManager
+AirlineManager {ValidManager}
 --
-+ identifier: String {Mandatory}
-+ experience: Integer {Mandatory}
-+ birth: Date {Mandatory, Temporal(TIMESTAMP)}
-+ link: String {Optional}
++ employeeCode: String {Mandatory, Column(unique = true)}
++ experience: Integer {Mandatory, Automapped, Min(0)}
++ birth: Date {Mandatory, Temporal(TIMESTAMP), ValidMoment(past = true)}
++ link: String {Optional, Automapped, ValidUrl}
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>370</y>
-      <w>300</w>
-      <h>150</h>
+      <x>696</x>
+      <y>392</y>
+      <w>240</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 FlightCrewMember
@@ -137,10 +137,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>510</x>
-      <y>540</y>
-      <w>250</w>
-      <h>150</h>
+      <x>712</x>
+      <y>528</y>
+      <w>200</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Technician
@@ -157,10 +157,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>540</y>
-      <w>380</w>
-      <h>150</h>
+      <x>392</x>
+      <y>528</y>
+      <w>304</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 AssistenceAgent
