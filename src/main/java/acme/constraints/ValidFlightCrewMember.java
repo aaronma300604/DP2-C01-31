@@ -11,7 +11,7 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = LegValidator.class)
+@Constraint(validatedBy = FlightCrewMemberValidator.class)
 public @interface ValidFlightCrewMember {
 
 	String message() default "";

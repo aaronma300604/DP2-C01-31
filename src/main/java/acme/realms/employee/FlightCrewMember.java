@@ -13,6 +13,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidFlightCrewMember;
 import acme.datatypes.Phone;
 import acme.entities.airline.Airline;
 import lombok.Getter;
@@ -21,6 +22,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
+@ValidFlightCrewMember
 public class FlightCrewMember extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
@@ -29,7 +31,6 @@ public class FlightCrewMember extends AbstractRole {
 	@Mandatory
 	@Column(unique = true)
 	@Automapped
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
 	private String				employeeCode;
 
 	@Mandatory
