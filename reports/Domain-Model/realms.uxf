@@ -108,7 +108,7 @@ bg=pink</panel_attributes>
 AirlineManager {ValidManager}
 --
 + employeeCode: String {Mandatory, Column(unique = true)}
-+ experience: Integer {Mandatory, Automapped, Min(0)}
++ experience: Integer {Mandatory, Automapped, ValidNumber(min = 0)}
 + birth: Date {Mandatory, Temporal(TIMESTAMP), ValidMoment(past = true)}
 + link: String {Optional, Automapped, ValidUrl}
 bg=pink</panel_attributes>
