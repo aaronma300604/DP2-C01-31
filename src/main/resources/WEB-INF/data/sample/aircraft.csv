@@ -1,0 +1,3 @@
+key,capacity,cargo,details,is_active,model,registration_number,key:airline
+# base entity
+aircraft-01,50,20.3,"very good details",true,"aircraft-pro",123456,airline-01

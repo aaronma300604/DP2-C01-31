@@ -1,0 +1,3 @@
+key,duration,flight_number,scheduled_arrival,scheduled_departure,status,key:aircraft,key:destination,key:origin,key:flight
+# base entity
+leg-01,2,ABX1234,2026/06/12 10:00,2026/06/12 08:00,ON_TIME,aircraft-01,airport-01,airport-02,flight-01
