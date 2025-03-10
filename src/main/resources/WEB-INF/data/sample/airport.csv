@@ -1,0 +1,35 @@
+key,city,country,email,iata,name,operational_scope,phone,website
+# base entity
+airport-01,Seville,Spain,spainseville@gmail.com,ABC,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-02,Rome,Italy,spainseville@gmail.com,CBA,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+# city - standard variations
+airport-03,Lorem ipsum dolor sit ame,Spain,spainseville@gmail.com,ABA,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-04,L,Spain,spainseville@gmail.com,ABB,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-05,Lo,Spain,spainseville@gmail.com,ABD,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-06,"Lorem ipsum dolor sit amet,consectetur adipiscin",Spain,spainseville@gmail.com,ABE,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-07,"Lorem ipsum dolor sit amet,consectetur adipiscing",Spain,spainseville@gmail.com,ABF,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-08,โลเร็ม อิปซัม,Spain,spainseville@gmail.com,ABG,seville-AVG,DOMESTIC,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-09,لوريم إيبسوم,Spain,spainseville@gmail.com,ABH,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-10,洛伦·伊普森,Spain,spainseville@gmail.com,ABI,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-11,<marquee>Hacked</marquee>,Spain,spainseville@gmail.com,ABJ,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-12,<script>alert(‘Hacked!’);</script>,Spain,spainseville@gmail.com,ABK,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-13,' or 'A' = 'A,Spain,spainseville@gmail.com,ABL,seville-AVG,DOMESTIC,Phone{number: '+34123456789'},https://www.fakeweb1.com
+# country - standard variations
+airport-14,Seville,Lorem ipsum dolor sit ame,spainseville@gmail.com,ABM,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-15,Seville,L,spainseville@gmail.com,ABN,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-16,Seville,Lo,spainseville@gmail.com,ABO,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-17,Seville,"Lorem ipsum dolor sit amet,consectetur adipiscin",spainseville@gmail.com,ABP,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-18,Seville,"Lorem ipsum dolor sit amet,consectetur adipiscing",spainseville@gmail.com,ABQ,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-19,Seville,โลเร็ม อิปซัม,spainseville@gmail.com,ABR,seville-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-20,Seville,لوريم إيبسوم,spainseville@gmail.com,ABS,seville-AVG,DOMESTIC,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-21,Seville,洛伦·伊普森,spainseville@gmail.com,ABT,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-22,Seville,<marquee>Hacked</marquee>,spainseville@gmail.com,ABU,seville-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-23,Seville,<script>alert(‘Hacked!’);</script>,spainseville@gmail.com,ABV,seville-AVG,REGIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-24,Seville,' or 'A' = 'A,spainseville@gmail.com,ABW,seville-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+# email - standard variations
+airport-25,Rome,Italy,"acme@lorem-ipsum.org",CBB,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-26,Rome,Italy,"a@b.e",CBD,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-27,Rome,Italy,"a@b.es",CBE,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-28,Rome,Italy,"a@b.esx",CBF,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-29,Rome,Italy,"lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu",CBG,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
+airport-30,Rome,Italy,"lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org",CBH,italy-AVG,INTERNATIONAL,Phone{number: '+34123456789'},https://www.fakeweb1.com
