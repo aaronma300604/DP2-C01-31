@@ -1,5 +1,5 @@
 
-package acme.constraints;
+package acme.constraints.member;
 
 import java.util.regex.Pattern;
 
