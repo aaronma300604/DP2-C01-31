@@ -41,7 +41,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@DecimalMin(value = "0.1")
+	@DecimalMin(value = "0.01")
 	private Double				cost;
 
 	@Optional
