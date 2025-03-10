@@ -1,64 +1,68 @@
 
 package acme.entities;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Future;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Service extends AbstractEntity {
+public class MaintenanceRecord extends AbstractEntity {
 
 	//Serialisation version  -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
 	//Attributes -------------------------------------------
-	@Mandatory
-	@Automapped
-	@ValidString(min = 1, max = 50)
-	String						name;
 
 	@Mandatory
-	@ValidUrl
-	@Automapped
-	String						picture;
+	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment(past = true)
+	Date						date;
 
 	@Mandatory
 	@Automapped
-	@Min(0)
 	@Valid
-	Integer						avgDwellTime;
+	MaintenanceStatus			status;
 
-	@Optional
-	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
-	String						promotionCode;
+	@Mandatory
+	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment
+	@Future
+	Date						nextInspection;
 
-	@Optional
+	@Mandatory
 	@Automapped
 	@ValidMoney
-	Money						discountApplied;
+	Money						estimatedCost;
+
+	@Optional
+	@Automapped
+	@ValidString(min = 1, max = 255)
+	String						notes;
 
 	//Derived Attributes ------------------------
 
-	//RelationShips------------------------------
+	//Relationships------------------------------
+
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	Airport						airport;
-
+	Aircraft					aircraft;
 }

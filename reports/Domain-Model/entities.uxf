@@ -1,181 +1,184 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>9</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1287</x>
-      <y>639</y>
-      <w>306</w>
-      <h>162</h>
+      <x>810</x>
+      <y>522</y>
+      <w>390</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airport
 --
-+ name: String {Mandatory}
-+ IATA: String {Mandatory}
-+ operational-scope: OperationalScope {Mandatory}
-+ city: String {Mandatory}
-+ country: String {Mandatory}
-+ website: String {Optional}
-+ email: String {Optional}
-+ phone: String {Optional}
++ name: String {Mandatory, Auktomapped, ValidString(min = 1, max = 50)}
++ iata: String {Mandatory, Column(unique = true), ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")}
++ operationalScope: OperationalScope {Mandatory, Automapped, Valid}
++ city: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
++ country: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
++ website: String {Optional, Automapped, ValidUrl}
++ email: String {Optional, Automapped, ValidEmail}
++ phone: Phone {Optional, Automapped, Valid}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1377</x>
-      <y>945</y>
-      <w>333</w>
-      <h>144</h>
+      <x>822</x>
+      <y>678</y>
+      <w>396</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Airline
 --
-+ name: String {Mandatory}
-+ IATA: String {Mandatory}
-+ website: String {Mandatory}
-+ type: AirlineType {Mandatory}
-+ foundation: Date {Mandatory, Temporal(TIMESTAMP)}
-+ email: String {Optional}
-+ phone: String {Optional}
++ name: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
++ iata: String {Mandatory, Column(unique = true), ValidString(min = 3, max = 3, pattern = "^[A-Z]{2}X$")}
++ website: String {Mandatory, Automapped, ValidUrl}
++ type: AirlineType {Mandatory, Automapped, Valid}
++ foundation: Date {Mandatory, Temporal(TIMESTAMP), ValidMoment(past = true)}
++ email: String {Optional, Automapped, ValidEmail}
++ phone: Phone {Optional, Automapped, Valid}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1674</x>
-      <y>693</y>
-      <w>216</w>
-      <h>135</h>
+      <x>1272</x>
+      <y>684</y>
+      <w>378</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Aircraft
 --
-+ model: String {Mandatory}
-+ registration: String {Mandatory}
-+ capacity: Integer {Mandatory}
-+ cargo: Double {Mandatory}
-+ status: AircraftStatus {Mandatory}
-+ details: String {Optional}
++ model: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
++ registrationNumber: String {Mandatory, Column(unique = true), ValidString(min = 1, max = 50)}
++ capacity: Integer {Mandatory, Automapped, Min(0)}
++ cargo: Double {Mandatory, Automapped, DecimalMin(value = "2.0"), DecimalMax(value = "50.0")}
++ isActive: Boolean {Mandatory, Automapped}
++ details: String {Optional, Automapped, ValidString(min = 1, max = 255)}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1098</x>
-      <y>504</y>
-      <w>216</w>
-      <h>117</h>
+      <x>900</x>
+      <y>390</y>
+      <w>144</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Service
 --
 + name: String {Mandatory}
-+ link: String {Mandatory}
-+ avg-dwell: Integer {Mandatory}
-+ promotion-code: String {Optional}
-+ money: Double {Optional}
++ picture: String {Mandatory}
++ avgDwellTime: Integer {Mandatory}
++ promotionCode: String {Optional}
++ discountApplied: Money {Optional}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>369</y>
-      <w>297</w>
-      <h>126</h>
+      <x>18</x>
+      <y>294</y>
+      <w>210</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Review
 --
-+ name: String {Mandatory}
-+ date: Date {Mandatory, Temporal(TIMESTAMP)}
++ reviewerName: String {Mandatory}
++ moment: Date {Mandatory, Temporal(TIMESTAMP)}
 + subject: String {Mandatory}
 + text: String {Mandatory}
 + score: Double {Optional}
-+ recommended: Boolean {Optional}
++ isRecommended: Boolean {Optional}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1701</x>
-      <y>819</y>
-      <w>99</w>
-      <h>216</h>
+      <x>1212</x>
+      <y>732</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;210.0;90.0;210.0;90.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1197</x>
-      <y>612</y>
-      <w>108</w>
-      <h>117</h>
+      <x>984</x>
+      <y>462</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>100.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>738</x>
-      <y>945</y>
-      <w>387</w>
-      <h>144</h>
+      <x>486</x>
+      <y>678</y>
+      <w>276</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Flight
 --
-+ tag: String {Mandatory}
-+ self-transfer: Boolean {Mandatory}
-+ cost: Double {Mandatory}
-+ description: String {Optional}
-+ scheduled-departure: Date {Mandatory, Temporal(TIMESTAMP)}
-+ scheduled-arrival: Date {Mandatory, Temporal(TIMESTAMP)}
-+ layovers: Integer {Mandatory}
++ tag: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
++ selfTransfer: Boolean {Mandatory, Automapped}
++ cost: Double {Mandatory, Automapped, DecimalMin(value = "0.1")}
++ description: String {Optional, Automapped, ValidString(min = 1)}
+--
+/+ getScheduledDeparture: Date
+/* getScheduledArrival: Date
+/* getLayovers: Integer
+/* getOrigin: Airport
+/* getDestination: Airport
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>702</x>
-      <y>747</y>
-      <w>387</w>
-      <h>117</h>
+      <x>486</x>
+      <y>546</y>
+      <w>258</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-Leg
+Leg {ValidLeg}
 --
-+ flight-number: String {Mandatory}
-+ scheduled-departure: Date {Mandatory, Temporal(TIMESTAMP)}
-+ scheduled-arrival: Date {Mandatory, Temporal(TIMESTAMP)}
-+ duration: Integer {Mandatory}
-+ status: LegStatus {Mandatory}
++ flightNumber: String {Mandatory, Column(unique = true)}
++ scheduledDeparture: Date {Mandatory, Temporal(TIMESTAMP)}
++ scheduledArrival: Date {Mandatory, Temporal(TIMESTAMP)}
++ duration: Integer {Mandatory, Automapped}
++ status: LegStatus {Mandatory, Automapped, Valid}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>882</x>
-      <y>855</y>
-      <w>45</w>
-      <h>108</h>
+      <x>606</x>
+      <y>618</y>
+      <w>30</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -185,84 +188,56 @@ m2=1..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>990</y>
-      <w>189</w>
-      <h>36</h>
+      <x>396</x>
+      <y>708</y>
+      <w>102</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;190.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1116</x>
-      <y>1008</y>
-      <w>279</w>
-      <h>36</h>
+      <x>756</x>
+      <y>720</y>
+      <w>78</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1116</x>
-      <y>792</y>
-      <w>468</w>
-      <h>216</h>
-    </coordinates>
-    <panel_attributes>destination ^
-lt=&lt;-x
-m1=1
-m2=*</panel_attributes>
-    <additional_attributes>490.0;10.0;490.0;130.0;240.0;130.0;240.0;210.0;10.0;210.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1107</x>
-      <y>792</y>
-      <w>396</w>
-      <h>171</h>
-    </coordinates>
-    <panel_attributes>origin ^
-lt=&lt;-x
-m1=1
-m2=*</panel_attributes>
-    <additional_attributes>410.0;10.0;410.0;90.0;10.0;90.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>612</x>
-      <y>855</y>
-      <w>144</w>
-      <h>135</h>
+      <x>426</x>
+      <y>618</y>
+      <w>72</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>140.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;120.0;10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>243</x>
-      <y>594</y>
-      <w>351</w>
-      <h>117</h>
+      <x>180</x>
+      <y>444</y>
+      <w>234</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Booking
 --
-+ locator-code: String {Mandatory}
-+ purchase-date: Date {Mandatory, Temporal(TIMESTAMP)}
-+ travel-class: TravelClass {Mandatory}
++ locator_code: String {Mandatory}
++ purchase_date: Date {Mandatory, Temporal(TIMESTAMP)}
++ travel_class: TravelClass {Mandatory}
 + price: Double {Mandatory}
 + last-nibble: String {Optional}
 bg=green</panel_attributes>
@@ -271,10 +246,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>513</x>
-      <y>702</y>
-      <w>45</w>
-      <h>108</h>
+      <x>360</x>
+      <y>516</y>
+      <w>30</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -284,10 +259,10 @@ m2=1..*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>414</x>
-      <y>522</y>
-      <w>36</w>
-      <h>90</h>
+      <x>294</x>
+      <y>396</y>
+      <w>24</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -297,36 +272,36 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>423</y>
-      <w>279</w>
-      <h>36</h>
+      <x>222</x>
+      <y>330</y>
+      <w>174</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>290.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>270.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1053</x>
-      <y>468</y>
-      <w>756</w>
-      <h>297</h>
+      <x>720</x>
+      <y>360</y>
+      <w>588</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>810.0;250.0;810.0;10.0;10.0;10.0;10.0;310.0</additional_attributes>
+    <additional_attributes>950.0;540.0;950.0;10.0;10.0;10.0;10.0;310.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>684</x>
-      <y>567</y>
-      <w>297</w>
-      <h>99</h>
+      <x>474</x>
+      <y>426</y>
+      <w>198</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 FlightAssignment
@@ -341,10 +316,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
-      <y>657</y>
-      <w>36</w>
-      <h>108</h>
+      <x>570</x>
+      <y>486</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -354,38 +329,38 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>792</y>
-      <w>333</w>
-      <h>72</h>
+      <x>738</x>
+      <y>594</y>
+      <w>84</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>origin ^
+    <panel_attributes>origin &gt;
 lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>340.0;10.0;340.0;50.0;10.0;50.0</additional_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>747</y>
-      <w>225</w>
-      <h>45</h>
+      <x>738</x>
+      <y>546</y>
+      <w>84</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>destination &gt;
 lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>230.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
-      <y>468</y>
-      <w>36</w>
-      <h>117</h>
+      <x>570</x>
+      <y>360</y>
+      <w>24</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -395,10 +370,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>963</x>
-      <y>252</y>
-      <w>297</w>
-      <h>99</h>
+      <x>660</x>
+      <y>216</y>
+      <w>198</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 ActivityLog
@@ -413,10 +388,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>837</x>
-      <y>279</y>
-      <w>144</w>
-      <h>144</h>
+      <x>576</x>
+      <y>234</y>
+      <w>96</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -426,10 +401,10 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>342</y>
-      <w>36</w>
-      <h>423</h>
+      <x>690</x>
+      <y>276</y>
+      <w>24</w>
+      <h>282</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -439,10 +414,10 @@ m2=*</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>468</x>
-      <y>198</y>
-      <w>297</w>
-      <h>117</h>
+      <x>330</x>
+      <y>180</y>
+      <w>198</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Claim
@@ -458,10 +433,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>621</x>
-      <y>306</y>
-      <w>36</w>
-      <h>117</h>
+      <x>432</x>
+      <y>252</y>
+      <w>24</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -471,44 +446,44 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1620</x>
-      <y>414</y>
-      <w>36</w>
-      <h>549</h>
+      <x>1104</x>
+      <y>294</y>
+      <w>138</w>
+      <h>396</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;590.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;640.0;10.0;600.0;210.0;600.0;210.0;10.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>216</y>
-      <w>810</w>
-      <h>198</h>
+      <x>522</x>
+      <y>192</y>
+      <w>540</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>880.0;190.0;630.0;190.0;630.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>880.0;180.0;630.0;180.0;630.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>468</x>
-      <y>0</y>
-      <w>297</w>
-      <h>117</h>
+      <x>330</x>
+      <y>48</y>
+      <w>198</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 TrackingLog
 --
 + last-update: Date {Mandatory, Temporal(TIMESTAMP)}
 + step-undergoing: String {Mandatory}
-+ resolution-percentage: Integer {Mandatory}
-+ finally-accepted: Boolean {Optional}
++ resolution_percentage: Integer {Mandatory}
++ finally_accepted: Boolean {Optional}
 + resolution: String {Optional}
 bg=green</panel_attributes>
     <additional_attributes/>
@@ -516,10 +491,10 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>108</y>
-      <w>36</w>
-      <h>108</h>
+      <x>426</x>
+      <y>120</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
@@ -529,10 +504,10 @@ m2=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1845</x>
-      <y>522</y>
-      <w>216</w>
-      <h>126</h>
+      <x>1314</x>
+      <y>408</y>
+      <w>144</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
@@ -547,10 +522,10 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1980</x>
-      <y>693</y>
-      <w>360</w>
-      <h>117</h>
+      <x>1314</x>
+      <y>552</y>
+      <w>240</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 MaintenanceRecord
@@ -566,49 +541,49 @@ bg=green</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1881</x>
-      <y>747</y>
-      <w>117</w>
-      <h>36</h>
+      <x>1476</x>
+      <y>624</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2052</x>
-      <y>576</y>
-      <w>99</w>
-      <h>135</h>
+      <x>1368</x>
+      <y>486</y>
+      <w>24</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>80.0;130.0;80.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1953</x>
-      <y>432</y>
-      <w>36</w>
-      <h>108</h>
+      <x>1452</x>
+      <y>444</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>351</x>
-      <y>459</y>
-      <w>162</w>
-      <h>72</h>
+      <x>252</x>
+      <y>354</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Customer
@@ -618,10 +593,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>486</x>
-      <y>792</y>
-      <w>162</w>
-      <h>72</h>
+      <x>342</x>
+      <y>576</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Passenger
@@ -631,10 +606,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>279</x>
-      <y>774</y>
-      <w>162</w>
-      <h>72</h>
+      <x>204</x>
+      <y>564</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 BannedPassenger
@@ -644,10 +619,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>414</x>
-      <y>972</y>
-      <w>162</w>
-      <h>72</h>
+      <x>294</x>
+      <y>696</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 AirlineManager
@@ -657,10 +632,10 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>756</x>
-      <y>405</y>
-      <w>162</w>
-      <h>72</h>
+      <x>522</x>
+      <y>318</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 FlightCrewMember
@@ -670,23 +645,23 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1548</x>
-      <y>351</y>
-      <w>162</w>
-      <h>72</h>
+      <x>1050</x>
+      <y>276</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
-AssistanceAgent
+AssistenceAgent
 bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1881</x>
-      <y>369</y>
-      <w>162</w>
-      <h>72</h>
+      <x>1512</x>
+      <y>432</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Technician
@@ -696,14 +671,27 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>549</x>
-      <y>405</y>
-      <w>162</w>
-      <h>72</h>
+      <x>384</x>
+      <y>318</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Squad&gt;&gt;
 Client
 bg=pink</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>336</y>
+      <w>600</w>
+      <h>354</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>770.0;570.0;770.0;510.0;980.0;510.0;980.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

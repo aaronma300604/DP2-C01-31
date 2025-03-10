@@ -1,64 +1,65 @@
 
-package acme.entities;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import acme.client.components.basis.AbstractEntity;
-import acme.client.components.datatypes.Money;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
+import acme.constraints.Phone;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Service extends AbstractEntity {
+public class Technician extends AbstractRole {
 
 	//Serialisation version  -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
 
 	//Attributes -------------------------------------------
+
+	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@Column(unique = true)
+	String						licenseNumber;
+
+	@Mandatory
+	@Automapped
+	@Valid
+	Phone						phone;
+
 	@Mandatory
 	@Automapped
 	@ValidString(min = 1, max = 50)
-	String						name;
-
-	@Mandatory
-	@ValidUrl
-	@Automapped
-	String						picture;
+	String						specialisation;
 
 	@Mandatory
 	@Automapped
-	@Min(0)
 	@Valid
-	Integer						avgDwellTime;
+	Boolean						hasPassedHealthCheck;
 
-	@Optional
-	@Column(unique = true)
-	@ValidString(pattern = "^[A-Z]{4}-[0-9]{2}$")
-	String						promotionCode;
+	@Mandatory
+	@Automapped
+	@Valid
+	@Min(0)
+	@Max(75)
+	Integer						yearsOfExperience;
 
 	@Optional
 	@Automapped
-	@ValidMoney
-	Money						discountApplied;
+	@ValidString(min = 1, max = 255)
+	String						certifications;
 
 	//Derived Attributes ------------------------
 
 	//RelationShips------------------------------
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	Airport						airport;
 
 }

@@ -4,8 +4,10 @@ package acme.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -16,6 +18,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.realms.Client;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -53,16 +56,21 @@ public class Review extends AbstractEntity {
 	@Min(0)
 	@Max(10)
 	@Digits(integer = 2, fraction = 2)
+	@Valid
 	Double						score;
 
 	@Optional
 	@Automapped
+	@Valid
 	Boolean						isRecommended;
 
 	//Derived Attributes ------------------------
 
 	//RelationShips------------------------------
 
-	//TODO: add a relationship with Client squad
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	Client						reviewer;
 
 }

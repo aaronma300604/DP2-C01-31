@@ -31,7 +31,7 @@ public class PhoneValidator extends AbstractValidator<ValidPhone, Phone> {
 			boolean inRange;
 
 			number = phone.getNumber();
-			inRange = number != null && Pattern.matches("^+?\\d{6,15}$", number);
+			inRange = number != null && Pattern.matches("^\\+?\\d{6,15}$", number);
 			super.state(context, inRange, "number", "acme.validation.phone.message");
 		}
 

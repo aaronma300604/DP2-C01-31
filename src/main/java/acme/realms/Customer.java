@@ -1,17 +1,16 @@
 
-package acme.entities;
+package acme.realms;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.client.components.validation.ValidUrl;
 import acme.constraints.Phone;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,24 +18,25 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Airport extends AbstractEntity {
+public class Customer extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
+	//TODO: ask about the first letters of the name restriction
 	@Mandatory
-	@Automapped
-	@ValidString(min = 1, max = 50)
-	private String				name;
-
-	@Mandatory
-	@ValidString(min = 3, max = 3, pattern = "^[A-Z]{3}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	private String				iata;
+	private String				identifier;
 
 	@Mandatory
 	@Automapped
 	@Valid
-	private OperationalScope	operationalScope;
+	private Phone				phone;
+
+	@Mandatory
+	@Automapped
+	@ValidString(min = 1, max = 255)
+	private String				address;
 
 	@Mandatory
 	@Automapped
@@ -50,16 +50,7 @@ public class Airport extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidUrl
-	private String				website;
+	@ValidNumber(min = 0, max = 500000)
+	private Integer				points;
 
-	@Optional
-	@Automapped
-	@ValidEmail
-	private String				email;
-
-	@Optional
-	@Automapped
-	@Valid
-	private Phone				phone;
 }
