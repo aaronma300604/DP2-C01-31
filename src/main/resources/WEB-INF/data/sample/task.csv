@@ -1,0 +1,3 @@
+key,description,estimated_duration,priority,type,key:maintenance-record,key:technician
+task-01,task01,2,6,REPAIR,maintenance-record-01,technician-01
+task-02,task02,2,6,REPAIR,maintenance-record-02,technician-02

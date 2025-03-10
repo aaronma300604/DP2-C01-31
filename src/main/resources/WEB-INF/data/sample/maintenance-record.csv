@@ -1,0 +1,3 @@
+key,date,estimated_cost,next_inspection,notes,status,key:aircraft
+maintenance-record-01,2025/01/01 00:00,1500 EUR,2025/05/01 00:00,dummy notes,COMPLETED,aircraft-01
+maintenance-record-02,2025/01/01 00:00,1500 EUR,2025/05/01 00:00,lorem ipsum,COMPLETED,aircraft-02
