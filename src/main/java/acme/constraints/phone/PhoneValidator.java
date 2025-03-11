@@ -22,16 +22,11 @@ public class PhoneValidator extends AbstractValidator<ValidPhone, String> {
 		assert context != null;
 
 		boolean result;
-		boolean isNull;
 
-		isNull = phone == null || phone == null;
-
-		if (!isNull) {
-			String number;
+		if (phone != null) {
 			boolean inRange;
 
-			number = phone;
-			inRange = number != null && Pattern.matches("^\\+?\\d{6,15}$", number);
+			inRange = Pattern.matches("^\\+?\\d{6,15}$", phone);
 			super.state(context, inRange, "number", "acme.validation.phone.message");
 		}
 
