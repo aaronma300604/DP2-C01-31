@@ -3,9 +3,6 @@ package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -13,9 +10,9 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.entities.airport.Airport;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,8 +37,7 @@ public class Service extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Min(0)
-	@Valid
+	@ValidNumber(min = 0)
 	Integer						avgDwellTime;
 
 	@Optional
@@ -55,11 +51,5 @@ public class Service extends AbstractEntity {
 	Money						discountApplied;
 
 	//Derived Attributes ------------------------
-
-	//RelationShips------------------------------
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	Airport						airport;
 
 }
