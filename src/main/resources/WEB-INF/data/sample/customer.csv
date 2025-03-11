@@ -1,0 +1,12 @@
+key,address,city,country,identifier,phone,points,key:user_account
+customer-01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",Lorem ipsum dolor sit ame,<marquee>Hacked</marquee>,AB123456,123456,"250000,00",user-account-consumer-01
+customer-02,L,โลเร็ม อิปซัม,L,XYZ654321,987654321,"0,00",user-account-consumer-02
+customer-03,Lo,洛伦·伊普森,<script>alert(‘Hacked!’);</script>,AC987654,123456789012345,"0,01",user-account-consumer-03
+customer-04,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",لوريم إيبسوم,"Lorem ipsum dolor sit amet, consectetur adipiscin",DEF123000,+123456,"499999,99",user-account-provider-01
+customer-05,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",' or 'A' = 'A,لوريم إيبسوم,JG000001,+9876543210,"500000,00",user-account-provider-02
+customer-06,โลเร็ม อิปซัม,<script>alert(‘Hacked!’);</script>,Lorem ipsum dolor sit ame,AA000001,+123456789012345,"1,00",user-account-provider-03
+customer-07,لوريم إيبسوم,<marquee>Hacked</marquee>,' or 'A' = 'A,ZZ999999,4567891234567,"100,00",user-account-manager-01
+customer-08,洛伦·伊普森,L,"Lorem ipsum dolor sit amet, consectetur adipiscing",AAA000000,+9999999999999,"9999,00",user-account-manager-02
+customer-09,<marquee>Hacked</marquee>,"Lorem ipsum dolor sit amet, consectetur adipiscin",โลเร็ม อิปซัม,RST000123,654321098765,"50000,00",user-account-manager-03
+customer-10,<script>alert(‘Hacked!’);</script>,"Lorem ipsum dolor sit amet, consectetur adipiscing",洛伦·伊普森,UV999000,+112233445566,"250000,00",user-account-member-01
+customer-11,' or 'A' = 'A,Lo,Lo,WX567890,987654321,null,user-account-member-02
