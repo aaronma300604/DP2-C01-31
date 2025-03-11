@@ -13,7 +13,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidFlightCrewMember;
+import acme.constraints.member.ValidFlightCrewMember;
 import acme.datatypes.Phone;
 import acme.entities.airline.Airline;
 import lombok.Getter;
