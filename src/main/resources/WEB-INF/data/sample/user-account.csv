@@ -13,3 +13,7 @@ user-account-member-02,true,"UserIdentity{name: 'Luis', surname: 'Amor', email: 
 user-account-member-03,true,"UserIdentity{name: 'Eusebio', surname: 'Sánchez', email: 'eusebio@acme.com'}",member3,member3
 user-account-member-04,true,"UserIdentity{name: 'Daniel', surname: 'Ramos', email: 'daniramitos@acme.com'}",member4,member4
 user-account-member-05,true,"UserIdentity{name: 'Pedro', surname: 'Sánchez Pizjuan', email: 'sanchez@acme.com'}",member,member
+user-account-technician-01,true,"UserIdentity{name: 'Aarón', surname: 'Mayoral', email: 'technician1@acme.com'}",technician1,technician1
+user-account-technician-02,true,"UserIdentity{name: 'Claudia', surname: 'Oviedo', email: 'technician2@acme.com'}",technician2,technician2
+user-account-technician-03,true,"UserIdentity{name: 'Iván', surname: 'Miranda', email: 'technician3@acme.com'}",technician3,technician3
+
