@@ -56,7 +56,4 @@ public class Review extends AbstractEntity {
 	boolean						isRecommended;
 
 	//Derived Attributes ------------------------
-
-	//RelationShips------------------------------
-
 }

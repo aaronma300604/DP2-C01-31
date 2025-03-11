@@ -51,7 +51,4 @@ public class Service extends AbstractEntity {
 	Money						discountApplied;
 
 	//Derived Attributes ------------------------
-
-	//RelationShips------------------------------
-
 }

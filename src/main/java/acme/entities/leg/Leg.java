@@ -13,10 +13,12 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidNumber;
 import acme.constraints.leg.ValidLeg;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
+import acme.realms.employee.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,6 +44,7 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
+	@ValidNumber(min = 0)
 	private Integer				duration;
 
 	@Mandatory
@@ -68,4 +71,9 @@ public class Leg extends AbstractEntity {
 	@ManyToOne(optional = false)
 	@Valid
 	private Airport				destination;
+
+	@Mandatory
+	@ManyToOne(optional = false)
+	@Valid
+	private AirlineManager		manager;
 }
