@@ -7,10 +7,9 @@ import javax.validation.ConstraintValidatorContext;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
-import acme.datatypes.Phone;
 
 @Validator
-public class PhoneValidator extends AbstractValidator<ValidPhone, Phone> {
+public class PhoneValidator extends AbstractValidator<ValidPhone, String> {
 
 	@Override
 	protected void initialise(final ValidPhone annotation) {
@@ -18,20 +17,20 @@ public class PhoneValidator extends AbstractValidator<ValidPhone, Phone> {
 	}
 
 	@Override
-	public boolean isValid(final Phone phone, final ConstraintValidatorContext context) {
+	public boolean isValid(final String phone, final ConstraintValidatorContext context) {
 		// HINT: phone can be null
 		assert context != null;
 
 		boolean result;
 		boolean isNull;
 
-		isNull = phone == null || phone.getNumber() == null;
+		isNull = phone == null || phone == null;
 
 		if (!isNull) {
 			String number;
 			boolean inRange;
 
-			number = phone.getNumber();
+			number = phone;
 			inRange = number != null && Pattern.matches("^\\+?\\d{6,15}$", number);
 			super.state(context, inRange, "number", "acme.validation.phone.message");
 		}

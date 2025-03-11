@@ -5,8 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
@@ -42,13 +40,12 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@DecimalMin(value = "2.0")
-	@DecimalMax(value = "50.0")
+	@ValidNumber(min = 2000.0, max = 50000.0)
 	private Double				cargo;
 
 	@Mandatory
 	@Automapped
-	private Boolean				isActive;
+	private boolean				isActive;
 
 	@Optional
 	@Automapped

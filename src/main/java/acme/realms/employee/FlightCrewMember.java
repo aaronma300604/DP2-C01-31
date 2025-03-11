@@ -14,7 +14,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidString;
 import acme.constraints.member.ValidFlightCrewMember;
-import acme.datatypes.Phone;
+import acme.constraints.phone.ValidPhone;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +27,6 @@ public class FlightCrewMember extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
-	//TODO: ask about the first letters of the name restriction
 	@Mandatory
 	@Column(unique = true)
 	@Automapped
@@ -35,8 +34,8 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@Valid
-	private Phone				phone;
+	@ValidPhone
+	private String				phone;
 
 	@Mandatory
 	@Automapped
