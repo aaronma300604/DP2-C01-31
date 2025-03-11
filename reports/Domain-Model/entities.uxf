@@ -482,7 +482,7 @@ TrackingLog
 --
 + last-update: Date {Mandatory, Temporal(TIMESTAMP)}
 + step-undergoing: String {Mandatory}
-+ resolution_percentage: Integer {Mandatory}
++ resolution_percentage: Double {Mandatory}
 + finally_accepted: Boolean {Optional}
 + resolution: String {Optional}
 bg=green</panel_attributes>
