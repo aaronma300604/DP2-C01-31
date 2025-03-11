@@ -4,12 +4,11 @@ package acme.entities.task;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.realms.employee.Technician;
@@ -38,15 +37,12 @@ public class Task extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@Min(0)
-	@Max(10)
-	@Valid
+	@ValidNumber(min = 0, max = 10)
 	Integer						priority;
 
 	@Mandatory
 	@Automapped
-	@Min(1)
-	@Valid
+	@ValidNumber(min = 0)
 	Integer						estimatedDuration;
 
 	//Derived Attributes ------------------------
