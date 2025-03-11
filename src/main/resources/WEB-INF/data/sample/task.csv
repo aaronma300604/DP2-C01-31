@@ -1,0 +1,25 @@
+key,description,estimated_duration,priority,type,key:maintenance-record,key:technician
+#base entity
+task-01,task01,2,6,REPAIR,maintenance-record-01,technician-01
+task-02,task02,2,6,REPAIR,maintenance-record-02,technician-02
+#description - standard variations
+task-03,L,2,6,MAINTENANCE,maintenance-record-01,technician-01
+task-04,Lo,2,6,INSPECTION,maintenance-record-02,technician-02
+task-05,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",3,5,REPAIR,maintenance-record-01,technician-01
+task-06,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",4,4,REPAIR,maintenance-record-02,technician-02
+task-07,โลเร็ม อิปซัม,2,6,SYSTEM_CHECK,maintenance-record-01,technician-01
+task-08,لوريم إيبسوم,2,6,REPAIR,maintenance-record-02,technician-02
+task-09,洛伦·伊普森,2,6,REPAIR,maintenance-record-01,technician-01
+task-10,"<marquee>Hacked</marquee>",2,6,REPAIR,maintenance-record-02,technician-02
+task-11,"<script>alert(‘Hacked!’);</script>",2,6,REPAIR,maintenance-record-01,technician-01
+task-12,"' or 'A' = 'A",2,6,REPAIR,maintenance-record-02,technician-02
+#estimated duration - standard variations
+task-13,Dummy text,1,6,MAINTENANCE,maintenance-record-01,technician-01
+task-14,Dummy text,2,6,INSPECTION,maintenance-record-02,technician-02
+task-15,Dummy text,999,5,SYSTEM_CHECK,maintenance-record-01,technician-01
+task-16,Dummy text,1000,4,REPAIR,maintenance-record-02,technician-02
+#priority - standard variations
+task-17,Dummy text,10,1,MAINTENANCE,maintenance-record-02,technician-02
+task-18,Dummy text,10,2,INSPECTION,maintenance-record-02,technician-02
+task-19,Dummy text,10,9,SYSTEM_CHECK,maintenance-record-02,technician-02
+task-20,Dummy text,10,10,REPAIR,maintenance-record-02,technician-02

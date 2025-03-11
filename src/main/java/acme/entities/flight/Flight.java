@@ -8,12 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.DecimalMin;
 
 import acme.client.components.basis.AbstractEntity;
+import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.entities.airline.Airline;
@@ -41,8 +42,8 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@DecimalMin(value = "0.01")
-	private Double				cost;
+	@ValidMoney(min = 0.01)
+	private Money				cost;
 
 	@Optional
 	@Automapped

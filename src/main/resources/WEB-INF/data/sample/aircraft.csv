@@ -1,3 +1,32 @@
-key,capacity,cargo,details,is_active,model,registration_number,key:airline
+key,capacity,cargo,details,active,model,registration_number,key:airline
 # base entity
-aircraft-01,50,20.3,"very good details",true,"aircraft-pro",123456,airline-01
+aircraft-01,50,23000.0,very good details,TRUE,aircraft-pro,123456,airline-01
+# cargo and capacity - standard variations
+aircraft-02,100,30000.00,very good details,FALSE,airbus100,789012,airline-02
+aircraft-03,1,2000.00,null,TRUE,aircraft-pro,12,airline-01
+aircraft-04,24,2000.01,very good details,TRUE,aircraft-pro,123,airline-01
+aircraft-05,50,49000.99,very good details,FALSE,aircraft-pro,1234,airline-01
+aircraft-06,100,50000.00,null,FALSE,aircraft-pro,12345,airline-01
+# details - standard variations
+aircraft-07,50,20000.3,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-pro,654,airline-01
+aircraft-08,50,20000.3,L,FALSE,aircraft-pro,65,airline-01
+aircraft-09,50,20000.3,Lo,FALSE,aircraft-pro,6543,airline-01
+aircraft-10,50,20000.3,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",TRUE,aircraft-pro,65432,airline-01
+aircraft-11,50,20000.3,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",TRUE,aircraft-pro,6556,airline-01
+aircraft-12,50,20000.3,โลเร็ม อิปซัม,TRUE,aircraft-pro,656,airline-01
+aircraft-13,50,20000.3,لوريم إيبسوم,TRUE,aircraft-pro,678,airline-01
+aircraft-14,50,20000.3,洛伦·伊普森,FALSE,aircraft-pro,88,airline-01
+aircraft-15,50,20000.3,<marquee>Hacked</marquee>,TRUE,aircraft-pro,15,airline-01
+aircraft-16,50,20000.3,<script>alert(‘Hacked!’);</script>,TRUE,aircraft-pro,9897,airline-01
+aircraft-17,50,20000.3,' or 'A' = 'A,TRUE,aircraft-pro,99,airline-01
+# model - standard variations
+aircraft-18,50,20000.3,very good details,TRUE,Lorem ipsum dolor sit ame,1234567,airline-01
+aircraft-19,50,20000.3,very good details,TRUE,L,1234578,airline-01
+aircraft-20,50,20000.3,very good details,TRUE,Lo,456,airline-01
+aircraft-21,50,20000.3,very good details,TRUE,"Lorem ipsum dolor sit amet, consectetur adipiscin",5689,airline-01
+aircraft-22,50,20000.3,very good details,TRUE,"Lorem ipsum dolor sit amet, consectetur adipiscing",569,airline-01
+aircraft-23,50,20000.3,very good details,TRUE,โลเร็ม อิปซัม,1234561,airline-01
+aircraft-24,50,20000.3,very good details,TRUE,洛伦·伊普森,1234562,airline-01
+aircraft-25,50,20000.3,very good details,TRUE,<marquee>Hacked</marquee>,1234563,airline-01
+aircraft-26,50,20000.3,very good details,TRUE,<script>alert(‘Hacked!’);</script>,12345632,airline-01
+aircraft-27,50,20000.3,very good details,TRUE,' or 'A' = 'A,12345631,airline-01

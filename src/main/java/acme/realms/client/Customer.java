@@ -3,7 +3,6 @@ package acme.realms.client;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -11,7 +10,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.datatypes.Phone;
+import acme.constraints.phone.ValidPhone;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,16 +21,15 @@ public class Customer extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
-	//TODO: ask about the first letters of the name restriction
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
+	@Automapped
 	private String				identifier;
 
 	@Mandatory
 	@Automapped
-	@Valid
-	private Phone				phone;
+	@ValidPhone
+	private String				phone;
 
 	@Mandatory
 	@Automapped

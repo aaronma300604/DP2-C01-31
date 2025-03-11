@@ -3,16 +3,14 @@ package acme.realms.employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.datatypes.Phone;
+import acme.constraints.phone.ValidPhone;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,14 +25,14 @@ public class Technician extends AbstractRole {
 	//Attributes -------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	String						licenseNumber;
 
 	@Mandatory
 	@Automapped
-	@Valid
-	Phone						phone;
+	@ValidPhone
+	String						phone;
 
 	@Mandatory
 	@Automapped
@@ -43,14 +41,11 @@ public class Technician extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@Valid
-	Boolean						hasPassedHealthCheck;
+	boolean						hasPassedHealthCheck;
 
 	@Mandatory
 	@Automapped
-	@Valid
-	@Min(0)
-	@Max(75)
+	@ValidNumber(min = 0, max = 75)
 	Integer						yearsOfExperience;
 
 	@Optional

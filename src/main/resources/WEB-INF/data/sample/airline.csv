@@ -1,45 +1,45 @@
 key,email,foundation,iata,name,phone,type,website
 # base entity
-airline-01,airline1@gmail.com,2002/02/01 10:00,ABX,Ry4n4ir,Phone{number: '+34123456789'},LOW_COST,https://www.fakeweb1.com
+airline-01,airline1@gmail.com,2002/02/01 10:00,ABX,Ry4n4ir,+34123456789,LOW_COST,https://www.fakeweb1.com
 # email - standard variations
-airline-02,acme@lorem-ipsum.org,2002/02/01 10:00,ACX,Nombre1,Phone{number: '+34123456789'},STANDARD,https://www.fakeweb2.com
-airline-03,a@b.e,2002/02/01 10:00,AEX,Nombre3,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb4.com
-airline-04,a@b.es,2002/02/01 10:00,AFX,Nombre4,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb5.com
-airline-05,a@b.esx,2002/02/01 10:00,AGX,Nombre5,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb6.com
-airline-06,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,2002/02/01 10:00,AHX,Nombre6,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb7.com
-airline-07,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,2002/02/01 10:00,AIX,Nombre3,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb4.com
+airline-02,acme@lorem-ipsum.org,2002/02/01 10:00,ACX,Nombre1,+34123456789,STANDARD,https://www.fakeweb2.com
+airline-03,a@b.e,2002/02/01 10:00,AEX,Nombre3,+34123456789,LUXURY,https://www.fakeweb4.com
+airline-04,a@b.es,2002/02/01 10:00,AFX,Nombre4,+34123456789,LUXURY,https://www.fakeweb5.com
+airline-05,a@b.esx,2002/02/01 10:00,AGX,Nombre5,+34123456789,LUXURY,https://www.fakeweb6.com
+airline-06,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,2002/02/01 10:00,AHX,Nombre6,+34123456789,LUXURY,https://www.fakeweb7.com
+airline-07,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,2002/02/01 10:00,AIX,Nombre3,+34123456789,LUXURY,https://www.fakeweb4.com
 # foundation - standard variations
-airline-08,airline@gmail.com,2012/08/05 0:00,AJX,Ejemplo1,Phone{number: '+34123456789'},LOW_COST,https://www.fakeweb1.com
-airline-09,airline@gmail.com,2000/01/01 0:00,AKX,Ejemplo2,Phone{number: '+34123456789'},LOW_COST,https://www.fakeweb1.com
-airline-10,airline@gmail.com,2000/01/01 0:01,ALX,Ejemplo3,Phone{number: '+34123456789'},LOW_COST,https://www.fakeweb1.com
+airline-08,airline@gmail.com,2012/08/05 0:00,AJX,Ejemplo1,+34123456789,LOW_COST,https://www.fakeweb1.com
+airline-09,airline@gmail.com,2000/01/01 0:00,AKX,Ejemplo2,+34123456789,LOW_COST,https://www.fakeweb1.com
+airline-10,airline@gmail.com,2000/01/01 0:01,ALX,Ejemplo3,+34123456789,LOW_COST,https://www.fakeweb1.com
 # name - standard variations
-airline-11,airline@gmail.com,2000/01/01 0:01,AMX,Lorem ipsum dolor sit ame,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-12,airline@gmail.com,2000/01/01 0:01,ANX,L,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-13,airline@gmail.com,2000/01/01 0:01,AOX,Lo,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-14,airline@gmail.com,2000/01/01 0:01,APX,"Lorem ipsum dolor sit amet, consectetur adipiscin",Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-15,airline@gmail.com,2000/01/01 0:01,AQX,"Lorem ipsum dolor sit amet, consectetur adipiscing",Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-16,airline@gmail.com,2000/01/01 0:01,ASX,โลเร็ม อิปซัม,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-17,airline@gmail.com,2000/01/01 0:01,ATX,洛伦·伊普森,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-18,airline@gmail.com,2000/01/01 0:01,AUX,<marquee>Hacked</marquee>,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-19,airline@gmail.com,2000/01/01 0:01,AVX,<script>alert(‘Hacked!’);</script>,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
-airline-20,airline@gmail.com,2000/01/01 0:01,AWX,' or 'A' = 'A,Phone{number: '+34123456789'},LUXURY,https://www.fakeweb.com
+airline-11,airline@gmail.com,2000/01/01 0:01,AMX,Lorem ipsum dolor sit ame,+34123456789,LUXURY,https://www.fakeweb.com
+airline-12,airline@gmail.com,2000/01/01 0:01,ANX,L,+34123456789,LUXURY,https://www.fakeweb.com
+airline-13,airline@gmail.com,2000/01/01 0:01,AOX,Lo,+34123456789,LUXURY,https://www.fakeweb.com
+airline-14,null,2000/01/01 0:01,APX,"Lorem ipsum dolor sit amet, consectetur adipiscin",+34123456789,LUXURY,https://www.fakeweb.com
+airline-15,airline@gmail.com,2000/01/01 0:01,AQX,"Lorem ipsum dolor sit amet, consectetur adipiscing",+34123456789,LUXURY,https://www.fakeweb.com
+airline-16,airline@gmail.com,2000/01/01 0:01,ASX,โลเร็ม อิปซัม,+34123456789,LUXURY,https://www.fakeweb.com
+airline-17,airline@gmail.com,2000/01/01 0:01,ATX,洛伦·伊普森,+34123456789,LUXURY,https://www.fakeweb.com
+airline-18,airline@gmail.com,2000/01/01 0:01,AUX,<marquee>Hacked</marquee>,+34123456789,LUXURY,https://www.fakeweb.com
+airline-19,airline@gmail.com,2000/01/01 0:01,AVX,<script>alert(‘Hacked!’);</script>,+34123456789,LUXURY,https://www.fakeweb.com
+airline-20,airline@gmail.com,2000/01/01 0:01,AWX,' or 'A' = 'A,+34123456789,LUXURY,https://www.fakeweb.com
 # website - standard variations
-airline-21,acme@lorem-ipsum.org,2002/02/01 10:00,BAX,Airline1,Phone{number: '+34123456789'},STANDARD,http://lorem.com/ipsum
-airline-22,acme@lorem-ipsum.org,2002/02/01 10:00,BBX,Airline2,Phone{number: '+34123456789'},STANDARD,ftp://a
-airline-23,acme@lorem-ipsum.org,2002/02/01 10:00,BCX,Airline3,Phone{number: '+34123456789'},STANDARD,ftp://a.b
-airline-24,acme@lorem-ipsum.org,2002/02/01 10:00,BDX,Airline4,Phone{number: '+34123456789'},STANDARD,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/"
-airline-25,acme@lorem-ipsum.org,2002/02/01 10:00,BEX,Airline5,Phone{number: '+34123456789'},STANDARD,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X"
-airline-26,acme@lorem-ipsum.org,2002/02/01 10:00,BFX,Airline6,Phone{number: '+34123456789'},STANDARD,https://www.lorem-ipsum.org
-airline-27,acme@lorem-ipsum.org,2002/02/01 10:00,BGX,Airline7,Phone{number: '+34123456789'},STANDARD,ftp://www.lorem-ipsum.org
-airline-28,acme@lorem-ipsum.org,2002/02/01 10:00,BHX,Airline8,Phone{number: '+34123456789'},STANDARD,http://www.lorem-ipsum.org/dolor/sit.html
-airline-29,acme@lorem-ipsum.org,2002/02/01 10:00,BIX,Airline9,Phone{number: '+34123456789'},STANDARD,http://www.lorem-ipsum.org/dolor/sit.html#dolor
-airline-30,acme@lorem-ipsum.org,2002/02/01 10:00,BJX,Airline10,Phone{number: '+34123456789'},STANDARD,http://example.org?a=1&b=2
-airline-31,acme@lorem-ipsum.org,2002/02/01 10:00,BKX,Airline11,Phone{number: '+34123456789'},STANDARD,http://example.org?
-airline-32,acme@lorem-ipsum.org,2002/02/01 10:00,BLX,Airline12,Phone{number: '+34123456789'},STANDARD,http://example.org?a
-airline-33,acme@lorem-ipsum.org,2002/02/01 10:00,BMX,Airline13,Phone{number: '+34123456789'},STANDARD,http://example.org?a&b
-airline-34,acme@lorem-ipsum.org,2002/02/01 10:00,BNX,Airline14,Phone{number: '+34123456789'},STANDARD,http://example.org/
-airline-35,acme@lorem-ipsum.org,2002/02/01 10:00,BOX,Airline15,Phone{number: '+34123456789'},STANDARD,http://example.org/a
-airline-36,acme@lorem-ipsum.org,2002/02/01 10:00,BPX,Airline16,Phone{number: '+34123456789'},STANDARD,http://example.org/a/b
-airline-37,acme@lorem-ipsum.org,2002/02/01 10:00,BQX,Airline17,Phone{number: '+34123456789'},STANDARD,http://example.org/a/b?
-airline-38,acme@lorem-ipsum.org,2002/02/01 10:00,BRX,Airline18,Phone{number: '+34123456789'},STANDARD,http://example.org/a/b?a&b
-airline-39,acme@lorem-ipsum.org,2002/02/01 10:00,BSX,Airline18,,STANDARD,http://example.org/a/b?a&b
+airline-21,acme@lorem-ipsum.org,2002/02/01 10:00,BAX,Airline1,+34123456789,STANDARD,http://lorem.com/ipsum
+airline-22,acme@lorem-ipsum.org,2002/02/01 10:00,BBX,Airline2,+34123456789,STANDARD,ftp://a
+airline-23,acme@lorem-ipsum.org,2002/02/01 10:00,BCX,Airline3,null,STANDARD,ftp://a.b
+airline-24,acme@lorem-ipsum.org,2002/02/01 10:00,BDX,Airline4,+34123456789,STANDARD,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/"
+airline-25,acme@lorem-ipsum.org,2002/02/01 10:00,BEX,Airline5,+34123456789,STANDARD,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X"
+airline-26,acme@lorem-ipsum.org,2002/02/01 10:00,BFX,Airline6,+34123456789,STANDARD,https://www.lorem-ipsum.org
+airline-27,acme@lorem-ipsum.org,2002/02/01 10:00,BGX,Airline7,+34123456789,STANDARD,ftp://www.lorem-ipsum.org
+airline-28,acme@lorem-ipsum.org,2002/02/01 10:00,BHX,Airline8,+34123456789,STANDARD,http://www.lorem-ipsum.org/dolor/sit.html
+airline-29,acme@lorem-ipsum.org,2002/02/01 10:00,BIX,Airline9,+34123456789,STANDARD,http://www.lorem-ipsum.org/dolor/sit.html#dolor
+airline-30,null,2002/02/01 10:00,BJX,Airline10,null,STANDARD,http://example.org?a=1&b=2
+airline-31,acme@lorem-ipsum.org,2002/02/01 10:00,BKX,Airline11,+34123456789,STANDARD,http://example.org?
+airline-32,acme@lorem-ipsum.org,2002/02/01 10:00,BLX,Airline12,+34123456789,STANDARD,http://example.org?a
+airline-33,acme@lorem-ipsum.org,2002/02/01 10:00,BMX,Airline13,+34123456789,STANDARD,http://example.org?a&b
+airline-34,acme@lorem-ipsum.org,2002/02/01 10:00,BNX,Airline14,+34123456789,STANDARD,http://example.org/
+airline-35,null,2002/02/01 10:00,BOX,Airline15,+34123456789,STANDARD,http://example.org/a
+airline-36,acme@lorem-ipsum.org,2002/02/01 10:00,BPX,Airline16,+34123456789,STANDARD,http://example.org/a/b
+airline-37,acme@lorem-ipsum.org,2002/02/01 10:00,BQX,Airline17,+34123456789,STANDARD,http://example.org/a/b?
+airline-38,acme@lorem-ipsum.org,2002/02/01 10:00,BRX,Airline18,+34123456789,STANDARD,http://example.org/a/b?a&b
+airline-39,acme@lorem-ipsum.org,2002/02/01 10:00,BSX,Airline18,null,STANDARD,http://example.org/a/b?a&b

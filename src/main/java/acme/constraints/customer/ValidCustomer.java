@@ -1,5 +1,5 @@
 
-package acme.constraints.phone;
+package acme.constraints.customer;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,13 +9,14 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = PhoneValidator.class)
-public @interface ValidPhone {
+@Constraint(validatedBy = CustomerValidator.class)
+public @interface ValidCustomer {
 
 	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
+
 }

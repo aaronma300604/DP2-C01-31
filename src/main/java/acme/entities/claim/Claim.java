@@ -1,10 +1,9 @@
 
-package acme.entities;
+package acme.entities.claim;
 
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -13,6 +12,7 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class TrackingLog extends AbstractEntity {
+public class Claim extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -29,28 +29,24 @@ public class TrackingLog extends AbstractEntity {
 	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
-	private Date				lastUpdate;
+	private Date				date;
 
 	@Optional
 	@Automapped
-	@ValidString(max = 50)
-	private String				stepUndergoing;
+	@ValidEmail
+	private String				email;
 
 	@Mandatory
-	@Automapped
-	private Integer				resolutionPercentage;
-
-	@Optional
-	@Automapped
-	private Boolean				finallyAccepted;
-
-	@Optional
 	@Automapped
 	@ValidString(max = 255)
-	private String				resolution;
+	private String				description;
 
 	@Mandatory
+	@Automapped
 	@Valid
-	@OneToOne(optional = false)
-	private Claim				claim;
+	private ClaimType			type;
+
+	@Mandatory
+	@Automapped
+	private Boolean				accepted;
 }
