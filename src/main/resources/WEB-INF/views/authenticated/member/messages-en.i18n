@@ -1,0 +1,9 @@
+authenticated.member.form.title = Flight Crew Member Dashboard
+
+authenticated.member.form.label.last-five-destinations-assigned = Last Five destinations assigned
+authenticated.member.form.label.legs-with-incidents = Legs with incidents
+authenticated.member.form.label.last-legs-crew-members = Last legs crew members
+authenticated.member.form.label.Assignments-by-status = assignments by status
+authenticated.member.form.label.deviation-statistics = deviation statistics
+
+authenticated.member.form.title.application-statuses = Application statuses
