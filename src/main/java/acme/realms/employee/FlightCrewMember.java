@@ -5,13 +5,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.constraints.member.ValidFlightCrewMember;
 import acme.constraints.phone.ValidPhone;
@@ -54,7 +54,7 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Optional
 	@Automapped
-	@Min(value = 0)
+	@ValidNumber(min = 0)
 	private Integer				experienceYears;
 
 	@Mandatory
