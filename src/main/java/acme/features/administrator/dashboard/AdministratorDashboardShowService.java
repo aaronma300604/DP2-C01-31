@@ -37,12 +37,12 @@ public class AdministratorDashboardShowService extends AbstractGuiService<Admini
 		Double ratioRewiewsScoreAbove5;
 		ReviewsStatistics reviewsStatistics;
 
-		airportsByScope = this.repository.airportsByScope();
-		airlinesByType = new ArrayList<>();
-		ratioAirlinesWithEmailOrPhone = 0.0;
-		ratioActiveAircrafts = 0.0;
-		ratioRewiewsScoreAbove5 = 0.0;
-		reviewsStatistics = null;
+		airportsByScope = new ArrayList<>();//TODO: call repository queries
+		airlinesByType = new ArrayList<>();//TODO: call repository queries
+		ratioAirlinesWithEmailOrPhone = 0.0;//TODO: call repository queries
+		ratioActiveAircrafts = 0.0;//TODO: call repository queries
+		ratioRewiewsScoreAbove5 = 0.0;//TODO: call repository queries
+		reviewsStatistics = null;//TODO: call repository queries
 
 		dashboard = new Dashboard();
 		dashboard.setAirportsByScope(airportsByScope);
