@@ -16,7 +16,6 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,7 +49,7 @@ public class Booking extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidNumber(integer = 4, fraction = 0)
-	private Integer				lastCreditCardNibble;
+	@ValidString(max = 4)
+	private String				lastCreditCardNibble;
 
 }
