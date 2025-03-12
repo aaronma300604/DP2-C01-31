@@ -1,0 +1,6 @@
+key,lastUpdate,stepUndergoing,resolutionPercentage,accepted,resolution,key:claim
+tracking-log-01,2015/03/02 10:00,Claim Received,10.0,PENDING,,claim-01
+tracking-log-02,2015/03/03 12:30,Investigation Started,40.0,ACCEPTED,Compensation approved,claim-02
+tracking-log-03,2015/03/04 15:45,Verification Completed,90.0,REJECTED,Claim lacks sufficient proof,claim-03
+tracking-log-04,2015/03/05 09:20,Awaiting Airline Response,30.0,PENDING,,claim-04
+tracking-log-05,2015/03/06 17:10,Claim Approved,100.0,ACCEPTED,Full refund issued,claim-05

@@ -1,0 +1,6 @@
+key,date,email,description,type,accepted,key:assistance-agent
+claim-01,2011/03/01 14:30,john.doe@example.com,Flight delayed for 5 hours,FLIGHT_ISSUES,PENDING,assistance-agent-01
+claim-02,2011/03/02 09:15,jane.smith@example.com,Luggage lost at destination,LUGGAGE_ISSUES,ACCEPTED,assistance-agent-02
+claim-03,2011/03/03 18:45,bob.jones@example.com,Security check took too long,SECURITY_ISSUES,REJECTED,assistance-agent-02
+claim-04,2011/03/04 11:20,alice.wilson@example.com,Food poisoning from in-flight meal,OTHER_ISSUES,PENDING,assistance-agent-01
+claim-05,2011/03/05 16:00,mike.brown@example.com,Missed connecting flight due to delay,FLIGHT_ISSUES,ACCEPTED,assistance-agent-02
