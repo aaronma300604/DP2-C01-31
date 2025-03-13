@@ -14,7 +14,9 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.entities.claim.AcceptanceStatus;
 import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,27 +29,28 @@ public class TrackingLog extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Automapped
 	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
 	private Date				lastUpdate;
 
-	@Optional
+	@Mandatory
 	@Automapped
-	@ValidString(max = 50)
+	@ValidString(min = 1, max = 50)
 	private String				stepUndergoing;
 
 	@Mandatory
 	@Automapped
-	private Integer				resolutionPercentage;
+	@ValidNumber(min = 0.0, max = 100.0)
+	private Double				resolutionPercentage;
+
+	@Mandatory
+	@Automapped
+	@Valid
+	private AcceptanceStatus	accepted;
 
 	@Optional
 	@Automapped
-	private Boolean				finallyAccepted;
-
-	@Optional
-	@Automapped
-	@ValidString(max = 255)
+	@ValidString(min = 1, max = 255)
 	private String				resolution;
 
 	@Mandatory

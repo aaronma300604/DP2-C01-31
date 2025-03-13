@@ -415,11 +415,19 @@ m2=*</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 TrackingLog
 --
+<<<<<<< HEAD
 + lastUpdate: Date {Mandatory, Temporal(TIMESTAMP), ValidMoment(past = true)}
 + stepUndergoing: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
 + resolutionPercentage: Double {Mandatory, Automapped, ValidNumber(min = 0.0, max = 100.0)}
 + finallyAccepted: AcceptanceStatus {Mandatory, Automapped, Valid}
 + resolution: String {Optional, Automapped, ValidString(min = 1, max = 255)}
+=======
++ last-update: Date {Mandatory, Temporal(TIMESTAMP)}
++ step-undergoing: String {Mandatory}
++ resolution_percentage: Double {Mandatory}
++ finally_accepted: Boolean {Optional}
++ resolution: String {Optional}
+>>>>>>> 63f5f9b39164cdb0e9722a6761cfe1a482585e73
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>

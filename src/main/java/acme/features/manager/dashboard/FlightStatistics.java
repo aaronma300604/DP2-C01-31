@@ -4,14 +4,14 @@ package acme.features.manager.dashboard;
 public interface FlightStatistics {
 
 	Double getAverage();
-	void setAverage();
+	void setAverage(Double average);
 
 	Double getMinimum();
-	void setMinimum();
+	void setMinimum(Double minimum);
 
 	Double getMaximum();
-	void setMaximum();
+	void setMaximum(Double maximum);
 
 	Double getStandardDeviation();
-	void setStandardDeviation();
+	void setStandardDeviation(Double standardDeviation);
 }
