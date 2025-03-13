@@ -21,7 +21,7 @@ master.menu.anonymous.favourite-link-diego = 5443*****: Terrón Hernández, Dieg
 
 master.menu.administrator = Administrador
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
-master.menu.administrator.show-dashboard = Mostrar dashboard
+# master.menu.administrator.show-dashboard = Mostrar dashboard
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
