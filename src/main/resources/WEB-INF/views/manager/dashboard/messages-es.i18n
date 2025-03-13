@@ -1,0 +1,10 @@
+# messages-es.i18n
+
+manager.dashboard.form.title = Panel de indicadores de manager
+
+manager.dashboard.form.title.general-indicators = Indicadores generales
+manager.dashboard.form.title.application-statuses = Estados de solicitud
+
+manager.dashboard.form.label.average-number-jobs-employer =  Número medio de trabajos por empleador
+manager.dashboard.form.label.average-number-applications-worker =  Número medio de solicitudes por trabajador
+manager.dashboard.form.label.average-number-applications-employer = Número medio de solicitudes por empleador

@@ -1,0 +1,11 @@
+key,lastUpdate,stepUndergoing,resolutionPercentage,accepted,resolution,key:claim
+tracking-log-01,2000/01/01 00:00,A,0.0,PENDING,,claim-01
+tracking-log-02,2000/01/02 00:01,AB,0.1,ACCEPTED,"Minimal resolution text",claim-02
+tracking-log-03,2022/07/29 23:59,"Lorem ipsum dolor sit amet, consectetur elit.",99.9,REJECTED,"This resolution text is long but still within limits.",claim-03
+tracking-log-04,2022/07/30 00:00,"โลเร็ม อิปซัม",100.0,PENDING,"โลเร็ม อิปซัม resolution text",claim-04
+tracking-log-05,2018/06/15 14:20,"لوريم إيبسوم",50.5,ACCEPTED,"لوريم إيبسوم resolution details",claim-05
+tracking-log-06,2019/09/22 08:45,"洛伦·伊普森",75.0,PENDING,"洛伦·伊普森 resolution info",claim-06
+tracking-log-07,2020/11/10 18:30,"<marquee>Hacked</marquee>",20.0,REJECTED,"<script>alert('Hacked!');</script>",claim-07
+tracking-log-08,2021/05/20 22:15,"'' or 'A' = 'A",95.5,ACCEPTED,"SQL injection attempt: '' or '1'='1",claim-08
+tracking-log-09,2013/04/18 07:45,"This is a step description 50 characters long.",5.0,PENDING,"Short resolution",claim-09
+tracking-log-10,2017/08/25 17:55,"This is a step description that is 50 chars long.",100.0,REJECTED,"This resolution text is exactly 255 characters long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at quam sed est fermentum convallis eget eget metus. Quisque vestibulum justo nec felis tempor, eu convallis mi tincidunt.",claim-10

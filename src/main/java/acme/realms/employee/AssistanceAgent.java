@@ -1,9 +1,13 @@
 
 package acme.realms.employee;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
@@ -11,11 +15,11 @@ import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
-import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.constraints.member.ValidFlightCrewMember;
-import acme.constraints.phone.ValidPhone;
+import acme.client.components.validation.ValidUrl;
+import acme.constraints.agent.ValidAssistanceAgent;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,44 +27,44 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@ValidFlightCrewMember
-public class FlightCrewMember extends AbstractRole {
+@ValidAssistanceAgent
+public class AssistanceAgent extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
-	@Automapped
 	private String				employeeCode;
 
 	@Mandatory
 	@Automapped
-	@ValidPhone
-	private String				phone;
+	@ValidString(min = 1, max = 255)
+	private String				spokenLanguages;
 
 	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
+
+	@Mandatory
+	@Temporal(TemporalType.TIMESTAMP)
+	@ValidMoment(past = true)
+	private Date				moment;
+
+	@Optional
 	@Automapped
 	@ValidString(min = 1, max = 255)
-	private String				languageSkills;
+	private String				briefBio;
 
-	@Mandatory
-	@Automapped
-	@Valid
-	private AvaliabilityStatus	abStat;
-
-	@Mandatory
+	@Optional
 	@Automapped
 	@ValidMoney
 	private Money				salary;
 
 	@Optional
 	@Automapped
-	@ValidNumber(min = 0, max = 120)
-	private Integer				experienceYears;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
+	@ValidUrl
+	private String				picture;
 
 }

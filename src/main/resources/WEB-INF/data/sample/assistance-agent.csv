@@ -1,0 +1,4 @@
+key,employeeCode,spokenLanguages,moment,salary,key:airline,key:user-account
+assistance-agent-01,DB474958,lore-ipsum,2001/02/01 10:00,EUR 500000.00,airline-01,user-account-agent-01
+assistance-agent-02,PM234567,lore-ipsum,2001/02/01 10:00,EUR 500000.00,airline-02,user-account-agent-02
+assistance-agent-03,KL777364,lore-ipsum,2001/02/01 10:00,EUR 500000.00,airline-02,user-account-agent-03
