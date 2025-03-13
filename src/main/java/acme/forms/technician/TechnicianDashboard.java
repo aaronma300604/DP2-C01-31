@@ -8,7 +8,11 @@ import acme.client.components.basis.AbstractForm;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.maintenanceRecord.MaintenanceStatus;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class TechnicianDashboard extends AbstractForm {
 
 	private static final long					serialVersionUID	= 1L;
