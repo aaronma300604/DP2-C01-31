@@ -1,4 +1,4 @@
 key,certifications,has_passed_health_check,license_number,phone,specialisation,years_of_experience,key:user-account
-technician-01,,true,ABC123456,+34111222333,mechanics,20,user-account-technician-01
-technician-02,,true,ABC123457,+34111222444,mechanics,20,user-account-technician-02
-technician-03,,true,ABC123458,+34111222555,mechanics,20,user-account-technician-03
+technician-01,,true,AM123456,+34111222333,mechanics,20,user-account-technician-01
+technician-02,,true,CO123457,+34111222444,mechanics,20,user-account-technician-02
+technician-03,,true,IM123458,+34111222555,mechanics,20,user-account-technician-03
