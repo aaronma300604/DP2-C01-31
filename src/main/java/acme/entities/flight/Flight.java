@@ -38,7 +38,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private Boolean				selfTransfer;
+	private boolean				selfTransfer;
 
 	@Mandatory
 	@Automapped
