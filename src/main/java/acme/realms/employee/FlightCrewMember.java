@@ -11,6 +11,7 @@ import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
+import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.constraints.member.ValidFlightCrewMember;
@@ -49,12 +50,12 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@Valid
+	@ValidMoney
 	private Money				salary;
 
 	@Optional
 	@Automapped
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, max = 120)
 	private Integer				experienceYears;
 
 	@Mandatory
