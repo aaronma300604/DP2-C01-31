@@ -33,7 +33,7 @@ public class Customer extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1)
 	private String				address;
 
 	@Mandatory
