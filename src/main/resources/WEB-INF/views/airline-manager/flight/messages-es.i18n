@@ -1,0 +1,7 @@
+airline-manager.flight.list.title = Lista de Mis Vuelos:
+
+airline-manager.flight.list.label.tag = Etiqueta:
+airline-manager.flight.list.label.airlineName = Nombre de Aerolínea:
+airline-manager.flight.list.label.cost = Coste:
+airline-manager.flight.list.label.origin = Origen:
+airline-manager.flight.list.label.destination = Destino:

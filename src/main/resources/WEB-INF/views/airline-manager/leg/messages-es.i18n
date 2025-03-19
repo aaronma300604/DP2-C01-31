@@ -1,0 +1,7 @@
+airline-manager.leg.list.title = Lista de Mis Trayectos:
+
+airline-manager.leg.list.label.flightNumber: Número de Vuelo:
+airline-manager.leg.list.label.scheduledDeparture: Hora de Salida:
+airline-manager.leg.list.label.scheduledArrival: Hora de llegada:
+airline-manager.leg.list.label.origin: Origen:
+airline-manager.leg.list.label.destination: Destino:

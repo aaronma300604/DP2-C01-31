@@ -1,0 +1,7 @@
+airline-manager.flight.list.title = List of My Flights:
+
+airline-manager.flight.list.label.tag = Tag:
+airline-manager.flight.list.label.airlineName = Airline Name:
+airline-manager.flight.list.label.cost = Cost:
+airline-manager.flight.list.label.origin = Origin:
+airline-manager.flight.list.label.destination = Destination:

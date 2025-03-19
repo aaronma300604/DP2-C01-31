@@ -1,0 +1,7 @@
+airline-manager.leg.list.title = List of My Legs:
+
+airline-manager.leg.list.label.flightNumber: Flight Number:
+airline-manager.leg.list.label.scheduledDeparture: Departure Scheduled:
+airline-manager.leg.list.label.scheduledArrival: Arrival Scheduled:
+airline-manager.leg.list.label.origin: Origin:
+airline-manager.leg.list.label.destination: Destination:
