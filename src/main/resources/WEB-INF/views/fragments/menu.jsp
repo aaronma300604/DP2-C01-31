@@ -28,7 +28,7 @@
 		
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
-			<%---<acme:menu-suboption code="master.menu.administrator.show-dashboard" action="/administrator/dashboard/show" />--%>
+			<acme:menu-suboption code="master.menu.administrator.show-dashboard" action="/administrator/dashboard/show" />
 			<%---<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/manager/dashboard/show" />--%>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
@@ -51,6 +51,11 @@
 			<acme:menu-suboption code="master.menu.consumer.favourite-link-aaron" action="https://www.youtube.com"/>
 			<acme:menu-suboption code="master.menu.consumer.favourite-link-ivan" action="https://github.com/"/>
 			<acme:menu-suboption code="master.menu.consumer.favourite-link-diego" action="https://www.linkedin.com/"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.manager" access="hasRealm('AirlineManager')">
+			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/airline-manager/flight/list"/>
+			<acme:menu-suboption code="master.menu.manager.list-my-legs" action="/airline-manager/leg/list"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

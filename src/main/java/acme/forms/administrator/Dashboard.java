@@ -17,6 +17,7 @@ public class Dashboard extends AbstractForm {
 	List<AirlinesByType>		airlinesByType;
 	Double						ratioAirlinesWithEmailOrPhone;
 	Double						ratioActiveAircrafts;
+	Double						ratioNotActiveAircrafts;
 	Double						ratioRewiewsScoreAbove5;
 	ReviewsStatistics			reviewsStatistics;
 }

@@ -21,7 +21,7 @@ master.menu.anonymous.favourite-link-diego = 5443*****: Terrón Hernández, Dieg
 
 master.menu.administrator = Administrator
 master.menu.administrator.list-user-accounts = List user accounts
-# master.menu.administrator.show-dashboard = Show dashboard
+master.menu.administrator.show-dashboard = Show dashboard
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
@@ -43,6 +43,12 @@ master.menu.consumer.favourite-link-estrella = 4913*****:Angel Postigo, Estrella
 master.menu.consumer.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
 master.menu.consumer.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
 master.menu.consumer.favourite-link-diego = 5443*****: Terrón Hernández, Diego
+
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.list-my-flights = My Flights
+master.menu.manager.list-my-legs = My Legs
 
 # master.menu.user-account ####################################################
 

@@ -3,9 +3,19 @@
 administrator.dashboard.form.title = Administrator dashboard
 
 administrator.dashboard.form.title.general-indicators = General indicators
-administrator.dashboard.form.title.application-statuses = Application statuses  
 
-administrator.dashboard.form.label.average-number-jobs-employer =  Average number of jobs per employer
-administrator.dashboard.form.label.average-number-applications-worker =  Average number of applications per worker
-administrator.dashboard.form.label.average-number-applications-employer = Average number of applications per employer
-
+administrator.dashboard.form.label.domesticAirpots =  Domestic Airports:
+administrator.dashboard.form.label.internationalAirports =  International Airports:
+administrator.dashboard.form.label.regionalAirports =  Regional Airports:
+administrator.dashboard.form.label.luxuryAirlines =  Luxury Airlines:
+administrator.dashboard.form.label.standardAirlines =  Standard Airlines:
+administrator.dashboard.form.label.lowCostAirlines =  Low Cost Airlines:
+administrator.dashboard.form.label.average-number-airlines-with-email-phone = Average Number of Airlines with Email and Phone:
+administrator.dashboard.form.label.average-active-Aircrafts = Average Number of Aircrafts Active:
+administrator.dashboard.form.label.average-nonActive-Aircrafts = Average Number of Aircrafts Not Active:
+administrator.dashboard.form.label.average-score-reviews-above-5 = Average Score of Reviews Above Five:
+administrator.dashboard.form.label.countReviews = Number of Reviews Posted the Last Ten Weeks:
+administrator.dashboard.form.label.averageReviews = Average Number of Reviews Posted the Last Ten Weeks:
+administrator.dashboard.form.label.minimumReviews = Minimum Number of Reviews Posted the Last Ten Weeks:
+administrator.dashboard.form.label.maximumReviews = Maximum Number of Reviews Posted the Last Ten Weeks:
+administrator.dashboard.form.label.desviationReviews = Standard Deviation of Reviews Posted the Last Ten Weeks:
