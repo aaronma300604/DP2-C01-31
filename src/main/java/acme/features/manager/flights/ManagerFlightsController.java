@@ -14,16 +14,16 @@ import acme.realms.employee.AirlineManager;
 public class ManagerFlightsController extends AbstractGuiController<AirlineManager, Flight> {
 
 	@Autowired
-	private ManagerFlightsListService listService;
+	private ManagerFlightsListService	listService;
 
-	//@Autowired
-	//private ManagerFlightsShowService	showService;
+	@Autowired
+	private ManagerFlightsShowService	showService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
-		//super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("show", this.showService);
 	}
 
 }
