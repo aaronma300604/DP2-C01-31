@@ -11,3 +11,7 @@
 	<acme:list-column code="airline-manager.leg.list.label.destination" path="destination" sortable="false" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="airline-manager.leg.list.button.create" action="/airline-manager/leg/create"/>
+</jstl:if>		

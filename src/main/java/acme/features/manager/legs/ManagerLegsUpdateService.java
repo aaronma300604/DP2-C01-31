@@ -17,7 +17,7 @@ import acme.entities.leg.LegStatus;
 import acme.realms.employee.AirlineManager;
 
 @GuiService
-public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, Leg> {
+public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager, Leg> {
 
 	@Autowired
 	private ManagerLegsRepository repository;
@@ -33,7 +33,7 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLeg(legId);
 		manager = leg == null ? null : leg.getManager();
-		status = super.getRequest().getPrincipal().hasRealm(manager) || leg != null && !leg.isDraftMode();
+		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -47,6 +47,43 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 		leg = this.repository.findLeg(id);
 
 		super.getBuffer().addData(leg);
+	}
+
+	@Override
+	public void bind(final Leg leg) {
+		int flightId;
+		int aircraftId;
+		int originId;
+		int destinationId;
+		Flight flight;
+		Aircraft aircraft;
+		Airport origin;
+		Airport destination;
+
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+		aircraftId = super.getRequest().getData("aircraft", int.class);
+		aircraft = this.repository.findAircraftById(aircraftId);
+		originId = super.getRequest().getData("origin", int.class);
+		origin = this.repository.findAirportById(originId);
+		destinationId = super.getRequest().getData("destination", int.class);
+		destination = this.repository.findAirportById(destinationId);
+
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status");
+		leg.setFlight(flight);
+		leg.setAircraft(aircraft);
+		leg.setOrigin(origin);
+		leg.setDestination(destination);
+	}
+
+	@Override
+	public void validate(final Leg leg) {
+		;
+	}
+
+	@Override
+	public void perform(final Leg leg) {
+		this.repository.save(leg);
 	}
 
 	@Override

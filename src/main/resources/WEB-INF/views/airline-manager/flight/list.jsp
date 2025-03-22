@@ -11,3 +11,7 @@
 	<acme:list-column code="airline-manager.flight.list.label.cost" path="cost" width="20%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
+
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="airline-manager.flight.list.button.create" action="/airline-manager/flight/create"/>
+</jstl:if>		

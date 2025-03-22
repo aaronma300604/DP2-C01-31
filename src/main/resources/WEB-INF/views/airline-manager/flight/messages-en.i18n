@@ -16,3 +16,8 @@ airline-manager.flight.form.label.scheduledArrival = Arrival Scheduled:
 airline-manager.flight.form.label.layovers = Layovers:
 airline-manager.flight.form.label.origin = Origin:
 airline-manager.flight.form.label.destination = Destination:
+
+airline-manager.flight.form.button.create = Create
+airline-manager.flight.list.button.create = Create
+airline-manager.flight.form.button.update = Update
+airline-manager.flight.form.button.delete = Delete

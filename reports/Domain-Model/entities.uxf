@@ -120,9 +120,9 @@ m2=*</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>168</x>
-      <y>420</y>
+      <y>414</y>
       <w>276</w>
-      <h>120</h>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Flight
@@ -137,6 +137,7 @@ Flight
 /* getLayovers: Integer
 /* getOrigin: Airport
 /* getDestination: Airport
+/* isDraftMode: boolean
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -146,7 +147,7 @@ bg=green</panel_attributes>
       <x>174</x>
       <y>624</y>
       <w>264</w>
-      <h>78</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Leg {ValidLeg}
@@ -154,8 +155,9 @@ Leg {ValidLeg}
 + flightNumber: String {Mandatory, Column(unique = true)}
 + scheduledDeparture: Date {Mandatory, Temporal(TIMESTAMP)}
 + scheduledArrival: Date {Mandatory, Temporal(TIMESTAMP)}
-+ duration: Integer {Mandatory, Automapped, ValidNumber(min = 0)}
++ duration: Double {Mandatory, Automapped, ValidNumber(min = 0.)}
 + status: LegStatus {Mandatory, Automapped, Valid}
++ draftMode: boolean {Mandatory, Automaped}
 bg=green</panel_attributes>
     <additional_attributes/>
   </element>
@@ -204,12 +206,12 @@ m2=*</panel_attributes>
       <x>300</x>
       <y>366</y>
       <w>24</w>
-      <h>66</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -265,14 +267,14 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>294</x>
-      <y>696</y>
+      <y>702</y>
       <w>24</w>
-      <h>78</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -350,14 +352,14 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>372</x>
-      <y>696</y>
+      <y>702</y>
       <w>300</w>
-      <h>78</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
 m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;480.0;70.0;480.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;480.0;60.0;480.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

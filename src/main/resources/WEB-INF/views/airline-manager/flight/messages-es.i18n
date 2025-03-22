@@ -16,3 +16,8 @@ airline-manager.flight.form.label.scheduledArrival = Hora de Llegada:
 airline-manager.flight.form.label.layovers = Escalas:
 airline-manager.flight.form.label.origin = Origen:
 airline-manager.flight.form.label.destination = Destino:
+
+airline-manager.flight.form.button.create = Crear
+airline-manager.flight.list.button.create = Crear
+airline-manager.flight.form.button.update = Actualizar
+airline-manager.flight.form.button.delete = Borrar

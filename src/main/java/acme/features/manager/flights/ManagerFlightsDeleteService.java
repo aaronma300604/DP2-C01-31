@@ -11,13 +11,19 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
+import acme.entities.leg.Leg;
+import acme.entities.passenger.Passenger;
+import acme.features.manager.legs.ManagerLegsDeleteService;
 import acme.realms.employee.AirlineManager;
 
 @GuiService
-public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager, Flight> {
+public class ManagerFlightsDeleteService extends AbstractGuiService<AirlineManager, Flight> {
 
 	@Autowired
-	private ManagerFlightsRepository repository;
+	private ManagerFlightsRepository	repository;
+
+	@Autowired
+	private ManagerLegsDeleteService	legsDeleteService;
 
 
 	@Override
@@ -30,7 +36,7 @@ public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager
 		flightId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlight(flightId);
 		manager = flight == null ? null : flight.getManager();
-		status = super.getRequest().getPrincipal().hasRealm(manager);
+		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -44,6 +50,35 @@ public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager
 		flight = this.repository.findFlight(id);
 
 		super.getBuffer().addData(flight);
+	}
+
+	@Override
+	public void bind(final Flight flight) {
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+
+		super.bindObject(flight, "tag", "cost", "description", "selfTransfer");
+		flight.setAirline(airline);
+	}
+
+	@Override
+	public void validate(final Flight flight) {
+		;
+	}
+
+	@Override
+	public void perform(final Flight flight) {
+		List<Passenger> passengers;
+		List<Leg> legs;
+
+		passengers = this.repository.findPassengersByFlight(flight.getId());
+		legs = this.repository.findLegsByFlight(flight.getId());
+		this.repository.deleteAll(passengers);
+		legs.stream().forEach(l -> this.legsDeleteService.perform(l));
+		this.repository.delete(flight);
 	}
 
 	@Override
