@@ -28,7 +28,8 @@
 		
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
-			<acme:menu-suboption code="master.menu.administrator.show-dashboard" action="/administrator/dashboard/show" />
+			<%---<acme:menu-suboption code="master.menu.administrator.show-dashboard" action="/administrator/dashboard/show" />--%>
+			<%---<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/manager/dashboard/show" />--%>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
