@@ -44,6 +44,17 @@ master.menu.consumer.favourite-link-aaron = 4773*****: Mayoral Ansias, Aarón
 master.menu.consumer.favourite-link-ivan = 5460*****: Miranda Balastegui, Iván
 master.menu.consumer.favourite-link-diego = 5443*****: Terrón Hernández, Diego
 
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.list-my-flights = My Flights
+master.menu.manager.list-my-legs = My Legs
+
+# master.menu.member ##########################################################
+
+master.menu.member = Flight Crew Member
+maste.menu.member.list-my-assignments = My Assignments
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
