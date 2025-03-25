@@ -38,7 +38,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	private Boolean				selfTransfer;
+	private boolean				selfTransfer;
 
 	@Mandatory
 	@Automapped
@@ -102,5 +102,14 @@ public class Flight extends AbstractEntity {
 		if (!legs.isEmpty())
 			destination = legs.get(legs.size() - 1).getDestination();
 		return destination;
+	}
+
+	@Transient
+	public boolean isDraftMode() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> legs = repository.legsOfFlight(this.getId());
+		if (legs.isEmpty())
+			return false;
+		return legs.stream().allMatch(Leg::isDraftMode);
 	}
 }

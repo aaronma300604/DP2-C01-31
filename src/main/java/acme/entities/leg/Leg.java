@@ -44,13 +44,17 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0)
-	private Integer				duration;
+	@ValidNumber(min = 0.)
+	private Double				duration;
 
 	@Mandatory
 	@Automapped
 	@Valid
 	private LegStatus			status;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 
 	@Mandatory
 	@ManyToOne(optional = false)

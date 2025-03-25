@@ -30,7 +30,7 @@ public class Passenger extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1)
 	private String				name;
 
 	@Mandatory

@@ -50,11 +50,6 @@ master.menu.manager = Manager
 master.menu.manager.list-my-flights = Mis Vuelos
 master.menu.manager.list-my-legs = Mis Trayectos
 
-# master.menu.member ##########################################################
-
-master.menu.member = Miembro de la tripulación
-maste.menu.member.list-my-assignments = Mis asignaciones
-
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
@@ -63,3 +58,9 @@ master.menu.user-account.become-provider = Hacerse proveedor
 master.menu.user-account.provider-profile = Perfil de proveedor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
+
+
+# master.menu.member ##########################################################
+
+master.menu.member = Miembro de la tripulación
+maste.menu.member.list-my-assignments = Mis asignaciones

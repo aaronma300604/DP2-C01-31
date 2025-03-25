@@ -1,0 +1,107 @@
+key,address,city,country,identifier,phone,points,key:user_account
+# base entity
+customer-01,789 Aviation Way,Los Angeles,USA,AB123456,+1234567890,1250,user-account-customer-01
+customer-02,456 Skyhigh Blvd,New York,USA,CD654321,+19876543210,300,user-account-customer-01
+customer-03,321 Jetstream Ave,Chicago,USA,EF987654,+12345678901,0,user-account-customer-01
+customer-04,654 Flight Path Rd,Miami,USA,GH345678,+11234567890,25000,user-account-customer-01
+customer-05,987 Cloudy Lane,San Francisco,USA,IJ876543,+1987654321,450000,user-account-customer-01
+customer-06,1354 Wingtip Way,Dallas,USA,KL234567,+123456,1500,user-account-customer-01
+customer-07,2468 Soaring Dr,Montreal,Canada,MN345678,+23456789012,12500,user-account-customer-01
+customer-08,1357 High Flyer Ct,London,UK,OP123456,+34567890123,90000,user-account-customer-01
+customer-09,852 Horizon St,Sydney,Australia,QR654321,+45678901234,30000,user-account-customer-01
+customer-10,963 Aviator Blvd,Berlin,Germany,ST987654,+56789012345,500000,user-account-customer-01
+customer-11,147 Flightline St,Tokyo,Japan,UV111222,+67890123456,null,user-account-customer-01
+customer-12,555 Sky Lane,Paris,France,WX222333,+78901234567,20000,user-account-customer-01
+customer-13,888 Airway Rd,São Paulo,Brazil,YZ333444,+89012345678,350000,user-account-customer-01
+customer-14,123 Flight Ave,Cairo,Egypt,AA444555,+90123456789,10000,user-account-customer-01
+# address - standard variations
+customer-15,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",Los Angeles,USA,AB123457,+1234567890,1250,user-account-consumer-01
+customer-16,L,New York,USA,CD654322,+19876543210,300,user-account-consumer-02
+customer-17,Lo,Chicago,USA,EF987655,+12345678901,0,user-account-consumer-03
+customer-18,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",Miami,USA,GH345679,+11234567890,25000,user-account-provider-01
+customer-19,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",San Francisco,USA,IJ876544,+1987654321,450000,user-account-provider-02
+customer-20,โลเร็ม อิปซัม,Dallas,USA,KL234568,+123456,1500,user-account-provider-03
+customer-21,لوريم إيبسوم,Montreal,Canada,MN345679,+23456789012,12500,user-account-manager-01
+customer-22,洛伦·伊普森,London,UK,OP123457,+34567890123,90000,user-account-manager-02
+customer-23,<marquee>Hacked</marquee>,Sydney,Australia,QR654322,+45678901234,30000,user-account-manager-03
+customer-24,<script>alert(‘Hacked!’);</script>,Berlin,Germany,ST987655,+56789012345,500000,user-account-member-01
+customer-25,' or 'A' = 'A,Tokyo,Japan,UV111223,+67890123456,null,user-account-member-02
+# city - standard variations
+customer-26,789 Aviation Way,Lorem ipsum dolor sit ame,USA,AB123458,+1234567890,1250,user-account-consumer-01
+customer-27,456 Skyhigh Blvd,โลเร็ม อิปซัม,USA,CD654323,+19876543210,300,user-account-consumer-02
+customer-28,321 Jetstream Ave,洛伦·伊普森,USA,EF987656,+12345678901,0,user-account-consumer-03
+customer-29,654 Flight Path Rd,لوريم إيبسوم,USA,GH345690,+11234567890,25000,user-account-provider-01
+customer-30,987 Cloudy Lane,' or 'A' = 'A,USA,IJ876545,+1987654321,450000,user-account-provider-02
+customer-31,1354 Wingtip Way,<script>alert(‘Hacked!’);</script>,USA,KL234569,+123456,1500,user-account-provider-03
+customer-32,2468 Soaring Dr,<marquee>Hacked</marquee>,Canada,MN345680,+23456789012,12500,user-account-manager-01
+customer-33,1357 High Flyer Ct,L,UK,OP123458,+34567890123,90000,user-account-manager-02
+customer-34,852 Horizon St,"Lorem ipsum dolor sit amet, consectetur adipiscin",Australia,QR654323,+45678901234,30000,user-account-manager-03
+customer-35,963 Aviator Blvd,"Lorem ipsum dolor sit amet, consectetur adipiscing",Germany,ST987656,+56789012345,500000,user-account-member-01
+customer-36,147 Flightline St,Lo,Japan,UV111224,+67890123456,null,user-account-member-02
+# country - standard variations
+customer-37,789 Aviation Way,Los Angeles,<marquee>Hacked</marquee>,AB123459,+1234567890,1250,user-account-consumer-01
+customer-38,456 Skyhigh Blvd,New York,L,CD654324,+19876543210,300,user-account-consumer-02
+customer-39,321 Jetstream Ave,Chicago,<script>alert(‘Hacked!’);</script>,EF987657,+12345678901,0,user-account-consumer-03
+customer-40,654 Flight Path Rd,Miami,"Lorem ipsum dolor sit amet, consectetur adipiscin",GH345680,+11234567890,25000,user-account-provider-01
+customer-41,987 Cloudy Lane,San Francisco,لوريم إيبسوم,IJ876546,+1987654321,450000,user-account-provider-02
+customer-42,1354 Wingtip Way,Dallas,Lorem ipsum dolor sit ame,KL234570,+123456,1500,user-account-provider-03
+customer-43,2468 Soaring Dr,Montreal,' or 'A' = 'A,MN345615,+23456789012,12500,user-account-manager-01
+customer-44,1357 High Flyer Ct,London,"Lorem ipsum dolor sit amet, consectetur adipiscing",OP123468,+34567890123,90000,user-account-manager-02
+customer-45,852 Horizon St,Sydney,โลเร็ม อิปซัม,QR654324,+45678901234,30000,user-account-manager-03
+customer-46,963 Aviator Blvd,Berlin,洛伦·伊普森,ST987657,+56789012345,500000,user-account-member-01
+customer-47,147 Flightline St,Tokyo,Lo,UV111225,+67890123456,null,user-account-member-02
+# city - standard variations
+customer-48,789 Aviation Way,Lorem ipsum dolor sit ame,USA,AB123460,+1234567890,1250,user-account-consumer-01
+customer-49,456 Skyhigh Blvd,โลเร็ม อิปซัม,USA,CD654325,+19876543210,300,user-account-consumer-02
+customer-50,321 Jetstream Ave,洛伦·伊普森,USA,EF987658,+12345678901,0,user-account-consumer-03
+customer-51,654 Flight Path Rd,لوريم إيبسوم,USA,GH345681,+11234567890,25000,user-account-provider-01
+customer-52,987 Cloudy Lane,' or 'A' = 'A,USA,IJ876547,+1987654321,450000,user-account-provider-02
+customer-53,1354 Wingtip Way,<script>alert(‘Hacked!’);</script>,USA,KL234571,+123456,1500,user-account-provider-03
+customer-54,2468 Soaring Dr,<marquee>Hacked</marquee>,Canada,MN345682,+23456789012,12500,user-account-manager-01
+customer-55,1357 High Flyer Ct,L,UK,OP123460,+34567890123,90000,user-account-manager-02
+customer-56,852 Horizon St,"Lorem ipsum dolor sit amet, consectetur adipiscin",Australia,QR654325,+45678901234,30000,user-account-manager-03
+customer-57,963 Aviator Blvd,"Lorem ipsum dolor sit amet, consectetur adipiscing",Germany,ST987658,+56789012345,500000,user-account-member-01
+customer-58,147 Flightline St,Lo,Japan,UV111226,+67890123456,null,user-account-member-02
+# country - standard variations
+customer-59,789 Aviation Way,Los Angeles,<marquee>Hacked</marquee>,AB123461,+1234567890,1250,user-account-consumer-01
+customer-60,456 Skyhigh Blvd,New York,L,CD654326,+19876543210,300,user-account-consumer-02
+customer-61,321 Jetstream Ave,Chicago,<script>alert(‘Hacked!’);</script>,EF987659,+12345678901,0,user-account-consumer-03
+customer-62,654 Flight Path Rd,Miami,"Lorem ipsum dolor sit amet, consectetur adipiscin",GH345682,+11234567890,25000,user-account-provider-01
+customer-63,987 Cloudy Lane,San Francisco,لوريم إيبسوم,IJ876548,+1987654321,450000,user-account-provider-02
+customer-64,1354 Wingtip Way,Dallas,Lorem ipsum dolor sit ame,KL234572,+123456,1500,user-account-provider-03
+customer-65,2468 Soaring Dr,Montreal,' or 'A' = 'A,MN345683,+23456789012,12500,user-account-manager-01
+customer-66,1357 High Flyer Ct,London,"Lorem ipsum dolor sit amet, consectetur adipiscing",OP123461,+34567890123,90000,user-account-manager-02
+customer-67,852 Horizon St,Sydney,โลเร็ม อิปซัม,QR654326,+45678901234,30000,user-account-manager-03
+customer-68,963 Aviator Blvd,Berlin,洛伦·伊普森,ST987659,+56789012345,500000,user-account-member-01
+customer-69,147 Flightline St,Tokyo,Lo,UV111227,+67890123456,null,user-account-member-02
+# identifier - standard variations
+customer-70,789 Aviation Way,Los Angeles,USA,AB123462,+1234567890,1250,user-account-consumer-01
+customer-71,456 Skyhigh Blvd,New York,USA,XYZ654327,+19876543210,300,user-account-consumer-02
+customer-72,321 Jetstream Ave,Chicago,USA,AC987660,+12345678901,0,user-account-consumer-03
+customer-73,654 Flight Path Rd,Miami,USA,DEF123002,+11234567890,25000,user-account-provider-01
+customer-74,987 Cloudy Lane,San Francisco,USA,JG000003,+1987654321,450000,user-account-provider-02
+customer-75,1354 Wingtip Way,Dallas,USA,AA000003,+123456,1500,user-account-provider-03
+customer-76,2468 Soaring Dr,Montreal,Canada,ZZ100001,+23456789012,12500,user-account-manager-01
+customer-77,1357 High Flyer Ct,London,UK,AAA000002,+34567890123,90000,user-account-manager-02
+customer-78,147 Flightline St,Tokyo,Japan,UV111229,+67890123456,null,user-account-member-02
+# phone - standard variations
+customer-79,789 Aviation Way,Los Angeles,USA,AB123463,123456,1250,user-account-consumer-01
+customer-80,456 Skyhigh Blvd,New York,USA,CD654330,987654321,300,user-account-consumer-02
+customer-81,321 Jetstream Ave,Chicago,USA,EF987661,+123456,0,user-account-consumer-03
+customer-82,654 Flight Path Rd,Miami,USA,GH345683,+9876543210,25000,user-account-provider-01
+customer-83,987 Cloudy Lane,San Francisco,USA,IJ876549,+123456789012345,450000,user-account-provider-02
+customer-84,1354 Wingtip Way,Dallas,USA,KL234573,4567891234567,1500,user-account-provider-03
+customer-85,2468 Soaring Dr,Montreal,Canada,MN345684,+9999999999999,12500,user-account-manager-01
+customer-86,1357 High Flyer Ct,London,UK,OP123462,654321098765,90000,user-account-manager-02
+customer-87,852 Horizon St,Sydney,Australia,QR654327,+45678901234,30000,user-account-manager-03
+customer-88,963 Aviator Blvd,Berlin,Germany,ST987660,+112233445566,500000,user-account-member-01
+customer-89,555 Sky Lane,Paris,France,WX222334,+78901234567,20000,user-account-member-03
+# points - standard variations
+customer-90,789 Aviation Way,Los Angeles,USA,AB123464,+1234567890,250000,user-account-consumer-01
+customer-91,456 Skyhigh Blvd,New York,USA,CD654331,+19876543210,0,user-account-consumer-02
+customer-92,321 Jetstream Ave,Chicago,USA,EF987662,+12345678901,1,user-account-consumer-03
+customer-93,654 Flight Path Rd,Miami,USA,GH345684,+11234567890,499999,user-account-provider-01
+customer-94,987 Cloudy Lane,San Francisco,USA,IJ876550,+1987654321,500000,user-account-provider-02
+customer-95,2468 Soaring Dr,Montreal,Canada,MN345685,+23456789012,100,user-account-manager-01
+customer-96,1357 High Flyer Ct,London,UK,OP123463,+34567890123,9999,user-account-manager-02
+customer-97,147 Flightline St,Tokyo,Japan,UV111230,+67890123456,null,user-account-member-02
