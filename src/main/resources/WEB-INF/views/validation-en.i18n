@@ -1,8 +1,13 @@
 acme.validation.phone.message = Must be a number phone
+acme.validation.leg.duration = Must be a positive number
+acme.validation.aircraft.cargo = Must be a number between 2000 and 50000
 
 acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
 acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits
+acme.validation.leg.duplicated-flight-number.message = There is another leg with this flight number
 acme.validation.airline_manager.employee_code.message = Must begin with manager's initials, followed by six digits
 acme.validation.customer.identifier.message = Must begin with customer's initials, followed by six digits
 acme.validation.member.employee_code.message = Must begin with member's initials, followed by six digits
 acme.validation.technician.employee_code.message = Must begin with technician's initials, followed by six digits
+
+acme.validation.flight.cant-be-publish.message = This flight can't be published yet

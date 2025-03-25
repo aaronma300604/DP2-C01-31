@@ -21,3 +21,4 @@ airline-manager.flight.form.button.create = Create
 airline-manager.flight.list.button.create = Create
 airline-manager.flight.form.button.update = Update
 airline-manager.flight.form.button.delete = Delete
+airline-manager.flight.form.button.publish = Publish

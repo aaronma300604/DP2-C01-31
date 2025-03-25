@@ -11,10 +11,11 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
+import acme.entities.leg.Leg;
 import acme.realms.employee.AirlineManager;
 
 @GuiService
-public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager, Flight> {
+public class ManagerFlightsPublishService extends AbstractGuiService<AirlineManager, Flight> {
 
 	@Autowired
 	private ManagerFlightsRepository repository;
@@ -30,7 +31,7 @@ public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager
 		flightId = super.getRequest().getData("id", int.class);
 		flight = this.repository.findFlight(flightId);
 		manager = flight == null ? null : flight.getManager();
-		status = super.getRequest().getPrincipal().hasRealm(manager) || flight != null && !flight.isDraftMode();
+		status = flight != null && flight.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -44,6 +45,33 @@ public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager
 		flight = this.repository.findFlight(id);
 
 		super.getBuffer().addData(flight);
+	}
+
+	@Override
+	public void bind(final Flight flight) {
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+
+		super.bindObject(flight, "tag", "cost", "description", "selfTransfer");
+		flight.setAirline(airline);
+	}
+
+	@Override
+	public void validate(final Flight flight) {
+		boolean canBePublish = false;
+		List<Leg> legs = this.repository.findLegsByFlight(flight.getId());
+		if (!legs.isEmpty())
+			canBePublish = legs.stream().allMatch(l -> !l.isDraftMode());
+		super.state(canBePublish, "*", "acme.validation.flight.cant-be-publish.message");
+	}
+
+	@Override
+	public void perform(final Flight flight) {
+		flight.setDraftMode(false);
+		this.repository.save(flight);
 	}
 
 	@Override

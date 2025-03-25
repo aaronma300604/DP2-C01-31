@@ -23,11 +23,17 @@ public interface ManagerLegsRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.id = :legId")
 	Leg findLeg(final int legId);
 
-	@Query("select f from Flight f where f.manager.id = :managerId")
+	@Query("select f from Flight f")
+	List<Flight> findAllFlights();
+
+	@Query("select f from Flight f where f.manager.id = :managerId and f.draftMode = true")
 	List<Flight> findFlightsByManager(int managerId);
 
-	@Query("select a from Aircraft a where a.airline.id in (select m.airline.id from AirlineManager m where m.id = :managerId)")
-	List<Aircraft> findAircraftsByManager(int managerId);
+	@Query("select a from Aircraft a where a.active = true and a.airline.id in (select m.airline.id from AirlineManager m where m.id = :managerId)")
+	List<Aircraft> findActiveAircraftsByManager(int managerId);
+
+	@Query("select a from Aircraft a")
+	List<Aircraft> findAllAircrafts();
 
 	@Query("select a from Airport a")
 	List<Airport> findAllAirports();
