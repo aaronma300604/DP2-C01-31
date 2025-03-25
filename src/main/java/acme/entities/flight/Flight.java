@@ -103,4 +103,13 @@ public class Flight extends AbstractEntity {
 			destination = legs.get(legs.size() - 1).getDestination();
 		return destination;
 	}
+
+	@Transient
+	public boolean isDraftMode() {
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> legs = repository.legsOfFlight(this.getId());
+		if (legs.isEmpty())
+			return false;
+		return legs.stream().allMatch(Leg::isDraftMode);
+	}
 }

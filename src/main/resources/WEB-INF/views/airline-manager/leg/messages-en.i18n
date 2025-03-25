@@ -1,0 +1,24 @@
+airline-manager.leg.list.title = List of My Legs:
+airline-manager.leg.form.title = Details of Leg:
+
+airline-manager.leg.list.label.flightNumber = Flight Number:
+airline-manager.leg.list.label.scheduledDeparture = Departure Scheduled:
+airline-manager.leg.list.label.scheduledArrival = Arrival Scheduled:
+airline-manager.leg.list.label.origin = Origin:
+airline-manager.leg.list.label.destination = Destination:
+
+airline-manager.leg.form.label.fligthNumber = Flight Number:
+airline-manager.leg.form.label.scheduledDeparture = Departure Scheduled:
+airline-manager.leg.form.label.scheduledArrival = Arrival Scheduled:
+airline-manager.leg.form.label.duration = Duration:
+airline-manager.leg.form.label.status = Status:
+airline-manager.leg.form.label.flight = Flight:
+airline-manager.leg.form.label.aircraft = Aircraft:
+airline-manager.leg.form.label.origin = Origin:
+airline-manager.leg.form.label.destination = Destination:
+
+airline-manager.leg.list.button.create = Create
+airline-manager.leg.form.button.create = Create
+airline-manager.leg.form.button.publish = Publish
+airline-manager.leg.form.button.update = Update
+airline-manager.leg.form.button.delete = Delete
