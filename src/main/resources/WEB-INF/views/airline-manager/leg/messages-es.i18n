@@ -1,0 +1,24 @@
+airline-manager.leg.list.title = Lista de Mis Trayectos:
+airline-manager.leg.form.title = Detalle de Trayectos:
+
+airline-manager.leg.list.label.flightNumber = Número de Vuelo:
+airline-manager.leg.list.label.scheduledDeparture = Hora de Salida:
+airline-manager.leg.list.label.scheduledArrival = Hora de Llegada:
+airline-manager.leg.list.label.origin = Origen:
+airline-manager.leg.list.label.destination = Destino:
+
+airline-manager.leg.form.label.fligthNumber = Número de Vuelo:
+airline-manager.leg.form.label.scheduledDeparture = Hora de Salida:
+airline-manager.leg.form.label.scheduledArrival = Hora de LLegada:
+airline-manager.leg.form.label.duration = Duración:
+airline-manager.leg.form.label.status = Estado:
+airline-manager.leg.form.label.flight = Vuelo:
+airline-manager.leg.form.label.aircraft = Aeronave:
+airline-manager.leg.form.label.origin = Origen:
+airline-manager.leg.form.label.destination = Destino:
+
+airline-manager.leg.list.button.create = Crear
+airline-manager.leg.form.button.create = Crear
+airline-manager.leg.form.button.publish = Publicar
+airline-manager.leg.form.button.update = Actualizar
+airline-manager.leg.form.button.delete = Borrar

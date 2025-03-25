@@ -1,0 +1,5 @@
+key,reviewerName,moment,subject,text,score,recommended
+review-01,Daniel López Ramos,2004/02/01 10:00,bad coffe,they have a disgusting coffe,3.0,false
+review-02,Iván Miranda Balastegui,2004/12/01 10:00,bad coffe,they have a disgusting coffe,null,false
+review-03,Daniel López Ramos,2022/06/30 00:00,good coffe,they have a nice coffe,8.0,true
+review-04,Messi,2022/06/06 00:00,bad coffe,they have a disgusting coffe,4.0,false

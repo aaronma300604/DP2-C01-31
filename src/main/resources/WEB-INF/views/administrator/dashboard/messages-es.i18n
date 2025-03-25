@@ -3,8 +3,19 @@
 administrator.dashboard.form.title = Panel de indicadores de administrador
 
 administrator.dashboard.form.title.general-indicators = Indicadores generales
-administrator.dashboard.form.title.application-statuses = Estados de solicitud
 
-administrator.dashboard.form.label.average-number-jobs-employer =  Número medio de trabajos por empleador
-administrator.dashboard.form.label.average-number-applications-worker =  Número medio de solicitudes por trabajador
-administrator.dashboard.form.label.average-number-applications-employer = Número medio de solicitudes por empleador
+administrator.dashboard.form.label.domesticAirpots = Aeropuertos Domesticos:
+administrator.dashboard.form.label.internationalAirports = Aeropuertos Internacionales:
+administrator.dashboard.form.label.regionalAirports = Aeropuertos Regionales:
+administrator.dashboard.form.label.luxuryAirlines = Aerolíneas Lujosas:
+administrator.dashboard.form.label.standardAirlines =  Aerolíneas Estándares:
+administrator.dashboard.form.label.lowCostAirlines =  Aerolíneas de Bajo Costo:
+administrator.dashboard.form.label.average-number-airlines-with-email-phone = Media del Número de Aerolíneas con Mail y Teléfono:
+administrator.dashboard.form.label.average-active-Aircrafts = Media del Número de Aeronaves Activas:
+administrator.dashboard.form.label.average-nonActive-Aircrafts = Media del Número de Aeronaves No Activas:
+administrator.dashboard.form.label.average-score-reviews-above-5 = Media de las Notas de las Reseñas por Encima de Cinco:
+administrator.dashboard.form.label.countReviews = Número de Reseñas Realizadas las Últimos Diez Semanas:
+administrator.dashboard.form.label.averageReviews = Media del Número de Reseñas Realizadas las Últimos Diez Semanas:
+administrator.dashboard.form.label.minimumReviews = Mínimo Número de Reseñas Realizadas las Últimos Diez Semanas:
+administrator.dashboard.form.label.maximumReviews = Máximo Número de Reseñas Realizadas las Últimos Diez Semanas:
+administrator.dashboard.form.label.desviationReviews = Desviación Típica de Reseñas Realizadas las Últimos Diez Semanas:
