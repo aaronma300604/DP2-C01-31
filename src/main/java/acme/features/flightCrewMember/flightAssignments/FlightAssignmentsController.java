@@ -14,11 +14,15 @@ import acme.realms.employee.FlightCrewMember;
 public class FlightAssignmentsController extends AbstractGuiController<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
-	private FlightAssignmentListService listService;
+	private FlightAssignmentListService	listService;
+
+	@Autowired
+	private FlightAssignmentShowService	showService;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("show", this.showService);
 	}
 }

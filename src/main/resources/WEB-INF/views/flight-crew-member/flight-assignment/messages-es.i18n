@@ -1,4 +1,10 @@
 flight-crew-member.assignments.list.title = Lista de mis asignaciones:
-
+flight-crew-member.flight-assignment.form.title = Formulario de asignación de vuelos
 flight-crew-member.assignments.list.label.duty = Cargo:
-flight-crew-member.assignments.list.label.moment = Momento:
+flight-crew-member.assignments.list.label.moment = Última actualización:
+flight-crew-member.assignments.list.label.status = Estado de la asignación:
+
+flight-crew-member.flight-assignment.form.label.moment = Última actualización:
+flight-crew-member.flight-assignment.form.label.duty = Tu cargo:
+flight-crew-member.flight-assignment.form.label.status = Estado:
+flight-crew-member.flight-assignment.form.label.remarks = Incidencias:(Opcional)
