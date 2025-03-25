@@ -25,7 +25,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		boolean result;
 
 		if (leg == null)//^ABX\d{4}$
-			super.state(context, false, "leg", "javax.validation.constraints.NotNull.message");
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
 			boolean correctFlightNumber;
 			String number = leg.getFlightNumber();
@@ -33,7 +33,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 
 			correctFlightNumber = number != null && Pattern.matches("^" + iataCode + "\\d{4}$", number);
 
-			super.state(context, correctFlightNumber, "flight_number", "acme.validation.leg.flight_number.message");
+			super.state(context, correctFlightNumber, "flightNumber", "acme.validation.leg.flight_number.message");
 		}
 
 		result = !super.hasErrors(context);

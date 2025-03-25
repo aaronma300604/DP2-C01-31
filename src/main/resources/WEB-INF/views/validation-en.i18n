@@ -1,0 +1,8 @@
+acme.validation.phone.message = Must be a number phone
+
+acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
+acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits
+acme.validation.airline_manager.employee_code.message = Must begin with manager's initials, followed by six digits
+acme.validation.customer.identifier.message = Must begin with customer's initials, followed by six digits
+acme.validation.member.employee_code.message = Must begin with member's initials, followed by six digits
+acme.validation.technician.employee_code.message = Must begin with technician's initials, followed by six digits
