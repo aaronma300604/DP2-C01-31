@@ -53,7 +53,7 @@ master.menu.manager.list-my-legs = My Legs
 # master.menu.member ##########################################################
 
 master.menu.member = Flight Crew Member
-maste.menu.member.list-my-assignments = My Assignments
+master.menu.member.list-my-assignments = My Assignments
 
 # master.menu.user-account ####################################################
 

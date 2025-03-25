@@ -7,6 +7,5 @@
 <acme:list>
 	<acme:list-column code="flight-crew-member.assignments.list.label.duty" path="duty" width="10%"/>
 	<acme:list-column code="flight-crew-member.assignments.list.label.moment" path="moment" width="10%"/>
-	<acme:list-column code="flight-crew-member.assignments.list.title" path="title" width="80%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
