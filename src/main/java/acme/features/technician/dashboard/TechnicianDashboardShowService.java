@@ -1,10 +1,7 @@
 
 package acme.features.technician.dashboard;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +10,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
-import acme.entities.maintenanceRecord.MaintenanceStatus;
+import acme.forms.technician.MaintenanceByStatus;
 import acme.forms.technician.MaintenanceRecordCostStatistics;
 import acme.forms.technician.MaintenanceRecordDurationStatistics;
 import acme.forms.technician.TechnicianDashboard;
@@ -35,17 +32,17 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 	public void load() {
 
 		TechnicianDashboard dashboard;
-		Map<MaintenanceStatus, Integer> numberOfMaintenanceByStatus;
+		List<MaintenanceByStatus> numberOfMaintenanceByStatus;
 		MaintenanceRecord nearestNextInspection;
 		List<Aircraft> mostTasksAircrafts;
-		List<MaintenanceRecordCostStatistics> costStatistics;
-		List<MaintenanceRecordDurationStatistics> durationStatistics;
+		MaintenanceRecordCostStatistics costStatistics;
+		MaintenanceRecordDurationStatistics durationStatistics;
 
-		numberOfMaintenanceByStatus = new HashMap<>();
-		nearestNextInspection = null;
-		mostTasksAircrafts = new ArrayList<>();
-		costStatistics = new ArrayList<>();
-		durationStatistics = new ArrayList<>();
+		numberOfMaintenanceByStatus = this.repository.findNumberOfMaintenanceByStatus();
+		nearestNextInspection = this.repository.findNextInspectionByTechnician(1l).get(0);
+		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(1l).stream().limit(5).toList();
+		costStatistics = null;
+		durationStatistics = this.repository.findDurationStatistics(1l);
 
 		dashboard = new TechnicianDashboard();
 		dashboard.setNumberOfMaintenanceByStatus(numberOfMaintenanceByStatus);

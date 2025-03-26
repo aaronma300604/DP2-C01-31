@@ -10,7 +10,7 @@
 <table class="table table-sm">
 	<tr>
 		<th scope="row">
-			<acme:print code="technician.dashboard.form.label.average-number-jobs-employer"/>
+			<acme:print code="technician.dashboard.form.label.number-maintenance-status"/>
 		</th>
 		<td>
 			<acme:print value="${airportsByScope}"/>
@@ -18,7 +18,7 @@
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:print code="technician.dashboard.form.label.average-number-applications-worker"/>
+			<acme:print code="technician.dashboard.form.label.nearest-next-inspection"/>
 		</th>
 		<td>
 			<acme:print value="${airlinesByType}"/>
@@ -26,7 +26,23 @@
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:print code="technician.dashboard.form.label.average-number-applications-employer"/>
+			<acme:print code="technician.dashboard.form.label.most-tasks-aircarfts"/>
+		</th>
+		<td>
+			<acme:print value="${ratioAirlinesWithEmailOrPhone}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.cost-statistics"/>
+		</th>
+		<td>
+			<acme:print value="${ratioAirlinesWithEmailOrPhone}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.duration-statistics"/>
 		</th>
 		<td>
 			<acme:print value="${ratioAirlinesWithEmailOrPhone}"/>
