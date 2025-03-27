@@ -1,7 +1,7 @@
 
 package acme.features.technician.dashboard;
 
-import java.util.Calendar;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -47,11 +47,8 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId).get(0);
 		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(technicianId).stream().limit(5).toList();
 
-		Date currentDate = MomentHelper.getCurrentMoment();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(currentDate);
-		cal.add(Calendar.YEAR, -1);
-		costStatistics = this.repository.findCostStatistics(cal.getTime(), technicianId);
+		Date deadline = MomentHelper.deltaFromCurrentMoment(-1, ChronoUnit.YEARS);
+		costStatistics = this.repository.findCostStatistics(deadline, technicianId);
 		durationStatistics = this.repository.findDurationStatistics(technicianId);
 
 		//TODO: Show dashboard in frontend.
