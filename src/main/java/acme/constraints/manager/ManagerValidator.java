@@ -33,7 +33,7 @@ public class ManagerValidator extends AbstractValidator<ValidManager, AirlineMan
 
 			correctEmployeeCode = code != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", code) && code.startsWith(initials);
 
-			super.state(context, correctEmployeeCode, "*", "acme.validation.airline_manager.employee_code.message");
+			super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.airline_manager.employee_code.message");
 		}
 
 		result = !super.hasErrors(context);

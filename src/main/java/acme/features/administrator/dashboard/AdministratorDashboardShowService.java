@@ -48,7 +48,7 @@ public class AdministratorDashboardShowService extends AbstractGuiService<Admini
 		airlinesByType = this.repository.numberOfAirlinesByType();
 		ratioAirlinesWithEmailOrPhone = this.repository.ratioAirlinesWithEmailOrPhone();
 		ratioActiveAircrafts = this.repository.ratioActiveAircrafts();
-		ratioNotActiveAircrafts = 1.0 - ratioActiveAircrafts;
+		ratioNotActiveAircrafts = ratioActiveAircrafts == null ? null : 1.0 - ratioActiveAircrafts;
 		ratioRewiewsScoreAbove5 = this.repository.ratioRewiewsScoreAbove5();
 		Date currentDate = MomentHelper.getCurrentMoment();
 		Calendar cal = Calendar.getInstance();

@@ -33,7 +33,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 
 			correctCustomerIdentifier = code != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", code) && code.startsWith(initials);
 
-			super.state(context, correctCustomerIdentifier, "*", "acme.validation.customer.identifier.message");
+			super.state(context, correctCustomerIdentifier, "identifier", "acme.validation.customer.identifier.message");
 		}
 
 		result = !super.hasErrors(context);

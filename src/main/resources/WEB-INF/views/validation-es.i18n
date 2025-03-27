@@ -1,0 +1,13 @@
+acme.validation.phone.message = Debe ser un número de teléfono
+acme.validation.leg.duration = Debe ser un número positivo
+acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
+
+acme.validation.leg.flight_number.message = Debe empezar por el código IATA de la aerolínea, seguido de cuatro dígitos
+acme.validation.leg.duplicated-flight-number.message = Hay otro trayecto con ese código de vuelo
+acme.validation.assistance-agent.employee_code.message = Debe comenzar por las iniciales del agente, seguido de seis dígitos
+acme.validation.airline_manager.employee_code.message = Debe comenzar por las iniciales del gerente, seguido de seis dígitos
+acme.validation.customer.identifier.message = Debe comenzar por las iniciales del cliente, seguido de seis dígitos
+acme.validation.member.employee_code.message = Debe comenzar por las iniciales del miembro, seguido de seis dígitos
+acme.validation.technician.employee_code.message = Debe comenzar por las iniciales del técnico, seguido de seis dígitos
+
+acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
