@@ -21,13 +21,13 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	@Query("select a.type as airlineType, count(a) as countAirline from Airline a group by a.type")
 	List<AirlinesByType> numberOfAirlinesByType();
 
-	@Query("select 1.0 * count(a) / (select count(b) from Airline b) from Airline a where a.email is not null and a.phone is not null")
+	@Query("select 1.0 * count(a) / nullif((select count(b) from Airline b),0) from Airline a where a.email is not null and a.phone is not null")
 	Double ratioAirlinesWithEmailOrPhone();
 
-	@Query("select 1.0 * count(a) / (select count(b) from Aircraft b) from Aircraft a where a.active = true")
+	@Query("select 1.0 * count(a) / nullif((select count(b) from Aircraft b),0) from Aircraft a where a.active = true")
 	Double ratioActiveAircrafts();
 
-	@Query("select 1.0 * count(a) / (select count(b) from Review b) from Review a where a.score > 5.0")
+	@Query("select 1.0 * count(a) / nullif((select count(b) from Review b),0) from Review a where a.score > 5.0")
 	Double ratioRewiewsScoreAbove5();
 
 	@Query("select count(r) as countReviews, avg(r.score) as average, "//

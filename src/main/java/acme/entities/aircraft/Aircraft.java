@@ -40,7 +40,7 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 2000.0, max = 50000.0)
+	@ValidNumber(min = 2000.0, max = 50000.0, message = "{acme.validation.aircraft.cargo}")
 	private Double				cargo;
 
 	@Mandatory
