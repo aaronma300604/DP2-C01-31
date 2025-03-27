@@ -52,6 +52,7 @@ master.menu.consumer.favourite-link-diego = 5443*****: Terrón Hernández, Diego
 # master.menu.manager ##########################################################
 
 master.menu.manager = Manager
+master.menu.manager.show-dashboard = Show dashboard
 master.menu.manager.list-my-flights = My Flights
 master.menu.manager.list-my-legs = My Legs
 

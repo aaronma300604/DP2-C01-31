@@ -1,13 +1,10 @@
 
 package acme.forms.manager;
 
-import java.util.Map;
+import java.util.List;
 
 import acme.client.components.basis.AbstractForm;
 import acme.entities.airport.Airport;
-import acme.entities.leg.LegStatus;
-import acme.features.manager.dashboard.FlightStatistics;
-import acme.realms.employee.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,19 +12,21 @@ import lombok.Setter;
 @Setter
 public class Dashboard extends AbstractForm {
 
-	private static final long		serialVersionUID	= 1L;
+	private static final long	serialVersionUID	= 1L;
 
-	Map<Integer, AirlineManager>	rankingManagerByExperience;
+	Integer						rankingManagerByExperience;
 
-	Integer							yearsToRetire;
+	Integer						yearsToRetire;
 
-	Double							onTimeAndDelayedLegs;
+	Double						ratioOnTimeLegs;
 
-	Airport							mostPopular;
+	Double						ratioDelayedLegs;
 
-	Airport							lessPopular;
+	Airport						mostPopular;
 
-	Map<LegStatus, Integer>			numberLegsByStatus;
+	Airport						lessPopular;
 
-	FlightStatistics				statistcsAboutFlights;
+	List<LegsByStatus>			numberLegsByStatus;
+
+	FlightStatistics			statistcsAboutFlights;
 }
