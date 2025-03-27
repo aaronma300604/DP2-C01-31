@@ -20,18 +20,18 @@ public interface TechnicianDashboardRepository extends AbstractRepository {
 	@Query("SELECT mr.maintenanceStatus AS maintenanceStatus, COUNT(mr) AS countMaintenance FROM MaintenanceRecord mr GROUP BY mr.maintenanceStatus")
 	List<MaintenanceByStatus> findNumberOfMaintenanceByStatus();
 
-	@Query("SELECT i.maintenanceRecord AS mr FROM Involves i "//
-		+ " WHERE i.task.technician.id = :technicianId ORDER BY i.maintenanceRecord.nextInspection ASC")
+	@Query("SELECT mr  FROM MaintenanceRecord mr "//
+		+ " WHERE mr.technician.id = :technicianId ORDER BY mr.nextInspection ASC")
 	List<MaintenanceRecord> findNextInspectionByTechnician(int technicianId);
 
 	@Query("SELECT i.maintenanceRecord.aircraft FROM Involves i"//
 		+ " WHERE i.task.technician.id = :technicianId GROUP BY i.maintenanceRecord.aircraft ORDER BY COUNT(i.task) DESC")
 	List<Aircraft> findTopAircraftsByTaskCount(int technicianId);
 
-	@Query("SELECT COUNT(i.maintenanceRecord) AS countRecords, AVG(i.maintenanceRecord.estimatedCost.amount) AS average, "//
-		+ "MIN(i.maintenanceRecord.estimatedCost.amount) AS minimum, MAX(i.maintenanceRecord.estimatedCost.amount) AS maximum," //
-		+ " STDDEV(i.maintenanceRecord.estimatedCost.amount) AS standardDeviation " //
-		+ "FROM Involves i WHERE i.task.technician.id = :technicianId AND i.maintenanceRecord.date >= :lastYear")
+	@Query("SELECT COUNT(mr) AS countRecords, AVG(mr.estimatedCost.amount) AS average, "//
+		+ "MIN(mr.estimatedCost.amount) AS minimum, MAX(mr.estimatedCost.amount) AS maximum," //
+		+ " STDDEV(mr.estimatedCost.amount) AS standardDeviation " //
+		+ "FROM MaintenanceRecord mr WHERE mr.technician.id = :technicianId AND mr.date >= :lastYear")
 	MaintenanceRecordCostStatistics findCostStatistics(Date lastYear, int technicianId);
 
 	@Query("SELECT COUNT(i.task) AS countTasks, AVG(i.task.estimatedDuration) AS average, "//
