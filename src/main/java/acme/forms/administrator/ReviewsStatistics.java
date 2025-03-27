@@ -3,7 +3,7 @@ package acme.forms.administrator;
 
 public interface ReviewsStatistics {
 
-	Integer getCount();
+	Integer getCountReviews();
 	void setCount(Integer count);
 
 	Double getAverage();
