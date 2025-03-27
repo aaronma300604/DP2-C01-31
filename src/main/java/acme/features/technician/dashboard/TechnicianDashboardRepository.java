@@ -20,25 +20,23 @@ public interface TechnicianDashboardRepository extends AbstractRepository {
 	@Query("SELECT mr.maintenanceStatus AS maintenanceStatus, COUNT(mr) AS countMaintenance FROM MaintenanceRecord mr GROUP BY mr.maintenanceStatus")
 	List<MaintenanceByStatus> findNumberOfMaintenanceByStatus();
 
-	@Query("SELECT mr FROM Involves i JOIN i.maintenanceRecord mr"//
-		+ " JOIN i.task t JOIN t.technician tech"//
-		+ " WHERE tech.id = :technicianId ORDER BY mr.nextInspection ASC")
-	List<MaintenanceRecord> findNextInspectionByTechnician(Long technicianId);
+	@Query("SELECT i.maintenanceRecord AS mr FROM Involves i "//
+		+ " WHERE i.task.technician.id = :technicianId ORDER BY i.maintenanceRecord.nextInspection ASC")
+	List<MaintenanceRecord> findNextInspectionByTechnician(int technicianId);
 
-	@Query("SELECT mr.aircraft FROM Involves i JOIN i.maintenanceRecord mr"//
-		+ " JOIN i.task t JOIN t.technician tech WHERE tech.id = :technicianId GROUP BY mr.aircraft ORDER BY COUNT(t) DESC")
-	List<Aircraft> findTopAircraftsByTaskCount(Long technicianId);
+	@Query("SELECT i.maintenanceRecord.aircraft FROM Involves i"//
+		+ " WHERE i.task.technician.id = :technicianId GROUP BY i.maintenanceRecord.aircraft ORDER BY COUNT(i.task) DESC")
+	List<Aircraft> findTopAircraftsByTaskCount(int technicianId);
 
-	@Query("SELECT COUNT(mr) AS countRecords, AVG(mr.estimatedCost.amount) AS average, "//
-		+ "MIN(mr.estimatedCost.amount) AS minimum, MAX(mr.estimatedCost.amount) AS maximum, STDDEV(mr.estimatedCost.amount) "//
-		+ "AS standardDeviation FROM Involves i JOIN i.maintenanceRecord mr JOIN i.task t JOIN t.technician tech "//
-		+ "WHERE tech.id = :technicianId AND mr.date >= :lastYear")
-	MaintenanceRecordCostStatistics findCostStatistics(Date lastYear, Long technicianId);
+	@Query("SELECT COUNT(i.maintenanceRecord) AS countRecords, AVG(i.maintenanceRecord.estimatedCost.amount) AS average, "//
+		+ "MIN(i.maintenanceRecord.estimatedCost.amount) AS minimum, MAX(i.maintenanceRecord.estimatedCost.amount) AS maximum," //
+		+ " STDDEV(i.maintenanceRecord.estimatedCost.amount) AS standardDeviation " //
+		+ "FROM Involves i WHERE i.task.technician.id = :technicianId AND i.maintenanceRecord.date >= :lastYear")
+	MaintenanceRecordCostStatistics findCostStatistics(Date lastYear, int technicianId);
 
-	@Query("SELECT COUNT(t) AS countTasks, AVG(t.estimatedDuration) AS average, "//
-		+ "MIN(t.estimatedDuration) AS minimum, MAX(t.estimatedDuration) AS maximum, STDDEV(t.estimatedDuration) "//
-		+ "AS standardDeviation FROM Involves i JOIN i.task t JOIN t.technician tech "//
-		+ "WHERE tech.id = :technicianId")
-	MaintenanceRecordDurationStatistics findDurationStatistics(Long technicianId);
+	@Query("SELECT COUNT(i.task) AS countTasks, AVG(i.task.estimatedDuration) AS average, "//
+		+ "MIN(i.task.estimatedDuration) AS minimum, MAX(i.task.estimatedDuration) AS maximum, STDDEV(i.task.estimatedDuration) "//
+		+ "AS standardDeviation FROM Involves i WHERE i.task.technician.id = :technicianId")
+	MaintenanceRecordDurationStatistics findDurationStatistics(int technicianId);
 
 }

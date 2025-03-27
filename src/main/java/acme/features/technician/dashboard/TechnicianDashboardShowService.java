@@ -1,11 +1,14 @@
 
 package acme.features.technician.dashboard;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -38,11 +41,20 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 		MaintenanceRecordCostStatistics costStatistics;
 		MaintenanceRecordDurationStatistics durationStatistics;
 
+		int technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
 		numberOfMaintenanceByStatus = this.repository.findNumberOfMaintenanceByStatus();
-		nearestNextInspection = this.repository.findNextInspectionByTechnician(1l).get(0);
-		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(1l).stream().limit(5).toList();
-		costStatistics = null;
-		durationStatistics = this.repository.findDurationStatistics(1l);
+		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId).get(0);
+		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(technicianId).stream().limit(5).toList();
+
+		Date currentDate = MomentHelper.getCurrentMoment();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(currentDate);
+		cal.add(Calendar.YEAR, -1);
+		costStatistics = this.repository.findCostStatistics(cal.getTime(), technicianId);
+		durationStatistics = this.repository.findDurationStatistics(technicianId);
+
+		//TODO: Show dashboard in frontend.
 
 		dashboard = new TechnicianDashboard();
 		dashboard.setNumberOfMaintenanceByStatus(numberOfMaintenanceByStatus);
