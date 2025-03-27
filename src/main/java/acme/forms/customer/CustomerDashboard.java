@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.features.customer.dashboard.BookingStatistics;
+import acme.features.authenticated.customer.dashboard.BookingStatistics;
 import lombok.Getter;
 import lombok.Setter;
 

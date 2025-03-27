@@ -1,12 +1,11 @@
 
-package acme.features.authenticated.customer;
+package acme.features.authenticated.customer.booking;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.principals.Authenticated;
 import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -14,12 +13,12 @@ import acme.entities.booking.Booking;
 import acme.realms.client.Customer;
 
 @GuiService
-public class AuthenticatedCustomerListService extends AbstractGuiService<Authenticated, Customer> {
+public class CustomerBookingListService extends AbstractGuiService<Customer, Booking> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedCustomerRepository repository;
+	private CustomerBookingRepository repository;
 
 	// AbstractService<Authenticated, Customer> ---------------------------
 
@@ -41,10 +40,10 @@ public class AuthenticatedCustomerListService extends AbstractGuiService<Authent
 	}
 
 	@Override
-	public void unbind(final Customer customer) {
+	public void unbind(final Booking booking) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(customer, "identifier", "phone", "address", "city", "country");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price");
 
 		super.getResponse().addData(dataset);
 	}
