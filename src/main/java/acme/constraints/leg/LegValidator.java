@@ -5,12 +5,19 @@ import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.entities.leg.Leg;
+import acme.entities.leg.LegRepository;
 
 @Validator
 public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
+
+	@Autowired
+	private LegRepository repository;
+
 
 	@Override
 	protected void initialise(final ValidLeg annotation) {
@@ -25,15 +32,27 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		boolean result;
 
 		if (leg == null)//^ABX\d{4}$
-			super.state(context, false, "leg", "javax.validation.constraints.NotNull.message");
+			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			boolean correctFlightNumber;
-			String number = leg.getFlightNumber();
-			String iataCode = leg.getFlight().getAirline().getIata().strip();
+			if (leg.getFlight() != null) {
+				boolean correctFlightNumber;
+				String number = leg.getFlightNumber();
+				String iataCode = leg.getFlight().getAirline().getIata().strip();
 
-			correctFlightNumber = number != null && Pattern.matches("^" + iataCode + "\\d{4}$", number);
+				correctFlightNumber = number != null && Pattern.matches("^" + iataCode + "\\d{4}$", number);
 
-			super.state(context, correctFlightNumber, "flight_number", "acme.validation.leg.flight_number.message");
+				super.state(context, correctFlightNumber, "flightNumber", "acme.validation.leg.flight_number.message");
+			}
+			{
+				boolean uniqueLeg;
+				Leg existingLeg;
+
+				existingLeg = this.repository.findLegByFlightNumber(leg.getFlightNumber());
+				uniqueLeg = existingLeg == null || existingLeg.equals(leg);
+
+				super.state(context, uniqueLeg, "flightNumber", "acme.validation.leg.duplicated-flight-number.message");
+			}
+
 		}
 
 		result = !super.hasErrors(context);
