@@ -8,3 +8,9 @@ flight-crew-member.flight-assignment.form.label.moment = Última actualización:
 flight-crew-member.flight-assignment.form.label.duty = Tu cargo:
 flight-crew-member.flight-assignment.form.label.status = Estado:
 flight-crew-member.flight-assignment.form.label.remarks = Incidencias:(Opcional)
+flight-crew-member.assignments.list.label.scheduledArrival = Fecha de llegada
+flight-crew-member.flight-assignment.form.label.crewMember = Miembro de la tripulación asignado
+flight-crew-member.flight-assignment.form.label.leg = Escala(Número de vuelo)
+
+flight-crew-member.assignments.list.button.create = Crear
+flight-crew-member.flight-assignment.form.button.create = Crear

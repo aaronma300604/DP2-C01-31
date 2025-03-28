@@ -63,6 +63,6 @@ master.menu.user-account.member-profile = Flight Crew Member dashboard
 # master.menu.member ##########################################################
 
 master.menu.member = Flight Crew Member
-master.menu.member.list-my-assignments = My Assignments
-
+master.menu.member.list-my-assignments = My Assignments (Completed Legs)
+master.menu.member.list-my-assignmentsUL = My Assignments (Uncompleted Legs)
 

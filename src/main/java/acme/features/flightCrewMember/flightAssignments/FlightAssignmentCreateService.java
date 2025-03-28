@@ -1,15 +1,25 @@
+/*
+ * FlightAssignmentCreateService.java
+ *
+ * Copyright (C) 2012-2025 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
 
 package acme.features.flightCrewMember.flightAssignments;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
@@ -20,38 +30,63 @@ import acme.realms.employee.AvaliabilityStatus;
 import acme.realms.employee.FlightCrewMember;
 
 @GuiService
-public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private FlightAssignmentRepository repository;
 
+	// AbstractGuiService interface -------------------------------------------
+
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int flightAssignmentId;
-		FlightAssignment fa;
-		FlightCrewMember member;
 
-		flightAssignmentId = super.getRequest().getData("id", int.class);
-		fa = this.repository.findFa(flightAssignmentId);
-		member = fa == null ? null : fa.getFlightCrewMember();
-		status = super.getRequest().getPrincipal().hasRealm(member);
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-
 		FlightAssignment fa;
-		int id;
+		FlightCrewMember member;
 
-		id = super.getRequest().getData("id", int.class);
-		fa = this.repository.findFa(id);
+		member = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
+		fa = new FlightAssignment();
+		fa.setDraftMode(true);
+		fa.setFlightCrewMember(member);
 
 		super.getBuffer().addData(fa);
-		fa.setDraftMode(true);
+	}
+
+	@Override
+	public void bind(final FlightAssignment fa) {
+
+		int crewMemberId;
+		int legId;
+		crewMemberId = super.getRequest().getData("crewMember", int.class);
+		FlightCrewMember member = this.repository.findMemberById(crewMemberId);
+		legId = super.getRequest().getData("leg", int.class);
+		Leg legAssigned = this.repository.findLegById(legId);
+		//Company contractor;
+
+		//contractor = this.repository.findContractorById(contractorId);
+
+		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
+		fa.setFlightCrewMember(member);
+		fa.setLeg(legAssigned);
+
+	}
+
+	@Override
+	public void validate(final FlightAssignment flightAssignment) {
+		;
+	}
+
+	@Override
+	public void perform(final FlightAssignment flightAssignment) {
+		this.repository.save(flightAssignment);
 	}
 
 	@Override
@@ -67,7 +102,7 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 		avaliableMembers = this.getAvailableMembers();
-		posibleLegs = this.getPosibleLegs(fa);
+		posibleLegs = this.getPosibleLegs();
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 		memberChoices = SelectChoices.from(avaliableMembers, "userAccount.username", fa.getFlightCrewMember());
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -79,7 +114,6 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		dataset.put("crewMembers", memberChoices);
 
 		super.getResponse().addData(dataset);
-
 	}
 
 	public List<FlightCrewMember> getAvailableMembers() {
@@ -89,16 +123,11 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		return avaliableMembers;
 	}
 
-	public List<Leg> getPosibleLegs(final FlightAssignment flightA) {
-		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs;
-		if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findUpcomingLegs(currentDate);//crear otra query
-		else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findPreviousLegs(currentDate);//crear otra query
-		else
+	public List<Leg> getPosibleLegs() {
+		Date currentDate = Date.valueOf("2022-07-30");
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
-		posibleLegs = posibleLegs == null ? new ArrayList<>() : posibleLegs;
 		return posibleLegs;
 	}
 
