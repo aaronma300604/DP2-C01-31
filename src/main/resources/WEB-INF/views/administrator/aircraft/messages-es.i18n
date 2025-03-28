@@ -1,10 +1,18 @@
-administrator.airport.list.label.active = Activo
-administrator.airport.list.label.cargo = Carga
-administrator.airport.list.label.capacity = Capacidad
-administrator.airport.list.label.registrationNumber = Número de registro
+
+############# General ####################
+
+administrator.aircraft.list.title = Lista de aviones:
+administrator.aircraft.form.title = Detalles del avión:
+
+############# List ####################
+
+administrator.aircraft.list.label.active = Activo
+administrator.aircraft.list.label.cargo = Carga
+administrator.aircraft.list.label.capacity = Capacidad
+administrator.aircraft.list.label.registrationNumber = Número de registro
 administrator.aircraft.list.label.model = Modelo
 
-administrator.aircraft.list.button.create = Crear
+############# Form ####################
 
 administrator.aircraft.form.label.confirmation = Confirmar que el avión es correcto
 administrator.aircraft.form.label.model = Modelo
@@ -15,5 +23,9 @@ administrator.aircraft.form.label.active = Activo
 administrator.aircraft.form.label.details = Detalles
 administrator.aircraft.form.label.airline = Aerolínea
 
+############# Buttons ####################
+
+administrator.aircraft.list.button.create = Crear
 administrator.aircraft.form.button.update = Actualizar
 administrator.aircraft.form.button.create = Crear
+administrator.aircraft.form.button.disable = Desactivar
