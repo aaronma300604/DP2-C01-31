@@ -30,6 +30,7 @@ master.menu.administrator.shut-system-down = Parar el sistema
 
 feature.menu.administrator = Listados
 feature.menu.administrator.list-airports = Aeropuertos
+feature.menu.administrator.list-aircrafts = Aviones
 
 # master.menu.provider ########################################################
 

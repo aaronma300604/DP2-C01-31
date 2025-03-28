@@ -59,6 +59,7 @@ public class AdministratorAircraftsDisableService extends AbstractGuiService<Adm
 
 	@Override
 	public void perform(final Aircraft aircraft) {
+		aircraft.setActive(false);
 		this.repository.save(aircraft);
 	}
 

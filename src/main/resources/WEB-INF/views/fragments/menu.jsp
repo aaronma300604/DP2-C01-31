@@ -37,6 +37,7 @@
 		</acme:menu-option>
 		<acme:menu-option code="feature.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="feature.menu.administrator.list-airports" action="/administrator/airport/list"/>
+			<acme:menu-suboption code="feature.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">

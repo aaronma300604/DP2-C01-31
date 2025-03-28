@@ -1,0 +1,19 @@
+administrator.airport.list.label.active = Is active
+administrator.airport.list.label.cargo = Cargo
+administrator.airport.list.label.capacity = Capacity
+administrator.airport.list.label.registrationNumber = Registration number
+administrator.aircraft.list.label.model = Model
+
+administrator.aircraft.list.button.create = Create
+
+administrator.aircraft.form.label.confirmation = Confirm that the aircraft is correct
+administrator.aircraft.form.label.model = Model
+administrator.aircraft.form.label.registrationNumber = Registration number
+administrator.aircraft.form.label.capacity = Capacity
+administrator.aircraft.form.label.cargo = Cargo
+administrator.aircraft.form.label.active = Is active
+administrator.aircraft.form.label.details = Details
+administrator.aircraft.form.label.airline = Airline
+
+administrator.aircraft.form.button.update = Update
+administrator.aircraft.form.button.create = Create
