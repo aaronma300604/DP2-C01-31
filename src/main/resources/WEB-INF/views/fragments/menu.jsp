@@ -61,6 +61,12 @@
 			<acme:menu-suboption code="master.menu.manager.list-my-legs" action="/airline-manager/leg/list"/>
 			<%---<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/manager/dashboard/show" />--%>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technician.list-my-records" action="/technician/maintenance-record/list"/>
+			<%---acme:menu-suboption code="master.menu.technician.list-my-tasks" action="/technician/task/list"/>  --%>
+			<%---<acme:menu-suboption code="master.menu.technician.show-dashboard" action="/technician/dashboard/show" />--%>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>		

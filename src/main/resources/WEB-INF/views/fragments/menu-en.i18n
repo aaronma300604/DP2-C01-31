@@ -56,6 +56,13 @@ master.menu.manager = Manager
 master.menu.manager.list-my-flights = My Flights
 master.menu.manager.list-my-legs = My Legs
 
+# master.menu.technician ##########################################################
+
+master.menu.technician = Technician
+master.menu.technician.list-my-records = My Maintenance records
+master.menu.technician.list-my-tasks = My Tasks
+
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account

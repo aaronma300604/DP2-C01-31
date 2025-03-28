@@ -6,8 +6,8 @@
 <acme:form> 
 	<acme:input-textbox code="administrator.aircraft.form.label.model" path="model"/>
 	<acme:input-textbox code="administrator.aircraft.form.label.registrationNumber" path="registrationNumber"/>	
-	<acme:input-textbox code="administrator.aircraft.form.label.capacity" path="capacity"/>	
-	<acme:input-textbox code="administrator.aircraft.form.label.cargo" path="cargo"/>
+	<acme:input-integer code="administrator.aircraft.form.label.capacity" path="capacity"/>	
+	<acme:input-double code="administrator.aircraft.form.label.cargo" path="cargo"/>
 	<acme:input-checkbox code="administrator.aircraft.form.label.active" path="active"/>
 	<acme:input-textbox code="administrator.aircraft.form.label.details" path="details"/>
 	<acme:input-select code="administrator.aircraft.form.label.airline" path="airline" choices="${airlines}"/>

@@ -44,13 +44,16 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		aircraftId = super.getRequest().getData("aircraft", int.class);
 		aircraft = this.repository.findAircraftById(aircraftId);
 
-		super.bindObject(record, "maintenanceStatus", "nextInspection", "estimatedCost", "notes");
+		super.bindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes");
 		record.setAircraft(aircraft);
 	}
 
 	@Override
 	public void validate(final MaintenanceRecord record) {
-		;
+		boolean confirmation;
+
+		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override
@@ -63,15 +66,16 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 		Dataset dataset;
 		SelectChoices aircraftChoices;
 		SelectChoices statusChoices;
-		Aircraft aircraft;
-		int aircraftId;
 
-		aircraftId = super.getRequest().getData("aircraft", int.class);
-		aircraft = this.repository.findAircraftById(aircraftId);
-		aircraftChoices = SelectChoices.from(List.of(aircraft), "registrationNumber", record.getAircraft());
+		List<Aircraft> aircrafts;
+
+		aircrafts = this.repository.findAllAircrafts();
+
+		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
 
 		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
+		dataset.put("confirmation", false);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("maintenanceStatuses", statusChoices);
