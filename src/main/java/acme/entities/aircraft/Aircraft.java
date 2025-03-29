@@ -25,17 +25,17 @@ public class Aircraft extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 50, message = "{acme.validation.text.length.1-50}")
 	private String				model;
 
 	@Mandatory
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 50, message = "{acme.validation.text.length.1-50}")
 	@Column(unique = true)
 	private String				registrationNumber;
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 1, max = 255, message = "{acme.validation.aircraft.capacity}")
 	private Integer				capacity;
 
 	@Mandatory
@@ -49,7 +49,7 @@ public class Aircraft extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.length.1-255}")
 	private String				details;
 
 	@Mandatory
