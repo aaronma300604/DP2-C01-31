@@ -15,7 +15,7 @@ import acme.entities.maintenanceRecord.MaintenanceStatus;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	@Autowired
 	TechnicianMaintenanceRecordsRepository repository;

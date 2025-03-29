@@ -16,7 +16,7 @@ import acme.entities.task.Task;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordPublishService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	@Autowired
 	TechnicianMaintenanceRecordsRepository repository;

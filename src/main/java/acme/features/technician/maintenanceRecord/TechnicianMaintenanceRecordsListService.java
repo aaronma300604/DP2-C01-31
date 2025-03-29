@@ -15,7 +15,7 @@ import acme.entities.maintenanceRecord.MaintenanceStatus;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordsListService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	@Autowired
 	private TechnicianMaintenanceRecordsRepository repository;
@@ -23,43 +23,32 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int recordId;
-		MaintenanceRecord record;
-		Technician technician;
-
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecord(recordId);
-		technician = record == null ? null : record.getTechnician();
-		status = super.getRequest().getPrincipal().hasRealm(technician) || record != null && !record.isDraftMode();
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		MaintenanceRecord record;
-		int id;
+		List<MaintenanceRecord> records;
+		int technicianId;
 
-		id = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecord(id);
+		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		records = this.repository.findMyRecords(technicianId);
 
-		super.getBuffer().addData(record);
+		super.getBuffer().addData(records);
 	}
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
 		Dataset dataset;
-		SelectChoices aircraftChoices;
 		SelectChoices statusChoices;
-
+		SelectChoices aircraftChoices;
 		List<Aircraft> aircrafts;
 
 		aircrafts = this.repository.findAllAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
 
-		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
+		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection");
 		dataset.put("maintenanceStatuses", statusChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);

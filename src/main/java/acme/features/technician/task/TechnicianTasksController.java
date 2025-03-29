@@ -1,5 +1,5 @@
 
-package acme.features.technician.maintenanceRecord;
+package acme.features.technician.task;
 
 import javax.annotation.PostConstruct;
 
@@ -7,26 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.maintenanceRecord.MaintenanceRecord;
+import acme.entities.task.Task;
 import acme.realms.employee.Technician;
 
 @GuiController
-public class TechnicianMaintenanceRecordController extends AbstractGuiController<Technician, MaintenanceRecord> {
+public class TechnicianTasksController extends AbstractGuiController<Technician, Task> {
 
 	@Autowired
-	private TechnicianMaintenanceRecordListService		listService;
+	private TechnicianTasksListService		listService;
 
 	@Autowired
-	private TechnicianMaintenanceRecordShowService		showService;
+	private TechnicianTasksShowService		showService;
 
 	@Autowired
-	private TechnicianMaintenanceRecordCreateService	createService;
+	private TechnicianTasksCreateService	createService;
 
 	@Autowired
-	private TechnicianMaintenanceRecordUpdateService	updateService;
+	private TechnicianTasksUpdateService	updateService;
 
 	@Autowired
-	private TechnicianMaintenanceRecordPublishService	publishService;
+	private TechnicianTasksPublishService	publishService;
 
 
 	@PostConstruct

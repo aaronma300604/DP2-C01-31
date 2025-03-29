@@ -12,7 +12,7 @@ import acme.entities.task.Task;
 @Repository
 public interface TechnicianTasksRepository extends AbstractRepository {
 
-	@Query("select i.task from Involves i where i.task.technician.id = :technicianId")
+	@Query("select t from Task t where t.technician.id = :technicianId")
 	List<Task> findMyTasks(final int technicianId);
 
 	@Query("select t from Task t where t.id = :taskId")

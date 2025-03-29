@@ -15,54 +15,36 @@ import acme.entities.maintenanceRecord.MaintenanceStatus;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordsShowService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	@Autowired
-	TechnicianMaintenanceRecordsRepository repository;
+	private TechnicianMaintenanceRecordsRepository repository;
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int recordId;
+		MaintenanceRecord record;
+		Technician technician;
+
+		recordId = super.getRequest().getData("id", int.class);
+		record = this.repository.findRecord(recordId);
+		technician = record == null ? null : record.getTechnician();
+		status = super.getRequest().getPrincipal().hasRealm(technician) || record != null && !record.isDraftMode();
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		MaintenanceRecord record;
-		Technician technician;
+		int id;
 
-		technician = (Technician) super.getRequest().getPrincipal().getActiveRealm();
-
-		record = new MaintenanceRecord();
-		record.setDraftMode(true);
-		record.setTechnician(technician);
+		id = super.getRequest().getData("id", int.class);
+		record = this.repository.findRecord(id);
 
 		super.getBuffer().addData(record);
-	}
-
-	@Override
-	public void bind(final MaintenanceRecord record) {
-		int aircraftId;
-		Aircraft aircraft;
-
-		aircraftId = super.getRequest().getData("aircraft", int.class);
-		aircraft = this.repository.findAircraftById(aircraftId);
-
-		super.bindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes");
-		record.setAircraft(aircraft);
-	}
-
-	@Override
-	public void validate(final MaintenanceRecord record) {
-		boolean confirmation;
-
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-	}
-
-	@Override
-	public void perform(final MaintenanceRecord record) {
-		this.repository.save(record);
 	}
 
 	@Override
@@ -74,15 +56,13 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 		List<Aircraft> aircrafts;
 
 		aircrafts = this.repository.findAllAircrafts();
-
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
 
 		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
-		dataset.put("confirmation", false);
+		dataset.put("maintenanceStatuses", statusChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
-		dataset.put("maintenanceStatuses", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}
