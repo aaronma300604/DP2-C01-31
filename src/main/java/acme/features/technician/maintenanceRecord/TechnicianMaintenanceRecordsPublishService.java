@@ -1,6 +1,7 @@
 
 package acme.features.technician.maintenanceRecord;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,30 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 	@Override
 	public void validate(final MaintenanceRecord record) {
 		boolean canBePublished = false;
-		List<Task> tasks = this.repository.findTasksByRecord(record.getId());
+		boolean nextInspectionIsAfterDate;
+		boolean availableCurrency;
+
+		List<Task> tasks;
+		List<String> currencies;
+
+		tasks = this.repository.findTasksByRecord(record.getId());
+		currencies = this.repository.finAllCurrencies();
+		String currency;
+		Date date;
+		Date nextInspection;
+
+		currency = super.getRequest().getData("estimatedCost", String.class).substring(0, 3).toUpperCase();
+		date = super.getRequest().getData("date", Date.class);
+		nextInspection = super.getRequest().getData("nextInspection", Date.class);
+
+		nextInspectionIsAfterDate = nextInspection.after(date);
+		availableCurrency = currencies.contains(currency);
 		if (!tasks.isEmpty())
 			canBePublished = tasks.stream().allMatch(t -> !t.isDraftMode());
-		super.state(canBePublished, "*", "acme.validation.flight.cant-be-publish.message");
+
+		super.state(canBePublished, "*", "acme.validation.maintenance-record.cant-be-publish.message");
+		super.state(availableCurrency, "estimatedCost", "acme.validation.invalid-currency.message");
+		super.state(nextInspectionIsAfterDate, "nextInspection", "acme.validation.next-inspection.update.message");
 	}
 
 	@Override

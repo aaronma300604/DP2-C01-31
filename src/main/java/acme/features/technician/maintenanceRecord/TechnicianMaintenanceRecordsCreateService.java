@@ -1,12 +1,14 @@
 
 package acme.features.technician.maintenanceRecord;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -55,8 +57,21 @@ public class TechnicianMaintenanceRecordsCreateService extends AbstractGuiServic
 	@Override
 	public void validate(final MaintenanceRecord record) {
 		boolean confirmation;
+		boolean nextInspectionIsFuture;
+		boolean availableCurrency;
+		List<String> currencies;
+		currencies = this.repository.finAllCurrencies();
+		String currency;
+		Date nextInspection;
 
+		currency = super.getRequest().getData("estimatedCost", String.class).substring(0, 3).toUpperCase();
+		nextInspection = super.getRequest().getData("nextInspection", Date.class);
+		nextInspectionIsFuture = nextInspection.after(MomentHelper.getCurrentMoment());
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		availableCurrency = currencies.contains(currency);
+
+		super.state(availableCurrency, "estimatedCost", "acme.validation.invalid-currency.message");
+		super.state(nextInspectionIsFuture, "nextInspection", "acme.validation.next-inspection.create.message");
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 

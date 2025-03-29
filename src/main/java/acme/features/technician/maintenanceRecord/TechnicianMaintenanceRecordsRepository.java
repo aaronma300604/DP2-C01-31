@@ -14,6 +14,9 @@ import acme.entities.task.Task;
 @Repository
 public interface TechnicianMaintenanceRecordsRepository extends AbstractRepository {
 
+	@Query("select mr from MaintenanceRecord mr where mr.technician.id = :technicianId or mr.draftMode = false")
+	List<MaintenanceRecord> findAvailableRecords(final int technicianId);
+
 	@Query("select mr from MaintenanceRecord mr where mr.technician.id = :technicianId")
 	List<MaintenanceRecord> findMyRecords(final int technicianId);
 
@@ -28,4 +31,7 @@ public interface TechnicianMaintenanceRecordsRepository extends AbstractReposito
 
 	@Query("select i.task from Involves i where i.maintenanceRecord.id =:recordId")
 	List<Task> findTasksByRecord(int recordId);
+
+	@Query("select sc.currency from SystemCurrency sc")
+	List<String> finAllCurrencies();
 }

@@ -31,17 +31,17 @@ public class Task extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.length.1-255}")
 	String						description;
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0, max = 10)
+	@ValidNumber(min = 0, max = 10, message = "{acme.validation.task.priority}")
 	Integer						priority;
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 1, max = 1000)
+	@ValidNumber(min = 1, max = 1000, message = "{acme.validation.task.duration}")
 	Integer						estimatedDuration;
 
 	@Mandatory

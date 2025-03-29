@@ -60,7 +60,9 @@ master.menu.manager.list-my-legs = My Legs
 
 master.menu.technician = Technician
 master.menu.technician.list-my-records = My Maintenance records
+master.menu.technician.list-availiable-records = Available records
 master.menu.technician.list-my-tasks = My Tasks
+master.menu.technician.list-available-tasks = Available tasks
 
 
 # master.menu.user-account ####################################################

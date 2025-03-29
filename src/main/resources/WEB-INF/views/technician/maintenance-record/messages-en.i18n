@@ -1,3 +1,6 @@
+############ General #############
+technician.maintenance-record.form.title = Record Detail:
+technician.maintenance-record.list.title = Records List: 
 
 ############ List ################
 technician.maintenance-record.list.label.date = Date
@@ -19,3 +22,4 @@ technician.maintenance-record.list.button.create = Create
 technician.maintenance-record.form.button.create = Create
 technician.maintenance-record.form.button.update = Update
 technician.maintenance-record.form.button.publish = Publish
+technician.maintenance-record.form.button.tasks = Tasks

@@ -60,7 +60,10 @@ master.menu.manager.list-my-legs = Mis Trayectos
 
 master.menu.technician = Técnico
 master.menu.technician.list-my-records = Mis Informes de mantenimiento
+master.menu.technician.list-availiable-records = Informes Disponibles
 master.menu.technician.list-my-tasks = Mis Tareas
+master.menu.technician.list-available-tasks = Tareas Disponibles
+
 
 # master.menu.user-account ####################################################
 

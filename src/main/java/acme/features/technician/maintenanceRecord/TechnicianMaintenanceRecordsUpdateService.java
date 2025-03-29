@@ -1,6 +1,7 @@
 
 package acme.features.technician.maintenanceRecord;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,24 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 	@Override
 	public void validate(final MaintenanceRecord record) {
 		boolean confirmation;
+		boolean nextInspectionIsAfterDate;
+		boolean availableCurrency;
 
+		List<String> currencies;
+		currencies = this.repository.finAllCurrencies();
+		String currency;
+		Date date;
+		Date nextInspection;
+
+		currency = super.getRequest().getData("estimatedCost", String.class).substring(0, 3).toUpperCase();
+		date = super.getRequest().getData("date", Date.class);
+		nextInspection = super.getRequest().getData("nextInspection", Date.class);
+		nextInspectionIsAfterDate = nextInspection.after(date);
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		availableCurrency = currencies.contains(currency);
+
+		super.state(availableCurrency, "estimatedCost", "acme.validation.invalid-currency.message");
+		super.state(nextInspectionIsAfterDate, "nextInspection", "acme.validation.next-inspection.update.message");
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 

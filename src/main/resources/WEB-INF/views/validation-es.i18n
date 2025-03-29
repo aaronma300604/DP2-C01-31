@@ -9,5 +9,12 @@ acme.validation.airline_manager.employee_code.message = Debe comenzar por las in
 acme.validation.customer.identifier.message = Debe comenzar por las iniciales del cliente, seguido de seis dígitos
 acme.validation.member.employee_code.message = Debe comenzar por las iniciales del miembro, seguido de seis dígitos
 acme.validation.technician.employee_code.message = Debe comenzar por las iniciales del técnico, seguido de seis dígitos
+acme.validation.next-inspection.update.message = La próxima inspección tiene que ser posterior a la fecha del informe
+acme.validation.next-inspection.create.message = La próxima inspección deber estar en el futuro
 
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
+acme.validation.maintenance-record.cant-be-publish.message = Este informe no puede ser publicado todavía
+acme.validation.text.length.1-255 = Este texto debe tener entre 1 y 255 caracteres
+acme.validation.invalid-currency.message = Moneda no soportada
+acme.validation.task.priority = La prioridad debe ser un entero entre 0 y 10
+acme.validation.task.duration = La duración debe ser un entero entre 1 y 1000

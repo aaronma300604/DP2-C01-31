@@ -6,12 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
-import acme.entities.maintenanceRecord.MaintenanceStatus;
 import acme.realms.employee.Technician;
 
 @GuiService
@@ -30,9 +27,12 @@ public class TechnicianMaintenanceRecordsListService extends AbstractGuiService<
 	public void load() {
 		List<MaintenanceRecord> records;
 		int technicianId;
+		boolean mine;
 
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		records = this.repository.findMyRecords(technicianId);
+		mine = super.getRequest().getData("mine", boolean.class);
+
+		records = mine ? this.repository.findMyRecords(technicianId) : this.repository.findAvailableRecords(technicianId);
 
 		super.getBuffer().addData(records);
 	}
@@ -40,18 +40,9 @@ public class TechnicianMaintenanceRecordsListService extends AbstractGuiService<
 	@Override
 	public void unbind(final MaintenanceRecord record) {
 		Dataset dataset;
-		SelectChoices statusChoices;
-		SelectChoices aircraftChoices;
-		List<Aircraft> aircrafts;
 
-		aircrafts = this.repository.findAllAircrafts();
-		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
-		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
-
-		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection");
-		dataset.put("maintenanceStatuses", statusChoices);
-		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
-		dataset.put("aircrafts", aircraftChoices);
+		dataset = super.unbindObject(record, "id", "date", "maintenanceStatus", "nextInspection");
+		dataset.put("aircraft", record.getAircraft().getRegistrationNumber());
 
 		super.getResponse().addData(dataset);
 	}

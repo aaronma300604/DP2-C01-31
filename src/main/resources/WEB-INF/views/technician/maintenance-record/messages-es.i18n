@@ -1,3 +1,6 @@
+############ General #############
+technician.maintenance-record.form.title = Detalles del informe:
+technician.maintenance-record.list.title = Lista de informes: 
 
 ############ List ################
 technician.maintenance-record.list.label.date = Fecha
