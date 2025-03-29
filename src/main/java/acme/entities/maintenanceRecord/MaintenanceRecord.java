@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Future;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -19,6 +18,7 @@ import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.entities.aircraft.Aircraft;
+import acme.realms.employee.Technician;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,12 +40,11 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@Valid
-	MaintenanceStatus			status;
+	MaintenanceStatus			maintenanceStatus;
 
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment
-	@Future
 	Date						nextInspection;
 
 	@Mandatory
@@ -55,8 +54,12 @@ public class MaintenanceRecord extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.length.1-255}")
 	String						notes;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 
 	//Derived Attributes ------------------------
 
@@ -66,4 +69,9 @@ public class MaintenanceRecord extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	Aircraft					aircraft;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	Technician					technician;
 }

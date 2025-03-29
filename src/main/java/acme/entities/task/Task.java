@@ -10,7 +10,6 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.realms.employee.Technician;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,18 +31,22 @@ public class Task extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.length.1-255}")
 	String						description;
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0, max = 10)
+	@ValidNumber(min = 0, max = 10, message = "{acme.validation.task.priority}")
 	Integer						priority;
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 1, max = 1000)
+	@ValidNumber(min = 1, max = 1000, message = "{acme.validation.task.duration}")
 	Integer						estimatedDuration;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 
 	//Derived Attributes ------------------------
 
@@ -54,8 +57,4 @@ public class Task extends AbstractEntity {
 	@ManyToOne(optional = false)
 	Technician					technician;
 
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	MaintenanceRecord			maintenanceRecord;
 }
