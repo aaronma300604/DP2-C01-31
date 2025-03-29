@@ -7,21 +7,21 @@ import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.validation.Mandatory;
-import acme.realms.client.Customer;
+import acme.entities.passenger.Passenger;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class CustomerBooking extends AbstractEntity {
+public class PassengerBooking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Customer			customer;
+	private Passenger			passenger;
 
 	@Mandatory
 	@Valid

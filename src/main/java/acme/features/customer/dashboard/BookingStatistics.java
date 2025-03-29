@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.dashboard;
+package acme.features.customer.dashboard;
 
 public interface BookingStatistics {
 

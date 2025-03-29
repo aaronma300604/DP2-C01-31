@@ -55,6 +55,11 @@ master.menu.manager = Manager
 master.menu.manager.list-my-flights = Mis Vuelos
 master.menu.manager.list-my-legs = Mis Trayectos
 
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = Mis Reservas
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
