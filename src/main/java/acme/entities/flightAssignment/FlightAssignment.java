@@ -44,7 +44,7 @@ public class FlightAssignment extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.lenght.1-255}")
 	private String				remarks;
 
 	@Mandatory

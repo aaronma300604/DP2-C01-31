@@ -12,14 +12,15 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
@@ -69,9 +70,6 @@ public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrew
 		FlightCrewMember member = this.repository.findMemberById(crewMemberId);
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
-		//Company contractor;
-
-		//contractor = this.repository.findContractorById(contractorId);
 
 		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(member);
@@ -124,7 +122,7 @@ public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrew
 	}
 
 	public List<Leg> getPosibleLegs() {
-		Date currentDate = Date.valueOf("2022-07-30");
+		Date currentDate = MomentHelper.getCurrentMoment();
 		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
 		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();

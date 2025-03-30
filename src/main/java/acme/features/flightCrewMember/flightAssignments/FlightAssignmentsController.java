@@ -25,12 +25,25 @@ public class FlightAssignmentsController extends AbstractGuiController<FlightCre
 	@Autowired
 	private FlightAssignmentCreateService				createService;
 
+	@Autowired
+	private FlightAssignmentUpdateService				updateService;
+
+	@Autowired
+	private FlightAssignmentDeleteService				deleteService;
+
+	@Autowired
+	private FlightAssignmentPublishService				publishService;
+
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
-		super.addCustomCommand("listUL", "list", this.listServiceUL);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
+
+		super.addCustomCommand("listUL", "list", this.listServiceUL);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }
