@@ -1,18 +1,21 @@
 
 package acme.features.technician.task;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.maintenanceRecord.Involves;
 import acme.entities.task.Task;
 import acme.entities.task.TaskType;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianTasksPublishService extends AbstractGuiService<Technician, Task> {
+public class TechnicianTasksDeleteService extends AbstractGuiService<Technician, Task> {
 
 	@Autowired
 	TechnicianTasksRepository repository;
@@ -31,6 +34,7 @@ public class TechnicianTasksPublishService extends AbstractGuiService<Technician
 		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -55,8 +59,13 @@ public class TechnicianTasksPublishService extends AbstractGuiService<Technician
 
 	@Override
 	public void perform(final Task task) {
-		task.setDraftMode(false);
-		this.repository.save(task);
+		List<Involves> involves;
+		involves = this.repository.findInvolvesByTask(task.getId());
+
+		if (involves != null && !involves.isEmpty())
+			this.repository.deleteAll(involves);
+
+		this.repository.delete(task);
 	}
 
 	@Override
