@@ -12,7 +12,7 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list'&& $request.data.recordId != -1 }">
+<jstl:if test="${_command == 'list'&& $request.data.recordId != -1 && $request.data.draftMode == true}">
 	<acme:button code="technician.involves.list.button.create" action="/technician/involves/create?recordId=${$request.data.recordId}"/>
 </jstl:if>
 <jstl:if test="${_command == 'list'&& $request.data.recordId == -1}">
