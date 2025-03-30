@@ -22,7 +22,14 @@ public class AdministratorAircraftsDisableService extends AbstractGuiService<Adm
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		Aircraft aircraft;
+
+		id = super.getRequest().getData("id", int.class);
+		aircraft = this.repository.findAircraftById(id);
+		status = aircraft != null && aircraft.isActive() == false;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
