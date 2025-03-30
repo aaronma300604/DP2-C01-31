@@ -1,3 +1,5 @@
+authenticated.technician.form.title = Technician
+
 authenticated.technician.form.label.phone = Phone number
 authenticated.technician.form.label.specialisation = Specialisation
 authenticated.technician.form.label.hasPassedHealthCheck = Have you passed health check?

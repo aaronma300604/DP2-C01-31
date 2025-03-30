@@ -14,12 +14,15 @@ import acme.realms.employee.Technician;
 public interface AuthenticatedTechnicianRepository extends AbstractRepository {
 
 	@Query("select t from Technician t where t.userAccount.id = :id")
-	Technician findOneTechnicianByUserAccountId(int id);
+	Technician findOneTechnicianByUserAccountId(final int id);
 
 	@Query("select ua from UserAccount ua where ua.id = :id")
-	UserAccount findOneUserAccountById(int id);
+	UserAccount findOneUserAccountById(final int id);
 
 	@Query("select t from Technician t where t.licenseNumber = :licenseNumber  ")
 	Optional<Technician> findTechnicianByLicenseNumber(String licenseNumber);
+
+	@Query("select t from Technician t where t.userAccount.id = :userAccountId")
+	Technician findTechnicianByUserAccountId(final int userAccountId);
 
 }

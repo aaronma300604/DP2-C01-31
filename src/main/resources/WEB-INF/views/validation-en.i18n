@@ -21,3 +21,5 @@ acme.validation.text.length.1-50 = Must be between 1 and 50 characters long
 acme.validation.invalid-currency.message = Unsupported currency
 acme.validation.task.priority = Must be an integer between 0 and 10
 acme.validation.task.duration = Must be an integer between 1 and 1000
+acme.validation.phone = Must be a phone number
+acme.validation.technician.years-of-experience = Must be an integer between 0 and 75

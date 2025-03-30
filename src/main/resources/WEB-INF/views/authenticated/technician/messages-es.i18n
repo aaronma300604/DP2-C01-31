@@ -1,3 +1,5 @@
+authenticated.technician.form.title = Técnico
+
 authenticated.technician.form.label.phone = Teléfono
 authenticated.technician.form.label.specialisation = Especialización
 authenticated.technician.form.label.hasPassedHealthCheck = ¿Has pasado la revisión médica?
