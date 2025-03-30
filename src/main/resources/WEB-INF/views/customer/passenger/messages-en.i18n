@@ -1,0 +1,17 @@
+customer.passenger.list.title = My passengers
+customer.passenger.list.name = Full name
+customer.passenger.list.email = Email
+customer.passenger.list.passportNumber = Passport Number
+customer.passenger.list.dateOfBirth = Date of Birth
+
+customer.passenger.list.button.create = Create Passenger
+
+customer.passenger.form.name = Full name
+customer.passenger.form.email = Email
+customer.passenger.form.passportNumber = Passport Number (pattern = ^[A-Z0-9]{6,9}$)
+customer.passenger.form.dateOfBirth =  Date of Birth
+customer.passenger.form.specialNeeds = Special Needs
+
+customer.passenger.form.button.create = Create
+customer.passenger.form.button.update = Update information
+customer.passenger.form.button.publish = Publish

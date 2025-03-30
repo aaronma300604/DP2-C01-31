@@ -57,4 +57,8 @@ public class Passenger extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Customer			customer;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
 }

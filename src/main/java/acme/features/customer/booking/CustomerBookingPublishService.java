@@ -3,6 +3,7 @@ package acme.features.customer.booking;
 
 import java.util.List;
 
+import org.hibernate.internal.util.StringHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -16,9 +17,8 @@ import acme.entities.passenger.Passenger;
 import acme.realms.client.Customer;
 
 @GuiService
-public class CustomerBookingShowService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
 
-	// Internal state ---------------------------------------------------------
 	@Autowired
 	private CustomerBookingRepository repository;
 
@@ -36,7 +36,6 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		status = super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override
@@ -52,32 +51,54 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 	}
 
 	@Override
+	public void bind(final Booking booking) {
+		int flightId;
+		Flight flight;
+
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+
+		super.bindObject(booking, "travelClass", "lastCreditCardNibble");
+		booking.setFlight(flight);
+	}
+
+	@Override
+	public void validate(final Booking booking) {
+		String lastCreditCardNibble = booking.getLastCreditCardNibble();
+		List<Passenger> passengers = this.repository.findPassengerByBookingId(booking.getId());
+
+		boolean canBePublishPassenger = passengers.isEmpty() || passengers.stream().allMatch(p -> !p.isDraftMode());
+		boolean canBePublishLastCreditCard = !StringHelper.isBlank(lastCreditCardNibble);
+
+		boolean canBePublished = canBePublishPassenger && canBePublishLastCreditCard;
+
+		super.state(canBePublished, "*", "acme.validation.booking.cant-be-publish.message");
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		booking.setDraftMode(false);
+		this.repository.save(booking);
+	}
+
+	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		SelectChoices choices;
-		int customerId;
 		List<Flight> allFlights;
+		SelectChoices choices;
 		SelectChoices travelClassChoices;
-		List<Passenger> passenger;
-		boolean existsAnyPassenger = true;
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		allFlights = this.repository.findFlights();
 		choices = SelectChoices.from(allFlights, "tag", booking.getFlight());
 		travelClassChoices = SelectChoices.from(TravelClassType.class, booking.getTravelClass());
-		passenger = this.repository.findPassengerByBookingId(booking.getId());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCreditCardNibble", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 		dataset.put("travelClasses", travelClassChoices);
 		dataset.put("travelClass", travelClassChoices.getSelected().getKey());
-		dataset.put("bookingId", booking.getId());
-		if (passenger.isEmpty())
-			existsAnyPassenger = false;
-		dataset.put("existsAnyPassenger", existsAnyPassenger);
-
 		super.getResponse().addData(dataset);
+
 	}
 
 }

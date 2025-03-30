@@ -1,12 +1,20 @@
 
 package acme.features.customer.booking;
 
+import java.security.SecureRandom;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.TravelClassType;
+import acme.entities.flight.Flight;
 import acme.realms.client.Customer;
 
 @GuiService
@@ -37,16 +45,69 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	}
 	@Override
 	public void bind(final Booking booking) {
+		int flightId;
+		Flight flight;
+		Date purchaseMoment = MomentHelper.getCurrentMoment();
 
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.repository.findFlightById(flightId);
+
+		super.bindObject(booking, "travelClass", "lastCreditCardNibble");
+		booking.setLocatorCode(this.generateLocatorCode());
+		booking.setFlight(flight);
+		booking.setPurchaseMoment(purchaseMoment);
+		booking.setPrice(flight.getCost());
+		booking.setDraftMode(true);
+
+	}
+	@Override
+	public void validate(final Booking booking) {
+		;
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		this.repository.save(booking);
 	}
 
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
+		List<Flight> allFlights;
+		SelectChoices choices;
+		SelectChoices travelClassChoices;
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "travelClass");
+		allFlights = this.repository.findFlights();
+		choices = SelectChoices.from(allFlights, "tag", booking.getFlight());
+		travelClassChoices = SelectChoices.from(TravelClassType.class, booking.getTravelClass());
 
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCreditCardNibble", "draftMode");
+		dataset.put("flight", choices.getSelected().getKey());
+		dataset.put("flights", choices);
+		dataset.put("travelClasses", travelClassChoices);
+		dataset.put("travelClass", travelClassChoices.getSelected().getKey());
 		super.getResponse().addData(dataset);
+
+	}
+
+	private String generateLocatorCode() {
+		final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		final SecureRandom RANDOM = new SecureRandom();
+		String locatorCode = null;
+		boolean existsByLocatorCode = true;
+
+		while (existsByLocatorCode) {
+			int length = 6 + RANDOM.nextInt(3);
+			StringBuilder codigo = new StringBuilder(length);
+
+			for (int i = 0; i < length; i++)
+				codigo.append(CHARACTERS.charAt(RANDOM.nextInt(CHARACTERS.length())));
+
+			locatorCode = codigo.toString();
+			existsByLocatorCode = this.repository.existsByLocatorCode(locatorCode);
+		}
+
+		return locatorCode;
 	}
 
 }

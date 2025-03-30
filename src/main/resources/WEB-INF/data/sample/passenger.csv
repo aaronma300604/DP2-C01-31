@@ -1,60 +1,60 @@
-key,dateOfBirth,email,name,passportNumber,specialNeeds,key:customer
+key,dateOfBirth,email,name,passportNumber,specialNeeds,key:customer,draftMode
 # base entity
-passenger-01,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,null,customer-01
-passenger-02,2005/09/23 0:01,bob.smith@example.com,Bob Smith,X9Y8Z7W6,Wheelchair assistance,customer-02
-passenger-03,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,null,customer-03
-passenger-04,2008/03/15 06:00,david.martinez@example.com,David Martinez,LKJH9876,Vegetarian meal,customer-03
-passenger-05,2010/07/08 14:00,emily.white@example.com,Emily White,ZXCV1234,null,customer-01
-passenger-06,2015/12/21 00:00,frank.thomas@example.com,Frank Thomas,QWER5678,Extra legroom,customer-02
-passenger-07,2018/06/05 23:59,grace.lee@example.com,Grace Lee,ASDF4321,null,customer-03
-passenger-08,2020/09/17 00:00,henry.brown@example.com,Henry Brown,MNBV6789,Deaf assistance,customer-01
-# date_of_birth - standard variations,"","","","","",""
-passenger-09,2011/04/16 00:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,null,customer-01
-passenger-10,2000/01/01 00:00,bob.smith@example.com,Bob Smith,X9Y8Z7W6,Wheelchair assistance,customer-02
-passenger-11,2000/01/01 00:01,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,null,customer-01
-passenger-12,2022/07/29 23:59,david.martinez@example.com,David Martinez,LKJH9876,Vegetarian meal,customer-01
-passenger-13,2022/07/30 00:00,emily.white@example.com,Emily White,ZXCV1234,null,customer-03
+passenger-01,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,null,customer-01,true
+passenger-02,2005/09/23 0:01,bob.smith@example.com,Bob Smith,X9Y8Z7W6,Wheelchair assistance,customer-02,true
+passenger-03,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,null,customer-03,true
+passenger-04,2008/03/15 06:00,david.martinez@example.com,David Martinez,LKJH9876,Vegetarian meal,customer-03,true
+passenger-05,2010/07/08 14:00,emily.white@example.com,Emily White,ZXCV1234,null,customer-01,true
+passenger-06,2015/12/21 00:00,frank.thomas@example.com,Frank Thomas,QWER5678,Extra legroom,customer-02,true
+passenger-07,2018/06/05 23:59,grace.lee@example.com,Grace Lee,ASDF4321,null,customer-03,true
+passenger-08,2020/09/17 00:00,henry.brown@example.com,Henry Brown,MNBV6789,Deaf assistance,customer-01,true
+# date_of_birth - standard variations
+passenger-09,2011/04/16 00:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,null,customer-01,true
+passenger-10,2000/01/01 00:00,bob.smith@example.com,Bob Smith,X9Y8Z7W6,Wheelchair assistance,customer-02,true
+passenger-11,2000/01/01 00:01,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,null,customer-01,true
+passenger-12,2022/07/29 23:59,david.martinez@example.com,David Martinez,LKJH9876,Vegetarian meal,customer-01,true
+passenger-13,2022/07/30 00:00,emily.white@example.com,Emily White,ZXCV1234,null,customer-03,true
 # email - standard variations
-passenger-14,2002/05/12 0:00,acme@lorem-ipsum.org,Alice Johnson,A1B2C3D4,null,customer-01
-passenger-15,2005/09/23 0:01,acme@lorem-ipsum.org,Bob Smith,X9Y8Z7W6,Wheelchair assistance,customer-02
-passenger-16,2003/11/30 0:00,a@b.e,Charlie Davis,Q1W2E3R4,null,customer-03
-passenger-17,2008/03/15 06:00,a@b.es,David Martinez,LKJH9876,Vegetarian meal,customer-01
-passenger-18,2010/07/08 14:00,a@b.esx,Emily White,ZXCV1234,null,customer-02
-passenger-19,2015/12/21 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,Frank Thomas,QWER5678,Extra legroom,customer-01
-passenger-20,2018/06/05 23:59,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,Grace Lee,ASDF4321,null,customer-02
+passenger-14,2002/05/12 0:00,acme@lorem-ipsum.org,Alice Johnson,A1B2C3D4,null,customer-01,true
+passenger-15,2005/09/23 0:01,acme@lorem-ipsum.org,Bob Smith,X9Y8Z7W6,Wheelchair assistance,customer-02,true
+passenger-16,2003/11/30 0:00,a@b.e,Charlie Davis,Q1W2E3R4,null,customer-03,true
+passenger-17,2008/03/15 06:00,a@b.es,David Martinez,LKJH9876,Vegetarian meal,customer-01,true
+passenger-18,2010/07/08 14:00,a@b.esx,Emily White,ZXCV1234,null,customer-02,true
+passenger-19,2015/12/21 00:00,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.doloris.edu,Frank Thomas,QWER5678,Extra legroom,customer-01,true
+passenger-20,2018/06/05 23:59,lorem-ipsum@dolor.sit.amet.consectetur.adipiscing.elit.sed.do.eiusmod.tempor.incididunt.ut.labore.et.dolore.magna.aliqua.Ut.enim.ad.minim.veniam.quis.nostrud.exercitation.ullamco.laboris.nisi.ut.aliquip.ex.ea.commodo.consequat.duis.aute.irure.dolor.es.org,Grace Lee,ASDF4321,null,customer-02,true
 # name - standard variations
-passenger-23,2003/11/30 0:00,charlie.davis@example.com,Lo,Q1W2E3R4,null,customer-03
-passenger-24,2008/03/15 06:00,david.martinez@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",LKJH9876,Vegetarian meal,customer-03
-passenger-25,2010/07/08 14:00,emily.white@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",ZXCV1234,null,customer-01
-passenger-26,2015/12/21 00:00,frank.thomas@example.com,โลเร็ม อิปซัม,QWER5678,Extra legroom,customer-02
-passenger-27,2018/06/05 23:59,grace.lee@example.com,لوريم إيبسوم,ASDF4321,null,customer-01
-passenger-28,2020/09/17 00:00,henry.brown@example.com,洛伦·伊普森,MNBV6789,Deaf assistance,customer-03
-passenger-29,2002/05/12 0:00,alice.johnson@example.com,<marquee>Hacked</marquee>,A1B2C3D4,null,customer-01
-passenger-30,2005/09/23 0:01,bob.smith@example.com,<script>alert(‘Hacked!’);</script>,X9Y8Z7W6,Wheelchair assistance,customer-02
-passenger-31,2002/05/12 0:00,alice.johnson@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",A1B2C3D4,null,customer-01
-passenger-32,2005/09/23 0:01,bob.smith@example.com,L,X9Y8Z7W6,Wheelchair assistance,customer-02
-passenger-33,2003/11/30 0:00,charlie.davis@example.com,' or 'A' = 'A,Q1W2E3R4,null,customer-01
+passenger-23,2003/11/30 0:00,charlie.davis@example.com,Lo,Q1W2E3R4,null,customer-03,true
+passenger-24,2008/03/15 06:00,david.martinez@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",LKJH9876,Vegetarian meal,customer-03,true
+passenger-25,2010/07/08 14:00,emily.white@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",ZXCV1234,null,customer-01,true
+passenger-26,2015/12/21 00:00,frank.thomas@example.com,โลเร็ม อิปซัม,QWER5678,Extra legroom,customer-02,true
+passenger-27,2018/06/05 23:59,grace.lee@example.com,لوريم إيبسوم,ASDF4321,null,customer-01,true
+passenger-28,2020/09/17 00:00,henry.brown@example.com,洛伦·伊普森,MNBV6789,Deaf assistance,customer-03,true
+passenger-29,2002/05/12 0:00,alice.johnson@example.com,<marquee>Hacked</marquee>,A1B2C3D4,null,customer-01,true
+passenger-30,2005/09/23 0:01,bob.smith@example.com,<script>alert(‘Hacked!’);</script>,X9Y8Z7W6,Wheelchair assistance,customer-02,true
+passenger-31,2002/05/12 0:00,alice.johnson@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",A1B2C3D4,null,customer-01,true
+passenger-32,2005/09/23 0:01,bob.smith@example.com,L,X9Y8Z7W6,Wheelchair assistance,customer-02,true
+passenger-33,2003/11/30 0:00,charlie.davis@example.com,' or 'A' = 'A,Q1W2E3R4,null,customer-01,true
 # passport_number - standard variation
-passenger-34,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A123456,null,customer-01
-passenger-35,2005/09/23 0:01,bob.smith@example.com,Bob Smith,AB1234567,Wheelchair assistance,customer-02
-passenger-36,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,12345678,null,customer-03
-passenger-37,2008/03/15 06:00,david.martinez@example.com,David Martinez,ABCDEFG,Vegetarian meal,customer-01
-passenger-38,2010/07/08 14:00,emily.white@example.com,Emily White,A1B2C3D4,null,customer-02
-passenger-39,2015/12/21 00:00,frank.thomas@example.com,Frank Thomas,ZZZZ99999,Extra legroom,customer-01
-passenger-40,2018/06/05 23:59,grace.lee@example.com,Grace Lee,876543210,null,customer-02
-passenger-41,2020/09/17 00:00,henry.brown@example.com,Henry Brown,X1X1X1X1X,Deaf assistance,customer-03
-passenger-42,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,QWERTYUI,null,customer-01
-passenger-43,2005/09/23 0:01,bob.smith@example.com,Bob Smith,9876ABC,Wheelchair assistance,customer-02
+passenger-34,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A123456,null,customer-01,true
+passenger-35,2005/09/23 0:01,bob.smith@example.com,Bob Smith,AB1234567,Wheelchair assistance,customer-02,true
+passenger-36,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,12345678,null,customer-03,true
+passenger-37,2008/03/15 06:00,david.martinez@example.com,David Martinez,ABCDEFG,Vegetarian meal,customer-01,true
+passenger-38,2010/07/08 14:00,emily.white@example.com,Emily White,A1B2C3D4,null,customer-02,true
+passenger-39,2015/12/21 00:00,frank.thomas@example.com,Frank Thomas,ZZZZ99999,Extra legroom,customer-01,true
+passenger-40,2018/06/05 23:59,grace.lee@example.com,Grace Lee,876543210,null,customer-02,true
+passenger-41,2020/09/17 00:00,henry.brown@example.com,Henry Brown,X1X1X1X1X,Deaf assistance,customer-03,true
+passenger-42,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,QWERTYUI,null,customer-01,true
+passenger-43,2005/09/23 0:01,bob.smith@example.com,Bob Smith,9876ABC,Wheelchair assistance,customer-02,true
 # special_needs - standard variations
-passenger-44,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,' or 'A' = 'A,customer-01
-passenger-45,2005/09/23 0:01,bob.smith@example.com,Bob Smith,X9Y8Z7W6,<script>alert,customer-02
-passenger-46,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,<marquee>Hacked</marquee>,customer-03
-passenger-47,2008/03/15 06:00,david.martinez@example.com,David Martinez,LKJH9876,洛伦·伊普森,customer-03
-passenger-48,2010/07/08 14:00,emily.white@example.com,Emily White,ZXCV1234,لوريم إيبسوم,customer-03
-passenger-49,2015/12/21 00:00,frank.thomas@example.com,Frank Thomas,QWER5678,โลเร็ม อิปซัม,customer-02
-passenger-50,2018/06/05 23:59,grace.lee@example.com,Grace Lee,ASDF4321,"Lorem ipsum dolor sit amet, consectetur adipiscing",customer-02
-passenger-51,2020/09/17 00:00,henry.brown@example.com,Henry Brown,MNBV6789,"Lorem ipsum dolor sit amet, consectetur adipiscin",customer-03
-passenger-52,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,Lo,customer-01
-passenger-53,2005/09/23 0:01,bob.smith@example.com,Bob Smith,X9Y8Z7W6,L,customer-02
-passenger-54,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,Lorem ipsum dolor sit ame,customer-02
-passenger-55,2012/03/22 13:45,william.white@example.com,William White,GH123987,null,customer-03
+passenger-44,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,' or 'A' = 'A,customer-01,true
+passenger-45,2005/09/23 0:01,bob.smith@example.com,Bob Smith,X9Y8Z7W6,<script>alert,customer-02,true
+passenger-46,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,<marquee>Hacked</marquee>,customer-03,true
+passenger-47,2008/03/15 06:00,david.martinez@example.com,David Martinez,LKJH9876,洛伦·伊普森,customer-03,true
+passenger-48,2010/07/08 14:00,emily.white@example.com,Emily White,ZXCV1234,لوريم إيبسوم,customer-03,true
+passenger-49,2015/12/21 00:00,frank.thomas@example.com,Frank Thomas,QWER5678,โลเร็ม อิปซัม,customer-02,true
+passenger-50,2018/06/05 23:59,grace.lee@example.com,Grace Lee,ASDF4321,"Lorem ipsum dolor sit amet, consectetur adipiscing",customer-02,true
+passenger-51,2020/09/17 00:00,henry.brown@example.com,Henry Brown,MNBV6789,"Lorem ipsum dolor sit amet, consectetur adipiscin",customer-03,true
+passenger-52,2002/05/12 0:00,alice.johnson@example.com,Alice Johnson,A1B2C3D4,Lo,customer-01,true
+passenger-53,2005/09/23 0:01,bob.smith@example.com,Bob Smith,X9Y8Z7W6,L,customer-02,true
+passenger-54,2003/11/30 0:00,charlie.davis@example.com,Charlie Davis,Q1W2E3R4,Lorem ipsum dolor sit ame,customer-02,true
+passenger-55,2012/03/22 13:45,william.white@example.com,William White,GH123987,null,customer-03,true

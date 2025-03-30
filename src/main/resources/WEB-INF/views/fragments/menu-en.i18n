@@ -59,6 +59,7 @@ master.menu.manager.list-my-legs = My Legs
 
 master.menu.customer = Customer
 master.menu.customer.booking = My Bookings
+master.menu.customer.passenger = My Passengers
 
 # master.menu.user-account ####################################################
 

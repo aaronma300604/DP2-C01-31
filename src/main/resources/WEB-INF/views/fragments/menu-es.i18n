@@ -59,6 +59,7 @@ master.menu.manager.list-my-legs = Mis Trayectos
 
 master.menu.customer = Customer
 master.menu.customer.booking = Mis Reservas
+master.menu.customer.passenger = Mis Pasajeros
 
 # master.menu.user-account ####################################################
 

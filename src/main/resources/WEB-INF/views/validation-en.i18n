@@ -10,4 +10,13 @@ acme.validation.customer.identifier.message = Must begin with customer's initial
 acme.validation.member.employee_code.message = Must begin with member's initials, followed by six digits
 acme.validation.technician.employee_code.message = Must begin with technician's initials, followed by six digits
 
+acme.validation.booking.invalid-nibble.message = The entered value must be a four-digit number or blank
+acme.validation.booking.cant-be-publish.message = To publish this booking, all passengers must be published and the last four digits of the credit card cannot be empty
+
+acme.validation.passport.duplicated_passport_number.message = A passenger with this passport number already exists
+acme.validation.passenger.passport_number.message = Invalid passport number. It must be between 6 and 9 characters long and contain only uppercase letters and numbers
+acme.validation.booking.booking-publish.message = The booking is already published and cannot be modified
+acme.validation.booking.duplicated_passenger_booking.message = That relationship between the passenger and the booking already exists.
+
+
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet
