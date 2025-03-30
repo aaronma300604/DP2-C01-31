@@ -1,0 +1,8 @@
+authenticated.technician.form.label.phone = Teléfono
+authenticated.technician.form.label.specialisation = Especialización
+authenticated.technician.form.label.hasPassedHealthCheck = ¿Has pasado la revisión médica?
+authenticated.technician.form.label.yearsOfExperience = Años de experiencia
+authenticated.technician.form.label.certifications = Certificaciones
+
+authenticated.technician.form.button.create = Convertirse en técnico
+authenticated.technician.form.button.update = Actualizar
