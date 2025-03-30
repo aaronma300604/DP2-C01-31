@@ -37,6 +37,7 @@
 		</acme:menu-option>
 		<acme:menu-option code="feature.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="feature.menu.administrator.list-airports" action="/administrator/airport/list"/>
+			<acme:menu-suboption code="feature.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
@@ -59,6 +60,14 @@
 			<acme:menu-suboption code="master.menu.manager.list-my-flights" action="/airline-manager/flight/list"/>
 			<acme:menu-suboption code="master.menu.manager.list-my-legs" action="/airline-manager/leg/list"/>
 			<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/airline-manager/dashboard/show"/>
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')">
+			<acme:menu-suboption code="master.menu.technician.list-my-records" action="/technician/maintenance-record/list?mine=true"/>
+			<acme:menu-suboption code="master.menu.technician.list-availiable-records" action="/technician/maintenance-record/list?mine=false"/>
+			<acme:menu-suboption code="master.menu.technician.list-my-tasks" action="/technician/task/list?mine=true&recordId=-1"/>
+			<acme:menu-suboption code="master.menu.technician.list-available-tasks" action="/technician/task/list?mine=false&recordId=-1"/>		
+			<%---<acme:menu-suboption code="master.menu.technician.show-dashboard" action="/technician/dashboard/show" />--%>
 		</acme:menu-option>
 	</acme:menu-left>
 
