@@ -64,6 +64,7 @@ master.menu.technician.list-my-records = Mis Informes de mantenimiento
 master.menu.technician.list-availiable-records = Informes Disponibles
 master.menu.technician.list-my-tasks = Mis Tareas
 master.menu.technician.list-available-tasks = Tareas Disponibles
+master.menu.technician.show-dashboard = Mostrar panel
 
 
 # master.menu.user-account ####################################################

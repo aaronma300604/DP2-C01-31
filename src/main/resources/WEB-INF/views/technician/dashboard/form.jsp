@@ -10,10 +10,26 @@
 <table class="table table-sm">
 	<tr>
 		<th scope="row">
-			<acme:print code="technician.dashboard.form.label.number-maintenance-status"/>
+			<acme:print code="technician.dashboard.form.label.number-maintenance-status.completed"/>
 		</th>
 		<td>
-			<acme:print value="${airportsByScope}"/>
+			<acme:print value="${statusCompleted}"/>
+		</td>
+	</tr>
+		<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.number-maintenance-status.pending"/>
+		</th>
+		<td>
+			<acme:print value="${statusPending}"/>
+		</td>
+	</tr>
+		<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.number-maintenance-status.progress"/>
+		</th>
+		<td>
+			<acme:print value="${statusPending}"/>
 		</td>
 	</tr>
 	<tr>
@@ -21,7 +37,7 @@
 			<acme:print code="technician.dashboard.form.label.nearest-next-inspection"/>
 		</th>
 		<td>
-			<acme:print value="${airlinesByType}"/>
+			<acme:print value="${nearestNextInspection}"/>
 		</td>
 	</tr>
 	<tr>
@@ -29,32 +45,72 @@
 			<acme:print code="technician.dashboard.form.label.most-tasks-aircarfts"/>
 		</th>
 		<td>
-			<acme:print value="${ratioAirlinesWithEmailOrPhone}"/>
+			<acme:print value="${mostTasksAircrafts}"/>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:print code="technician.dashboard.form.label.cost-statistics"/>
+			<acme:print code="technician.dashboard.form.label.cost-statistics.avg"/>
 		</th>
 		<td>
-			<acme:print value="${ratioAirlinesWithEmailOrPhone}"/>
+			<acme:print value="${avgCost}"/>
+		</td>
+	</tr>
+		<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.cost-statistics.max"/>
+		</th>
+		<td>
+			<acme:print value="${maxCost}"/>
+		</td>
+	</tr>
+		<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.cost-statistics.min"/>
+		</th>
+		<td>
+			<acme:print value="${minCost}"/>
+		</td>
+	</tr>
+		<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.cost-statistics.dev"/>
+		</th>
+		<td>
+			<acme:print value="${devCost}"/>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:print code="technician.dashboard.form.label.duration-statistics"/>
+			<acme:print code="technician.dashboard.form.label.duration-statistics.avg"/>
 		</th>
 		<td>
-			<acme:print value="${ratioAirlinesWithEmailOrPhone}"/>
+			<acme:print value="${avgDur}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.duration-statistics.max"/>
+		</th>
+		<td>
+			<acme:print value="${maxDur}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.duration-statistics.min"/>
+		</th>
+		<td>
+			<acme:print value="${minDur}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:print code="technician.dashboard.form.label.duration-statistics.dev"/>
+		</th>
+		<td>
+			<acme:print value="${devDur}"/>
 		</td>
 	</tr>	
 </table>
-
-<h2>
-	<acme:print code="technician.dashboard.form.title.application-statuses"/>
-</h2>
-
-<div>
-	<canvas id="canvas"></canvas>
-</div>
 <acme:return/>

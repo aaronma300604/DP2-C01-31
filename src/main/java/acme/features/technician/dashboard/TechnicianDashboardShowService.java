@@ -3,9 +3,13 @@ package acme.features.technician.dashboard;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import acme.client.components.models.Dataset;
 import acme.client.helpers.MomentHelper;
@@ -13,14 +17,15 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
+import acme.entities.maintenanceRecord.MaintenanceStatus;
+import acme.forms.technician.Dashboard;
 import acme.forms.technician.MaintenanceByStatus;
 import acme.forms.technician.MaintenanceRecordCostStatistics;
 import acme.forms.technician.MaintenanceRecordDurationStatistics;
-import acme.forms.technician.TechnicianDashboard;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianDashboardShowService extends AbstractGuiService<Technician, TechnicianDashboard> {
+public class TechnicianDashboardShowService extends AbstractGuiService<Technician, Dashboard> {
 
 	@Autowired
 	private TechnicianDashboardRepository repository;
@@ -34,7 +39,7 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 	@Override
 	public void load() {
 
-		TechnicianDashboard dashboard;
+		Dashboard dashboard;
 		List<MaintenanceByStatus> numberOfMaintenanceByStatus;
 		MaintenanceRecord nearestNextInspection;
 		List<Aircraft> mostTasksAircrafts;
@@ -43,17 +48,17 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 
 		int technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		numberOfMaintenanceByStatus = this.repository.findNumberOfMaintenanceByStatus();
-		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId).get(0);
-		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(technicianId).stream().limit(5).toList();
-
+		PageRequest top5Results = PageRequest.of(0, 5);
 		Date deadline = MomentHelper.deltaFromCurrentMoment(-1, ChronoUnit.YEARS);
+		PageRequest firstResult = PageRequest.of(0, 1);
+
+		numberOfMaintenanceByStatus = this.repository.findNumberOfMaintenanceByStatus();
+		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId, firstResult).get(0);
+		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(technicianId, top5Results);
 		costStatistics = this.repository.findCostStatistics(deadline, technicianId);
 		durationStatistics = this.repository.findDurationStatistics(technicianId);
 
-		//TODO: Show dashboard in frontend.
-
-		dashboard = new TechnicianDashboard();
+		dashboard = new Dashboard();
 		dashboard.setNumberOfMaintenanceByStatus(numberOfMaintenanceByStatus);
 		dashboard.setNearestNextInspection(nearestNextInspection);
 		dashboard.setMostTasksAircrafts(mostTasksAircrafts);
@@ -64,15 +69,46 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 	}
 
 	@Override
-	public void unbind(final TechnicianDashboard dashboard) {
+	public void unbind(final Dashboard dashboard) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(dashboard, //
-			"numberOfMaintenanceByStatus", "nearestNextInspection", // 
-			"mostTasksAircrafts", "costStatistics", //
-			"durationStatistics");
+		dataset = super.unbindObject(dashboard);
+
+		Map<MaintenanceStatus, Integer> statuses = TechnicianDashboardShowService.numberMaintenanceByStatus(dashboard.getNumberOfMaintenanceByStatus());
+		dataset.put("statusCompleted", statuses.get(MaintenanceStatus.COMPLETED));
+		dataset.put("statusPending", statuses.get(MaintenanceStatus.PENDING));
+		dataset.put("statusInProgress", statuses.get(MaintenanceStatus.IN_PROGRESS));
+
+		MaintenanceRecord nni = dashboard.getNearestNextInspection();
+		dataset.put("nearestNextInspection", nni == null ? null : String.format("%s: %s", nni.getNextInspection(), nni.getNotes()));
+
+		String aircrafts = dashboard.getMostTasksAircrafts().stream().map(a -> a.getRegistrationNumber()) //
+			.map(a -> String.format("%s\t", a)).collect(Collectors.joining());
+		dataset.put("mostTasksAircrafts", aircrafts);
+
+		MaintenanceRecordCostStatistics cStats = dashboard.getCostStatistics();
+		dataset.put("avgCost", cStats.getAverage());
+		dataset.put("minCost", cStats.getMinimum());
+		dataset.put("maxCost", cStats.getMaximum());
+		dataset.put("devCost", cStats.getStandardDeviation());
+
+		MaintenanceRecordDurationStatistics dStats = dashboard.getDurationStatistics();
+		dataset.put("avgDur", dStats.getAverage());
+		dataset.put("minDur", dStats.getMinimum());
+		dataset.put("maxDur", dStats.getMaximum());
+		dataset.put("devDur", dStats.getStandardDeviation());
 
 		super.getResponse().addData(dataset);
+	}
+
+	private static Map<MaintenanceStatus, Integer> numberMaintenanceByStatus(final List<MaintenanceByStatus> ls) {
+		Map<MaintenanceStatus, Integer> res = new HashMap<>();
+		MaintenanceStatus[] statuses = MaintenanceStatus.values();
+		for (MaintenanceStatus status : statuses)
+			res.put(status, 0);
+		for (MaintenanceByStatus maintenance : ls)
+			res.put(maintenance.getMaintenanceStatus(), maintenance.getCountMaintenance());
+		return res;
 	}
 
 }

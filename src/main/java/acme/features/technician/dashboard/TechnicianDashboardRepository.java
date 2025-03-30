@@ -4,6 +4,7 @@ package acme.features.technician.dashboard;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +23,11 @@ public interface TechnicianDashboardRepository extends AbstractRepository {
 
 	@Query("SELECT mr  FROM MaintenanceRecord mr "//
 		+ " WHERE mr.technician.id = :technicianId ORDER BY mr.nextInspection ASC")
-	List<MaintenanceRecord> findNextInspectionByTechnician(int technicianId);
+	List<MaintenanceRecord> findNextInspectionByTechnician(int technicianId, PageRequest pr);
 
 	@Query("SELECT i.maintenanceRecord.aircraft FROM Involves i"//
 		+ " WHERE i.task.technician.id = :technicianId GROUP BY i.maintenanceRecord.aircraft ORDER BY COUNT(i.task) DESC")
-	List<Aircraft> findTopAircraftsByTaskCount(int technicianId);
+	List<Aircraft> findTopAircraftsByTaskCount(int technicianId, PageRequest pr);
 
 	@Query("SELECT COUNT(mr) AS countRecords, AVG(mr.estimatedCost.amount) AS average, "//
 		+ "MIN(mr.estimatedCost.amount) AS minimum, MAX(mr.estimatedCost.amount) AS maximum," //

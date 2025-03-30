@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.forms.technician.TechnicianDashboard;
+import acme.forms.technician.Dashboard;
 import acme.realms.employee.Technician;
 
 @GuiController
-public class TechnicianDashboardController extends AbstractGuiController<Technician, TechnicianDashboard> {
+public class TechnicianDashboardController extends AbstractGuiController<Technician, Dashboard> {
 
 	@Autowired
 	private TechnicianDashboardShowService showService;
