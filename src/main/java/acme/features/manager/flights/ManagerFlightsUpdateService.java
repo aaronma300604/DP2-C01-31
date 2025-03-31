@@ -79,8 +79,7 @@ public class ManagerFlightsUpdateService extends AbstractGuiService<AirlineManag
 		airline = this.repository.findAirlineByManager(managerId);
 		choices = SelectChoices.from(List.of(airline), "name", flight.getAirline());
 
-		dataset = super.unbindObject(flight, "tag", "cost", "description", "selfTransfer");
-		dataset.put("draftMode", flight.isDraftMode());
+		dataset = super.unbindObject(flight, "tag", "cost", "description", "selfTransfer", "draftMode");
 		dataset.put("airline", choices.getSelected().getKey());
 		dataset.put("airlines", choices);
 		dataset.put("origin", flight.getOrigin() != null ? flight.getOrigin().getName() : flight.getOrigin());

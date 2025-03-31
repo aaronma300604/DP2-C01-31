@@ -1,0 +1,23 @@
+acme.validation.phone.message = Must be a number phone
+acme.validation.leg.duration = Must be a positive number
+acme.validation.aircraft.capacity = Must be an integer between 1 and 255
+acme.validation.aircraft.cargo = Must be a number between 2000 and 50000
+
+
+acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
+acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits
+acme.validation.leg.duplicated-flight-number.message = There is another leg with this flight number
+acme.validation.airline_manager.employee_code.message = Must begin with manager's initials, followed by six digits
+acme.validation.customer.identifier.message = Must begin with customer's initials, followed by six digits
+acme.validation.member.employee_code.message = Must begin with member's initials, followed by six digits
+acme.validation.technician.employee_code.message = Must begin with technician's initials, followed by six digits
+acme.validation.next-inspection.create.message = Next inspection must be in the future
+acme.validation.next-inspection.update.message = Next inspection must be after record's date
+
+acme.validation.flight.cant-be-publish.message = This flight can't be published yet
+acme.validation.maintenance-record.cant-be-publish.message = This record can't be published yet
+acme.validation.text.length.1-255 = Must be between 1 and 255 characters long
+acme.validation.text.length.1-50 = Must be between 1 and 50 characters long
+acme.validation.invalid-currency.message = Unsupported currency
+acme.validation.task.priority = Must be an integer between 0 and 10
+acme.validation.task.duration = Must be an integer between 1 and 1000

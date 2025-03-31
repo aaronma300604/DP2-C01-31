@@ -44,7 +44,7 @@ public class Leg extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0.)
+	@ValidNumber(min = 0., message = "{acme.validation.leg.duration}")
 	private Double				duration;
 
 	@Mandatory

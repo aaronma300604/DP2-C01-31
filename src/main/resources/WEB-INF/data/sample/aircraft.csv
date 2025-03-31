@@ -2,10 +2,10 @@ key,capacity,cargo,details,active,model,registration_number,key:airline
 # base entity
 aircraft-01,50,23000.0,very good details,TRUE,aircraft-pro,123456,airline-01
 # cargo and capacity - standard variations
-aircraft-02,100,30000.00,very good details,FALSE,airbus100,789012,airline-02
+aircraft-02,100,30000.00,very good details,TRUE,airbus100,789012,airline-02
 aircraft-03,1,2000.00,null,TRUE,aircraft-pro,12,airline-01
-aircraft-04,24,2000.01,very good details,TRUE,aircraft-pro,123,airline-01
-aircraft-05,50,49000.99,very good details,FALSE,aircraft-pro,1234,airline-01
+aircraft-04,24,2000.01,very good details,TRUE,aircraft-pro,123,airline-02
+aircraft-05,50,49000.99,very good details,FALSE,aircraft-pro,1234,airline-02
 aircraft-06,100,50000.00,null,FALSE,aircraft-pro,12345,airline-01
 # details - standard variations
 aircraft-07,50,20000.3,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",TRUE,aircraft-pro,654,airline-01

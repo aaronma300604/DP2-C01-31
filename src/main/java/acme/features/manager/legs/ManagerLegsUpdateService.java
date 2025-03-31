@@ -103,7 +103,7 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 		managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		flights = this.repository.findFlightsByManager(managerId);
 		flightsChoices = SelectChoices.from(flights, "tag", leg.getFlight());
-		aircrafts = this.repository.findAircraftsByManager(managerId);
+		aircrafts = this.repository.findActiveAircraftsByManager(managerId);
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", leg.getAircraft());
 		airports = this.repository.findAllAirports();
 		originChoices = SelectChoices.from(airports, "name", leg.getOrigin());
