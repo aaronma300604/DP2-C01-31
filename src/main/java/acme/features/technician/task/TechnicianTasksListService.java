@@ -43,6 +43,7 @@ public class TechnicianTasksListService extends AbstractGuiService<Technician, T
 
 	@Override
 	public void unbind(final Task task) {
+		assert task != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(task, "type", "priority", "estimatedDuration");

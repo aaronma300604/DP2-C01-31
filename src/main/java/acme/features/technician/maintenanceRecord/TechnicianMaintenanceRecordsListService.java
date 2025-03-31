@@ -39,6 +39,7 @@ public class TechnicianMaintenanceRecordsListService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
+		assert record != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(record, "id", "date", "maintenanceStatus", "nextInspection");

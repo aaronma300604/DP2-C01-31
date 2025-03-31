@@ -49,19 +49,25 @@ public class TechnicianMaintenanceRecordsShowService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
+		assert record != null;
+
 		Dataset dataset;
 		SelectChoices aircraftChoices;
 		SelectChoices statusChoices;
+		Integer taskCount;
 
 		List<Aircraft> aircrafts;
 
+		taskCount = this.repository.countAvailableTasks(record.getTechnician().getId());
 		aircrafts = this.repository.findAllAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
 
 		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
 		dataset.put("maintenanceStatuses", statusChoices);
-		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("aircraft", !aircrafts.isEmpty() ? aircraftChoices.getSelected().getKey() : "No aircrafts available");
+		dataset.put("emptyAircrafts", aircrafts.isEmpty());
+		dataset.put("emptyTasks", taskCount <= 0);
 		dataset.put("aircrafts", aircraftChoices);
 
 		super.getResponse().addData(dataset);

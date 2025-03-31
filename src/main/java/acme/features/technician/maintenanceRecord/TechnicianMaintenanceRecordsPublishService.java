@@ -50,6 +50,7 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 
 	@Override
 	public void bind(final MaintenanceRecord record) {
+		assert record != null;
 		int aircraftId;
 		Aircraft aircraft;
 
@@ -62,9 +63,11 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 
 	@Override
 	public void validate(final MaintenanceRecord record) {
+		assert record != null;
 		boolean canBePublished = false;
 		boolean nextInspectionIsAfterDate;
 		boolean availableCurrency;
+		boolean confirmation;
 
 		List<Task> tasks;
 		List<String> currencies;
@@ -75,6 +78,7 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 		Date date;
 		Date nextInspection;
 
+		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		currency = super.getRequest().getData("estimatedCost", String.class).substring(0, 3).toUpperCase();
 		date = super.getRequest().getData("date", Date.class);
 		nextInspection = super.getRequest().getData("nextInspection", Date.class);
@@ -82,36 +86,44 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 		nextInspectionIsAfterDate = nextInspection.after(date);
 		availableCurrency = currencies.contains(currency);
 		if (!tasks.isEmpty())
-			canBePublished = tasks.stream().allMatch(t -> !t.isDraftMode());
+			canBePublished = tasks.stream().allMatch(t -> !t.isDraftMode() && record.isDraftMode() == true);
 
 		super.state(canBePublished, "*", "acme.validation.maintenance-record.cant-be-publish.message");
 		super.state(availableCurrency, "estimatedCost", "acme.validation.invalid-currency.message");
 		super.state(nextInspectionIsAfterDate, "nextInspection", "acme.validation.next-inspection.update.message");
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
 	}
 
 	@Override
 	public void perform(final MaintenanceRecord record) {
+		assert record != null;
 		record.setDraftMode(false);
 		this.repository.save(record);
 	}
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
+		assert record != null;
 		Dataset dataset;
 		SelectChoices aircraftChoices;
 		SelectChoices statusChoices;
-		Aircraft aircraft;
-		int aircraftId;
+		Integer taskCount;
 
-		aircraftId = super.getRequest().getData("aircraft", int.class);
-		aircraft = this.repository.findAircraftById(aircraftId);
-		aircraftChoices = SelectChoices.from(List.of(aircraft), "registrationNumber", record.getAircraft());
+		List<Aircraft> aircrafts;
+
+		taskCount = this.repository.countAvailableTasks(record.getTechnician().getId());
+		aircrafts = this.repository.findAllAircrafts();
+		aircraftChoices = SelectChoices.from(aircrafts, "registrationNumber", record.getAircraft());
 		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
 
 		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
-		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
-		dataset.put("aircrafts", aircraftChoices);
+		dataset.put("confirmation", false);
 		dataset.put("maintenanceStatuses", statusChoices);
+		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("emptyAircrafts", aircrafts.isEmpty());
+		dataset.put("emptyTasks", taskCount > 0);
+		dataset.put("aircrafts", aircraftChoices);
 
 		super.getResponse().addData(dataset);
 	}

@@ -16,6 +16,7 @@ acme.validation.next-inspection.update.message = Next inspection must be after r
 
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet
 acme.validation.maintenance-record.cant-be-publish.message = This record can't be published yet
+acme.validation.task.cant-be-publish.message  = This task can't be published yet
 acme.validation.text.length.1-255 = Must be between 1 and 255 characters long
 acme.validation.text.length.1-50 = Must be between 1 and 50 characters long
 acme.validation.invalid-currency.message = Unsupported currency
