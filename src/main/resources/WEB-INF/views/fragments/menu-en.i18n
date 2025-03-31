@@ -31,6 +31,7 @@ master.menu.administrator.shut-system-down = Shut system down
 feature.menu.administrator = Lists
 feature.menu.administrator.list-airports = Airports
 feature.menu.administrator.list-aircrafts = Aircrafts
+feature.menu.administrator.list-airlines = Airlines
 
 # master.menu.provider ########################################################
 
