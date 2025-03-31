@@ -5,19 +5,19 @@ flight-assignment-01,PILOT,2012/07/02 00:00,CONFIRMED,lore-ipsum,false,flight-cr
 flight-assignment-02,COPILOT,2012/07/02 00:00,PENDING,lore-ipsum,false,flight-crew-member-02,leg-02
 flight-assignment-03,LEAD_ATTENDANT,2012/07/02 00:00,CANCELLED,lore-ipsum,false,flight-crew-member-03,leg-03
 flight-assignment-04,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-04,leg-04
-flight-assignment-05,PILOT,2012/07/02 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-05,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
 #moment-standart variations
-flight-assignment-06,COPILOT,2000/01/01 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
-flight-assignment-07,COPILOT,2000/01/01 00:01,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
-flight-assignment-08,COPILOT,2022/07/29 23:59,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
-flight-assignment-09,COPILOT,2022/07/30 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-06,CABIN_ATTENDANT,2000/01/01 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-07,CABIN_ATTENDANT,2000/01/01 00:01,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-08,CABIN_ATTENDANT,2022/07/29 23:59,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-09,CABIN_ATTENDANT,2022/07/30 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
 #currentStatus-standart variations
-flight-assignment-10,PILOT,2012/07/02 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
-flight-assignment-11,PILOT,2012/07/02 00:00,PENDING,lore-ipsum,false,flight-crew-member-01,leg-01
-flight-assignment-12,PILOT,2012/07/02 00:00,CANCELLED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-10,COPILOT,2012/07/02 00:00,CONFIRMED,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,PENDING,lore-ipsum,false,flight-crew-member-01,leg-01
+flight-assignment-12,CABIN_ATTENDANT,2012/07/02 00:00,CANCELLED,lore-ipsum,false,flight-crew-member-01,leg-01
 #remarks-standart variations
-flight-assignment-13,PILOT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,flight-crew-member-01,leg-03
-flight-assignment-14,PILOT,2012/07/02 00:00,CONFIRMED,,false,flight-crew-member-01,leg-04
-flight-assignment-15,PILOT,2012/07/02 00:00,CONFIRMED,L,false,flight-crew-member-01,leg-05
-flight-assignment-16,PILOT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",false,flight-crew-member-01,leg-06
-flight-assignment-17,PILOT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",false,flight-crew-member-01,leg-01
+flight-assignment-13,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",false,flight-crew-member-01,leg-03
+flight-assignment-14,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,,false,flight-crew-member-01,leg-04
+flight-assignment-15,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,L,false,flight-crew-member-01,leg-05
+flight-assignment-16,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",false,flight-crew-member-01,leg-06
+flight-assignment-17,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",false,flight-crew-member-01,leg-01

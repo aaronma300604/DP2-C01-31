@@ -36,6 +36,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		flightAssignmentId = super.getRequest().getData("id", int.class);
 		fa = this.repository.findFa(flightAssignmentId);
 		member = fa == null ? null : fa.getFlightCrewMember();
+		boolean realm = super.getRequest().getPrincipal().hasRealm(member);
 		status = fa != null && fa.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member) && fa.getDuty() == Duty.LEAD_ATTENDANT;
 
 		super.getResponse().setAuthorised(status);
@@ -71,28 +72,43 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
 		boolean existSimultaneousLeg = false;
-		boolean unproperDuties = false;
-		boolean legIsNotPublished = false;
+		boolean unproperPilotDuty = true;
+		boolean unproperCopilotDuty = true;
+		boolean alreadyAssignedToTheLeg = false;
+		boolean legIsPublished = false;
 
 		Leg legAnalized = flightAssignment.getLeg();
-		Date currentDate = MomentHelper.getCurrentMoment();
 		Date legDeparture = flightAssignment.getLeg().getScheduledDeparture();
-		List<Leg> simultaneousLegs = this.repository.findSimultaneousLegs(legDeparture, currentDate);
-
-		if (simultaneousLegs.size() == 1 && simultaneousLegs.get(0) == legAnalized)
+		Date legArrival = flightAssignment.getLeg().getScheduledArrival();
+		List<Leg> simultaneousLegs = this.repository.findSimultaneousLegsByMember(legDeparture, legArrival, legAnalized.getId(), flightAssignment.getFlightCrewMember().getId());
+		if (simultaneousLegs.isEmpty())
 			existSimultaneousLeg = true;
 
 		List<FlightAssignment> legCopilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.COPILOT);
 		List<FlightAssignment> legPilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.PILOT);
-		if (legCopilotAssignments.size() < 2 && legPilotAssignments.size() < 2)
-			unproperDuties = true;
+		if (flightAssignment.getDuty() == Duty.COPILOT)
+			if (legCopilotAssignments.size() + 1 >= 2)
+				unproperCopilotDuty = false;
+		if (flightAssignment.getDuty() == Duty.PILOT)
+			if (legPilotAssignments.size() + 1 >= 2)
+				unproperPilotDuty = false;
 
 		if (!legAnalized.isDraftMode())
-			legIsNotPublished = true;
+			legIsPublished = true;
 
-		super.state(existSimultaneousLeg, "leg", "{acme.validation.flight-assignment.legCurrency.message}");
-		super.state(unproperDuties, "duty", "{acme.validation.flight-assignment.duty.message}");
-		super.state(legIsNotPublished, "leg", "{acme.validation.flight-assignment.legPublished.message}");
+		List<Object[]> legFlightAssignment = this.repository.findLegsAndAssignmentsByMemberId(flightAssignment.getFlightCrewMember().getId());
+		for (Object[] row : legFlightAssignment) {
+			Leg leg = (Leg) row[0];
+			FlightAssignment assignment = (FlightAssignment) row[1];
+			if (leg.getId() == legAnalized.getId() && assignment.getId() == flightAssignment.getId() || leg.getId() != legAnalized.getId())
+				alreadyAssignedToTheLeg = true;
+		}
+
+		super.state(alreadyAssignedToTheLeg, "crewMember", "acme.validation.flight-assignment.memberAlreadyAssigned.message");
+		super.state(existSimultaneousLeg, "leg", "acme.validation.flight-assignment.legCurrency.message");
+		super.state(unproperCopilotDuty, "duty", "acme.validation.flight-assignment.dutyCopilot.message");
+		super.state(unproperPilotDuty, "duty", "acme.validation.flight-assignment.dutyPilot.message");
+		super.state(legIsPublished, "*", "acme.validation.flight-assignment.cant-be-published.message");
 
 	}
 

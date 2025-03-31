@@ -21,3 +21,10 @@ acme.validation.text.length.1-50 =  Debe tener entre 1 y 50 caracteres
 acme.validation.invalid-currency.message = Moneda no soportada
 acme.validation.task.priority = Debe ser un entero entre 0 y 10
 acme.validation.task.duration = Debe ser un entero entre 1 y 1000
+
+acme.validation.flight-assignment.legCurrency.message = El tripulante ya está asignado a otra escala de vuelo que causa un conflicto de concurrencia.
+acme.validation.flight-assignment.dutyPilot.message = Ya se ha asignado un piloto; por lo tanto, el tripulante no puede ser asignado a ese rol.
+acme.validation.flight-assignment.dutyCopilot.message = Ya se ha asignado un copiloto; por lo tanto, el tripulante no puede ser asignado a ese rol.
+acme.validation.flight-assignment.legPublished.message = La escala adjunta debe estar publicada para poder publicar la asignación de vuelo.
+acme.validation.flight-assignment.memberAlreadyAssigned.message = Este miembro ya ha sido asignado a esta escala.
+acme.validation.flight-assignment.cant-be-published.message = No puedes publicar la asignación de vuelo porque la escala no está publicada todavía.
