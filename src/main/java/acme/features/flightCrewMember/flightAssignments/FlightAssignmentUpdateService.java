@@ -83,22 +83,22 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		boolean existSimultaneousLeg = true;
-		boolean unproperDuties = true;
+		boolean existSimultaneousLeg = false;
+		boolean unproperDuties = false;
 
 		Leg legAnalized = flightAssignment.getLeg();
 		Date currentDate = MomentHelper.getCurrentMoment();
 		Date legDeparture = flightAssignment.getLeg().getScheduledDeparture();
 		List<Leg> simultaneousLegs = this.repository.findSimultaneousLegs(legDeparture, currentDate);
 		if (simultaneousLegs.size() == 1 && simultaneousLegs.get(0) == legAnalized)
-			existSimultaneousLeg = false;
+			existSimultaneousLeg = true;
 		List<FlightAssignment> legCopilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.COPILOT);
 		List<FlightAssignment> legPilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.PILOT);
 		if (legCopilotAssignments.size() < 2 && legPilotAssignments.size() < 2)
-			unproperDuties = false;
+			unproperDuties = true;
 
-		super.state(existSimultaneousLeg, "leg", null, null);
-		super.state(unproperDuties, "duty", null, null);
+		super.state(existSimultaneousLeg, "leg", "{acme.validation.flight-assignment.leg.message}");
+		super.state(unproperDuties, "duty", "{acme.validation.flight-assignment.duty.message}");
 
 	}
 
