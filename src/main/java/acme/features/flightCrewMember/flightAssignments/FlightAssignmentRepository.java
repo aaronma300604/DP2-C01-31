@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.realms.employee.AvaliabilityStatus;
@@ -44,4 +45,10 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 
 	@Query("SELECT l from Leg l WHERE l.id = :legId")
 	Leg findLegById(int legId);
+
+	@Query("SELECT l from Leg l WHERE l.scheduledArrival > :legDeparture AND l.scheduledArrival > :currentDate")
+	List<Leg> findSimultaneousLegs(@Param("legDeparture") Date legDeparture, @Param("currentDate") Date currentDate);
+
+	@Query("SELECT fa from FlightAssignment fa WHERE fa.leg = :leg and fa.duty = :duty")
+	List<FlightAssignment> findFlightAssignmentsByLegAndDuty(@Param("leg") Leg leg, @Param("duty") Duty duty);
 }
