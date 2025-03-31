@@ -14,6 +14,8 @@ administrator.airline.form.type = Type
 administrator.airline.form.label.foundation = Foundation Date
 administrator.airline.form.label.email = Email
 administrator.airline.form.label.confirmation = Confirm that the airline is correct
+administrator.airline.form.label.phone = Phone
+
 administrator.airline.form.button.update = Update
 administrator.airline.form.button.disable = Disable
 administrator.airline.form.button.create = Create
