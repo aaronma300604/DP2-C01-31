@@ -53,7 +53,8 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 		PageRequest firstResult = PageRequest.of(0, 1);
 
 		numberOfMaintenanceByStatus = this.repository.findNumberOfMaintenanceByStatus();
-		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId, firstResult).get(0);
+		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId, firstResult, //
+			MomentHelper.getCurrentMoment()).get(0);
 		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(technicianId, top5Results);
 		costStatistics = this.repository.findCostStatistics(deadline, technicianId);
 		durationStatistics = this.repository.findDurationStatistics(technicianId);
@@ -87,6 +88,7 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 		dataset.put("mostTasksAircrafts", aircrafts);
 
 		MaintenanceRecordCostStatistics cStats = dashboard.getCostStatistics();
+		System.out.println(cStats.getCountRecords());
 		dataset.put("avgCost", cStats.getAverage());
 		dataset.put("minCost", cStats.getMinimum());
 		dataset.put("maxCost", cStats.getMaximum());
