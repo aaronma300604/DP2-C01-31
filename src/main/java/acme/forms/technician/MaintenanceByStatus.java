@@ -6,7 +6,7 @@ import acme.entities.maintenanceRecord.MaintenanceStatus;
 public interface MaintenanceByStatus {
 
 	MaintenanceStatus getMaintenanceStatus();
-	void setOperationalScope(MaintenanceStatus ms);
+	void setMaintenanceStatus(MaintenanceStatus ms);
 
 	Integer getCountMaintenance();
 	void setCountMaintenance(Integer cm);

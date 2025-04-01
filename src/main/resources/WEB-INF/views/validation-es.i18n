@@ -1,5 +1,6 @@
 acme.validation.phone.message = Debe ser un número de teléfono
 acme.validation.leg.duration = Debe ser un número positivo
+acme.validation.invalid-date-format = Formato de fecha no válido
 
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
 acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
@@ -20,11 +21,15 @@ acme.validation.airport.iata.message = Debe ser tres letras en mayúculas
 
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
 acme.validation.maintenance-record.cant-be-publish.message = Este informe no puede ser publicado todavía
+acme.validation.task.cant-be-publish.message  =  Esta tarea no puede ser publicada todavía
 acme.validation.text.length.1-255 = Debe tener entre 1 y 255 caracteres
 acme.validation.text.length.1-50 =  Debe tener entre 1 y 50 caracteres
 acme.validation.invalid-currency.message = Moneda no soportada
 acme.validation.task.priority = Debe ser un entero entre 0 y 10
 acme.validation.task.duration = Debe ser un entero entre 1 y 1000
+acme.validation.phone = Debe ser un número de teléfono
+acme.validation.technician.years-of-experience = Debe ser un entero entre 0 y 75
+
 
 
 acme.validation.booking.invalid-nibble.message = El valor ingresado debe ser un número de cuatro dígitos o estar en blanco
@@ -45,4 +50,3 @@ acme.validation.flight-assignment.dutyCopilot.message = Ya se ha asignado un cop
 acme.validation.flight-assignment.legPublished.message = La escala adjunta debe estar publicada para poder publicar la asignación de vuelo.
 acme.validation.flight-assignment.memberAlreadyAssigned.message = Este miembro ya ha sido asignado a esta escala.
 acme.validation.flight-assignment.cant-be-published.message = No puedes publicar la asignación de vuelo porque la escala no está publicada todavía.
-

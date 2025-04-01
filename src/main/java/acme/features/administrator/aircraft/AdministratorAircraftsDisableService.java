@@ -28,7 +28,7 @@ public class AdministratorAircraftsDisableService extends AbstractGuiService<Adm
 
 		id = super.getRequest().getData("id", int.class);
 		aircraft = this.repository.findAircraftById(id);
-		status = aircraft != null && aircraft.isActive() == false;
+		status = aircraft != null && aircraft.isActive() == false && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
 		super.getResponse().setAuthorised(status);
 	}
 

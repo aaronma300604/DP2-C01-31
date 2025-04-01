@@ -29,9 +29,12 @@ public interface TechnicianMaintenanceRecordsRepository extends AbstractReposito
 	@Query("select a from Aircraft a ")
 	List<Aircraft> findAllAircrafts();
 
-	@Query("select i.task from Involves i where i.maintenanceRecord.id =:recordId")
-	List<Task> findTasksByRecord(int recordId);
+	@Query("select count(t) from Task t where t.draftMode = false or t.technician.id = :technicianId")
+	Integer countAvailableTasks(int technicianId);
 
 	@Query("select sc.currency from SystemCurrency sc")
 	List<String> finAllCurrencies();
+
+	@Query("select i.task from Involves i where i.maintenanceRecord.id = :recordId")
+	List<Task> findTasksByRecord(int recordId);
 }
