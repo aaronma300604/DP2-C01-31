@@ -1,5 +1,6 @@
 acme.validation.phone.message = Debe ser un número de teléfono
 acme.validation.leg.duration = Debe ser un número positivo
+acme.validation.invalid-date-format = Formato de fecha no válido
 
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
 acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000

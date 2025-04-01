@@ -66,26 +66,30 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 	public void validate(final MaintenanceRecord record) {
 		assert record != null;
 
-		boolean confirmation;
 		boolean nextInspectionIsAfterDate;
 		boolean availableCurrency;
 
 		List<String> currencies;
 		currencies = this.repository.finAllCurrencies();
 		String currency;
-		Date date;
-		Date nextInspection;
+		Date date = null;
+		Date nextInspection = null;
 
-		currency = super.getRequest().getData("estimatedCost", String.class).substring(0, 3).toUpperCase();
-		date = super.getRequest().getData("date", Date.class);
-		nextInspection = super.getRequest().getData("nextInspection", Date.class);
-		nextInspectionIsAfterDate = nextInspection.after(date);
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		currency = super.getRequest().getData("estimatedCost", String.class);
+		currency = currency.length() >= 3 ? currency.substring(0, 3).toUpperCase() : currency;
+
+		try {
+			date = super.getRequest().getData("date", Date.class);
+			nextInspection = super.getRequest().getData("nextInspection", Date.class);
+		} catch (Exception e) {
+			super.state(false, "*", "acme.validation.invalid-date-format");
+		}
+
+		nextInspectionIsAfterDate = nextInspection != null && date != null ? nextInspection.after(date) : false;
 		availableCurrency = currencies.contains(currency);
 
 		super.state(availableCurrency, "estimatedCost", "acme.validation.invalid-currency.message");
 		super.state(nextInspectionIsAfterDate, "nextInspection", "acme.validation.next-inspection.update.message");
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 	}
 
 	@Override

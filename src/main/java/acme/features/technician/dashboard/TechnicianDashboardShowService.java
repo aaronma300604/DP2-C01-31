@@ -41,6 +41,7 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 
 		Dashboard dashboard;
 		List<MaintenanceByStatus> numberOfMaintenanceByStatus;
+		List<MaintenanceRecord> nnIs;
 		MaintenanceRecord nearestNextInspection;
 		List<Aircraft> mostTasksAircrafts;
 		MaintenanceRecordCostStatistics costStatistics;
@@ -53,11 +54,12 @@ public class TechnicianDashboardShowService extends AbstractGuiService<Technicia
 		PageRequest firstResult = PageRequest.of(0, 1);
 
 		numberOfMaintenanceByStatus = this.repository.findNumberOfMaintenanceByStatus();
-		nearestNextInspection = this.repository.findNextInspectionByTechnician(technicianId, firstResult, //
-			MomentHelper.getCurrentMoment()).get(0);
+		nnIs = this.repository.findNextInspectionByTechnician(technicianId, firstResult, //
+			MomentHelper.getCurrentMoment());
+		nearestNextInspection = nnIs.isEmpty() ? null : nnIs.get(0);
 		mostTasksAircrafts = this.repository.findTopAircraftsByTaskCount(technicianId, top5Results);
-		costStatistics = this.repository.findCostStatistics(deadline, technicianId);
-		durationStatistics = this.repository.findDurationStatistics(technicianId);
+		costStatistics = this.repository.findCostStatistics(deadline, technicianId).orElse(null);
+		durationStatistics = this.repository.findDurationStatistics(technicianId).orElse(null);
 
 		dashboard = new Dashboard();
 		dashboard.setNumberOfMaintenanceByStatus(numberOfMaintenanceByStatus);

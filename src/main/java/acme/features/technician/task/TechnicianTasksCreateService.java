@@ -46,10 +46,7 @@ public class TechnicianTasksCreateService extends AbstractGuiService<Technician,
 	@Override
 	public void validate(final Task task) {
 		assert task != null;
-		boolean confirmation;
-
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		;
 	}
 
 	@Override
@@ -68,7 +65,6 @@ public class TechnicianTasksCreateService extends AbstractGuiService<Technician,
 		typeChoices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
-		dataset.put("confirmation", false);
 		dataset.put("types", typeChoices);
 
 		super.getResponse().addData(dataset);

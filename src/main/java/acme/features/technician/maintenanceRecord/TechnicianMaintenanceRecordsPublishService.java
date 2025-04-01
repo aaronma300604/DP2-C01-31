@@ -67,7 +67,6 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 		boolean canBePublished = false;
 		boolean nextInspectionIsAfterDate;
 		boolean availableCurrency;
-		boolean confirmation;
 
 		List<Task> tasks;
 		List<String> currencies;
@@ -75,15 +74,19 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 		tasks = this.repository.findTasksByRecord(record.getId());
 		currencies = this.repository.finAllCurrencies();
 		String currency;
-		Date date;
-		Date nextInspection;
+		Date date = null;
+		Date nextInspection = null;
 
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		currency = super.getRequest().getData("estimatedCost", String.class).substring(0, 3).toUpperCase();
-		date = super.getRequest().getData("date", Date.class);
-		nextInspection = super.getRequest().getData("nextInspection", Date.class);
+		currency = super.getRequest().getData("estimatedCost", String.class);
+		currency = currency.length() >= 3 ? currency.substring(0, 3).toUpperCase() : currency;
+		try {
+			date = super.getRequest().getData("date", Date.class);
+			nextInspection = super.getRequest().getData("nextInspection", Date.class);
+		} catch (Exception e) {
+			super.state(false, "*", "acme.validation.invalid-date-format");
+		}
 
-		nextInspectionIsAfterDate = nextInspection.after(date);
+		nextInspectionIsAfterDate = nextInspection != null && date != null ? nextInspection.after(date) : false;
 		availableCurrency = currencies.contains(currency);
 		if (!tasks.isEmpty())
 			canBePublished = tasks.stream().allMatch(t -> !t.isDraftMode() && record.isDraftMode() == true);
@@ -91,8 +94,6 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 		super.state(canBePublished, "*", "acme.validation.maintenance-record.cant-be-publish.message");
 		super.state(availableCurrency, "estimatedCost", "acme.validation.invalid-currency.message");
 		super.state(nextInspectionIsAfterDate, "nextInspection", "acme.validation.next-inspection.update.message");
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-
 	}
 
 	@Override
@@ -118,7 +119,6 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 		statusChoices = SelectChoices.from(MaintenanceStatus.class, record.getMaintenanceStatus());
 
 		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
-		dataset.put("confirmation", false);
 		dataset.put("maintenanceStatuses", statusChoices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("emptyAircrafts", aircrafts.isEmpty());

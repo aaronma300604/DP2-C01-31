@@ -23,19 +23,16 @@
 			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}&draftMode=false"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true && emptyTasks == true}">
-			<acme:input-checkbox code="technician.maintenance-record.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
 			<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
 			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}&draftMode=false"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish') && draftMode == true}">
-			<acme:input-checkbox code="technician.maintenance-record.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
 			<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
 			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}&draftMode=true"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:input-checkbox code="technician.maintenance-record.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="technician.maintenance-record.form.button.create" action="/technician/maintenance-record/create"/>
 		</jstl:when>		
 	</jstl:choose>

@@ -3,6 +3,7 @@ package acme.features.technician.dashboard;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
@@ -33,11 +34,11 @@ public interface TechnicianDashboardRepository extends AbstractRepository {
 		+ "MIN(mr.estimatedCost.amount) AS minimum, MAX(mr.estimatedCost.amount) AS maximum," //
 		+ " STDDEV(mr.estimatedCost.amount) AS standardDeviation " //
 		+ "FROM MaintenanceRecord mr WHERE mr.technician.id = :technicianId AND mr.date >= :lastYear")
-	MaintenanceRecordCostStatistics findCostStatistics(Date lastYear, int technicianId);
+	Optional<MaintenanceRecordCostStatistics> findCostStatistics(Date lastYear, int technicianId);
 
 	@Query("SELECT COUNT(t) AS countTasks, AVG(t.estimatedDuration) AS average, "//
 		+ "MIN(t.estimatedDuration) AS minimum, MAX(t.estimatedDuration) AS maximum, STDDEV(t.estimatedDuration) "//
 		+ "AS standardDeviation FROM Task t WHERE t.technician.id = :technicianId")
-	MaintenanceRecordDurationStatistics findDurationStatistics(int technicianId);
+	Optional<MaintenanceRecordDurationStatistics> findDurationStatistics(int technicianId);
 
 }
