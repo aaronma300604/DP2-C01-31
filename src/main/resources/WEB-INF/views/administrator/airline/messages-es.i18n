@@ -2,6 +2,7 @@ administrator.airline.list.title = Aerolineas
 administrator.airline.form.title = Aerolínea
 
 administrator.airline.list.label.name = Nombre
+administrator.airline.list.label.iata = Código IATA
 administrator.airline.list.label.website = Sitio Web
 administrator.airline.list.label.type = Tipo
 
@@ -15,6 +16,7 @@ administrator.airline.form.label.foundation= Fecha de fundación
 administrator.airline.form.label.email= Email
 administrator.airline.form.label.confirmation = Confirma que la airline es correcta
 administrator.airline.form.label.phone = Telefono
+administrator.airline.form.text.phone = +34123456789
 
 administrator.airline.form.button.update= Actualizar 
 administrator.airline.form.button.disable= Deshabilitar

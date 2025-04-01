@@ -6,6 +6,8 @@ acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
 
 acme.validation.leg.flight_number.message = Debe empezar por el código IATA de la aerolínea, seguido de cuatro dígitos
 acme.validation.leg.duplicated-flight-number.message = Hay otro trayecto con ese código de vuelo
+acme.validation.aircraft.duplicated-registration-number.message = Hay otra aeronave con ese código de registro
+acme.validation.airline.duplicated-iata.message = Hay otra aerolínea con ese código IATA
 acme.validation.assistance-agent.employee_code.message = Debe comenzar por las iniciales del agente, seguido de seis dígitos
 acme.validation.airline_manager.employee_code.message = Debe comenzar por las iniciales del gerente, seguido de seis dígitos
 acme.validation.customer.identifier.message = Debe comenzar por las iniciales del cliente, seguido de seis dígitos
@@ -13,6 +15,8 @@ acme.validation.member.employee_code.message = Debe comenzar por las iniciales d
 acme.validation.technician.employee_code.message = Debe comenzar por las iniciales del técnico, seguido de seis dígitos
 acme.validation.next-inspection.update.message = La próxima inspección tiene que ser posterior a la fecha del informe
 acme.validation.next-inspection.create.message = La próxima inspección deber estar en el futuro
+acme.validation.airline.iata.message = Debe ser dos letras en mayúsculas, seguido de una X
+acme.validation.airport.iata.message = Debe ser tres letras en mayúculas
 
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
 acme.validation.maintenance-record.cant-be-publish.message = Este informe no puede ser publicado todavía
