@@ -21,3 +21,10 @@ acme.validation.text.length.1-50 = Must be between 1 and 50 characters long
 acme.validation.invalid-currency.message = Unsupported currency
 acme.validation.task.priority = Must be an integer between 0 and 10
 acme.validation.task.duration = Must be an integer between 1 and 1000
+
+acme.validation.flight-assignment.legCurrency.message = The member is already assigned to another leg, which causes a scheduling conflict.
+acme.validation.flight-assignment.dutyPilot.message = A pilot has already been assigned; therefore, the member cannot be assigned to this role.
+acme.validation.flight-assignment.dutyCopilot.message = A copilot has already been assigned; therefore, the member cannot be assigned to this role.
+acme.validation.flight-assignment.legPublished.message = The attached leg must be published to publish the flight assignment.
+acme.validation.flight-assignment.memberAlreadyAssigned.message = This member has already been assigned to this leg.
+acme.validation.flight-assignment.cant-be-published.message = You cannot publish the leg because it is not published yet.
