@@ -4,6 +4,7 @@ package acme.features.manager.dashboard;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -30,13 +31,13 @@ public interface ManagerDashboardRepository extends AbstractRepository {
 		"(select d from Leg lg join lg.destination d where lg.manager.id = :managerId) group by a order by " + //
 		"((select count(l) from Leg l where l.manager.id = :managerId and l.origin.id = a.id) " + //
 		"+ (select count(lg) from Leg lg where lg.manager.id = :managerId and lg.destination.id = a.id)) desc")
-	List<Airport> findMostPopularAirport(int managerId);
+	List<Airport> findMostPopularAirport(int managerId, PageRequest pageRequest);
 
 	@Query("select a from Airport a where a in (select o from Leg l join l.origin o where l.manager.id = :managerId) or a in " + //
 		"(select d from Leg lg join lg.destination d where lg.manager.id = :managerId) group by a order by " + //
 		"((select count(l) from Leg l where l.manager.id = :managerId and l.origin.id = a.id) " + //
 		"+ (select count(lg) from Leg lg where lg.manager.id = :managerId and lg.destination.id = a.id)) asc")
-	List<Airport> findLessPopularAirport(int managerId);
+	List<Airport> findLessPopularAirport(int managerId, PageRequest pageRequest);
 
 	@Query("select l.status as status, count(l) as legsNumber from Leg l where l.flight.manager.id = :managerId group by l.status")
 	List<LegsByStatus> findNumberOfLegsByStatus(int managerId);

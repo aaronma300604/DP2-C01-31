@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.maintenanceRecord.Involves;
+import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
 
 @Repository
@@ -27,5 +28,8 @@ public interface TechnicianTasksRepository extends AbstractRepository {
 
 	@Query("Select i from Involves i where i.task.id = :taskId")
 	List<Involves> findInvolvesByTask(final int taskId);
+
+	@Query("select mr.technician from MaintenanceRecord mr where mr.id = :recordId")
+	MaintenanceRecord findTechnicianByRecord(int recordId);
 
 }

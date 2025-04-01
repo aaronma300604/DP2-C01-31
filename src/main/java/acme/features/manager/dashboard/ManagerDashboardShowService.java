@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 
 import acme.client.components.models.Dataset;
 import acme.client.helpers.MomentHelper;
@@ -49,8 +50,8 @@ public class ManagerDashboardShowService extends AbstractGuiService<AirlineManag
 		yearsToRetire = this.repository.findYearsUntilRetirement(managerId, currentDate);
 		ratioOnTimeLegs = this.repository.findRatioStatusLegs(managerId, LegStatus.ON_TIME);
 		ratioDelayedLegs = this.repository.findRatioStatusLegs(managerId, LegStatus.DELAYED);
-		mostPopular = this.repository.findMostPopularAirport(managerId).stream().findFirst().orElse(null);
-		lessPopular = this.repository.findLessPopularAirport(managerId).stream().findFirst().orElse(null);
+		mostPopular = this.repository.findMostPopularAirport(managerId, PageRequest.of(0, 1)).stream().findFirst().orElse(null);
+		lessPopular = this.repository.findLessPopularAirport(managerId, PageRequest.of(0, 1)).stream().findFirst().orElse(null);
 		numberLegsByStatus = this.repository.findNumberOfLegsByStatus(managerId);
 		statistcsAboutFlights = this.repository.findStatisticsFromMyFlights(managerId);
 

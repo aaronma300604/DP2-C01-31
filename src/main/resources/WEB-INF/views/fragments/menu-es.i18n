@@ -31,6 +31,8 @@ master.menu.administrator.shut-system-down = Parar el sistema
 feature.menu.administrator = Listados
 feature.menu.administrator.list-airports = Aeropuertos
 feature.menu.administrator.list-aircrafts = Aviones
+feature.menu.administrator.list-maintenance-records = Informes de mantenimiento
+feature.menu.administrator.list-airlines = Aerolineas
 
 # master.menu.provider ########################################################
 
@@ -71,6 +73,7 @@ master.menu.technician.list-my-records = Mis Informes de mantenimiento
 master.menu.technician.list-availiable-records = Informes Disponibles
 master.menu.technician.list-my-tasks = Mis Tareas
 master.menu.technician.list-available-tasks = Tareas Disponibles
+master.menu.technician.show-dashboard = Mostrar panel
 
 # master.menu.user-account ####################################################
 
@@ -80,3 +83,11 @@ master.menu.user-account.become-provider = Hacerse proveedor
 master.menu.user-account.provider-profile = Perfil de proveedor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
+master.menu.user-account.become-technician = Hazte técnico
+master.menu.user-account.technician-profile = Perfil de técnico
+
+# master.menu.member ##########################################################
+
+master.menu.member = Miembro de la tripulación
+maste.menu.member.list-my-assignments = Mis asignaciones
+
