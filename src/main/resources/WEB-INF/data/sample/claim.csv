@@ -1,11 +1,11 @@
-key,date,email,description,type,accepted,key:assistance-agent
-claim-01,2000/01/01 00:00,john.doe@example.com,A,FLIGHT_ISSUES,PENDING,assistance-agent-01
-claim-02,2000/01/02 00:01,jane.smith@example.com,AB,LUGGAGE_ISSUES,ACCEPTED,assistance-agent-02
-claim-03,2022/07/29 23:59,bob.jones@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.",SECURITY_ISSUES,REJECTED,assistance-agent-02
-claim-04,2022/07/30 00:00,alice.wilson@example.com,"โลเร็ม อิปซัม",OTHER_ISSUES,PENDING,assistance-agent-01
-claim-05,2015/06/15 12:30,mike.brown@example.com,"لوريم إيبسوم",FLIGHT_ISSUES,ACCEPTED,assistance-agent-02
-claim-06,2018/09/22 08:45,sara.lee@example.com,"洛伦·伊普森",LUGGAGE_ISSUES,PENDING,assistance-agent-01
-claim-07,2020/05/10 15:20,tom.white@example.com,"<marquee>Hacked</marquee>",SECURITY_ISSUES,REJECTED,assistance-agent-02
-claim-08,2021/11/30 22:10,emma.green@example.com,"<script>alert(‘Hacked!’);</script>",OTHER_ISSUES,ACCEPTED,assistance-agent-01
-claim-09,2013/04/18 07:45,lucas.black@example.com,"'' or 'A' = 'A",FLIGHT_ISSUES,PENDING,assistance-agent-02
-claim-10,2017/08/25 17:55,nina.brown@example.com,"This is a test description that is exactly 255 characters long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at quam sed est fermentum convallis eget eget metus. Quisque vestibulum justo nec felis tempor, eu convallis mi tincidunt.",LUGGAGE_ISSUES,REJECTED,assistance-agent-01
+key,date,email,description,type,draftMode,key:assistance-agent,key:leg
+claim-01,2000/01/01 00:00,john.doe@example.com,A,FLIGHT_ISSUES,false,assistance-agent-01,leg-02
+claim-02,2000/01/02 00:01,jane.smith@example.com,AB,LUGGAGE_ISSUES,false,assistance-agent-02,leg-03
+claim-03,2022/07/29 23:59,bob.jones@example.com,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.",SECURITY_ISSUES,false,assistance-agent-02,leg-02
+claim-04,2022/07/30 00:00,alice.wilson@example.com,"โลเร็ม อิปซัม",OTHER_ISSUES,false,assistance-agent-01,leg-02
+claim-05,2015/06/15 12:30,mike.brown@example.com,"لوريم إيبسوم",FLIGHT_ISSUES,false,assistance-agent-02,leg-02
+claim-06,2018/09/22 08:45,sara.lee@example.com,"洛伦·伊普森",LUGGAGE_ISSUES,false,assistance-agent-01,leg-03
+claim-07,2020/05/10 15:20,tom.white@example.com,"<marquee>Hacked</marquee>",SECURITY_ISSUES,false,assistance-agent-02,leg-04
+claim-08,2021/11/30 22:10,emma.green@example.com,"<script>alert(‘Hacked!’);</script>",OTHER_ISSUES,false,assistance-agent-01,leg-02
+claim-09,2013/04/18 07:45,lucas.black@example.com,"'' or 'A' = 'A",FLIGHT_ISSUES,false,assistance-agent-02,leg-05
+claim-10,2017/08/25 17:55,nina.brown@example.com,"This is a test description that is exactly 255 characters long. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at quam sed est fermentum convallis eget eget metus. Quisque vestibulum justo nec felis tempor, eu convallis mi tincidunt.",LUGGAGE_ISSUES,false,assistance-agent-01,leg-06

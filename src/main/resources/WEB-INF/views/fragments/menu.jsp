@@ -60,6 +60,12 @@
 			<acme:menu-suboption code="master.menu.manager.list-my-legs" action="/airline-manager/leg/list"/>
 			<%---<acme:menu-suboption code="master.menu.manager.show-dashboard" action="/manager/dashboard/show" />--%>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.agent" access="hasRealm('AssistanceAgent')">
+			<acme:menu-suboption code="master.menu.agent.list-my-undergoing-claims" action="/assistance-agent/claim/list"/>
+			<acme:menu-suboption code="master.menu.agent.list-my-tracking-logs" action="/assistance-agent/tracking-log/list"/>
+			<%---<acme:menu-suboption code="master.menu.agent.show-dashboard" action="/agent/dashboard/show" />--%>
+		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>		

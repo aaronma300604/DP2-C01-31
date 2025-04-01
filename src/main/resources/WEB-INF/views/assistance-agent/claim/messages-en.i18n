@@ -1,0 +1,19 @@
+assistance-agent.claim.list.title = List of My Claims:
+assistance-agent.claim.list.title = Details of Claim:
+
+assistance-agent.claim.list.label.date = Date:
+assistance-agent.claim.list.label.email = Email:
+assistance-agent.claim.list.label.description = Description:
+assistance-agent.claim.list.label.type = Type:
+assistance-agent.claim.list.label.status = Status:
+assistance-agent.claim.list.label.leg = Leg:
+
+assistance-agent.claim.list.button.create = Create
+
+assistance-agent.claim.form.title = Details of Claim
+assistance-agent.claim.form.label.date = Date:
+assistance-agent.claim.form.label.email = Email:
+assistance-agent.claim.flight.form.label.description = Description:
+assistance-agent.claim.flight.form.label.status = Status:
+assistance-agent.claim.flight.form.label.type = Type:
+assistance-agent.claim.formlabel.leg = Show Leg

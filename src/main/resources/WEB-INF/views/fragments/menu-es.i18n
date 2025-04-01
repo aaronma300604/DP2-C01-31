@@ -55,6 +55,14 @@ master.menu.manager = Manager
 master.menu.manager.list-my-flights = Mis Vuelos
 master.menu.manager.list-my-legs = Mis Trayectos
 
+# master.menu.agent ##########################################################
+
+master.menu.agent = Agente de Asistencia
+master.menu.agent.list-my-undergoing-claims = Mis Reclamaciones en curso
+master.menu.agent.list-my-completed-claims = Mis Reclamaciones completadas
+master.menu.agent.list-my-tracking-logs = Mis Registros de Seguimiento
+
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
