@@ -28,7 +28,7 @@ public class Review extends AbstractEntity {
 	//Attributes -------------------------------------------
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 50, message = "{acme.validation.text.length.1-50}")
 	String						reviewerName;
 
 	@Mandatory
@@ -38,12 +38,12 @@ public class Review extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 50, message = "{acme.validation.text.length.1-50}")
 	String						subject;
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.length.1-255}")
 	String						text;
 
 	@Optional

@@ -129,9 +129,5 @@
 		</td>
 	</tr>	
 </table>
-
-<div>
-	<canvas id="canvas"></canvas>
-</div>
 <acme:return/>
 

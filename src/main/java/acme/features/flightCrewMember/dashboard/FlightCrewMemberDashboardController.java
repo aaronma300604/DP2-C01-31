@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.flightCrewMember.dashboard;
+package acme.features.flightCrewMember.dashboard;
 
 import javax.annotation.PostConstruct;
 
