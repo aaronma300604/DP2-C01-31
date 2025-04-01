@@ -1,6 +1,8 @@
 
 package acme.features.agent.claims;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -10,13 +12,17 @@ import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
+import acme.features.agent.legs.AgentLegsRepository;
 import acme.realms.employee.AssistanceAgent;
 
 @GuiService
 public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
-	private AgentClaimsRepository repository;
+	private AgentClaimsRepository	repository;
+
+	@Autowired
+	private AgentLegsRepository		agentLegsRepository;
 
 
 	@Override
@@ -48,6 +54,7 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 
 		super.bindObject(claim, "email", "description", "date", "leg");
 		claim.setLeg(leg);
+		claim.setType(ClaimType.valueOf(super.getRequest().getData("type", String.class)));
 	}
 
 	@Override
@@ -71,8 +78,14 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 		dataset.put("type", choices.getSelected().getKey());
 		dataset.put("types", choices);
 
+		dataset.put("claimId", claim.getId());
+
 		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 		dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
+
+		List<Leg> allLegs = this.agentLegsRepository.findAllLegs();
+		SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
+		dataset.put("legs", legChoices);
 
 		super.getResponse().addData(dataset);
 	}

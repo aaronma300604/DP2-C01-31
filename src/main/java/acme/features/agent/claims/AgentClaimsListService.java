@@ -58,7 +58,6 @@ public class AgentClaimsListService extends AbstractGuiService<AssistanceAgent, 
 
 		dataset.put("type", choices.getSelected().getKey());
 		dataset.put("types", choices);
-		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 
 		List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(claim.getId());
 

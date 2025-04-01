@@ -52,4 +52,7 @@ public interface AgentLegsRepository extends AbstractRepository {
 
 	@Query("select a from ActivityLog a where a.leg.id = :legId")
 	List<ActivityLog> findActivityLogsByLeg(int legId);
+
+	@Query("select l from Leg l")
+	List<Leg> findAllLegs();
 }

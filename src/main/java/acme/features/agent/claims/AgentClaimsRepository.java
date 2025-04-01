@@ -30,4 +30,7 @@ public interface AgentClaimsRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Leg l WHERE l.id = :legId")
 	Leg findLegById(@Param("legId") final int legId);
+
+	@Query("SELECT l FROM Leg l WHERE l.flightNumber = :flightNumber")
+	Leg findLegByFlightNumber(@Param("flightNumber") final String flightNumber);
 }
