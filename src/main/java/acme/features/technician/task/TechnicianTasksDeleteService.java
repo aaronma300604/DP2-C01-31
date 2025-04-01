@@ -49,16 +49,18 @@ public class TechnicianTasksDeleteService extends AbstractGuiService<Technician,
 
 	@Override
 	public void bind(final Task task) {
+		assert task != null;
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
 	}
 
 	@Override
 	public void validate(final Task task) {
-		;
+		assert task != null;
 	}
 
 	@Override
 	public void perform(final Task task) {
+		assert task != null;
 		List<Involves> involves;
 		involves = this.repository.findInvolvesByTask(task.getId());
 
@@ -70,6 +72,7 @@ public class TechnicianTasksDeleteService extends AbstractGuiService<Technician,
 
 	@Override
 	public void unbind(final Task task) {
+		assert task != null;
 		Dataset dataset;
 		SelectChoices typeChoices;
 

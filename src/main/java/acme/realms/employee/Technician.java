@@ -37,7 +37,7 @@ public class Technician extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 50, message = "{acme.validation.text.length.1-50}")
 	String						specialisation;
 
 	@Mandatory
@@ -46,12 +46,12 @@ public class Technician extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0, max = 75)
+	@ValidNumber(min = 0, max = 75, message = "{acme.validation.technician.years-of-experience}")
 	Integer						yearsOfExperience;
 
 	@Optional
 	@Automapped
-	@ValidString(min = 1, max = 255)
+	@ValidString(min = 1, max = 255, message = "{acme.validation.text.length.1-255}")
 	String						certifications;
 
 	//Derived Attributes ------------------------
