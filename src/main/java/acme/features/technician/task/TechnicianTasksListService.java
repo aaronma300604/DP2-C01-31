@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
 import acme.realms.employee.Technician;
 
@@ -20,7 +21,19 @@ public class TechnicianTasksListService extends AbstractGuiService<Technician, T
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int recordId;
+		MaintenanceRecord record;
+		Technician technician;
+		boolean status;
+		recordId = super.getRequest().getData("recordId", int.class);
+		if (recordId == -1)
+			super.getResponse().setAuthorised(true);
+		else {
+			record = this.repository.findTechnicianByRecord(recordId);
+			technician = record == null ? null : record.getTechnician();
+			status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician);
+			super.getResponse().setAuthorised(status);
+		}
 	}
 
 	@Override
@@ -43,6 +56,7 @@ public class TechnicianTasksListService extends AbstractGuiService<Technician, T
 
 	@Override
 	public void unbind(final Task task) {
+		assert task != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(task, "type", "priority", "estimatedDuration");

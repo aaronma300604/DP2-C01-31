@@ -1,21 +1,19 @@
 
-package acme.features.technician.task;
+package acme.features.administrator.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
-import acme.client.components.views.SelectChoices;
+import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.task.Task;
-import acme.entities.task.TaskType;
-import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianTasksShowService extends AbstractGuiService<Technician, Task> {
+public class AdministratorTasksShowService extends AbstractGuiService<Administrator, Task> {
 
 	@Autowired
-	private TechnicianTasksRepository repository;
+	private AdministratorTasksRepository repository;
 
 
 	@Override
@@ -23,12 +21,10 @@ public class TechnicianTasksShowService extends AbstractGuiService<Technician, T
 		boolean status;
 		int taskId;
 		Task task;
-		Technician technician;
 
 		taskId = super.getRequest().getData("id", int.class);
 		task = this.repository.findTask(taskId);
-		technician = task == null ? null : task.getTechnician();
-		status = technician != null && super.getRequest().getPrincipal().hasRealm(technician) || task != null && !task.isDraftMode();
+		status = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class) || task != null && !task.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -46,14 +42,9 @@ public class TechnicianTasksShowService extends AbstractGuiService<Technician, T
 
 	@Override
 	public void unbind(final Task task) {
-		assert task != null;
 		Dataset dataset;
-		SelectChoices typeChoices;
-
-		typeChoices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
-		dataset.put("types", typeChoices);
 
 		super.getResponse().addData(dataset);
 	}

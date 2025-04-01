@@ -45,31 +45,30 @@ public class TechnicianTasksUpdateService extends AbstractGuiService<Technician,
 
 	@Override
 	public void bind(final Task task) {
+		assert task != null;
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
 	}
 
 	@Override
 	public void validate(final Task task) {
-		boolean confirmation;
-
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+		assert task != null;
 	}
 
 	@Override
 	public void perform(final Task task) {
+		assert task != null;
 		this.repository.save(task);
 	}
 
 	@Override
 	public void unbind(final Task task) {
+		assert task != null;
 		Dataset dataset;
 		SelectChoices typeChoices;
 
 		typeChoices = SelectChoices.from(TaskType.class, task.getType());
 
 		dataset = super.unbindObject(task, "type", "description", "priority", "estimatedDuration", "draftMode");
-		dataset.put("confirmation", false);
 		dataset.put("types", typeChoices);
 
 		super.getResponse().addData(dataset);

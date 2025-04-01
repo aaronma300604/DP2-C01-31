@@ -14,7 +14,7 @@ import javax.validation.constraints.Pattern;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
 
-@Pattern(regexp = "^\s*$|^\\+?\\d{6,15}$")
+@Pattern(regexp = "^\s*$|^\\+?\\d{6,15}$", message = "{acme.validation.phone}")
 public @interface ValidPhone {
 
 	String message() default "{acme.validation.phone.message}";
