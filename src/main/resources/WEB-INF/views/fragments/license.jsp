@@ -17,3 +17,12 @@
 
 <h1><acme:print code="master.license.title"/></h1>
 <p><acme:print code="master.license.text"/></p>
+
+
+<jstl:if test="${service != null}">
+	<div class="panel-body" style="margin: 1em 0em 1em 0em; text-align: center;">	
+		<a href="${advertisement.target}" target="_blank">
+			<img src="${advertisement.picture}" alt="${advertisement.slogan}" class="img-fluid rounded" style="border-style: solid;"/>
+		</a>
+	</div>
+</jstl:if>
