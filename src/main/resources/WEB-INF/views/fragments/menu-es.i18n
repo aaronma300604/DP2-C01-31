@@ -21,7 +21,7 @@ master.menu.anonymous.favourite-link-diego = 5443*****: Terrón Hernández, Dieg
 
 master.menu.administrator = Administrador
 master.menu.administrator.list-user-accounts = Ver cuentas de usuario
-master.menu.administrator.show-dashboard = Mostrar dashboard
+master.menu.administrator.show-dashboard = Mostrar panel
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
@@ -30,6 +30,7 @@ master.menu.administrator.shut-system-down = Parar el sistema
 
 feature.menu.administrator = Listados
 feature.menu.administrator.list-airports = Aeropuertos
+feature.menu.administrator.list-aircrafts = Aviones
 
 # master.menu.provider ########################################################
 
@@ -52,6 +53,7 @@ master.menu.consumer.favourite-link-diego = 5443*****: Terrón Hernández, Diego
 # master.menu.manager ##########################################################
 
 master.menu.manager = Manager
+master.menu.manager.show-dashboard = Mostrar panel
 master.menu.manager.list-my-flights = Mis Vuelos
 master.menu.manager.list-my-legs = Mis Trayectos
 
@@ -62,6 +64,13 @@ master.menu.agent.list-my-undergoing-claims = Mis Reclamaciones en curso
 master.menu.agent.list-my-completed-claims = Mis Reclamaciones completadas
 master.menu.agent.list-my-tracking-logs = Mis Registros de Seguimiento
 
+# master.menu.technician ##########################################################
+
+master.menu.technician = Técnico
+master.menu.technician.list-my-records = Mis Informes de mantenimiento
+master.menu.technician.list-availiable-records = Informes Disponibles
+master.menu.technician.list-my-tasks = Mis Tareas
+master.menu.technician.list-available-tasks = Tareas Disponibles
 
 # master.menu.user-account ####################################################
 

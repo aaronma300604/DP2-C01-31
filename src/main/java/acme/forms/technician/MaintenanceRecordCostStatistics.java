@@ -3,7 +3,7 @@ package acme.forms.technician;
 
 public interface MaintenanceRecordCostStatistics {
 
-	Integer getCount();
+	Integer getCountRecords();
 	void setCount(Integer count);
 
 	Double getAverage();

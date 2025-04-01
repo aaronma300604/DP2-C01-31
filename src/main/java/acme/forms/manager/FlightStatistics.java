@@ -1,10 +1,10 @@
 
-package acme.features.manager.dashboard;
+package acme.forms.manager;
 
 public interface FlightStatistics {
 
-	Double getAverage();
-	void setAverage(Double average);
+	Double getCostAverage();
+	void setCostAverage(Double costAverage);
 
 	Double getMinimum();
 	void setMinimum(Double minimum);
