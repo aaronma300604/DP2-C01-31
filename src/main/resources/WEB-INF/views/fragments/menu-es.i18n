@@ -32,6 +32,8 @@ feature.menu.administrator = Listados
 feature.menu.administrator.list-airports = Aeropuertos
 feature.menu.administrator.list-aircrafts = Aviones
 feature.menu.administrator.list-maintenance-records = Informes de mantenimiento
+feature.menu.administrator.list-airlines = Aerolineas
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Proveedor
@@ -77,3 +79,9 @@ master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.user-account.become-technician = Hazte técnico
 master.menu.user-account.technician-profile = Perfil de técnico
+
+# master.menu.member ##########################################################
+
+master.menu.member = Miembro de la tripulación
+maste.menu.member.list-my-assignments = Mis asignaciones
+

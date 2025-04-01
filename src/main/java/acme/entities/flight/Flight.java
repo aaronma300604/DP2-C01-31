@@ -33,7 +33,7 @@ public class Flight extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidString(min = 1, max = 50)
+	@ValidString(min = 1, max = 50, message = "{acme.validation.text.length.1-50}")
 	private String				tag;
 
 	@Mandatory

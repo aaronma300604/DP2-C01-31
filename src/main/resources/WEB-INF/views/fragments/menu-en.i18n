@@ -32,6 +32,7 @@ feature.menu.administrator = Lists
 feature.menu.administrator.list-airports = Airports
 feature.menu.administrator.list-aircrafts = Aircrafts
 feature.menu.administrator.list-maintenance-records = Maintenance Records
+feature.menu.administrator.list-airlines = Airlines
 
 # master.menu.provider ########################################################
 
@@ -79,3 +80,10 @@ master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.member-profile = Flight Crew Member dashboard
 master.menu.user-account.become-technician = Become a technician
 master.menu.user-account.technician-profile = Technician profile
+
+# master.menu.member ##########################################################
+
+master.menu.member = Flight Crew Member
+master.menu.member.list-my-assignments = My Assignments (Completed Legs)
+master.menu.member.list-my-assignmentsUL = My Assignments (Uncompleted Legs)
+
