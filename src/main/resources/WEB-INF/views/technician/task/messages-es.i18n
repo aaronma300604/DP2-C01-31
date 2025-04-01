@@ -1,0 +1,24 @@
+############ General ##############
+technician.task.form.title = Detalles de la tarea: 
+technician.task.list.title = Lista de tareas: 
+
+############ List ################
+technician.task.list.label.type = Tipo
+technician.task.list.label.description = Descripción
+technician.task.list.label.priority = Prioridad
+technician.task.list.label.estimatedDuration = Duración estimada
+
+########## Form #################
+technician.task.form.label.type = Tipo
+technician.task.form.label.description = Descripción
+technician.task.form.label.priority = PrioridadPrioridad
+technician.task.form.label.estimatedDuration = Duración estimada
+
+technician.task.form.label.confirmation = Confirma que la tarea es correcta
+
+########### Buttons ###############
+technician.task.list.button.create = Crear
+technician.task.form.button.create = Crear
+technician.task.form.button.update = Actualizar
+technician.task.form.button.publish = Publicar
+technician.task.form.button.delete = Eliminar
