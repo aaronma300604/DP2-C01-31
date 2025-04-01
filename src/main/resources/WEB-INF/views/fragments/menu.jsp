@@ -18,6 +18,10 @@
 
 <acme:menu-bar>
 	<acme:menu-left>
+			<acme:menu-option code="master.menu.any" access="true">
+			<acme:menu-suboption code="master.menu.any.review-list" action="/any/review/list"/>
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-dani" action="https://www.informatica.us.es/"/>
      		<acme:menu-suboption code="master.menu.anonymous.favourite-link-estrella" action="https://pointerpointer.com"/>
