@@ -44,6 +44,7 @@
 			<acme:menu-suboption code="feature.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-maintenance-records" action="/administrator/maintenance-record/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-airlines" action="/administrator/airline/list"/>
+			<acme:menu-suboption code="master.menu.administrator.list-system-config" action="/administrator/system-config/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
