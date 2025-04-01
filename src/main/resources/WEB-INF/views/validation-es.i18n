@@ -17,5 +17,7 @@ acme.validation.passport.duplicated_passport_number.message = Ya existe un pasaj
 acme.validation.passenger.passport_number.message = Número de pasaporte inválido. Debe tener entre 6 y 9 caracteres y contener solo letras mayúsculas y números
 acme.validation.booking.booking-publish.message = La reserva ya está publicada y no puede modificarse
 acme.validation.booking.duplicated_passenger_booking.message = Ya existe esa relación entre ese pasejero y esa reserva
+acme.validation.booking.booking-null.message = La reserva no puede ser nula
+acme.validation.booking.passenger-null.message =El pasajero no puede ser nulo
 
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía

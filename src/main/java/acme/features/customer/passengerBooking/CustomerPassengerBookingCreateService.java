@@ -51,15 +51,22 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 		passenger = this.repository.findPassengerById(passengerId);
 		booking = this.repository.findBookingById(bookingId);
 
-		super.bindObject(passengerBooking, "passenger", "booking");
-		passengerBooking.setPassenger(passenger);
-		passengerBooking.setBooking(booking);
-		passengerBooking.setDraftMode(true);
+		if (booking == null || passenger == null)
+			super.state(false, booking == null ? "booking" : "passenger", booking == null ? "acme.validation.booking.invalid-booking-null.message" : "acme.validation.booking.invalid-passenger-null.message");
+		else {
+			super.bindObject(passengerBooking, "passenger", "booking");
+			passengerBooking.setPassenger(passenger);
+			passengerBooking.setBooking(booking);
+			passengerBooking.setDraftMode(true);
+		}
 
 	}
+
 	@Override
+	//cambiar
 	public void validate(final PassengerBooking passengerBooking) {
-		super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
+
+		//super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
 
 	}
 
@@ -84,11 +91,11 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 		bookingChoices = SelectChoices.from(allBookingByCustomerId, "locatorCode", passengerBooking.getBooking());
 		passengerChoices = SelectChoices.from(allPassengerByCustomerId, "passportNumber", passengerBooking.getPassenger());
 
-		dataset = super.unbindObject(passengerBooking, "passenger", "booking", "draftMode");
-		dataset.put("bookingChoice", bookingChoices.getSelected().getKey());
+		dataset = super.unbindObject(passengerBooking, "draftMode");
+		dataset.put("booking", bookingChoices.getSelected().getKey());
 		dataset.put("bookingChoices", bookingChoices);
 		dataset.put("passengerChoices", passengerChoices);
-		dataset.put("passengerChoice", passengerChoices.getSelected().getKey());
+		dataset.put("passenger", passengerChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

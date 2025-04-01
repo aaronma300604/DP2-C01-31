@@ -78,11 +78,11 @@ public class CustomerPassengerBookingShowService extends AbstractGuiService<Cust
 		bookingChoices = SelectChoices.from(allBookingByCustomerId, "locatorCode", passengerBooking.getBooking());
 		passengerChoices = SelectChoices.from(allPassengerByCustomerId, "passportNumber", passengerBooking.getPassenger());
 
-		dataset = super.unbindObject(passengerBooking, "passenger", "booking", "draftMode");
-		dataset.put("bookingChoice", bookingChoices.getSelected().getKey());
+		dataset = super.unbindObject(passengerBooking, "draftMode");
+		dataset.put("booking", bookingChoices.getSelected().getKey());
 		dataset.put("bookingChoices", bookingChoices);
 		dataset.put("passengerChoices", passengerChoices);
-		dataset.put("passengerChoice", passengerChoices.getSelected().getKey());
+		dataset.put("passenger", passengerChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}
