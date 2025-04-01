@@ -10,13 +10,12 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
 import acme.entities.airline.AirlineType;
-import acme.features.administrator.aircraft.AdministratorAircraftsRepository;
 
 @GuiService
 public class AdministratorAirlineUpdateService extends AbstractGuiService<Administrator, Airline> {
 
 	@Autowired
-	private AdministratorAircraftsRepository repository;
+	private AdministratorAirlineRepository repository;
 
 
 	@Override
@@ -45,6 +44,13 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 
 	@Override
 	public void validate(final Airline airline) {
+		boolean uniqueIata;
+		Airline existingAirline;
+
+		existingAirline = this.repository.findAirlineByIata(airline.getIata());
+		uniqueIata = existingAirline == null || existingAirline.equals(airline);
+		super.state(uniqueIata, "iata", "acme.validation.airline.duplicated-iata.message");
+
 		boolean confirmation;
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);

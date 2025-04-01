@@ -51,6 +51,13 @@ public class AdministratorAircraftsUpdateService extends AbstractGuiService<Admi
 
 	@Override
 	public void validate(final Aircraft aircraft) {
+		boolean uniqueRegistrationNumber;
+		Aircraft existingAircraft;
+
+		existingAircraft = this.repository.findAircraftsByRegistrationNumber(aircraft.getRegistrationNumber());
+		uniqueRegistrationNumber = existingAircraft == null || existingAircraft.equals(aircraft);
+		super.state(uniqueRegistrationNumber, "registrationNumber", "acme.validation.aircraft.duplicated-registration-number.message");
+
 		boolean confirmation;
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
