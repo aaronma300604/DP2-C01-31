@@ -1,0 +1,17 @@
+
+any.review.list.title = Last year reviews:
+any.review.form.title = Review details:
+
+
+any.review.form.label.name = Your name
+any.review.form.label.subject = Subject
+any.review.form.label.text = Review
+any.review.form.label.score = Score
+any.review.form.label.recommended = Would you recommend us?
+any.review.form.label.confirmation = Confirm your review in order to post it
+
+
+any.review.list.label.review = Review
+
+any.review.list.button.create = Create
+any.review.form.button.create = Create
