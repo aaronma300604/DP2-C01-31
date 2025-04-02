@@ -53,8 +53,11 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 	@Override
 	public void validate(final ActivityLog activityLog) {
 		boolean isFlightAssingmentDraftMode;
+		boolean notNullAssignment;
 		isFlightAssingmentDraftMode = activityLog.getFlightAssignment().isDraftMode();
+		notNullAssignment = activityLog.getFlightAssignment() == null ? false : true;
 
+		super.state(notNullAssignment, "assignment", "acme.validation.flight-assignment.faNull.message");
 		super.state(!isFlightAssingmentDraftMode, "assignment", "acme.validation.activity-log.assignmentInDraftMode.message");
 	}
 

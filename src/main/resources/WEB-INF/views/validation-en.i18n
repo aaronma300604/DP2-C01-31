@@ -38,3 +38,4 @@ acme.validation.flight-assignment.memberAlreadyAssigned.message = This member ha
 acme.validation.flight-assignment.cant-be-published.message = You cannot publish the flight assignment because the leg is not published yet.
 acme.validation.flight-assignment.faNull.message = May not be null
 acme.validation.activity-log.assignmentInDraftMode.message = Flight Assignment is in draft Mode
+acme.validation.activity-log.severityLevel.message = Number must be between 0 and 10

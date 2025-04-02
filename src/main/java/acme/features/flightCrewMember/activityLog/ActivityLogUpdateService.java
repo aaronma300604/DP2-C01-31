@@ -52,7 +52,9 @@ public class ActivityLogUpdateService extends AbstractGuiService<FlightCrewMembe
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
-		;
+		boolean notNullAssignment;
+		notNullAssignment = activityLog.getFlightAssignment() == null ? false : true;
+		super.state(notNullAssignment, "assignment", "acme.validation.flight-assignment.faNull.message");
 	}
 
 	@Override

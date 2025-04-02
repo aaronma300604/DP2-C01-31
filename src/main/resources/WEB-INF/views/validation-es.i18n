@@ -39,3 +39,4 @@ acme.validation.flight-assignment.memberAlreadyAssigned.message = Este miembro y
 acme.validation.flight-assignment.cant-be-published.message = No puedes publicar la asignación de vuelo porque la escala no está publicada todavía.
 acme.validation.activity-log.assignmentInDraftMode.message = La asignación de vuelo está en modo borrador
 acme.validation.flight-assignment.faNull.message = No puede ser nulo
+acme.validation.activity-log.severityLevel.message = El número debe estar entre 0 y 10

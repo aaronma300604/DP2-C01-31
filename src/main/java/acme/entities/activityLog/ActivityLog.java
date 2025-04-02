@@ -43,7 +43,7 @@ public class ActivityLog extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0, max = 10)
+	@ValidNumber(min = 0, max = 10, message = "{acme.validation.activity-log.severityLevel.message}")
 	private Integer				severityLevel;
 
 	@Mandatory
