@@ -14,7 +14,7 @@
 			<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices="${aircrafts}"/>
 		</jstl:when>
 		<jstl:when test="${emptyAircrafts}">
-			<acme:input-textbox code="technician.maintenance-record.form.label.aircraft" path="aircraft" readonly="true" placeholder="Not available aircrafts"/>
+			<acme:input-textbox code="technician.maintenance-record.form.label.aircraft" path="aircraft" readonly="true"/>
 		</jstl:when>
 	</jstl:choose>
 

@@ -25,6 +25,7 @@ master.menu.administrator.show-dashboard = Show dashboard
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
+master.menu.administrator.list-system-config = System configuration
 
 # feature.menu.administrator ###################################################
 
@@ -33,6 +34,8 @@ feature.menu.administrator.list-airports = Airports
 feature.menu.administrator.list-aircrafts = Aircrafts
 feature.menu.administrator.list-maintenance-records = Maintenance Records
 feature.menu.administrator.list-airlines = Airlines
+
+
 
 # master.menu.provider ########################################################
 
@@ -86,4 +89,8 @@ master.menu.user-account.technician-profile = Technician profile
 master.menu.member = Flight Crew Member
 master.menu.member.list-my-assignments = My Assignments (Completed Legs)
 master.menu.member.list-my-assignmentsUL = My Assignments (Uncompleted Legs)
+
+# master.menu.any ##########################################################
+master.menu.any = Any
+master.menu.any.review-list = Reviews
 
