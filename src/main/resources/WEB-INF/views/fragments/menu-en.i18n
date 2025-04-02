@@ -93,4 +93,4 @@ master.menu.member.list-my-assignmentsUL = My Assignments (Uncompleted Legs)
 # master.menu.any ##########################################################
 master.menu.any = Any
 master.menu.any.review-list = Reviews
-
+master.menu.any.service-list = Services

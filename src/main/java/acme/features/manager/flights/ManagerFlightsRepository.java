@@ -32,4 +32,7 @@ public interface ManagerFlightsRepository extends AbstractRepository {
 
 	@Query("select p from Passenger p where p.flight.id = :flightId")
 	List<Passenger> findPassengersByFlight(int flightId);
+
+	@Query("select sc.currency from SystemConfig sc")
+	List<String> finAllCurrencies();
 }

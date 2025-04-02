@@ -20,6 +20,7 @@
 	<acme:menu-left>
 			<acme:menu-option code="master.menu.any" access="true">
 			<acme:menu-suboption code="master.menu.any.review-list" action="/any/review/list"/>
+			<acme:menu-suboption code="master.menu.any.service-list" action="/any/service/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
