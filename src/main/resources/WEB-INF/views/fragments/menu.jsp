@@ -38,14 +38,14 @@
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
-		</acme:menu-option>
-		<acme:menu-option code="feature.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="feature.menu.administrator.list-airports" action="/administrator/airport/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-maintenance-records" action="/administrator/maintenance-record/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-airlines" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-system-config" action="/administrator/system-config/list"/>
+			<acme:menu-suboption code="feature.menu.administrator.list-services" action="/administrator/service/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">

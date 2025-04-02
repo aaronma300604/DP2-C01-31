@@ -1,0 +1,17 @@
+administrator.service.list.title = Servicios:
+administrator.service.form.title = Detalles del Servicio:
+
+administrator.service.form.label.name = Nombre
+administrator.service.form.label.avgDwellTime = Tiempo de Permanencia Promedio
+administrator.service.form.label.picture = Fotografía
+administrator.service.form.label.promotionCode = Código Promocional (Opcional)
+administrator.service.form.label.discountApplied = Descuento Aplicado (Opcional)
+
+administrator.service.list.label.name = Nombre
+administrator.service.list.label.avgDwellTime = Tiempo de Permanencia Promedio 
+
+administrator.service.list.button.create = Crear
+
+administrator.service.form.button.create = Crear
+administrator.service.form.button.update = Actualizar
+administrator.service.form.button.delete = Borrar

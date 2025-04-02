@@ -29,12 +29,11 @@ master.menu.administrator.list-system-config = Configuración del sistema
 
 # feature.menu.administrator ###################################################
 
-feature.menu.administrator = Listados
 feature.menu.administrator.list-airports = Aeropuertos
 feature.menu.administrator.list-aircrafts = Aviones
 feature.menu.administrator.list-maintenance-records = Informes de mantenimiento
 feature.menu.administrator.list-airlines = Aerolineas
-
+feature.menu.administrator.list-services = Servicios
 
 
 # master.menu.provider ########################################################

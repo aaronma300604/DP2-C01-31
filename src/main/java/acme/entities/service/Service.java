@@ -37,7 +37,7 @@ public class Service extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, message = "{acme.validation.positive.number}")
 	Integer						avgDwellTime;
 
 	@Optional
