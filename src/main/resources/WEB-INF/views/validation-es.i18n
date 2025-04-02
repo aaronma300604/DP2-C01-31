@@ -37,6 +37,21 @@ acme.validation.phone = Debe ser un número de teléfono
 acme.validation.technician.years-of-experience = Debe ser un entero entre 0 y 75
 
 
+
+acme.validation.booking.invalid-nibble.message = El valor ingresado debe ser un número de cuatro dígitos o estar en blanco
+acme.validation.booking.cant-be-publish.message = Para poder publicar esta reserva todos los pasajeros deben de estar publicados y los últimos cuatro dígitos de la tarjeta de crédito no pueden estar vacíos
+
+acme.validation.passport.duplicated_passport_number.message = Ya existe un pasajero con este número de pasaporte
+acme.validation.passenger.passport_number.message = Número de pasaporte inválido. Debe tener entre 6 y 9 caracteres y contener solo letras mayúsculas y números
+acme.validation.booking.booking-publish.message = La reserva ya está publicada y no puede modificarse
+acme.validation.booking.duplicated_passenger_booking.message = Ya existe esa relación entre ese pasejero y esa reserva
+acme.validation.booking.booking-null.message = La reserva no puede ser nula
+acme.validation.booking.passenger-null.message =El pasajero no puede ser nulo
+acme.validation.booking.cant-be-publish-flight.message = Debes elegir un vuelo antes de publicar la reserva
+acme.validation.booking.cant-be-publish-passenger.message = Para publicar un vuelo debes tener al menos un pasajero publicado
+
+acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
+
 acme.validation.flight-assignment.legCurrency.message = El tripulante ya está asignado a otra escala de vuelo que causa un conflicto de concurrencia.
 acme.validation.flight-assignment.dutyPilot.message = Ya se ha asignado un piloto; por lo tanto, el tripulante no puede ser asignado a ese rol.
 acme.validation.flight-assignment.dutyCopilot.message = Ya se ha asignado un copiloto; por lo tanto, el tripulante no puede ser asignado a ese rol.

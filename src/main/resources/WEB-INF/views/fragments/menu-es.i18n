@@ -61,6 +61,14 @@ master.menu.manager.show-dashboard = Mostrar panel
 master.menu.manager.list-my-flights = Mis Vuelos
 master.menu.manager.list-my-legs = Mis Trayectos
 
+
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = Mis Reservas
+master.menu.customer.passenger = Mis Pasajeros
+master.menu.customer.passenger-booking =  Asignaciones de pasajeros
+
 # master.menu.technician ##########################################################
 
 master.menu.technician = Técnico
