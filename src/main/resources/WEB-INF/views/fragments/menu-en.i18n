@@ -64,7 +64,6 @@ master.menu.manager.list-my-legs = My Legs
 master.menu.agent = Assistance Agent
 master.menu.agent.list-my-undergoing-claims = My Claims
 master.menu.agent.list-my-completed-claims = My Completed Claims
-master.menu.agent.list-my-tracking-logs = My Tracking Logs
 
 # master.menu.technician ##########################################################
 

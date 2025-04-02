@@ -64,7 +64,6 @@ master.menu.manager.list-my-legs = Mis Trayectos
 master.menu.agent = Agente de Asistencia
 master.menu.agent.list-my-undergoing-claims = Mis Reclamaciones en curso
 master.menu.agent.list-my-completed-claims = Mis Reclamaciones completadas
-master.menu.agent.list-my-tracking-logs = Mis Registros de Seguimiento
 
 # master.menu.technician ##########################################################
 

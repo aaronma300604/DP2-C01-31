@@ -9,7 +9,6 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.claim.AcceptanceStatus;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimRepository;
 import acme.entities.claim.ClaimType;
@@ -63,7 +62,7 @@ public class AgentClaimsShowService extends AbstractGuiService<AssistanceAgent, 
 		SelectChoices choices = SelectChoices.from(ClaimType.class, claim.getType());
 		int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		dataset = super.unbindObject(claim, "date", "email", "description", "type");
+		dataset = super.unbindObject(claim, "date", "email", "description", "type", "draftMode");
 
 		dataset.put("type", choices.getSelected().getKey());
 		dataset.put("types", choices);
@@ -80,14 +79,17 @@ public class AgentClaimsShowService extends AbstractGuiService<AssistanceAgent, 
 
 			dataset.put("status", claimStatus);
 
-			if (highestTrackingLog.getAccepted() != null && (highestTrackingLog.getAccepted() == AcceptanceStatus.ACCEPTED || highestTrackingLog.getAccepted() == AcceptanceStatus.REJECTED))
-				dataset.put("leg", "-");
-			else {
-				dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
-				List<Leg> allLegs = this.agentLegsRepository.findAllLegs();
-				SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
-				dataset.put("legs", legChoices);
-			}
+		}
+
+		if (false)
+			dataset.put("leg", "-");
+		else {
+			dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
+			dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
+
+			List<Leg> allLegs = this.agentLegsRepository.findAllLegs();
+			SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
+			dataset.put("legs", legChoices);
 		}
 
 		super.getResponse().addData(dataset);

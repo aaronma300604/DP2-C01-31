@@ -13,10 +13,10 @@ assistance-agent.claim.list.button.create = Create
 assistance-agent.claim.form.title = Details of Claim
 assistance-agent.claim.form.label.date = Date:
 assistance-agent.claim.form.label.email = Email:
-assistance-agent.claim.flight.form.label.description = Description:
-assistance-agent.claim.flight.form.label.status = Status:
-assistance-agent.claim.flight.form.label.type = Type:
-assistance-agent.claim.formlabel.leg = Show Leg
+assistance-agent.claim.form.label.description = Description:
+assistance-agent.claim.form.label.status = Status:
+assistance-agent.claim.form.label.type = Type:
+assistance-agent.claim.form.label.leg = Leg:
 
 assistance-agent.claim.form.button.update = Update
 assistance-agent.claim.form.button.delete = Delete

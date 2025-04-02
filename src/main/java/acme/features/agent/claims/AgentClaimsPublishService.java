@@ -16,7 +16,7 @@ import acme.features.agent.legs.AgentLegsRepository;
 import acme.realms.employee.AssistanceAgent;
 
 @GuiService
-public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AgentClaimsPublishService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AgentClaimsRepository	repository;
@@ -27,44 +27,45 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int claimId;
+		Claim claim;
+		AssistanceAgent agent;
+
+		claimId = super.getRequest().getData("id", int.class);
+		claim = this.repository.findClaim(claimId);
+		agent = claim == null ? null : claim.getAssistanceAgent();
+		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(agent);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Claim claim;
-		AssistanceAgent agent;
+		int id;
 
-		agent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
-
-		claim = new Claim();
-		claim.setDraftMode(true);
-		claim.setAssistanceAgent(agent);
+		id = super.getRequest().getData("id", int.class);
+		claim = this.repository.findClaim(id);
 
 		super.getBuffer().addData(claim);
 	}
 
 	@Override
 	public void bind(final Claim claim) {
-		int legId;
-		Leg leg;
+		super.bindObject(claim, "date", "email", "description", "type", "leg");
 
-		legId = super.getRequest().getData("leg", int.class);
-		leg = this.repository.findLegById(legId);
-
-		super.bindObject(claim, "email", "description", "date", "leg", "type");
-		claim.setLeg(leg);/*
-							 * String typeValue = super.getRequest().getData("type", String.class);
-							 * claim.setType(typeValue != null ? ClaimType.valueOf(typeValue) : null);
-							 */
 	}
 
 	@Override
 	public void validate(final Claim claim) {
+		boolean canBePublish = claim.getLeg() != null && !claim.getLeg().isDraftMode();
+		super.state(canBePublish, "*", "acme.validation.claim.cant-be-publish.message");
 	}
 
 	@Override
 	public void perform(final Claim claim) {
+		claim.setDraftMode(false);
 		this.repository.save(claim);
 	}
 
@@ -80,7 +81,6 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 		dataset.put("types", choices);
 
 		dataset.put("claimId", claim.getId());
-
 		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 		dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
 

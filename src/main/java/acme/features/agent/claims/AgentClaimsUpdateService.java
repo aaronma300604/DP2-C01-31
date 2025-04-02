@@ -16,7 +16,7 @@ import acme.features.agent.legs.AgentLegsRepository;
 import acme.realms.employee.AssistanceAgent;
 
 @GuiService
-public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AgentClaimsUpdateService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AgentClaimsRepository	repository;
@@ -53,14 +53,11 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 		leg = this.repository.findLegById(legId);
 
 		super.bindObject(claim, "email", "description", "date", "leg", "type");
-		claim.setLeg(leg);/*
-							 * String typeValue = super.getRequest().getData("type", String.class);
-							 * claim.setType(typeValue != null ? ClaimType.valueOf(typeValue) : null);
-							 */
 	}
 
 	@Override
 	public void validate(final Claim claim) {
+
 	}
 
 	@Override

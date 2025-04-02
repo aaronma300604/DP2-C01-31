@@ -23,13 +23,16 @@ public class TrackingLogValidator implements ConstraintValidator<ValidTrackingLo
 		if (trackingLog == null)
 			return true;
 
+		if (trackingLog.getResolutionPercentage() == null)
+			return false;
+
 		Claim claim = trackingLog.getClaim();
 		List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(claim.getId());
 
 		if (!trackingLogs.isEmpty()) {
 			TrackingLog highestTrackingLog = trackingLogs.get(0);
 
-			if (trackingLog.getResolutionPercentage() < highestTrackingLog.getResolutionPercentage()) {
+			if (highestTrackingLog.getResolutionPercentage() < 100.0 && trackingLog.getResolutionPercentage() < highestTrackingLog.getResolutionPercentage()) {
 				String errorMessage = String.format("Resolution percentage %.2f must be higher than the highest resolution percentage %.2f for claim ID %d", trackingLog.getResolutionPercentage(), highestTrackingLog.getResolutionPercentage(),
 					claim.getId());
 
@@ -42,4 +45,5 @@ public class TrackingLogValidator implements ConstraintValidator<ValidTrackingLo
 
 		return true;
 	}
+
 }

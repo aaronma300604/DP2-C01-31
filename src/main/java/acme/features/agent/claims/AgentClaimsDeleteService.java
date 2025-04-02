@@ -12,11 +12,12 @@ import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
+import acme.entities.trackingLog.TrackingLog;
 import acme.features.agent.legs.AgentLegsRepository;
 import acme.realms.employee.AssistanceAgent;
 
 @GuiService
-public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AgentClaimsDeleteService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	@Autowired
 	private AgentClaimsRepository	repository;
@@ -53,19 +54,20 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 		leg = this.repository.findLegById(legId);
 
 		super.bindObject(claim, "email", "description", "date", "leg", "type");
-		claim.setLeg(leg);/*
-							 * String typeValue = super.getRequest().getData("type", String.class);
-							 * claim.setType(typeValue != null ? ClaimType.valueOf(typeValue) : null);
-							 */
 	}
 
 	@Override
 	public void validate(final Claim claim) {
+
 	}
 
 	@Override
 	public void perform(final Claim claim) {
-		this.repository.save(claim);
+		List<TrackingLog> trackingLogs;
+
+		trackingLogs = this.repository.findTrackingLogsByClaimId(claim.getId());
+		this.repository.deleteAll(trackingLogs);
+		this.repository.delete(claim);
 	}
 
 	@Override

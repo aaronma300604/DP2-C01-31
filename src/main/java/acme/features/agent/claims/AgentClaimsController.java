@@ -20,6 +20,15 @@ public class AgentClaimsController extends AbstractGuiController<AssistanceAgent
 	private AgentClaimsCreateService	createService;
 
 	@Autowired
+	private AgentClaimsDeleteService	deleteService;
+
+	@Autowired
+	private AgentClaimsUpdateService	updateService;
+
+	@Autowired
+	private AgentClaimsPublishService	publishService;
+
+	@Autowired
 	private AgentClaimsShowService		showService;
 
 
@@ -30,6 +39,9 @@ public class AgentClaimsController extends AbstractGuiController<AssistanceAgent
 
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("delete", this.deleteService);
+		super.addBasicCommand("update", this.updateService);
+		super.addCustomCommand("publish", "update", this.publishService);
 
 	}
 
