@@ -34,9 +34,24 @@ acme.validation.task.duration = Must be an integer between 1 and 1000
 acme.validation.phone = Must be a phone number
 acme.validation.technician.years-of-experience = Must be an integer between 0 and 75
 
+acme.validation.booking.invalid-nibble.message = The entered value must be a four-digit number or blank
+acme.validation.booking.cant-be-publish.message = To publish this booking, all passengers must be published and the last four digits of the credit card cannot be empty
+
+acme.validation.passport.duplicated_passport_number.message = A passenger with this passport number already exists
+acme.validation.passenger.passport_number.message = Invalid passport number. It must be between 6 and 9 characters long and contain only uppercase letters and numbers
+acme.validation.booking.booking-publish.message = The booking is already published and cannot be modified
+acme.validation.booking.duplicated_passenger_booking.message = That relationship between the passenger and the booking already exists
+acme.validation.booking.booking-null.message = The booking cannot be null
+acme.validation.booking.passenger-null.message = The passenger cannot be null
+acme.validation.booking.cant-be-publish-flight.message = You must select a flight before publish the booking
+acme.validation.booking.cant-be-publish-passenger.message = To publish a booking, you must have at least one published passenger
+
+acme.validation.flight.cant-be-publish.message = This flight can't be published yet
+
 acme.validation.flight-assignment.legCurrency.message = The member is already assigned to another leg, which causes a scheduling conflict.
 acme.validation.flight-assignment.dutyPilot.message = A pilot has already been assigned; therefore, the member cannot be assigned to this role.
 acme.validation.flight-assignment.dutyCopilot.message = A copilot has already been assigned; therefore, the member cannot be assigned to this role.
 acme.validation.flight-assignment.legPublished.message = The attached leg must be published to publish the flight assignment.
 acme.validation.flight-assignment.memberAlreadyAssigned.message = This member has already been assigned to this leg.
 acme.validation.flight-assignment.cant-be-published.message = You cannot publish the leg because it is not published yet.
+

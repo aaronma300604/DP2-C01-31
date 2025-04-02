@@ -62,6 +62,13 @@ master.menu.manager.show-dashboard = Show dashboard
 master.menu.manager.list-my-flights = My Flights
 master.menu.manager.list-my-legs = My Legs
 
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = My Bookings
+master.menu.customer.passenger = My Passengers
+master.menu.customer.passenger-booking = Passenger Booking Details
+
 # master.menu.technician ##########################################################
 
 master.menu.technician = Technician
