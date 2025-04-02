@@ -80,6 +80,9 @@ public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
+		boolean flightAssignmentNotNull;
+		flightAssignmentNotNull = flightAssignment.getFlightCrewMember() == null ? false : true;
+		super.state(flightAssignmentNotNull, "crewMember", "acme.validation.flight-assignment.faNull.message");
 		;
 	}
 

@@ -36,7 +36,9 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightAssignmentRepository repository;
+	private FlightAssignmentRepository	repository;
+
+	private Leg							firstLegAssigned;
 
 
 	@Override
@@ -60,6 +62,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		fa = this.repository.findFa(id);
+		this.firstLegAssigned = fa.getLeg();
 
 		super.getBuffer().addData(fa);
 
@@ -78,13 +81,15 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(member);
 		fa.setLeg(legAssigned);
-		fa.setMoment(MomentHelper.getCurrentMoment());
 
 	}
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		;
+		boolean flightAssignmentNotNull;
+		flightAssignmentNotNull = flightAssignment.getFlightCrewMember() == null ? false : true;
+		super.state(flightAssignmentNotNull, "crewMember", "acme.validation.flight-assignment.faNull.message");
+
 	}
 
 	@Override
@@ -129,7 +134,15 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	public List<Leg> getPosibleLegs(final FlightAssignment flightA) {
 		Date currentDate = MomentHelper.getCurrentMoment();
 		List<Leg> posibleLegs;
-		if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
+		if (flightA.getLeg() == null) {
+			flightA.setLeg(this.firstLegAssigned);
+			if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
+				posibleLegs = this.repository.findUpcomingLegs(currentDate);
+			else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
+				posibleLegs = this.repository.findPreviousLegs(currentDate);
+			else
+				posibleLegs = new ArrayList<>();
+		} else if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
 			posibleLegs = this.repository.findUpcomingLegs(currentDate);
 		else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
 			posibleLegs = this.repository.findPreviousLegs(currentDate);
