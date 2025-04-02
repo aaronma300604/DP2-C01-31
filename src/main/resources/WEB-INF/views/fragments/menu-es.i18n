@@ -25,6 +25,7 @@ master.menu.administrator.show-dashboard = Mostrar panel
 master.menu.administrator.populate-db-initial = Poblar BD (inicial)
 master.menu.administrator.populate-db-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-system-down = Parar el sistema
+master.menu.administrator.list-system-config = Configuración del sistema
 
 # feature.menu.administrator ###################################################
 
@@ -33,6 +34,8 @@ feature.menu.administrator.list-airports = Aeropuertos
 feature.menu.administrator.list-aircrafts = Aviones
 feature.menu.administrator.list-maintenance-records = Informes de mantenimiento
 feature.menu.administrator.list-airlines = Aerolineas
+
+
 
 # master.menu.provider ########################################################
 
@@ -89,4 +92,8 @@ master.menu.user-account.technician-profile = Perfil de técnico
 
 master.menu.member = Miembro de la tripulación
 maste.menu.member.list-my-assignments = Mis asignaciones
+
+# master.menu.any ##########################################################
+master.menu.any = Cualquiera
+master.menu.any.review-list = Reseñas
 

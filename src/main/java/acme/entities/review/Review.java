@@ -48,7 +48,7 @@ public class Review extends AbstractEntity {
 
 	@Optional
 	@Automapped
-	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2)
+	@ValidNumber(min = 0, max = 10, integer = 2, fraction = 2, message = "{acme.validation.review.score}")
 	Double						score;
 
 	@Optional

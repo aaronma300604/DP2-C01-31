@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class SystemCurrency extends AbstractEntity {
+public class SystemConfig extends AbstractEntity {
 
 	//Serialisation version  -----------------------------------------
 	private static final long	serialVersionUID	= 1L;
@@ -21,7 +21,7 @@ public class SystemCurrency extends AbstractEntity {
 	//Attributes -------------------------------------------
 	@Mandatory
 	@Automapped
-	@ValidString(pattern = "^[A-Z]{3}$")
+	@ValidString(pattern = "^[A-Z]{3}$", message = "{acme.validation.sysconf.currency}")
 	String						currency;
 
 	@Mandatory
