@@ -1,0 +1,17 @@
+
+any.review.list.title = Reseñas del último año:
+any.review.form.title = Detalles de la reseña:
+
+
+any.review.form.label.name = Tu nombre:
+any.review.form.label.subject = Asunto
+any.review.form.label.text = Reseña:
+any.review.form.label.score = Puntuación (0-10)
+any.review.form.label.recommended = ¿Nos recomendarías?
+any.review.form.label.confirmation = Confirma tu reseña antes de publicarla
+
+
+any.review.list.label.review = Reseña
+
+any.review.list.button.create = Crear
+any.review.form.button.create = Crear

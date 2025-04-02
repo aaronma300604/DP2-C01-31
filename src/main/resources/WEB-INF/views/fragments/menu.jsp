@@ -18,6 +18,10 @@
 
 <acme:menu-bar>
 	<acme:menu-left>
+			<acme:menu-option code="master.menu.any" access="true">
+			<acme:menu-suboption code="master.menu.any.review-list" action="/any/review/list"/>
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.favourite-link-dani" action="https://www.informatica.us.es/"/>
      		<acme:menu-suboption code="master.menu.anonymous.favourite-link-estrella" action="https://pointerpointer.com"/>
@@ -40,6 +44,7 @@
 			<acme:menu-suboption code="feature.menu.administrator.list-aircrafts" action="/administrator/aircraft/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-maintenance-records" action="/administrator/maintenance-record/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-airlines" action="/administrator/airline/list"/>
+			<acme:menu-suboption code="master.menu.administrator.list-system-config" action="/administrator/system-config/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
