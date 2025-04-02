@@ -37,7 +37,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		fa = this.repository.findFa(flightAssignmentId);
 		member = fa == null ? null : fa.getFlightCrewMember();
 		boolean realm = super.getRequest().getPrincipal().hasRealm(member);
-		status = fa != null && fa.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member) && fa.getDuty() == Duty.LEAD_ATTENDANT;
+		status = fa != null && fa.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -74,7 +74,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		boolean existSimultaneousLeg = false;
 		boolean unproperPilotDuty = true;
 		boolean unproperCopilotDuty = true;
-		boolean alreadyAssignedToTheLeg = false;
+		boolean alreadyAssignedToTheLeg = true;
 		boolean legIsPublished = false;
 
 		Leg legAnalized = flightAssignment.getLeg();
@@ -96,13 +96,11 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		if (!legAnalized.isDraftMode())
 			legIsPublished = true;
 
-		List<Object[]> legFlightAssignment = this.repository.findLegsAndAssignmentsByMemberId(flightAssignment.getFlightCrewMember().getId());
-		for (Object[] row : legFlightAssignment) {
-			Leg leg = (Leg) row[0];
-			FlightAssignment assignment = (FlightAssignment) row[1];
-			if (leg.getId() == legAnalized.getId() && assignment.getId() == flightAssignment.getId() || leg.getId() != legAnalized.getId())
-				alreadyAssignedToTheLeg = true;
-		}
+		List<FlightAssignment> flightAssignments = this.repository.findLegsAndAssignmentsByMemberId(flightAssignment.getFlightCrewMember().getId());
+		for (FlightAssignment fa : flightAssignments)
+			if (flightAssignment.getId() != fa.getId())
+				if (fa.getLeg().getId() == legAnalized.getId())
+					alreadyAssignedToTheLeg = false;
 
 		super.state(alreadyAssignedToTheLeg, "crewMember", "acme.validation.flight-assignment.memberAlreadyAssigned.message");
 		super.state(existSimultaneousLeg, "leg", "acme.validation.flight-assignment.legCurrency.message");

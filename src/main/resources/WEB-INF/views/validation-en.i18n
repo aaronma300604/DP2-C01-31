@@ -36,3 +36,4 @@ acme.validation.flight-assignment.dutyCopilot.message = A copilot has already be
 acme.validation.flight-assignment.legPublished.message = The attached leg must be published to publish the flight assignment.
 acme.validation.flight-assignment.memberAlreadyAssigned.message = This member has already been assigned to this leg.
 acme.validation.flight-assignment.cant-be-published.message = You cannot publish the leg because it is not published yet.
+acme.validation.activity-log.assignmentInDraftMode.message = Flight Assignment is in draft Mode

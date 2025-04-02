@@ -37,3 +37,4 @@ acme.validation.flight-assignment.dutyCopilot.message = Ya se ha asignado un cop
 acme.validation.flight-assignment.legPublished.message = La escala adjunta debe estar publicada para poder publicar la asignación de vuelo.
 acme.validation.flight-assignment.memberAlreadyAssigned.message = Este miembro ya ha sido asignado a esta escala.
 acme.validation.flight-assignment.cant-be-published.message = No puedes publicar la asignación de vuelo porque la escala no está publicada todavía.
+acme.validation.activity-log.assignmentInDraftMode.message = La asignación de vuelo está en modo borrador

@@ -89,9 +89,7 @@ public class ManagerLegsDeleteService extends AbstractGuiService<AirlineManager,
 		List<ActivityLog> logs;
 
 		assignments = this.repository.findAssigmentsByLeg(leg.getId());
-		logs = this.repository.findActivityLogsByLeg(leg.getId());
 		this.repository.deleteAll(assignments);
-		this.repository.deleteAll(logs);
 		this.repository.delete(leg);
 	}
 
