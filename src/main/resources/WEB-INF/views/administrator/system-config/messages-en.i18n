@@ -1,0 +1,12 @@
+administrator.system-config.list.title = System configuration:
+administrator.system-config.form.title = Currency details:
+
+administrator.sysconf.list.label.currency = Currency
+
+administrator.sysconf.form.label.currency = Currency
+administrator.sysconf.form.label.systemCurrency = Is system currency?
+
+administrator.sysconf.form.button.update = Update
+administrator.sysconf.form.button.delete = Delete
+administrator.sysconf.form.button.create = Create
+administrator.sysconf.list.button.create = Create
