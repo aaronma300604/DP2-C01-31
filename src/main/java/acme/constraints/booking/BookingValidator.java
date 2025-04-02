@@ -29,7 +29,7 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 
 		boolean result;
 
-		if (booking == null || booking.getFlight() == null || booking.getCustomer() == null)
+		if (booking == null || booking.getCustomer() == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
 			String lastNibble = booking.getLastCreditCardNibble();

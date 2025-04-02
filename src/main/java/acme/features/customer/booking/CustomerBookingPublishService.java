@@ -64,15 +64,21 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
+
 		String lastCreditCardNibble = booking.getLastCreditCardNibble();
 		List<Passenger> passengers = this.repository.findPassengerByBookingId(booking.getId());
-
+		boolean canBePublishFlight = booking.getFlight() != null;
+		//Para poder ser ppublicado debe tener al menos un pasajero publicado
 		boolean canBePublishPassenger = passengers.isEmpty() || passengers.stream().allMatch(p -> !p.isDraftMode());
 		boolean canBePublishLastCreditCard = !StringHelper.isBlank(lastCreditCardNibble);
+		boolean almenosunpasajero = passengers.size() >= 1;
 
 		boolean canBePublished = canBePublishPassenger && canBePublishLastCreditCard;
 
 		super.state(canBePublished, "*", "acme.validation.booking.cant-be-publish.message");
+		super.state(canBePublishFlight, "flight", "acme.validation.booking.cant-be-publish-flight.message");
+		super.state(almenosunpasajero, "*", "acme.validation.booking.cant-be-publish-passenger.message");
+
 	}
 
 	@Override
@@ -92,7 +98,8 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		choices = SelectChoices.from(allFlights, "tag", booking.getFlight());
 		travelClassChoices = SelectChoices.from(TravelClassType.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCreditCardNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastCreditCardNibble", "draftMode");
+		dataset.put("price", booking.price());
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 		dataset.put("travelClasses", travelClassChoices);

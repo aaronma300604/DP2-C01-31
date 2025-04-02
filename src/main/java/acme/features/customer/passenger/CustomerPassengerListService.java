@@ -31,6 +31,7 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		List<Passenger> passengers;
 		int customerId;
 		int bookingId;
+		boolean isFromBooking = false;
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
@@ -39,8 +40,13 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		else {
 			bookingId = super.getRequest().getData("bookingId", int.class);
 			passengers = this.repository.findPassengersByBookingId(bookingId);
+			super.getResponse().addGlobal("bookingId", bookingId);
+			if (super.getRequest().hasData("isFromBooking"))
+				isFromBooking = super.getRequest().getData("isFromBooking", boolean.class);
+			super.getResponse().addGlobal("isFromBooking", isFromBooking);
 		}
 		super.getBuffer().addData(passengers);
+
 	}
 
 	@Override
@@ -48,6 +54,7 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 		Dataset dataset;
 
 		dataset = super.unbindObject(passenger, "name", "email", "passportNumber", "dateOfBirth", "specialNeeds");
+		dataset.put("isFromBooking", false);
 
 		super.getResponse().addData(dataset);
 	}

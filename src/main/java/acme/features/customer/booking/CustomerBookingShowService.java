@@ -67,7 +67,8 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		travelClassChoices = SelectChoices.from(TravelClassType.class, booking.getTravelClass());
 		passenger = this.repository.findPassengerByBookingId(booking.getId());
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "lastCreditCardNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "lastCreditCardNibble", "draftMode");
+		dataset.put("price", booking.price());
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 		dataset.put("travelClasses", travelClassChoices);
@@ -76,6 +77,7 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		if (passenger.isEmpty())
 			existsAnyPassenger = false;
 		dataset.put("existsAnyPassenger", existsAnyPassenger);
+		dataset.put("isFromBooking", true);
 
 		super.getResponse().addData(dataset);
 	}

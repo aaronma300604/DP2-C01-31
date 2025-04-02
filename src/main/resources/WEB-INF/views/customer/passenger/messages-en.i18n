@@ -5,7 +5,7 @@ customer.passenger.list.passportNumber = Passport Number
 customer.passenger.list.dateOfBirth = Date of Birth
 
 customer.passenger.list.button.create = Create Passenger
-
+customer.passenger.form.title = Passenger information
 customer.passenger.form.name = Full name
 customer.passenger.form.email = Email
 customer.passenger.form.passportNumber = Passport Number (pattern = ^[A-Z0-9]{6,9}$)

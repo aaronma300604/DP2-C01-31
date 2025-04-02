@@ -52,7 +52,7 @@ public class CustomerPassengerBookingUpdateService extends AbstractGuiService<Cu
 	}
 	@Override
 	public void validate(final PassengerBooking passengerBooking) {
-		;
+		super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
 	}
 
 	@Override

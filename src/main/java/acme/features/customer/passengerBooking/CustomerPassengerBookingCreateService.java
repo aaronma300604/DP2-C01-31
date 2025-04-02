@@ -52,7 +52,7 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 		booking = this.repository.findBookingById(bookingId);
 
 		if (booking == null || passenger == null)
-			super.state(false, booking == null ? "booking" : "passenger", booking == null ? "acme.validation.booking.invalid-booking-null.message" : "acme.validation.booking.invalid-passenger-null.message");
+			super.state(false, booking == null ? "booking" : "passenger", booking == null ? "acme.validation.booking.booking-null.message" : "acme.validation.booking.passenger-null.message");
 		else {
 			super.bindObject(passengerBooking, "passenger", "booking");
 			passengerBooking.setPassenger(passenger);
@@ -63,11 +63,10 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	}
 
 	@Override
-	//cambiar
+
 	public void validate(final PassengerBooking passengerBooking) {
-
-		//super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
-
+		if (passengerBooking.getBooking() != null)
+			super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
 	}
 
 	@Override

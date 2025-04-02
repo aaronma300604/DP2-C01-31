@@ -9,6 +9,8 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<jstl:if test="${_command == 'list'}">
+<jstl:if test="${_command == 'list' && empty isFromBooking || isFromBooking == false }">
 	<acme:button code="customer.passenger.list.button.create" action="/customer/passenger/create"/>
-</jstl:if>		
+</jstl:if>	
+	
+<p>Booking ID: ${isFromBooking}</p>

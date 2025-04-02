@@ -4,7 +4,7 @@ customer.passenger.list.email = Email
 customer.passenger.list.passportNumber = Número del pasaporte
 customer.passenger.list.dateOfBirth = Fecha de nacimiento
 customer.passenger.list.button.create = Crear Pasajero
-
+customer.passenger.form.title = Información del pasajero
 customer.passenger.form.name = Nombre completo
 customer.passenger.form.email = Email
 customer.passenger.form.passportNumber = Número del pasaporte (patrón = ^[A-Z0-9]{6,9}$)
