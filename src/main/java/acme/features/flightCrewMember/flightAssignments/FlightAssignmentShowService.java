@@ -77,6 +77,7 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		dataset.put("legs", legChoices);
 		dataset.put("crewMember", memberChoices.getSelected().getKey());
 		dataset.put("crewMembers", memberChoices);
+		dataset.put("flightAssignmentId", fa.getId());
 
 		super.getResponse().addData(dataset);
 
