@@ -11,9 +11,11 @@ import acme.entities.activityLog.ActivityLog;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
+import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
+import acme.entities.trackingLog.TrackingLog;
 
 @Repository
 public interface ManagerLegsRepository extends AbstractRepository {
@@ -56,4 +58,10 @@ public interface ManagerLegsRepository extends AbstractRepository {
 
 	@Query("select a.airline from AirlineManager a where a.id = :managerId")
 	Airline findAirlineByManager(int managerId);
+
+	@Query("select c from Claim c where c.leg.id = :legId")
+	List<Claim> findClaimsByLeg(int legId);
+
+	@Query("select l from TrackingLog l where l.claim.id = :claimId")
+	List<TrackingLog> findLogsByClaim(int claimId);
 }
