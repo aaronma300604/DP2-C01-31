@@ -62,6 +62,19 @@ master.menu.manager.show-dashboard = Mostrar panel
 master.menu.manager.list-my-flights = Mis Vuelos
 master.menu.manager.list-my-legs = Mis Trayectos
 
+# master.menu.agent ##########################################################
+
+master.menu.agent = Agente de Asistencia
+master.menu.agent.list-my-undergoing-claims = Mis Reclamaciones en curso
+master.menu.agent.list-my-completed-claims = Mis Reclamaciones completadas
+
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = Mis Reservas
+master.menu.customer.passenger = Mis Pasajeros
+master.menu.customer.passenger-booking =  Asignaciones de pasajeros
+
 # master.menu.technician ##########################################################
 
 master.menu.technician = Técnico
@@ -70,7 +83,6 @@ master.menu.technician.list-availiable-records = Informes Disponibles
 master.menu.technician.list-my-tasks = Mis Tareas
 master.menu.technician.list-available-tasks = Tareas Disponibles
 master.menu.technician.show-dashboard = Mostrar panel
-
 
 # master.menu.user-account ####################################################
 

@@ -1,0 +1,24 @@
+assistance-agent.leg.list.title = List of My Legs:
+assistance-agent.leg.form.title = Details of Leg:
+
+assistance-agent.leg.list.label.flightNumber = Flight Number:
+assistance-agent.leg.list.label.scheduledDeparture = Departure Scheduled:
+assistance-agent.leg.list.label.scheduledArrival = Arrival Scheduled:
+assistance-agent.leg.list.label.origin = Origin:
+assistance-agent.leg.list.label.destination = Destination:
+
+assistance-agent.leg.form.label.fligthNumber = Flight Number:
+assistance-agent.leg.form.label.scheduledDeparture = Departure Scheduled:
+assistance-agent.leg.form.label.scheduledArrival = Arrival Scheduled:
+assistance-agent.leg.form.label.duration = Duration:
+assistance-agent.leg.form.label.status = Status:
+assistance-agent.leg.form.label.flight = Flight:
+assistance-agent.leg.form.label.aircraft = Aircraft:
+assistance-agent.leg.form.label.origin = Origin:
+assistance-agent.leg.form.label.destination = Destination:
+
+assistance-agent.leg.list.button.create = Create
+assistance-agent.leg.form.button.create = Create
+assistance-agent.leg.form.button.publish = Publish
+assistance-agent.leg.form.button.update = Update
+assistance-agent.leg.form.button.delete = Delete

@@ -1,0 +1,62 @@
+key,avgDwellTime,discountApplied,name,picture,promotionCode
+# base entity
+service-01,15,EUR 100.00,Servicio Básico,https://plus.unsplash.com/premium_photo-1724745799156-d186120d547c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmklQzMlQjFvJTIwcmF0YXxlbnwwfHwwfHx8MA%3D%3D,ABCD-01
+service-02,30,EUR 250.50,Servicio Premium,https://plus.unsplash.com/premium_photo-1724745799022-97eb86447ebb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D,WXYZ-02
+service-03,25,EUR 75.25,Servicio Estándar,https://plus.unsplash.com/premium_photo-1724745799262-996458e8844b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D,LMNO-03
+service-04,40,EUR 500.01,Servicio Avanzado,https://plus.unsplash.com/premium_photo-1724646533446-0c7cdc3a4aa4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D,QRST-04
+service-05,10,EUR 20.99,Servicio Express,https://plus.unsplash.com/premium_photo-1724646533523-7b8d022ab10b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D,UVWX-05
+service-06,35,EUR 300.75,Servicio VIP,https://plus.unsplash.com/premium_photo-1724646533375-46d8f57c7bec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D,YZAB-06
+service-07,20,EUR 50.50,Servicio Económico,https://plus.unsplash.com/premium_photo-1724745798740-7e6a55349fa5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8,CDEF-07
+service-08,50,EUR 999.99,Servicio Completo,https://plus.unsplash.com/premium_photo-1724745798783-533a966764cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8,GHIJ-08
+# avd_dwell_time - standard variations
+service-09,50,EUR 100.00,Servicio Básico,https://plus.unsplash.com/premium_photo-1724475686854-e9be09351617?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIxfHx8ZW58MHx8fHx8,JKLM-09
+service-10,00,EUR 250.50,Servicio Premium,https://plus.unsplash.com/premium_photo-1724475944978-306eb32023d8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE4fHx8ZW58MHx8fHx8,NOPQ-10
+service-11,01,EUR 75.25,Servicio Estándar,https://plus.unsplash.com/premium_photo-1724546208079-06f533aaf10f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI1fHx8ZW58MHx8fHx8,RSTU-11
+service-12,99,EUR 500.01,Servicio Avanzado,https://plus.unsplash.com/premium_photo-1724546208079-17e142699654?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI2fHx8ZW58MHx8fHx8,VWXY-12
+# discount_applied - standard variations
+service-13,15,EUR 500.01,Servicio Básico,https://plus.unsplash.com/premium_photo-1724745799156-d186120d547c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmklQzMlQjFvJTIwcmF0YXxlbnwwfHwwfHx8MA%3D%3D,EFGH-13
+service-14,30,EUR 001.00,Servicio Premium,https://plus.unsplash.com/premium_photo-1724745799022-97eb86447ebb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D,IJKL-14
+service-15,25,EUR 99.99,Servicio Estándar,https://plus.unsplash.com/premium_photo-1724745799262-996458e8844b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D,MNPQ-15
+service-16,40,EUR 999999.99,Servicio Avanzado,https://plus.unsplash.com/premium_photo-1724646533446-0c7cdc3a4aa4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D,OPQR-16
+service-17,10,EUR 1000000.00,Servicio Express,https://plus.unsplash.com/premium_photo-1724646533375-46d8f57c7bec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D,STUV-17
+service-18,35,EUR 200.00,Servicio VIP,https://plus.unsplash.com/premium_photo-1724745798740-7e6a55349fa5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8,XYZW-18
+# name - standard variations
+service-19,15,EUR 100.00,Lorem ipsum dolor sit ame,https://plus.unsplash.com/premium_photo-1724745799156-d186120d547c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmklQzMlQjFvJTIwcmF0YXxlbnwwfHwwfHx8MA%3D%3D,LMNP-19
+service-20,30,EUR 250.50,L,https://plus.unsplash.com/premium_photo-1724745799022-97eb86447ebb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D,BCDE-20
+service-21,25,EUR 75.25,Lo,https://plus.unsplash.com/premium_photo-1724745799262-996458e8844b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D,QWER-01
+service-22,40,EUR 500.01,"Lorem ipsum dolor sit amet, consectetur adipiscin",https://plus.unsplash.com/premium_photo-1724646533446-0c7cdc3a4aa4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D,ASDF-02
+service-23,10,EUR 20.99,"Lorem ipsum dolor sit amet, consectetur adipiscing",https://plus.unsplash.com/premium_photo-1724646533523-7b8d022ab10b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fHw%3D,ZXCV-03
+service-24,35,EUR 300.75,โลเร็ม อิปซัม,https://plus.unsplash.com/premium_photo-1724646533375-46d8f57c7bec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D,RTYU-04
+service-25,20,EUR 50.50,لوريم إيبسوم,https://plus.unsplash.com/premium_photo-1724255994628-dceb76a829e8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGklQzMlQjFhfGVufDB8fDB8fHww,GHJK-05
+service-26,50,EUR 999.99,洛伦·伊普森,https://plus.unsplash.com/premium_photo-1724745798740-7e6a55349fa5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8,POIU-06
+service-27,15,EUR 100.00,<marquee>Hacked</marquee>,https://plus.unsplash.com/premium_photo-1724745799156-d186120d547c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmklQzMlQjFvJTIwcmF0YXxlbnwwfHwwfHx8MA%3D%3D,LKJH-07
+service-28,30,EUR 250.50,<script>alert(‘Hacked!’);</script>,https://plus.unsplash.com/premium_photo-1724745799022-97eb86447ebb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D,MNBV-08
+service-29,25,EUR 75.25,' or 'A' = 'A,https://plus.unsplash.com/premium_photo-1724745799262-996458e8844b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D,WERT-09
+# picture - standard variations
+service-30,15,EUR 100.00,Servicio Básico,http://lorem.com/ipsum,QWPL-10
+service-31,30,EUR 250.50,Servicio Premium,ftp://a,DFGH-11
+service-32,25,EUR 75.25,Servicio Estándar,ftp://a.b,JKLO-12
+service-33,40,EUR 500.01,Servicio Avanzado,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",FGHY-13
+service-34,10,EUR 20.99,Servicio Express,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",XCVB-14
+service-35,35,EUR 300.75,Servicio VIP,https://www.lorem-ipsum.org,POKI-15
+service-36,20,EUR 50.50,Servicio Económico,ftp://www.lorem-ipsum.org,VBNM-16
+service-37,50,EUR 999.99,Servicio Completo,http://www.lorem-ipsum.org/dolor/sit.html,ZXCV-17
+service-38,15,EUR 100.00,Servicio Básico,http://www.lorem-ipsum.org/dolor/sit.html#dolor,LKJS-18
+service-39,30,EUR 250.50,Servicio Premium,http://example.org?a=1&b=2,QWZM-19
+service-40,25,EUR 75.25,Servicio Estándar,http://example.org?,PLOK-20
+service-41,40,EUR 500.01,Servicio Avanzado,http://example.org?a,ABCD-21
+service-42,10,EUR 20.99,Servicio Express,http://example.org?a&b,EFGH-22
+service-43,35,EUR 300.75,Servicio VIP,http://example.org/,IJKL-23
+service-44,20,EUR 50.50,Servicio Económico,http://example.org/a,MNOP-24
+service-45,50,EUR 999.99,Servicio Completo,http://example.org/a/b,QRST-25
+service-46,30,EUR 250.50,Servicio Premium,http://example.org/a/b?,UVWX-26
+service-47,25,EUR 75.25,Servicio Estándar,http://example.org/a/b?a&b,YZAB-27
+# promotion_code - standard variations
+service-48,15,EUR 100.00,Servicio Básico,https://plus.unsplash.com/premium_photo-1724745799156-d186120d547c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmklQzMlQjFvJTIwcmF0YXxlbnwwfHwwfHx8MA%3D%3D,CDEF-28
+service-49,30,EUR 250.50,Servicio Premium,https://plus.unsplash.com/premium_photo-1724745799022-97eb86447ebb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D,GHIJ-29
+service-50,25,EUR 75.25,Servicio Estándar,https://plus.unsplash.com/premium_photo-1724646533446-0c7cdc3a4aa4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D,KLMN-30
+service-51,40,EUR 500.01,Servicio Avanzado,https://plus.unsplash.com/premium_photo-1724646533446-0c7cdc3a4aa4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDh8fHxlbnwwfHx8fHw%3D,OPQR-31
+service-52,10,EUR 20.99,Servicio Express,https://plus.unsplash.com/premium_photo-1724646533375-46d8f57c7bec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D,STUV-32
+service-53,35,EUR 300.75,Servicio VIP,https://plus.unsplash.com/premium_photo-1724745798740-7e6a55349fa5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8,WXZY-33
+service-54,20,EUR 50.50,Servicio Económico,https://plus.unsplash.com/premium_photo-1724745799156-d186120d547c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmklQzMlQjFvJTIwcmF0YXxlbnwwfHwwfHx8MA%3D%3D,ABJK-34
+service-55,50,EUR 999.99,Servicio Completo,https://plus.unsplash.com/premium_photo-1724745799022-97eb86447ebb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D,KLPO-35
