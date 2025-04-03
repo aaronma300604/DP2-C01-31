@@ -25,6 +25,7 @@ acme.validation.airline.iata.message = Must be two upper case letters, followed 
 acme.validation.airport.iata.message = Must be three upper case letters
 
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet
+acme.validation.claim.cant-be-publish.message = This claim can't be published yet
 acme.validation.maintenance-record.cant-be-publish.message = This record can't be published yet
 acme.validation.task.cant-be-publish.message  = This task can't be published yet
 acme.validation.text.length.1-255 = Must be between 1 and 255 characters long

@@ -84,13 +84,44 @@ bg=RED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>850</x>
+      <x>860</x>
+      <y>620</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidClaim
+--
++ leg should have its scheduled arrival either in
+the past or today
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>630</y>
+      <w>320</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Constraint&gt;&gt;
+ValidPhone
+--
++ phone must match the pattern "^\\+?\\d{6,15}$"
+bg=RED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>860</x>
       <y>510</y>
       <w>320</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidAssitanceAgent
+ValidAssistanceAgent
 --
 + employee code must begin with agent's initials,
 	followed by six digits
@@ -101,14 +132,18 @@ bg=RED</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>680</x>
-      <y>630</y>
+      <y>720</y>
       <w>320</w>
-      <h>70</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Constraint&gt;&gt;
-ValidPhone
+ValidTrackingLog
 --
-+ phone must match the pattern "^\\+?\\d{6,15}$"
++ trackingLog must have a higher percentage than
+the last trackingLog for the same claim, unless
+the lastest trackingLog's percentage is 100% in
+which case a new one with a lower percentage
+can be created.
 bg=RED</panel_attributes>
     <additional_attributes/>
   </element>

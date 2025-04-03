@@ -61,6 +61,12 @@ master.menu.manager.show-dashboard = Show dashboard
 master.menu.manager.list-my-flights = My Flights
 master.menu.manager.list-my-legs = My Legs
 
+# master.menu.agent ##########################################################
+
+master.menu.agent = Assistance Agent
+master.menu.agent.list-my-undergoing-claims = My Claims
+master.menu.agent.list-my-completed-claims = My Completed Claims
+
 # master.menu.customer ##########################################################
 
 master.menu.customer = Customer
@@ -76,7 +82,6 @@ master.menu.technician.list-availiable-records = Available records
 master.menu.technician.list-my-tasks = My Tasks
 master.menu.technician.list-available-tasks = Available tasks
 master.menu.technician.show-dashboard = Show dashboard
-
 
 # master.menu.user-account ####################################################
 

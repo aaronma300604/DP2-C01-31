@@ -1,0 +1,24 @@
+assistance-agent.claim.list.title = List of My Claims:
+assistance-agent.claim.list.title = Details of Claim:
+
+assistance-agent.claim.list.label.date = Date:
+assistance-agent.claim.list.label.email = Email:
+assistance-agent.claim.list.label.description = Description:
+assistance-agent.claim.list.label.type = Type:
+assistance-agent.claim.list.label.status = Status:
+assistance-agent.claim.list.label.leg = Leg:
+
+assistance-agent.claim.list.button.create = Create
+
+assistance-agent.claim.form.title = Details of Claim
+assistance-agent.claim.form.label.date = Date:
+assistance-agent.claim.form.label.email = Email:
+assistance-agent.claim.form.label.description = Description:
+assistance-agent.claim.form.label.status = Status:
+assistance-agent.claim.form.label.type = Type:
+assistance-agent.claim.form.label.leg = Leg:
+
+assistance-agent.claim.form.button.update = Update
+assistance-agent.claim.form.button.delete = Delete
+assistance-agent.claim.form.button.publish = Publish
+assistance-agent.claim.form.button.create = Create
