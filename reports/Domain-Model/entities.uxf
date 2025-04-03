@@ -412,31 +412,32 @@ m2=*</panel_attributes>
       <x>624</x>
       <y>60</y>
       <w>372</w>
-      <h>78</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
-TrackingLog
+TrackingLog {ValidTrackingLog}
 --
 + lastUpdate: Date {Mandatory, Temporal(TIMESTAMP), ValidMoment(past = true)}
 + stepUndergoing: String {Mandatory, Automapped, ValidString(min = 1, max = 50)}
 + resolutionPercentage: Double {Mandatory, Automapped, ValidNumber(min = 0.0, max = 100.0)}
-+ finallyAccepted: AcceptanceStatus {Mandatory, Automapped, Valid}
++ accepted: AcceptanceStatus {Mandatory, Automapped, Valid}
 + resolution: String {Optional, Automapped, ValidString(min = 1, max = 255)}
-bg=green</panel_attributes>
+bg=green
++ iteration: Integer {Mandatory, Automapped, ValidNumber(min=1)}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>876</x>
-      <y>132</y>
+      <y>144</y>
       <w>24</w>
-      <h>72</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-x
-m1=1
+m1=*
 m2=1</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -726,5 +727,18 @@ bg=green</panel_attributes>
 m1=1
 m2=*</panel_attributes>
     <additional_attributes>770.0;10.0;770.0;70.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>234</y>
+      <w>234</w>
+      <h>444</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-x
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;710.0;100.0;710.0;100.0;10.0;370.0;10.0</additional_attributes>
   </element>
 </diagram>
