@@ -68,6 +68,13 @@ master.menu.agent = Assistance Agent
 master.menu.agent.list-my-undergoing-claims = My Claims
 master.menu.agent.list-my-completed-claims = My Completed Claims
 
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = My Bookings
+master.menu.customer.passenger = My Passengers
+master.menu.customer.passenger-booking = Passenger Booking Details
+
 # master.menu.technician ##########################################################
 
 master.menu.technician = Technician
