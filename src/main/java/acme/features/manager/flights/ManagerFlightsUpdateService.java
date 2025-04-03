@@ -60,7 +60,15 @@ public class ManagerFlightsUpdateService extends AbstractGuiService<AirlineManag
 
 	@Override
 	public void validate(final Flight flight) {
-		;
+		boolean availableCurrency;
+		List<String> currencies;
+		currencies = this.repository.finAllCurrencies();
+		String currency;
+		currency = super.getRequest().getData("cost", String.class);
+		currency = currency.length() >= 3 ? currency.substring(0, 3).toUpperCase() : currency;
+		availableCurrency = currencies.contains(currency);
+
+		super.state(availableCurrency, "cost", "acme.validation.invalid-currency.message");
 	}
 
 	@Override

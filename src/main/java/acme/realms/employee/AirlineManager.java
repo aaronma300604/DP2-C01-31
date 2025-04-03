@@ -36,7 +36,7 @@ public class AirlineManager extends AbstractRole {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, message = "{acme.validation.positive.number}")
 	private Integer				experience;
 
 	@Mandatory

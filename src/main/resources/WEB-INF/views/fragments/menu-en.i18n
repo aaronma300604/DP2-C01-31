@@ -29,12 +29,11 @@ master.menu.administrator.list-system-config = System configuration
 
 # feature.menu.administrator ###################################################
 
-feature.menu.administrator = Lists
 feature.menu.administrator.list-airports = Airports
 feature.menu.administrator.list-aircrafts = Aircrafts
 feature.menu.administrator.list-maintenance-records = Maintenance Records
 feature.menu.administrator.list-airlines = Airlines
-
+feature.menu.administrator.list-services = Services
 
 
 # master.menu.provider ########################################################
@@ -95,6 +94,8 @@ master.menu.user-account.consumer-profile = Consumer profile
 master.menu.user-account.member-profile = Flight Crew Member dashboard
 master.menu.user-account.become-technician = Become a technician
 master.menu.user-account.technician-profile = Technician profile
+master.menu.user-account.become-manager = Become a manager
+master.menu.user-account.manager-profile = Manager profile
 
 # master.menu.member ##########################################################
 
@@ -105,4 +106,5 @@ master.menu.member.list-my-assignmentsUL = My Assignments (Uncompleted Legs)
 # master.menu.any ##########################################################
 master.menu.any = Any
 master.menu.any.review-list = Reviews
-
+master.menu.any.service-list = Services
+master.menu.any.flight-list = Flights

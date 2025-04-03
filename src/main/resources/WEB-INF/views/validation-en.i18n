@@ -7,8 +7,9 @@ acme.validation.review.score = Score must be between 0 and 10
 acme.validation.currency.is-only-system-currency = Cannot leave the system without a system currency
 acme.validation.system-currency.current = Cannot delete the current system currency
 acme.validation.sysconf.currency = Must be a 3 letter upper case long string
+acme.validation.positive.number = Must be a positive number
 
-
+acme.validation.service.duplicated-code.message = There is another service with this promotion code
 acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
 acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits
 acme.validation.leg.duplicated-flight-number.message = There is another leg with this flight number

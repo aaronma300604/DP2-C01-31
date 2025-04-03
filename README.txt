@@ -40,3 +40,5 @@ Student #5:
 # Useful links:
 
 Planning dashboard: https://github.com/users/aaronma300604/projects/2/views/1
+
+Video of Informal Testing for Requirement #14 (Group Supplementary I): https://ev.us.es/bbcswebdav/xid-64212142_1

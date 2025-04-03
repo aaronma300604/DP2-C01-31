@@ -1,0 +1,9 @@
+authenticated.airline-manager.form.title = Manager
+
+authenticated.airline-manager.form.label.experience = Years of Experience
+authenticated.airline-manager.form.label.birth = Date of Birth
+authenticated.airline-manager.form.label.link = Picture (Optional)
+authenticated.airline-manager.form.label.airline = Airlines
+
+authenticated.airline-manager.form.button.create = Become a Manager
+authenticated.airline-manager.form.button.update = Update

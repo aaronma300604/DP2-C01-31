@@ -1,9 +1,9 @@
 key,moment,incident,description,severityLevel,draftMode,key:flight-assignment
-log-001,2021/11/15 14:30,Engine failure,Engine experienced power loss mid-flight,7,false,flight-assignment-13
-log-002,2020/06/25 09:45,Bird strike,Bird collision with left engine,5,false,flight-assignment-13
-log-003,2019/09/10 22:15,Turbulence,Severe turbulence encountered over Atlantic,4,false,flight-assignment-14
-log-004,2021/03/05 18:20,Medical emergency,Passenger suffered a heart attack,6,false,flight-assignment-14
-log-005,2021/07/12 12:10,Fuel leak,Fuel leak detected before takeoff,8,false,flight-assignment-13
-log-006,2020/04/30 06:50,Lightning strike,Aircraft struck by lightning,6,false,flight-assignment-14
-log-007,2019/12/05 17:25,Hydraulic failure,Loss of hydraulic pressure mid-flight,7,false,flight-assignment-15
-log-008,2021/01/20 21:40,Cabin depressurization,Rapid loss of cabin pressure,9,false,flight-assignment-15
+log-001,2021/11/15 14:30,Engine failure,Engine experienced power loss mid-flight,7,true,flight-assignment-13
+log-002,2020/06/25 09:45,Bird strike,Bird collision with left engine,5,true,flight-assignment-13
+log-003,2019/09/10 22:15,Turbulence,Severe turbulence encountered over Atlantic,4,true,flight-assignment-14
+log-004,2021/03/05 18:20,Medical emergency,Passenger suffered a heart attack,6,true,flight-assignment-14
+log-005,2021/07/12 12:10,Fuel leak,Fuel leak detected before takeoff,8,true,flight-assignment-13
+log-006,2020/04/30 06:50,Lightning strike,Aircraft struck by lightning,6,true,flight-assignment-14
+log-007,2019/12/05 17:25,Hydraulic failure,Loss of hydraulic pressure mid-flight,7,true,flight-assignment-15
+log-008,2021/01/20 21:40,Cabin depressurization,Rapid loss of cabin pressure,9,true,flight-assignment-15

@@ -1,0 +1,19 @@
+any.leg.list.title = Trayectos Publicados:
+any.leg.form.title = Detalles del Trayecto:
+
+any.leg.list.label.flightNumber = Número de Vuelo:
+any.leg.list.label.scheduledDeparture = Horario de Salida:
+any.leg.list.label.scheduledArrival = Horario de LLegada:
+any.leg.list.label.duration = Duración:
+any.leg.list.label.origin = Origen:
+any.leg.list.label.destination = Destino:
+
+any.leg.form.label.flightNumber = Número de Vuelo:
+any.leg.form.label.manager = Nombre del Gerente:
+any.leg.form.label.scheduledDeparture = Horario de Salida:
+any.leg.form.label.scheduledArrival = Horario de LLegada:
+any.leg.form.label.origin = Origen:
+any.leg.form.label.destination = Destino:
+any.leg.form.label.duration = Duración:
+any.leg.form.label.status = Estado:
+any.leg.form.label.aircraft = Aeronave:
