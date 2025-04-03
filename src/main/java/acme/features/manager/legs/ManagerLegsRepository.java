@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.activityLog.ActivityLog;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
@@ -52,9 +51,6 @@ public interface ManagerLegsRepository extends AbstractRepository {
 
 	@Query("select a from FlightAssignment a where a.leg.id = :legId")
 	List<FlightAssignment> findAssigmentsByLeg(int legId);
-
-	@Query("select a from ActivityLog a where a.leg.id = :legId")
-	List<ActivityLog> findActivityLogsByLeg(int legId);
 
 	@Query("select a.airline from AirlineManager a where a.id = :managerId")
 	Airline findAirlineByManager(int managerId);
