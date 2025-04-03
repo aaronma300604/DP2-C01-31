@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.activityLog.ActivityLog;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -17,8 +18,8 @@ import acme.entities.leg.Leg;
 @Repository
 public interface ManagerLegsRepository extends AbstractRepository {
 
-	@Query("select l from Leg l where l.manager.id = :managerId order by l.scheduledDeparture")
-	List<Leg> findMyLegs(int managerId);
+	@Query("select l from Leg l where l.manager.id = :managerId and l.flight.airline.id = :airlineId order by l.scheduledDeparture")
+	List<Leg> findMyLegs(int managerId, int airlineId);
 
 	@Query("select l from Leg l where l.id = :legId")
 	Leg findLeg(final int legId);
@@ -52,4 +53,7 @@ public interface ManagerLegsRepository extends AbstractRepository {
 
 	@Query("select a from ActivityLog a where a.leg.id = :legId")
 	List<ActivityLog> findActivityLogsByLeg(int legId);
+
+	@Query("select a.airline from AirlineManager a where a.id = :managerId")
+	Airline findAirlineByManager(int managerId);
 }

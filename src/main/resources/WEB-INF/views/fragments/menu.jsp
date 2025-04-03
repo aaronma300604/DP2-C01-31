@@ -21,6 +21,7 @@
 			<acme:menu-option code="master.menu.any" access="true">
 			<acme:menu-suboption code="master.menu.any.review-list" action="/any/review/list"/>
 			<acme:menu-suboption code="master.menu.any.service-list" action="/any/service/list"/>
+			<acme:menu-suboption code="master.menu.any.flight-list" action="/any/flight/list"/>
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
@@ -100,8 +101,8 @@
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-technician" action="/authenticated/technician/create" access="!hasRealm('Technician')"/>
 			<acme:menu-suboption code="master.menu.user-account.technician-profile" action="/authenticated/technician/update" access="hasRealm('Technician')"/>
-			
-			
+			<acme:menu-suboption code="master.menu.user-account.become-manager" action="/authenticated/airline-manager/create" access="!hasRealm('AirlineManager')"/>
+			<acme:menu-suboption code="master.menu.user-account.manager-profile" action="/authenticated/airline-manager/update" access="hasRealm('AirlineManager')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

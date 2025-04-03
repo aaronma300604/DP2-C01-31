@@ -1,0 +1,19 @@
+any.leg.list.title = Legs Published:
+any.leg.form.title = Leg Details:
+
+any.leg.list.label.flightNumber = Flight Number:
+any.leg.list.label.scheduledDeparture = Departure Scheduled:
+any.leg.list.label.scheduledArrival = Arrival Scheduled:
+any.leg.list.label.duration = Duration:
+any.leg.list.label.origin = Origin:
+any.leg.list.label.destination = Destination:
+
+any.leg.form.label.flightNumber = Flight Number:
+any.leg.form.label.manager = Manager Name:
+any.leg.form.label.scheduledDeparture = Departure Scheduled:
+any.leg.form.label.scheduledArrival = Arrival Scheduled:
+any.leg.form.label.origin = Origin:
+any.leg.form.label.destination = Destination:
+any.leg.form.label.duration = Duration:
+any.leg.form.label.status = Status:
+any.leg.form.label.aircraft = Aircraft:

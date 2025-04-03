@@ -1,6 +1,7 @@
 
 package acme.features.manager.flights;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,10 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.airline.Airline;
+import acme.entities.booking.Booking;
+import acme.entities.booking.PassengerBooking;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
-import acme.entities.passenger.Passenger;
 import acme.features.manager.legs.ManagerLegsDeleteService;
 import acme.realms.employee.AirlineManager;
 
@@ -71,12 +73,18 @@ public class ManagerFlightsDeleteService extends AbstractGuiService<AirlineManag
 
 	@Override
 	public void perform(final Flight flight) {
-		List<Passenger> passengers;
+		List<PassengerBooking> passengerBookings;
+		List<Booking> bookings;
 		List<Leg> legs;
 
-		passengers = this.repository.findPassengersByFlight(flight.getId());
+		bookings = this.repository.findBookingByFlight(flight.getId());
+		passengerBookings = new ArrayList<>();
+		for (Booking booking : bookings)
+			passengerBookings.addAll(this.repository.findPassengerBookingByBookingId(booking.getId()));
 		legs = this.repository.findLegsByFlight(flight.getId());
-		this.repository.deleteAll(passengers);
+
+		this.repository.deleteAll(passengerBookings);
+		this.repository.deleteAll(bookings);
 		legs.stream().forEach(l -> this.legsDeleteService.perform(l));
 		this.repository.delete(flight);
 	}

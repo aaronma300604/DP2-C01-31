@@ -89,6 +89,8 @@ master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.user-account.become-technician = Hazte técnico
 master.menu.user-account.technician-profile = Perfil de técnico
+master.menu.user-account.become-manager = Hazte gerente
+master.menu.user-account.manager-profile = Perfil de gerente
 
 # master.menu.member ##########################################################
 
@@ -99,3 +101,4 @@ maste.menu.member.list-my-assignments = Mis asignaciones
 master.menu.any = Cualquiera
 master.menu.any.review-list = Reseñas
 master.menu.any.service-list = Servicios
+master.menu.any.flight-list = Vuelos
