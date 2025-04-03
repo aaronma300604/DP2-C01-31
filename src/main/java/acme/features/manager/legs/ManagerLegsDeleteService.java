@@ -94,14 +94,16 @@ public class ManagerLegsDeleteService extends AbstractGuiService<AirlineManager,
 		List<TrackingLog> trackingLogs;
 
 		assignments = this.repository.findAssigmentsByLeg(leg.getId());
-		logs = this.repository.findActivityLogsByLeg(leg.getId());
+		logs = new ArrayList<>();
+		for (FlightAssignment assignment : assignments)
+			logs.addAll(this.repository.findActivityLogsByAssignment(assignment.getId()));
 		claims = this.repository.findClaimsByLeg(leg.getId());
 		trackingLogs = new ArrayList<>();
 		for (Claim claim : claims)
 			trackingLogs.addAll(this.repository.findLogsByClaim(claim.getId()));
 
-		this.repository.deleteAll(assignments);
 		this.repository.deleteAll(logs);
+		this.repository.deleteAll(assignments);
 		this.repository.deleteAll(trackingLogs);
 		this.repository.deleteAll(claims);
 		this.repository.delete(leg);

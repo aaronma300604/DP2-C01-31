@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.activityLog.ActivityLog;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
@@ -60,4 +61,7 @@ public interface ManagerLegsRepository extends AbstractRepository {
 
 	@Query("select l from TrackingLog l where l.claim.id = :claimId")
 	List<TrackingLog> findLogsByClaim(int claimId);
+
+	@Query("select l from ActivityLog l where l.flightAssignment.id = :assignmentId")
+	List<ActivityLog> findActivityLogsByAssignment(int assignmentId);
 }
