@@ -1,5 +1,5 @@
 
-package acme.features.customer.booking;
+package acme.features.administrator.booking;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import acme.entities.flight.Flight;
 import acme.entities.passenger.Passenger;
 
 @Repository
-public interface CustomerBookingRepository extends AbstractRepository {
+public interface AdministratorBookingRepository extends AbstractRepository {
 
-	@Query("select b from Booking b where b.customer.id = :id ")
-	List<Booking> findBookingsByCustomerId(int id);
+	@Query("select b from Booking b where b.draftMode = false")
+	List<Booking> findBookingsPublished();
 
 	@Query("select b from Booking b where b.id = :bookingId")
 	Booking findBookingById(int bookingId);
@@ -25,11 +25,4 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("select p.passenger from PassengerBooking p where p.booking.id = :bookingId")
 	List<Passenger> findPassengerByBookingId(int bookingId);
-
-	@Query("select f from Flight f where f.id = :flightId")
-	Flight findFlightById(int flightId);
-
-	@Query("select count(b) > 0 FROM Booking b WHERE b.locatorCode = :locatorCode")
-	Boolean existsByLocatorCode(String locatorCode);
-
 }

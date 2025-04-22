@@ -1,10 +1,10 @@
 key,lastCreditCardNibble,locatorCode,purchaseMoment,travelClass,key:customer,draftMode,key:flight
 # base entity
-booking-01,null,ABC123,2015/03/11 10:00,ECONOMY,customer-01,true,flight-01
+booking-01,null,ABC123,2015/03/11 10:00,ECONOMY,customer-01,false,flight-05
 booking-02,0000,DEF456,2015/03/09 10:00,ECONOMY,customer-02,true,flight-02
 booking-03,9999,GHI789,2015/03/07 10:00,ECONOMY,customer-03,true,flight-03
 booking-04,4567,JKL012,2015/03/04 10:00,BUSINESS,customer-01,true,flight-04
-booking-05,null,MNO345,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
+booking-05,null,MNO345,2015/02/25 10:00,ECONOMY,customer-02,true,flight-01
 booking-06,1234,PQR678,2015/03/12 10:00,BUSINESS,customer-03,true,flight-06
 booking-07,0000,STU901,2015/03/10 10:00,ECONOMY,customer-01,true,flight-07
 booking-08,9999,VWX234,2015/03/05 10:00,BUSINESS,customer-02,true,flight-08

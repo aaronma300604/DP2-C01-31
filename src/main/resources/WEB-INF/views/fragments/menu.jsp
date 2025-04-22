@@ -45,6 +45,8 @@
 			<acme:menu-suboption code="feature.menu.administrator.list-airlines" action="/administrator/airline/list"/>
 			<acme:menu-suboption code="master.menu.administrator.list-system-config" action="/administrator/system-config/list"/>
 			<acme:menu-suboption code="feature.menu.administrator.list-services" action="/administrator/service/list"/>
+			<acme:menu-suboption code="feature.menu.administrator.list-booking" action="/administrator/booking/list"/>
+			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
 		</acme:menu-option>
@@ -108,6 +110,8 @@
 			<acme:menu-suboption code="master.menu.user-account.technician-profile" action="/authenticated/technician/update" access="hasRealm('Technician')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-manager" action="/authenticated/airline-manager/create" access="!hasRealm('AirlineManager')"/>
 			<acme:menu-suboption code="master.menu.user-account.manager-profile" action="/authenticated/airline-manager/update" access="hasRealm('AirlineManager')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-customer" action="/authenticated/customer/create" access="!hasRealm('Customer')"/>
+			<acme:menu-suboption code="master.menu.user-account.customer-profile" action="/authenticated/customer/update" access="hasRealm('Customer')"/>	
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>
