@@ -23,7 +23,16 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		int recordId;
+		MaintenanceRecord record;
+		Technician technician;
+		boolean status;
+
+		recordId = super.getRequest().getData("recordId", int.class);
+		record = this.repository.findRecordById(recordId);
+		technician = record.getTechnician();
+		status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -45,10 +54,23 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	public void bind(final Involves involves) {
 		int taskId;
 		Task task;
+		Technician technician;
+		List<Integer> selectableTasks = List.of();
 
 		taskId = super.getRequest().getData("task", int.class);
+		System.out.println(taskId);
 
 		task = this.repository.findTaskById(taskId);
+		technician = involves.getMaintenanceRecord().getTechnician();
+
+		if (task == null && taskId != 0)
+			throw new RuntimeException("Unexpected task received");
+
+		if (task != null) {
+			selectableTasks = this.repository.findAllSelectableTasks(technician.getId()).stream().map(Task::getId).toList();
+			if (!selectableTasks.contains(taskId))
+				throw new RuntimeException("Unexpected task received");
+		}
 
 		involves.setTask(task);
 		super.bindObject(involves);
