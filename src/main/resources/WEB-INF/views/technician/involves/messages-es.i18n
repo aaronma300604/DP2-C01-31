@@ -5,3 +5,5 @@ technician.involves.form.label.task = Tarea
 
 technician.involves.form.button.create = Añadir
 technician.involves.list.button.create = Añadir
+technician.involves.form.button.delete = Eliminar
+

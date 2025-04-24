@@ -14,6 +14,7 @@
 
 <jstl:if test="${_command == 'list'&& $request.data.recordId != -1 && $request.data.draftMode == true}">
 	<acme:button code="technician.involves.list.button.create" action="/technician/involves/create?recordId=${$request.data.recordId}"/>
+	<acme:button code="technician.involves.list.button.delete" action="/technician/involves/delete?recordId=${$request.data.recordId}"/>
 </jstl:if>
 <jstl:if test="${_command == 'list'&& $request.data.recordId == -1}">
 	<acme:button code="technician.task.list.button.create" action="/technician/task/create"/>

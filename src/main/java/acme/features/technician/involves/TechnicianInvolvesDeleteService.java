@@ -15,7 +15,7 @@ import acme.entities.task.Task;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianInvolvesCreateService extends AbstractGuiService<Technician, Involves> {
+public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technician, Involves> {
 
 	@Autowired
 	TechnicianInvolvesRepository repository;
@@ -32,71 +32,64 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		record = this.repository.findRecordById(recordId);
 		technician = record.getTechnician();
 		status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician);
+		System.out.println("Authorised");
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
 	public void load() {
-		Involves involves;
-		MaintenanceRecord record;
-		int recordId;
 
-		recordId = super.getRequest().getData("recordId", int.class);
-		record = this.repository.findRecordById(recordId);
+		Involves object;
+		Integer maintenanceRecordId;
+		MaintenanceRecord maintenanceRecord;
 
-		involves = new Involves();
-		involves.setMaintenanceRecord(record);
+		maintenanceRecordId = super.getRequest().getData("recordId", int.class);
+		maintenanceRecord = this.repository.findRecordById(maintenanceRecordId);
 
-		super.getBuffer().addData(involves);
+		object = new Involves();
+		object.setMaintenanceRecord(maintenanceRecord);
+		System.out.println("Loaded");
+		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final Involves involves) {
-		int taskId;
-		Task task;
-		Technician technician;
-		List<Integer> selectableTasks = List.of();
-		int recordId;
-
-		taskId = super.getRequest().getData("task", int.class);
-
-		task = this.repository.findTaskById(taskId);
-		technician = involves.getMaintenanceRecord().getTechnician();
-		recordId = involves.getMaintenanceRecord().getId();
-
-		if (task == null && taskId != 0)
-			throw new RuntimeException("Unexpected task received");
-
-		if (task != null) {
-			selectableTasks = this.repository.findAllSelectableTasks(technician.getId(), recordId).stream().map(Task::getId).toList();
-			if (!selectableTasks.contains(taskId))
-				throw new RuntimeException("Unexpected task received");
-		}
-
-		involves.setTask(task);
-		super.bindObject(involves);
-
+		System.out.println("binding...");
 	}
 
 	@Override
 	public void validate(final Involves involves) {
-		;
+		System.out.println("Validating...");
+		List<Task> tasks;
+		tasks = this.repository.findValidTasksToUnlink(involves.getMaintenanceRecord().getId());
+
+		int taskId = super.getRequest().getData("task", int.class);
+		Task task = this.repository.findTaskById(taskId);
+		System.out.println("Validated");
+		super.state(task != null && tasks.contains(task), "task", "technician.involves.form.error.no-task-to-unlink");
 	}
 
 	@Override
 	public void perform(final Involves involves) {
-		this.repository.save(involves);
+		System.out.println("Performing...");
+		int taskId = super.getRequest().getData("task", int.class);
+
+		Task task = this.repository.findTaskById(taskId);
+		MaintenanceRecord maintenanceRecord = involves.getMaintenanceRecord();
+		System.out.println("Performed");
+		this.repository.delete(this.repository.findInvolvesByMaintenanceRecordAndTask(maintenanceRecord, task));
 	}
 
 	@Override
 	public void unbind(final Involves involves) {
+		System.out.println("Unbinding...");
 		Dataset dataset;
 		SelectChoices taskChoices;
 		List<Task> tasks;
-		int technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		int recordId = involves.getMaintenanceRecord().getId();
 
-		tasks = this.repository.findAllSelectableTasks(technicianId, recordId);
+		tasks = this.repository.findValidTasksToUnlink(recordId);
 		taskChoices = SelectChoices.from(tasks, "id", involves.getTask());
 
 		dataset = super.unbindObject(involves);
@@ -106,4 +99,5 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 		super.getResponse().addData(dataset);
 	}
+
 }
