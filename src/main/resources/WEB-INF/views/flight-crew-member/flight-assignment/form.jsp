@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select path="crewMember" code="flight-crew-member.flight-assignment.form.label.crewMember" choices="${crewMembers}"/>
+	
 	<acme:input-select path="leg" code="flight-crew-member.flight-assignment.form.label.leg" choices="${legs}"/>
 	<acme:input-moment code="flight-crew-member.flight-assignment.form.label.moment" path="moment" />
 	<acme:input-select path="duty" code="flight-crew-member.flight-assignment.form.label.duty" choices="${duties}"  />

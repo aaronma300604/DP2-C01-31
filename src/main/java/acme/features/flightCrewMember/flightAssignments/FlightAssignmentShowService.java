@@ -58,25 +58,22 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 	public void unbind(final FlightAssignment fa) {
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
-		SelectChoices memberChoices;
 		SelectChoices legChoices;
 		Dataset dataset;
-		List<FlightCrewMember> avaliableMembers;
+
 		List<Leg> posibleLegs;
 
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
-		avaliableMembers = this.getAvailableMembers();
+
 		posibleLegs = this.getPosibleLegs(fa);
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
-		memberChoices = SelectChoices.from(avaliableMembers, "userAccount.username", fa.getFlightCrewMember());
+
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("duties", dutyChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("crewMember", memberChoices.getSelected().getKey());
-		dataset.put("crewMembers", memberChoices);
 		dataset.put("flightAssignmentId", fa.getId());
 
 		super.getResponse().addData(dataset);
