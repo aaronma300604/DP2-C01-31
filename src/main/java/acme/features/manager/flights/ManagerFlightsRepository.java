@@ -8,15 +8,16 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.airline.Airline;
+import acme.entities.booking.Booking;
+import acme.entities.booking.PassengerBooking;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
-import acme.entities.passenger.Passenger;
 
 @Repository
 public interface ManagerFlightsRepository extends AbstractRepository {
 
-	@Query("select f from Flight f where f.manager.id = :managerId")
-	List<Flight> findMyFlights(final int managerId);
+	@Query("select f from Flight f where f.manager.id = :managerId and f.airline.id = :airlineId")
+	List<Flight> findMyFlights(final int managerId, int airlineId);
 
 	@Query("select f from Flight f where f.id = :flightId")
 	Flight findFlight(final int flightId);
@@ -30,7 +31,15 @@ public interface ManagerFlightsRepository extends AbstractRepository {
 	@Query("select l from Leg l where l.flight.id = :flightId")
 	List<Leg> findLegsByFlight(int flightId);
 
-	@Query("select p.passenger from PassengerBooking p where p.booking.flight.id = :flightId")
-	List<Passenger> findPassengersByFlight(int flightId);
+	@Query("select b from Booking b where b.flight.id = :flightId")
+	List<Booking> findBookingByFlight(int flightId);
 
+	@Query("select sc.currency from SystemConfig sc")
+	List<String> finAllCurrencies();
+
+	@Query("select pb from PassengerBooking pb where pb.booking.id = :bookingId")
+	List<PassengerBooking> findPassengerBookingByBookingId(int bookingId);
+
+	@Query("select a from Airline a")
+	List<Airline> findAllAirline();
 }

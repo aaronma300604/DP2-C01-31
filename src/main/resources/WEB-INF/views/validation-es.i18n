@@ -5,12 +5,12 @@ acme.validation.review.score = La puntuación debe estar entre 0 y 10
 acme.validation.currency.is-only-system-currency = No puedes dejar al sistema sin moneda del sistema
 acme.validation.system-currency.current = No puedes borrar la actual moneda del sistema
 acme.validation.sysconf.currency = Debe ser una cadena de 3 letras mayúsculas
-
+acme.validation.positive.number = Debe ser un número positivo
 
 
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
 acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
-
+acme.validation.service.duplicated-code.message = Hay otro servicio con ese código de descuento
 acme.validation.leg.flight_number.message = Debe empezar por el código IATA de la aerolínea, seguido de cuatro dígitos
 acme.validation.leg.duplicated-flight-number.message = Hay otro trayecto con ese código de vuelo
 acme.validation.aircraft.duplicated-registration-number.message = Hay otra aeronave con ese código de registro

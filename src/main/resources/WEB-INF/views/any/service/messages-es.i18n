@@ -1,0 +1,11 @@
+any.service.list.title = Servicios:
+any.service.form.title = Detalles del Servicio:
+
+any.service.form.label.name = Nombre
+any.service.form.label.avgDwellTime = Tiempo de Permanencia Promedio
+any.service.form.label.picture = Fotografía
+any.service.form.label.promotionCode = Código Promocional (Opcional)
+any.service.form.label.discountApplied = Descuento Aplicado (Opcional)
+
+any.service.list.label.name = Nombre
+any.service.list.label.avgDwellTime = Tiempo de Permanencia Promedio 

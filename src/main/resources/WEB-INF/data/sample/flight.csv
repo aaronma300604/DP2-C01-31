@@ -1,32 +1,32 @@
-key,cost,description,self_transfer,tag,key:airline,key:manager
+key,cost,description,self_transfer,tag,key:airline,key:manager,draftMode
 # base entity
-flight-01,EUR 59.4,very good description,FALSE,the cheapest,airline-01,manager-01
+flight-01,EUR 59.4,very good description,FALSE,the cheapest,airline-01,manager-01,true
 # cost - standard variations
-flight-02,EUR 500.01,very good description,FALSE,the cheapest,airline-02,manager-02
-flight-03,EUR 0.01,null,TRUE,the cheapest,airline-01,manager-01
-flight-04,EUR 0.02,very good description,FALSE,the cheapest,airline-01,manager-01
-flight-05,EUR 999.99,very good description,TRUE,the cheapest,airline-01,manager-01
-flight-06,EUR 1000.00,very good description,FALSE,the cheapest,airline-01,manager-01
+flight-02,EUR 500.01,very good description,FALSE,the cheapest,airline-02,manager-02,true
+flight-03,EUR 0.01,null,TRUE,the cheapest,airline-01,manager-01,true
+flight-04,EUR 0.02,very good description,FALSE,the cheapest,airline-01,manager-01,true
+flight-05,EUR 999.99,very good description,TRUE,the cheapest,airline-01,manager-01,false
+flight-06,EUR 1000.00,very good description,FALSE,the cheapest,airline-01,manager-01,true
 # description - standard variations
-flight-07,EUR 59.4,"Lorem ipsum dolor sit amet,consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,the cheapest,airline-02,manager-02
-flight-08,EUR 59.4,L,TRUE,the cheapest,airline-01,manager-01
-flight-09,EUR 59.4,Lo,FALSE,the cheapest,airline-01,manager-01
-flight-10,EUR 59.4,โลเร็ม อิปซัม,FALSE,the cheapest,airline-01,manager-01
-flight-11,EUR 59.4,لوريم إيبسوم,TRUE,the cheapest,airline-02,manager-02
-flight-12,EUR 59.4,洛伦·伊普森,FALSE,the cheapest,airline-02,manager-02
-flight-13,EUR 59.4,<marquee>Hacked</marquee>,FALSE,the cheapest,airline-01,manager-01
-flight-14,EUR 59.4,<script>alert(‘Hacked!’);</script>,FALSE,the cheapest,airline-01,manager-01
-flight-15,EUR 59.4,' or 'A' = 'A,TRUE,the cheapest,airline-01,manager-01
-flight-28,EUR 59.4,null,TRUE,the cheapest,airline-01,manager-01
+flight-07,EUR 59.4,"Lorem ipsum dolor sit amet,consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,the cheapest,airline-02,manager-02,true
+flight-08,EUR 59.4,L,TRUE,the cheapest,airline-01,manager-01,true
+flight-09,EUR 59.4,Lo,FALSE,the cheapest,airline-01,manager-01,true
+flight-10,EUR 59.4,โลเร็ม อิปซัม,FALSE,the cheapest,airline-01,manager-01,true
+flight-11,EUR 59.4,لوريم إيبسوم,TRUE,the cheapest,airline-02,manager-02,true
+flight-12,EUR 59.4,洛伦·伊普森,FALSE,the cheapest,airline-02,manager-02,true
+flight-13,EUR 59.4,<marquee>Hacked</marquee>,FALSE,the cheapest,airline-01,manager-01,true
+flight-14,EUR 59.4,<script>alert(‘Hacked!’);</script>,FALSE,the cheapest,airline-01,manager-01,true
+flight-15,EUR 59.4,' or 'A' = 'A,TRUE,the cheapest,airline-01,manager-01,true
+flight-28,EUR 59.4,null,TRUE,the cheapest,airline-01,manager-01,true
 # tag - standard variations
-flight-16,EUR 59.4,very good description,FALSE,Lorem ipsum dolor sit ame,airline-02,manager-02
-flight-17,EUR 59.4,very good description,FALSE,L,airline-01,manager-01
-flight-18,EUR 59.4,null,FALSE,Lo,airline-02,manager-02
-flight-19,EUR 59.4,very good description,FALSE,"Lorem ipsum dolor sit amet, consectetur adipiscin",airline-01,manager-01
-flight-20,EUR 59.4,very good description,FALSE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01,manager-01
-flight-21,EUR 59.4,very good description,FALSE,โลเร็ม อิปซัม,airline-01,manager-01
-flight-22,EUR 59.4,very good description,FALSE,لوريم إيبسوم,airline-01,manager-01
-flight-23,EUR 59.4,null,FALSE,洛伦·伊普森,airline-01,manager-01
-flight-24,EUR 59.4,very good description,FALSE,<marquee>Hacked</marquee>,airline-01,manager-01
-flight-25,EUR 59.4,null,FALSE,<script>alert(‘Hacked!’);</script>,airline-01,manager-01
-flight-26,EUR 59.4,very good description,FALSE,' or 'A' = 'A,airline-01,manager-01
+flight-16,EUR 59.4,very good description,FALSE,Lorem ipsum dolor sit ame,airline-02,manager-02,true
+flight-17,EUR 59.4,very good description,FALSE,L,airline-01,manager-01,true
+flight-18,EUR 59.4,null,FALSE,Lo,airline-02,manager-02,true
+flight-19,EUR 59.4,very good description,FALSE,"Lorem ipsum dolor sit amet, consectetur adipiscin",airline-01,manager-01,true
+flight-20,EUR 59.4,very good description,FALSE,"Lorem ipsum dolor sit amet, consectetur adipiscing",airline-01,manager-01,true
+flight-21,EUR 59.4,very good description,FALSE,โลเร็ม อิปซัม,airline-01,manager-01,true
+flight-22,EUR 59.4,very good description,FALSE,لوريم إيبسوم,airline-01,manager-01,true
+flight-23,EUR 59.4,null,FALSE,洛伦·伊普森,airline-01,manager-01,true
+flight-24,EUR 59.4,very good description,FALSE,<marquee>Hacked</marquee>,airline-01,manager-01,true
+flight-25,EUR 59.4,null,FALSE,<script>alert(‘Hacked!’);</script>,airline-01,manager-01,true
+flight-26,EUR 59.4,very good description,FALSE,' or 'A' = 'A,airline-01,manager-01,true
