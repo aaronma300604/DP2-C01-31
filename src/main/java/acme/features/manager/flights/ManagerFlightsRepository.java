@@ -12,6 +12,7 @@ import acme.entities.booking.Booking;
 import acme.entities.booking.PassengerBooking;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
+import acme.realms.employee.AirlineManager;
 
 @Repository
 public interface ManagerFlightsRepository extends AbstractRepository {
@@ -42,4 +43,7 @@ public interface ManagerFlightsRepository extends AbstractRepository {
 
 	@Query("select a from Airline a")
 	List<Airline> findAllAirline();
+
+	@Query("select m from AirlineManager m where m.id = :managerId")
+	AirlineManager findManagerById(int managerId);
 }
