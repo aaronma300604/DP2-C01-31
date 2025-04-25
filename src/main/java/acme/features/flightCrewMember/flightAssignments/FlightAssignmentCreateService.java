@@ -65,7 +65,6 @@ public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrew
 	@Override
 	public void bind(final FlightAssignment fa) {
 
-		int crewMemberId;
 		int legId;
 		List<Leg> selectedLegs = this.getPosibleLegs();
 
