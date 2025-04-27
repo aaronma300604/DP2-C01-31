@@ -34,12 +34,12 @@ service-28,30,EUR 250.50,<script>alert(‘Hacked!’);</script>,https://plus.uns
 service-29,25,EUR 75.25,' or 'A' = 'A,https://plus.unsplash.com/premium_photo-1724745799262-996458e8844b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D,WERT-09
 # picture - standard variations
 service-30,15,EUR 100.00,Servicio Básico,http://lorem.com/ipsum,QWPL-10
-service-31,30,EUR 250.50,Servicio Premium,ftp://a,DFGH-11
-service-32,25,EUR 75.25,Servicio Estándar,ftp://a.b,JKLO-12
+service-31,30,EUR 250.50,Servicio Premium,http://a.com,DFGH-11
+service-32,25,EUR 75.25,Servicio Estándar,http://a.b,JKLO-12
 service-33,40,EUR 500.01,Servicio Avanzado,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",FGHY-13
 service-34,10,EUR 20.99,Servicio Express,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",XCVB-14
 service-35,35,EUR 300.75,Servicio VIP,https://www.lorem-ipsum.org,POKI-15
-service-36,20,EUR 50.50,Servicio Económico,ftp://www.lorem-ipsum.org,VBNM-16
+service-36,20,EUR 50.50,Servicio Económico,http://www.lorem-ipsum.org,VBNM-16
 service-37,50,EUR 999.99,Servicio Completo,http://www.lorem-ipsum.org/dolor/sit.html,ZXCV-17
 service-38,15,EUR 100.00,Servicio Básico,http://www.lorem-ipsum.org/dolor/sit.html#dolor,LKJS-18
 service-39,30,EUR 250.50,Servicio Premium,http://example.org?a=1&b=2,QWZM-19
