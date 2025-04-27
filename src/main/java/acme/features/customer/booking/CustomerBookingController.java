@@ -25,6 +25,8 @@ public class CustomerBookingController extends AbstractGuiController<Customer, B
 	private CustomerBookingPublishService	publishService;
 	@Autowired
 	private CustomerBookingUpdateService	updateService;
+	@Autowired
+	private CustomerBookingDeleteService	deleteService;
 
 
 	@PostConstruct
@@ -33,6 +35,7 @@ public class CustomerBookingController extends AbstractGuiController<Customer, B
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 
 		super.addCustomCommand("publish", "update", this.publishService);
 

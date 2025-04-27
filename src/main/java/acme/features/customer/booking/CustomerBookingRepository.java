@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.booking.Booking;
+import acme.entities.booking.PassengerBooking;
 import acme.entities.flight.Flight;
 import acme.entities.passenger.Passenger;
 
@@ -31,5 +32,8 @@ public interface CustomerBookingRepository extends AbstractRepository {
 
 	@Query("select count(b) > 0 FROM Booking b WHERE b.locatorCode = :locatorCode")
 	Boolean existsByLocatorCode(String locatorCode);
+
+	@Query("select p from PassengerBooking p where p.booking.id = :bookingId")
+	List<PassengerBooking> findPassengerBookingByBookingId(int bookingId);
 
 }

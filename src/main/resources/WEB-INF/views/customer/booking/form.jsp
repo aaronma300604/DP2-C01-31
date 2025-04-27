@@ -18,11 +18,14 @@
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode && !existsAnyPassenger}">
 			<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
+			<acme:submit code="customer.booking.form.button.delete" action="/customer/booking/delete"/>
 			<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish"/>
+			
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode && existsAnyPassenger}">
 			<acme:button code="customer.booking.form.show.passengers" action="/customer/passenger/list?bookingId=${bookingId}&isFromBooking=${isFromBooking }"/>
 			<acme:submit code="customer.booking.form.button.update" action="/customer/booking/update"/>
+			<acme:submit code="customer.booking.form.button.delete" action="/customer/booking/delete"/>
 			<acme:submit code="customer.booking.form.button.publish" action="/customer/booking/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
