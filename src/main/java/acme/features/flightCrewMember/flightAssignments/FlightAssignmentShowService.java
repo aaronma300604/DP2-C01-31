@@ -66,7 +66,7 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
-		posibleLegs = this.getPosibleLegs(fa);
+		posibleLegs = this.getPosibleLegs();
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -87,16 +87,11 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		return avaliableMembers;
 	}
 
-	public List<Leg> getPosibleLegs(final FlightAssignment flightA) {
+	public List<Leg> getPosibleLegs() {
 		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs;
-		if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findUpcomingLegs(currentDate);
-		else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findPreviousLegs(currentDate);
-		else
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
-		posibleLegs = posibleLegs == null ? new ArrayList<>() : posibleLegs;
 		return posibleLegs;
 	}
 

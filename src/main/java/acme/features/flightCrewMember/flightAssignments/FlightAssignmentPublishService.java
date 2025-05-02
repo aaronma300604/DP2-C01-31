@@ -36,6 +36,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 	@Override
 	public void authorise() {
 		boolean status;
+		boolean authorised = true;
 		int flightAssignmentId;
 		FlightAssignment fa;
 		FlightCrewMember member;
@@ -43,10 +44,50 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		flightAssignmentId = super.getRequest().getData("id", int.class);
 		fa = this.repository.findFa(flightAssignmentId);
 		member = fa == null ? null : fa.getFlightCrewMember();
-		boolean realm = super.getRequest().getPrincipal().hasRealm(member);
 		status = fa != null && fa.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
-		super.getResponse().setAuthorised(status);
+		String method = super.getRequest().getMethod();
+		if (method.equals("POST")) {
+			List<Leg> selectedLegs = this.getPosibleLegs();
+			String rawLeg = super.getRequest().getData("leg", String.class);
+			int legId = super.getRequest().getData("leg", int.class);
+			Leg legAssigned = this.repository.findLegById(legId);
+
+			if (!"0".equals(rawLeg))
+				if (legAssigned == null)
+					authorised = false;
+				else if (!selectedLegs.contains(legAssigned))
+					authorised = false;
+
+			//Comprobacion de inyección de datos en currentStatus
+
+			String rawStatus = super.getRequest().getData("currentStatus", String.class);
+
+			CurrentStatus fastatus = null;
+			if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
+				try {
+					fastatus = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
+				} catch (IllegalArgumentException ex) {
+					authorised = false;
+				}
+				if (!EnumSet.allOf(CurrentStatus.class).contains(fastatus))
+					authorised = false;
+			}
+			//Comprobacion de inyección de datos en duty
+			String rawDuty = super.getRequest().getData("duty", String.class);
+			Duty duty = null;
+			if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
+				try {
+					duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
+				} catch (IllegalArgumentException ex) {
+					authorised = false;
+				}
+				if (!EnumSet.allOf(Duty.class).contains(duty))
+					authorised = false;
+			}
+		}
+		boolean b = status && authorised;
+		super.getResponse().setAuthorised(b);
 	}
 
 	@Override
@@ -67,47 +108,10 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 	public void bind(final FlightAssignment fa) {
 
 		int legId;
-		List<Leg> selectedLegs = this.getPosibleLegs();
-
 		FlightCrewMember actualMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-		String rawLeg = super.getRequest().getData("leg", String.class);
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
-
-		//Comprobacion de inyección de datos en legs
-		if (!"0".equals(rawLeg))
-			if (legAssigned == null)
-				throw new RuntimeException("Unexpected leg data");
-			else if (!selectedLegs.contains(legAssigned))
-				throw new RuntimeException("Unexpected leg received");
-
-		//Comprobacion de inyección de datos en currentStatus
-
-		String rawStatus = super.getRequest().getData("currentStatus", String.class);
-
-		CurrentStatus status = null;
-		if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
-			try {
-				status = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
-			} catch (IllegalArgumentException ex) {
-				throw new RuntimeException("Unexpected currentStatus received");
-			}
-			if (!EnumSet.allOf(CurrentStatus.class).contains(status))
-				throw new RuntimeException("Unexpected currentStatus received");
-		}
-		//Comprobacion de inyección de datos en duty
-		String rawDuty = super.getRequest().getData("duty", String.class);
-		Duty duty = null;
-		if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
-			try {
-				duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
-			} catch (IllegalArgumentException ex) {
-				throw new RuntimeException("Unexpected duty received");
-			}
-			if (!EnumSet.allOf(Duty.class).contains(duty))
-				throw new RuntimeException("Unexpected duty received");
-		}
 
 		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(actualMember);
@@ -157,13 +161,11 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		if (!legAnalized.isDraftMode())
 			legIsPublished = true;
 
-		//Comprobación de no doble asignacion de un miembro a la misma leg
-		List<FlightAssignment> flightAssignments = this.repository.findLegsAndAssignmentsByMemberId(fcmAnalized.getId());
+		//Comprobación de doble asignación a una leg
+		List<Leg> legsWithFaPublished = this.repository.findLegsAndAssignmentsByMemberIdPublished(fcmAnalized.getId());
 		if (flightAssignment.getFlightCrewMember() != null && flightAssignment.getLeg() != null)
-			for (FlightAssignment fa : flightAssignments)
-				if (flightAssignment.getId() != fa.getId())
-					if (fa.getLeg().getId() == legAnalized.getId())
-						alreadyAssignedToTheLeg = false;
+			if (legsWithFaPublished != null && !legsWithFaPublished.isEmpty() && legsWithFaPublished.contains(legAnalized))
+				alreadyAssignedToTheLeg = false;
 
 		flightAssignmentNotNull = flightAssignment.getFlightCrewMember() == null ? false : true;
 
@@ -219,4 +221,5 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
+
 }
