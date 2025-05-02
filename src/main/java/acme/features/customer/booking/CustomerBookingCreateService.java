@@ -1,7 +1,6 @@
 
 package acme.features.customer.booking;
 
-import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 
@@ -52,8 +51,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "travelClass", "lastCreditCardNibble");
-		booking.setLocatorCode(this.generateLocatorCode());
+		super.bindObject(booking, "travelClass", "lastCreditCardNibble", "locatorCode");
 		booking.setFlight(flight);
 		booking.setPurchaseMoment(purchaseMoment);
 		booking.setDraftMode(true);
@@ -88,26 +86,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		dataset.put("travelClass", travelClassChoices.getSelected().getKey());
 		super.getResponse().addData(dataset);
 
-	}
-
-	private String generateLocatorCode() {
-		final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		final SecureRandom RANDOM = new SecureRandom();
-		String locatorCode = null;
-		boolean existsByLocatorCode = true;
-
-		while (existsByLocatorCode) {
-			int length = 6 + RANDOM.nextInt(3);
-			StringBuilder codigo = new StringBuilder(length);
-
-			for (int i = 0; i < length; i++)
-				codigo.append(CHARACTERS.charAt(RANDOM.nextInt(CHARACTERS.length())));
-
-			locatorCode = codigo.toString();
-			existsByLocatorCode = this.repository.existsByLocatorCode(locatorCode);
-		}
-
-		return locatorCode;
 	}
 
 }

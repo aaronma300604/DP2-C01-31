@@ -61,7 +61,7 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "travelClass", "lastCreditCardNibble");
+		super.bindObject(booking, "travelClass", "lastCreditCardNibble", "locatorCode");
 		booking.setFlight(flight);
 		booking.setDraftMode(true);
 

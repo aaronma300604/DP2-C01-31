@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form> 
-	<acme:input-textbox code="customer.booking.form.locatorCode" path="locatorCode" readonly="true"/>
+	<acme:input-textbox code="customer.booking.form.locatorCode" path="locatorCode"/>
 	<acme:input-moment code="customer.booking.form.purchaseMoment" path="purchaseMoment" readonly="true" />
 	<acme:input-select code="customer.booking.form.travelClass" path="travelClass" choices="${travelClasses}"/>	
 	<acme:input-money code="customer.booking.form.price" path="price" readonly="true"/>

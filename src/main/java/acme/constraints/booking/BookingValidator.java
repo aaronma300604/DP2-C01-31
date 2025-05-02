@@ -37,6 +37,12 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				lastNibble = "";
 			if (!StringHelper.matches(lastNibble, "\\d{4}|"))
 				super.state(context, false, "lastCreditCardNibble", "acme.validation.booking.invalid-nibble.message");
+			{
+				Booking existingBooking = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
+				boolean isDuplicate = existingBooking != null && existingBooking.getId() != booking.getId();
+				super.state(context, !isDuplicate, "locatorCode", "acme.validation.booking.duplicate-locator-code.message");
+			}
+
 		}
 		result = !super.hasErrors(context);
 
