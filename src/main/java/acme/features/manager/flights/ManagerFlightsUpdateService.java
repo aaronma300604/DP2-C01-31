@@ -35,9 +35,7 @@ public class ManagerFlightsUpdateService extends AbstractGuiService<AirlineManag
 		if (status) {
 			int airlineId = super.getRequest().getData("airline", int.class);
 			Airline airline = this.repository.findAirlineById(airlineId);
-			if (manager == null)
-				status = false;
-			else if (airline != null)
+			if (airline != null)
 				status = manager.getAirline().getId() == airlineId;
 		}
 

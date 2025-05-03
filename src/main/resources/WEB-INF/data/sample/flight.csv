@@ -30,3 +30,4 @@ flight-23,EUR 59.4,null,FALSE,洛伦·伊普森,airline-01,manager-01,true
 flight-24,EUR 59.4,very good description,FALSE,<marquee>Hacked</marquee>,airline-01,manager-01,true
 flight-25,EUR 59.4,null,FALSE,<script>alert(‘Hacked!’);</script>,airline-01,manager-01,true
 flight-26,EUR 59.4,very good description,FALSE,' or 'A' = 'A,airline-01,manager-01,true
+flight-27,EUR 300.0,a test flight,FALSE,Test Flight,airline-01,manager-01,true 
