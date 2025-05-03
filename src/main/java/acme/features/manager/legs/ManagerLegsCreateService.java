@@ -25,7 +25,30 @@ public class ManagerLegsCreateService extends AbstractGuiService<AirlineManager,
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		String method = super.getRequest().getMethod();
+		if (method.equals("POST")) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			int originId = super.getRequest().getData("origin", int.class);
+			int destinationId = super.getRequest().getData("destination", int.class);
+			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			Flight flight = this.repository.findFlightById(flightId);
+			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+			Airport origin = this.repository.findAirportById(originId);
+			Airport destination = this.repository.findAirportById(destinationId);
+
+			List<Flight> flights = this.repository.findFlightsByManager(managerId);
+			List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(managerId);
+			List<Airport> airports = this.repository.findAllAirports();
+			if (managerId == 0)
+				status = false;
+			else if (flight != null && aircraft != null //
+				&& origin != null && destination != null)
+				status = flights.contains(flight) && aircrafts.contains(aircraft) //
+					&& airports.contains(origin) && airports.contains(destination);
+		}
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
