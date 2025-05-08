@@ -27,11 +27,24 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		MaintenanceRecord record;
 		Technician technician;
 		boolean status;
+		String method = super.getRequest().getMethod();
 
 		recordId = super.getRequest().getData("recordId", int.class);
 		record = this.repository.findRecordById(recordId);
 		technician = record.getTechnician();
 		status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician);
+
+		if (method.equals("POST")) {
+			int taskId = super.getRequest().getData("task", int.class);
+			Task task = this.repository.findTaskById(taskId);
+			List<Task> available = this.repository.findAllSelectableTasks(taskId, recordId);
+
+			if (task == null && taskId != 0)
+				status = false;
+			else if (task != null && !available.contains(task))
+				status = false;
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -54,24 +67,10 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 	public void bind(final Involves involves) {
 		int taskId;
 		Task task;
-		Technician technician;
-		List<Integer> selectableTasks = List.of();
-		int recordId;
 
 		taskId = super.getRequest().getData("task", int.class);
 
 		task = this.repository.findTaskById(taskId);
-		technician = involves.getMaintenanceRecord().getTechnician();
-		recordId = involves.getMaintenanceRecord().getId();
-
-		if (task == null && taskId != 0)
-			throw new RuntimeException("Unexpected task received");
-
-		if (task != null) {
-			selectableTasks = this.repository.findAllSelectableTasks(technician.getId(), recordId).stream().map(Task::getId).toList();
-			if (!selectableTasks.contains(taskId))
-				throw new RuntimeException("Unexpected task received");
-		}
 
 		involves.setTask(task);
 		super.bindObject(involves);
