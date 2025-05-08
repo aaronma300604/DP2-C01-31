@@ -34,6 +34,17 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 		technician = record == null ? null : record.getTechnician();
 		status = record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
+		if (super.getRequest().hasData("aircraft")) {
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+			List<Aircraft> available = this.repository.findAllAircrafts();
+
+			if (aircraft == null && aircraftId != 0)
+				status = false;
+			else if (aircraft != null && !available.contains(aircraft))
+				status = false;
+		}
+
 		super.getResponse().setAuthorised(status);
 
 	}

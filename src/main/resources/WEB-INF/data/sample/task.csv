@@ -1,25 +1,25 @@
-key,description,estimated_duration,priority,type,key:technician
+key,description,estimated_duration,priority,type,key:technician,draft_mode
 #base entity
-task-01,task01,2,6,REPAIR,technician-01
-task-02,task02,2,6,REPAIR,technician-02
+task-01,task01,2,6,REPAIR,technician-01,0
+task-02,task02,2,6,REPAIR,technician-02,0
 #description - standard variations
-task-03,L,2,6,MAINTENANCE,technician-01
-task-04,Lo,2,6,INSPECTION,technician-02
-task-05,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",3,5,REPAIR,technician-01
-task-06,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",4,4,REPAIR,technician-02
-task-07,โลเร็ม อิปซัม,2,6,SYSTEM_CHECK,technician-01
-task-08,لوريم إيبسوم,2,6,REPAIR,technician-02
-task-09,洛伦·伊普森,2,6,REPAIR,technician-01
-task-10,"<marquee>Hacked</marquee>",2,6,REPAIR,technician-02
-task-11,"<script>alert(‘Hacked!’);</script>",2,6,REPAIR,technician-01
-task-12,"' or 'A' = 'A",2,6,REPAIR,technician-02
+task-03,L,2,6,MAINTENANCE,technician-01,1
+task-04,Lo,2,6,INSPECTION,technician-02,1
+task-05,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",3,5,REPAIR,technician-01,1
+task-06,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",4,4,REPAIR,technician-02,1
+task-07,โลเร็ม อิปซัม,2,6,SYSTEM_CHECK,technician-01,1
+task-08,لوريم إيبسوم,2,6,REPAIR,technician-02,1
+task-09,洛伦·伊普森,2,6,REPAIR,technician-01,1
+task-10,"<marquee>Hacked</marquee>",2,6,REPAIR,technician-02,1
+task-11,"<script>alert(‘Hacked!’);</script>",2,6,REPAIR,technician-01,1
+task-12,"' or 'A' = 'A",2,6,REPAIR,technician-02,1
 #estimated duration - standard variations
-task-13,Dummy text,1,6,MAINTENANCE,technician-01
-task-14,Dummy text,2,6,INSPECTION,technician-02
-task-15,Dummy text,999,5,SYSTEM_CHECK,technician-01
-task-16,Dummy text,1000,4,REPAIR,technician-02
+task-13,Dummy text,1,6,MAINTENANCE,technician-01,1
+task-14,Dummy text,2,6,INSPECTION,technician-02,1
+task-15,Dummy text,999,5,SYSTEM_CHECK,technician-01,1
+task-16,Dummy text,1000,4,REPAIR,technician-02,1
 #priority - standard variations
-task-17,Dummy text,10,1,MAINTENANCE,technician-02
-task-18,Dummy text,10,2,INSPECTION,technician-02
-task-19,Dummy text,10,9,SYSTEM_CHECK,technician-02
-task-20,Dummy text,10,10,REPAIR,technician-02
+task-17,Dummy text,10,1,MAINTENANCE,technician-02,1
+task-18,Dummy text,10,2,INSPECTION,technician-02,1
+task-19,Dummy text,10,9,SYSTEM_CHECK,technician-02,1
+task-20,Dummy text,10,10,REPAIR,technician-02,1
