@@ -46,7 +46,7 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 	@Query("SELECT l from Leg l WHERE l.id = :legId")
 	Leg findLegById(int legId);
 
-	@Query("SELECT fa.leg FROM FlightAssignment fa " + "WHERE (fa.leg.scheduledDeparture < :legArrival AND fa.leg.scheduledArrival > :legDeparture) " + "AND fa.leg.id <> :legId " + "AND fa.flightCrewMember.id = :id")
+	@Query("SELECT fa.leg FROM FlightAssignment fa WHERE (fa.leg.scheduledDeparture < :legArrival AND fa.leg.scheduledArrival > :legDeparture) AND fa.leg.id <> :legId AND fa.flightCrewMember.id = :id and fa.draftMode = false")
 	List<Leg> findSimultaneousLegsByMember(@Param("legDeparture") Date legDeparture, @Param("legArrival") Date legArrival, @Param("legId") int legId, @Param("id") int id);
 
 	@Query("SELECT fa from FlightAssignment fa WHERE fa.leg = :leg and fa.duty = :duty and fa.draftMode = false")
