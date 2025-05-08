@@ -25,7 +25,7 @@ airline-19,airline@gmail.com,2000/01/01 0:01,AVX,<script>alert(‘Hacked!’);</
 airline-20,airline@gmail.com,2000/01/01 0:01,AWX,' or 'A' = 'A,+34123456789,LUXURY,https://www.fakeweb.com
 # website - standard variations
 airline-21,acme@lorem-ipsum.org,2002/02/01 10:00,BAX,Airline1,+34123456789,STANDARD,http://lorem.com/ipsum
-airline-22,acme@lorem-ipsum.org,2002/02/01 10:00,BBX,Airline2,+34123456789,STANDARD,http://a
+airline-22,acme@lorem-ipsum.org,2002/02/01 10:00,BBX,Airline2,+34123456789,STANDARD,http://a.com
 airline-23,acme@lorem-ipsum.org,2002/02/01 10:00,BCX,Airline3,null,STANDARD,http://a.b
 airline-24,acme@lorem-ipsum.org,2002/02/01 10:00,BDX,Airline4,+34123456789,STANDARD,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/"
 airline-25,acme@lorem-ipsum.org,2002/02/01 10:00,BEX,Airline5,+34123456789,STANDARD,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X"

@@ -50,12 +50,15 @@ public class ManagerFlightsShowService extends AbstractGuiService<AirlineManager
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 		SelectChoices choices;
-		Airline airline;
+		List<Airline> airline;
 		int managerId;
 
 		managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		airline = this.repository.findAirlineByManager(managerId);
-		choices = SelectChoices.from(List.of(airline), "name", flight.getAirline());
+		if (!flight.isDraftMode())
+			airline = this.repository.findAllAirline();
+		else
+			airline = List.of(this.repository.findAirlineByManager(managerId));
+		choices = SelectChoices.from(airline, "name", flight.getAirline());
 
 		dataset = super.unbindObject(flight, "tag", "cost", "description", "selfTransfer", "draftMode");
 		dataset.put("airline", choices.getSelected().getKey());
