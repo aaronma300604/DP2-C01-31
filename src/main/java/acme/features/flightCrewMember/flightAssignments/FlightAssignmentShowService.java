@@ -62,11 +62,13 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		Dataset dataset;
 
 		List<Leg> posibleLegs;
-
+		Leg actualLeg = fa.getLeg();
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
 		posibleLegs = this.getPosibleLegs();
+		if (!posibleLegs.contains(actualLeg))
+			posibleLegs.add(actualLeg);
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");

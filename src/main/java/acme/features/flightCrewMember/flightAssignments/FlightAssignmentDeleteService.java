@@ -3,7 +3,6 @@ package acme.features.flightCrewMember.flightAssignments;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,22 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		member = fa == null ? null : fa.getFlightCrewMember();
 		status = fa != null && fa.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
-		super.getResponse().setAuthorised(status);
+		boolean authorised = true;
+		String method = super.getRequest().getMethod();
+		if (method.equals("POST")) {
+			List<Leg> selectedLegs = this.getPosibleLegs();
+			String rawLeg = super.getRequest().getData("leg", String.class);
+			int legId = super.getRequest().getData("leg", int.class);
+			Leg legAssigned = this.repository.findLegById(legId);
+
+			if (!"0".equals(rawLeg))
+				if (legAssigned == null)
+					authorised = false;
+				else if (!selectedLegs.contains(legAssigned))
+					authorised = false;
+		}
+		boolean allowed = status && authorised;
+		super.getResponse().setAuthorised(allowed);
 	}
 
 	@Override
@@ -57,47 +71,11 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 	public void bind(final FlightAssignment fa) {
 
 		int legId;
-		List<Leg> selectedLegs = this.getPosibleLegs();
 
 		FlightCrewMember actualMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
-		String rawLeg = super.getRequest().getData("leg", String.class);
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
-
-		//Comprobacion de inyección de datos en legs
-		if (!"0".equals(rawLeg))
-			if (legAssigned == null)
-				throw new RuntimeException("Unexpected leg data");
-			else if (!selectedLegs.contains(legAssigned))
-				throw new RuntimeException("Unexpected leg received");
-
-		//Comprobacion de inyección de datos en currentStatus
-
-		String rawStatus = super.getRequest().getData("currentStatus", String.class);
-
-		CurrentStatus status = null;
-		if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
-			try {
-				status = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
-			} catch (IllegalArgumentException ex) {
-				throw new RuntimeException("Unexpected currentStatus received");
-			}
-			if (!EnumSet.allOf(CurrentStatus.class).contains(status))
-				throw new RuntimeException("Unexpected currentStatus received");
-		}
-		//Comprobacion de inyección de datos en duty
-		String rawDuty = super.getRequest().getData("duty", String.class);
-		Duty duty = null;
-		if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
-			try {
-				duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
-			} catch (IllegalArgumentException ex) {
-				throw new RuntimeException("Unexpected duty received");
-			}
-			if (!EnumSet.allOf(Duty.class).contains(duty))
-				throw new RuntimeException("Unexpected duty received");
-		}
 
 		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(actualMember);
