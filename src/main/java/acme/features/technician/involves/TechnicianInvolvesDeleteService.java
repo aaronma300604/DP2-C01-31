@@ -32,7 +32,18 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 		record = this.repository.findRecordById(recordId);
 		technician = record.getTechnician();
 		status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician);
-		System.out.println("Authorised");
+
+		if (super.getRequest().hasData("task")) {
+			int taskId = super.getRequest().getData("task", int.class);
+			Task task = this.repository.findTaskById(taskId);
+			List<Task> available = this.repository.findValidTasksToUnlink(recordId);
+
+			if (task == null && taskId != 0)
+				status = false;
+			else if (task != null && !available.contains(task))
+				status = false;
+		}
+
 		super.getResponse().setAuthorised(status);
 
 	}
@@ -49,41 +60,34 @@ public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technici
 
 		object = new Involves();
 		object.setMaintenanceRecord(maintenanceRecord);
-		System.out.println("Loaded");
 		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final Involves involves) {
-		System.out.println("binding...");
 	}
 
 	@Override
 	public void validate(final Involves involves) {
-		System.out.println("Validating...");
 		List<Task> tasks;
 		tasks = this.repository.findValidTasksToUnlink(involves.getMaintenanceRecord().getId());
 
 		int taskId = super.getRequest().getData("task", int.class);
 		Task task = this.repository.findTaskById(taskId);
-		System.out.println("Validated");
 		super.state(task != null && tasks.contains(task), "task", "technician.involves.form.error.no-task-to-unlink");
 	}
 
 	@Override
 	public void perform(final Involves involves) {
-		System.out.println("Performing...");
 		int taskId = super.getRequest().getData("task", int.class);
 
 		Task task = this.repository.findTaskById(taskId);
 		MaintenanceRecord maintenanceRecord = involves.getMaintenanceRecord();
-		System.out.println("Performed");
 		this.repository.delete(this.repository.findInvolvesByMaintenanceRecordAndTask(maintenanceRecord, task));
 	}
 
 	@Override
 	public void unbind(final Involves involves) {
-		System.out.println("Unbinding...");
 		Dataset dataset;
 		SelectChoices taskChoices;
 		List<Task> tasks;
