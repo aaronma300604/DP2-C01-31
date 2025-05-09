@@ -40,7 +40,7 @@ public class FlightAssignmentListServiceUncompletedLegs extends AbstractGuiServi
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flightAssignment, "duty", "moment", "currentStatus", "leg.scheduledArrival");
+		dataset = super.unbindObject(flightAssignment, "leg.flightNumber", "moment", "currentStatus", "leg.scheduledArrival");
 		super.addPayload(dataset, flightAssignment, "remarks");
 
 		super.getResponse().addData(dataset);

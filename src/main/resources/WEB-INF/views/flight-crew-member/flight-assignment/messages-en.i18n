@@ -1,7 +1,7 @@
 flight-crew-member.flight-assignment.list.title = List of My Assignments:
 flight-crew-member.flight-assignment.form.title = Flight Assignment Form:
 
-flight-crew-member.assignments.list.label.duty = Duty:
+flight-crew-member.assignments.list.label.flightNumber = Flight Number:
 flight-crew-member.assignments.list.label.moment = Last update:
 flight-crew-member.assignments.list.label.status = Status of the assignment:
 

@@ -58,25 +58,24 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 	public void unbind(final FlightAssignment fa) {
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
-		SelectChoices memberChoices;
 		SelectChoices legChoices;
 		Dataset dataset;
-		List<FlightCrewMember> avaliableMembers;
-		List<Leg> posibleLegs;
 
+		List<Leg> posibleLegs;
+		Leg actualLeg = fa.getLeg();
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
-		avaliableMembers = this.getAvailableMembers();
-		posibleLegs = this.getPosibleLegs(fa);
+
+		posibleLegs = this.getPosibleLegs();
+		if (!posibleLegs.contains(actualLeg))
+			posibleLegs.add(actualLeg);
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
-		memberChoices = SelectChoices.from(avaliableMembers, "userAccount.username", fa.getFlightCrewMember());
+
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("duties", dutyChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("crewMember", memberChoices.getSelected().getKey());
-		dataset.put("crewMembers", memberChoices);
 		dataset.put("flightAssignmentId", fa.getId());
 
 		super.getResponse().addData(dataset);
@@ -90,16 +89,11 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		return avaliableMembers;
 	}
 
-	public List<Leg> getPosibleLegs(final FlightAssignment flightA) {
+	public List<Leg> getPosibleLegs() {
 		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs;
-		if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findUpcomingLegs(currentDate);
-		else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findPreviousLegs(currentDate);
-		else
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
-		posibleLegs = posibleLegs == null ? new ArrayList<>() : posibleLegs;
 		return posibleLegs;
 	}
 

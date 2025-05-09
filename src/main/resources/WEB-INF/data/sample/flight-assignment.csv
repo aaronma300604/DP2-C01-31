@@ -10,7 +10,7 @@ flight-assignment-05,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,lore-ipsum,true,
 flight-assignment-06,CABIN_ATTENDANT,2000/01/01 00:00,CONFIRMED,lore-ipsum,true,flight-crew-member-01,leg-01
 flight-assignment-07,CABIN_ATTENDANT,2000/01/01 00:01,CONFIRMED,lore-ipsum,true,flight-crew-member-01,leg-01
 flight-assignment-08,CABIN_ATTENDANT,2022/07/29 23:59,CONFIRMED,lore-ipsum,true,flight-crew-member-01,leg-01
-flight-assignment-09,CABIN_ATTENDANT,2022/07/30 00:00,CONFIRMED,lore-ipsum,true,flight-crew-member-01,leg-01
+flight-assignment-09,CABIN_ATTENDANT,2022/07/30 00:00,CONFIRMED,ready to publish,true,flight-crew-member-01,leg-07
 #currentStatus-standart variations
 flight-assignment-10,COPILOT,2012/07/02 00:00,CONFIRMED,lore-ipsum,true,flight-crew-member-01,leg-01
 flight-assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,PENDING,lore-ipsum,true,flight-crew-member-01,leg-01

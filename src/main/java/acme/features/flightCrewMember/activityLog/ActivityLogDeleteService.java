@@ -53,8 +53,26 @@ public class ActivityLogDeleteService extends AbstractGuiService<FlightCrewMembe
 	public void bind(final ActivityLog activityLog) {
 
 		int flightAssignmentId;
+
+		int flightCrewMemberID;
+		Date currentMoment;
+
+		currentMoment = MomentHelper.getCurrentMoment();
+		flightCrewMemberID = super.getRequest().getPrincipal().getActiveRealm().getId();
+		List<FlightAssignment> possibleAssignments;
+		possibleAssignments = this.repository.findAssignmentsByMemberIdCompletedLegs(currentMoment, flightCrewMemberID);
+
+		String rawAssignment = super.getRequest().getData("assignment", String.class);
 		flightAssignmentId = super.getRequest().getData("assignment", int.class);
 		FlightAssignment fa = this.repository.findAssignmentById(flightAssignmentId);
+
+		//Comprobacion de inyección de datos en assignments
+		if (!"0".equals(rawAssignment))
+			if (fa == null)
+				throw new RuntimeException("Unauthorised action");
+			else if (!possibleAssignments.contains(fa))
+				throw new RuntimeException("Unauthorised action");
+
 		super.bindObject(activityLog, "moment", "incident", "description", "severityLevel");
 		activityLog.setFlightAssignment(fa);
 	}

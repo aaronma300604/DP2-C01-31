@@ -24,7 +24,22 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		String method = super.getRequest().getMethod();
+		boolean authorised = true;
+		if (method.equals("POST")) {
+			Date currentMoment = MomentHelper.getCurrentMoment();
+			int flightCrewMemberID = super.getRequest().getPrincipal().getActiveRealm().getId();
+			int flightAssignmentId = super.getRequest().getData("assignment", int.class);
+			FlightAssignment fa = this.repository.findAssignmentById(flightAssignmentId);
+			List<FlightAssignment> possibleAssignments = this.repository.findAssignmentsByMemberIdCompletedLegs(currentMoment, flightCrewMemberID);
+			String rawAssignment = super.getRequest().getData("assignment", String.class);
+			if (!"0".equals(rawAssignment))
+				if (fa == null)
+					authorised = false;
+				else if (!possibleAssignments.contains(fa))
+					authorised = false;
+		}
+		super.getResponse().setAuthorised(authorised);
 
 	}
 
@@ -44,8 +59,10 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 	public void bind(final ActivityLog activityLog) {
 
 		int flightAssignmentId;
+
 		flightAssignmentId = super.getRequest().getData("assignment", int.class);
 		FlightAssignment fa = this.repository.findAssignmentById(flightAssignmentId);
+
 		super.bindObject(activityLog, "moment", "incident", "description", "severityLevel");
 		activityLog.setFlightAssignment(fa);
 	}
