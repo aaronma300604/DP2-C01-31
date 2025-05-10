@@ -74,6 +74,7 @@ master.menu.customer = Customer
 master.menu.customer.booking = Mis Reservas
 master.menu.customer.passenger = Mis Pasajeros
 master.menu.customer.passenger-booking =  Asignaciones de pasajeros
+master.menu.customer.customer-dashboard = Mostrar panel
 
 # master.menu.technician ##########################################################
 
