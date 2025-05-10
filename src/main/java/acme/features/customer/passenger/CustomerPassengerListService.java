@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.PassengerBooking;
 import acme.entities.passenger.Passenger;
 import acme.realms.client.Customer;
 
@@ -23,16 +24,28 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 
 
 	@Override
-	public void authorise() {
-		boolean authorised = true;
 
-		if (!super.getRequest().getData().isEmpty()) {
-			int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+	public void authorise() {
+		boolean authorised = false;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		if (super.getRequest().getData().isEmpty()) {
+
+			List<Passenger> passengers = this.repository.findPassengersByCustomerId(customerId);
+			authorised = passengers != null && !passengers.isEmpty();
+
+		} else if (super.getRequest().getData().containsKey("bookingId")) {
 			int bookingId = super.getRequest().getData("bookingId", int.class);
 			Booking booking = this.repository.findBookingById(bookingId);
 
-			boolean invalid = booking == null || booking.getCustomer().getId() != customerId;
-			authorised = !invalid;
+			authorised = booking != null && booking.getCustomer().getId() == customerId;
+
+		} else if (super.getRequest().getData().containsKey("id")) {
+			int passengerId = super.getRequest().getData("id", int.class);
+			List<PassengerBooking> passengerBookings = this.repository.findPassengerBookingByPassengerId(passengerId);
+
+			authorised = passengerBookings.stream().map(PassengerBooking::getBooking).anyMatch(b -> b != null && b.getCustomer().getId() == customerId);
 		}
 
 		super.getResponse().setAuthorised(authorised);

@@ -46,7 +46,7 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 			{
 				Flight flightBooking = booking.getFlight();
 				if (flightBooking == null)
-					super.state(context, false, "flightBooking", "javax.validation.constraints.NotNull.message");
+					super.state(context, false, "flight", "javax.validation.constraints.NotNull.message");
 
 			}
 
