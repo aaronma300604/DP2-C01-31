@@ -2,16 +2,15 @@
 package acme.features.flightCrewMember.flightAssignments;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.activityLog.ActivityLog;
 import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
@@ -85,11 +84,16 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		;
+		boolean existActivityLogsForThisFa;
+		List<ActivityLog> logs = this.repository.findActivityLogsByFa(flightAssignment.getId());
+		existActivityLogsForThisFa = logs.isEmpty();
+		super.state(existActivityLogsForThisFa, "*", "acme.validation.flight-assignment.existActivityLog.message");
 	}
 
 	@Override
 	public void perform(final FlightAssignment fa) {
+		//List<ActivityLog> logs = this.repository.findActivityLogsByFa(fa.getId());
+
 		this.repository.delete(fa);
 	}
 
@@ -102,7 +106,6 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		Dataset dataset;
 
 		List<Leg> posibleLegs;
-
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
@@ -126,8 +129,7 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 	}
 
 	public List<Leg> getPosibleLegs() {
-		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		List<Leg> posibleLegs = this.repository.findAllLegs();
 		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
 		return posibleLegs;

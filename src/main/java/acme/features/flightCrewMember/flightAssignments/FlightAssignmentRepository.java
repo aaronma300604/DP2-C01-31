@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.activityLog.ActivityLog;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
@@ -39,6 +40,12 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 
 	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival > :currentDate")
 	List<Leg> findUpcomingLegs(@Param("currentDate") Date currentDate);
+
+	@Query("SELECT l FROM Leg l")
+	List<Leg> findAllLegs();
+
+	@Query("SELECT al FROM ActivityLog al WHERE al.flightAssignment.id = :faId")
+	List<ActivityLog> findActivityLogsByFa(int faId);
 
 	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival < :currentDate")
 	List<Leg> findPreviousLegs(@Param("currentDate") Date currentDate);

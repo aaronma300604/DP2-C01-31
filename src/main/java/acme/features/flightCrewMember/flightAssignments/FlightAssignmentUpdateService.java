@@ -13,7 +13,6 @@
 package acme.features.flightCrewMember.flightAssignments;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
@@ -168,8 +166,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	}
 
 	public List<Leg> getPosibleLegs() {
-		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		List<Leg> posibleLegs = this.repository.findAllLegs();
 		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
 		return posibleLegs;

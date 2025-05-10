@@ -24,13 +24,7 @@ import acme.realms.employee.FlightCrewMember;
 public class FlightAssignmentPublishService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
-	private FlightAssignmentRepository	repository;
-
-	private FlightCrewMember			currentCrewMemberAssigned;
-
-	private Leg							currentLegAssigned;
-
-	private Duty						currentDutyAssigned;
+	private FlightAssignmentRepository repository;
 
 
 	@Override
@@ -96,9 +90,6 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		fa = this.repository.findFa(id);
-		this.currentCrewMemberAssigned = fa.getFlightCrewMember();
-		this.currentLegAssigned = fa.getLeg();
-		this.currentDutyAssigned = fa.getDuty();
 
 		super.getBuffer().addData(fa);
 
@@ -127,35 +118,41 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		boolean alreadyAssignedToTheLeg = true;
 		boolean legIsPublished = false;
 		boolean flightAssignmentNotNull;
+		boolean isMemberAvailable = true;
+		boolean isFutureLeg = true;
+
+		FlightCrewMember fcmAnalized = flightAssignment.getFlightCrewMember();
 
 		//Comprobación de simultaneidad entre legs
-		Leg legAnalized = flightAssignment.getLeg() == null ? this.currentLegAssigned : flightAssignment.getLeg();
-		Date legDeparture = legAnalized.getScheduledDeparture();
-		Date legArrival = legAnalized.getScheduledArrival();
-		FlightCrewMember fcmAnalized = flightAssignment.getFlightCrewMember() == null ? this.currentCrewMemberAssigned : flightAssignment.getFlightCrewMember();
-		List<Leg> simultaneousLegs = this.repository.findSimultaneousLegsByMember(legDeparture, legArrival, legAnalized.getId(), fcmAnalized.getId());
-		if (flightAssignment.getLeg() != null && flightAssignment.getFlightCrewMember() != null) {
-			if (simultaneousLegs.isEmpty())
+		Leg legAnalized = flightAssignment.getLeg();
+		if (legAnalized != null) {
+			Date legDeparture = legAnalized.getScheduledDeparture();
+			Date legArrival = legAnalized.getScheduledArrival();
+
+			List<Leg> simultaneousLegs = this.repository.findSimultaneousLegsByMember(legDeparture, legArrival, legAnalized.getId(), fcmAnalized.getId());
+			if (flightAssignment.getLeg() != null && flightAssignment.getFlightCrewMember() != null) {
+				if (simultaneousLegs.isEmpty())
+					existSimultaneousLeg = true;
+			} else
 				existSimultaneousLeg = true;
-		} else
-			existSimultaneousLeg = true;
+		}
 
 		//Comprobación de número de pilotos y copilotos
 		List<FlightAssignment> legCopilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.COPILOT);
 		List<FlightAssignment> legPilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.PILOT);
-		Duty dutyAnalized = flightAssignment.getDuty() == null ? this.currentDutyAssigned : flightAssignment.getDuty();
-
-		if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null) {
-			if (dutyAnalized == Duty.COPILOT)
-				if (legCopilotAssignments.size() + 1 >= 2)
-					unproperCopilotDuty = false;
-			if (dutyAnalized == Duty.PILOT)
-				if (legPilotAssignments.size() + 1 >= 2)
-					unproperPilotDuty = false;
-		} else {
-			unproperPilotDuty = true;
-			unproperCopilotDuty = true;
-		}
+		Duty dutyAnalized = flightAssignment.getDuty();
+		if (dutyAnalized != null)
+			if (flightAssignment.getDuty() != null && flightAssignment.getLeg() != null) {
+				if (dutyAnalized == Duty.COPILOT)
+					if (legCopilotAssignments.size() + 1 >= 2)
+						unproperCopilotDuty = false;
+				if (dutyAnalized == Duty.PILOT)
+					if (legPilotAssignments.size() + 1 >= 2)
+						unproperPilotDuty = false;
+			} else {
+				unproperPilotDuty = true;
+				unproperCopilotDuty = true;
+			}
 
 		//Comprobación de leg publicada
 		if (!legAnalized.isDraftMode())
@@ -169,12 +166,26 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 
 		flightAssignmentNotNull = flightAssignment.getFlightCrewMember() == null ? false : true;
 
+		//Comprobación que la disponibilidad del flightCrewMember es Available.
+		AvaliabilityStatus abStat = flightAssignment.getFlightCrewMember().getAbStat();
+		if (abStat != null)
+			isMemberAvailable = abStat.equals(AvaliabilityStatus.AVALIABLE);
+
+		//Comprobación que la leg es futura:
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		List<Leg> futureLegs = this.repository.findUpcomingLegs(currentMoment);
+
+		if (flightAssignment.getLeg() != null)
+			isFutureLeg = futureLegs.contains(flightAssignment.getLeg());
+
 		super.state(flightAssignmentNotNull, "crewMember", "acme.validation.flight-assignment.faNull.message");
 		super.state(alreadyAssignedToTheLeg, "*", "acme.validation.flight-assignment.memberAlreadyAssigned.message");
 		super.state(existSimultaneousLeg, "leg", "acme.validation.flight-assignment.legCurrency.message");
 		super.state(unproperCopilotDuty, "duty", "acme.validation.flight-assignment.dutyCopilot.message");
 		super.state(unproperPilotDuty, "duty", "acme.validation.flight-assignment.dutyPilot.message");
 		super.state(legIsPublished, "*", "acme.validation.flight-assignment.cant-be-published.message");
+		super.state(isMemberAvailable, "*", "acme.validation.flight-assignment.memberAvailable.message");
+		super.state(isFutureLeg, "leg", "acme.validation.flight-assignment.legIsCompleted.message");
 
 	}
 
@@ -196,6 +207,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
 		posibleLegs = this.getPosibleLegs();
+
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -215,8 +227,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 	}
 
 	public List<Leg> getPosibleLegs() {
-		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		List<Leg> posibleLegs = this.repository.findAllLegs();
 		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
 		return posibleLegs;
