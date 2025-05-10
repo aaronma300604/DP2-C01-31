@@ -3,6 +3,8 @@ package acme.realms.employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
@@ -19,6 +21,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidTechnician
+@Table(indexes = {
+	@Index(columnList = "licenseNumber")
+})
 public class Technician extends AbstractRole {
 
 	//Serialisation version  -----------------------------------------
