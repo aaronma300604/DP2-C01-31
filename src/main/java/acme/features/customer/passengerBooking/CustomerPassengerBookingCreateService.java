@@ -26,7 +26,25 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean authorised = true;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		int bookingId = super.getRequest().getData("bookingId", int.class);
+		Booking booking = this.repository.findBookingById(bookingId);
+
+		boolean invalidBooking = booking == null || booking.getCustomer().getId() != customerId || !booking.isDraftMode();
+		if (invalidBooking)
+			authorised = false;
+		else if (super.getRequest().getMethod().equals("POST")) {
+			int passengerId = super.getRequest().getData("passenger", int.class);
+			Passenger passenger = this.repository.findPassengerById(passengerId);
+			List<Passenger> myPassengers = this.repository.findPublishedPassengersFromId(customerId);
+
+			boolean passengerInvalid = passengerId != 0 && (passenger == null || !myPassengers.contains(passenger));
+			authorised = !passengerInvalid;
+		}
+
+		super.getResponse().setAuthorised(authorised);
 	}
 
 	@Override

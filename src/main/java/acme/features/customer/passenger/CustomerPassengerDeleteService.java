@@ -34,7 +34,7 @@ public class CustomerPassengerDeleteService extends AbstractGuiService<Customer,
 		passengerId = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(passengerId);
 		customer = passenger == null ? null : passenger.getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer) || passenger != null && !passenger.isDraftMode();
+		status = super.getRequest().getPrincipal().hasRealm(customer) && passenger != null && passenger.getCustomer().equals(customer) && !passenger.isDraftMode();
 
 		super.getResponse().setAuthorised(status);
 
