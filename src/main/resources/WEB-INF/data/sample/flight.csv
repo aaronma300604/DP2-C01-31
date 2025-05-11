@@ -19,7 +19,7 @@ flight-14,EUR 59.4,<script>alert(‘Hacked!’);</script>,FALSE,the cheapest,air
 flight-15,EUR 59.4,' or 'A' = 'A,TRUE,the cheapest,airline-01,manager-01,true
 flight-28,EUR 59.4,null,TRUE,the cheapest,airline-01,manager-01,true
 # tag - standard variations
-flight-16,EUR 59.4,very good description,FALSE,Lorem ipsum dolor sit ame,airline-02,manager-02,true
+flight-16,EUR 59.4,very good description,FALSE,Lorem ipsum dolor sit ame,airline-02,manager-02,false
 flight-17,EUR 59.4,very good description,FALSE,L,airline-01,manager-01,true
 flight-18,EUR 59.4,null,FALSE,Lo,airline-02,manager-02,true
 flight-19,EUR 59.4,very good description,FALSE,"Lorem ipsum dolor sit amet, consectetur adipiscin",airline-01,manager-01,true
