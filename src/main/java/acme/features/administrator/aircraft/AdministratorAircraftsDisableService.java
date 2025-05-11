@@ -2,6 +2,7 @@
 package acme.features.administrator.aircraft;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +13,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.Airline;
+import acme.entities.leg.Leg;
 
 @GuiService
 public class AdministratorAircraftsDisableService extends AbstractGuiService<Administrator, Aircraft> {
@@ -28,7 +30,7 @@ public class AdministratorAircraftsDisableService extends AbstractGuiService<Adm
 
 		id = super.getRequest().getData("id", int.class);
 		aircraft = this.repository.findAircraftById(id);
-		status = aircraft != null && aircraft.isActive() == false && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		status = aircraft != null && super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -58,6 +60,13 @@ public class AdministratorAircraftsDisableService extends AbstractGuiService<Adm
 
 	@Override
 	public void validate(final Aircraft aircraft) {
+		boolean canBeDisable;
+		List<Leg> legsByAircraft;
+
+		legsByAircraft = this.repository.findLegsByAircraft(aircraft.getId());
+		canBeDisable = legsByAircraft.isEmpty();
+		super.state(canBeDisable, "*", "acme.validation.aircraft.cant-be-disable");
+
 		boolean confirmation;
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
