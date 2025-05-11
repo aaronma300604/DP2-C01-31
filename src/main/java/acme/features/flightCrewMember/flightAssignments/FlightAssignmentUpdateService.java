@@ -13,14 +13,13 @@
 package acme.features.flightCrewMember.flightAssignments;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
@@ -36,14 +35,13 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightAssignmentRepository	repository;
-
-	private Leg							firstLegAssigned;
+	private FlightAssignmentRepository repository;
 
 
 	@Override
 	public void authorise() {
 		boolean status;
+		boolean authorised = true;
 		int flightAssignmentId;
 		FlightAssignment fa;
 		FlightCrewMember member;
@@ -53,7 +51,48 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		member = fa == null ? null : fa.getFlightCrewMember();
 		status = fa != null && fa.isDraftMode() && super.getRequest().getPrincipal().hasRealm(member);
 
-		super.getResponse().setAuthorised(status);
+		String method = super.getRequest().getMethod();
+		if (method.equals("POST")) {
+			List<Leg> selectedLegs = this.getPosibleLegs();
+			String rawLeg = super.getRequest().getData("leg", String.class);
+			int legId = super.getRequest().getData("leg", int.class);
+			Leg legAssigned = this.repository.findLegById(legId);
+
+			if (!"0".equals(rawLeg))
+				if (legAssigned == null)
+					authorised = false;
+				else if (!selectedLegs.contains(legAssigned))
+					authorised = false;
+
+			//Comprobacion de inyección de datos en currentStatus
+
+			String rawStatus = super.getRequest().getData("currentStatus", String.class);
+
+			CurrentStatus fastatus = null;
+			if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
+				try {
+					fastatus = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
+				} catch (IllegalArgumentException ex) {
+					authorised = false;
+				}
+				if (!EnumSet.allOf(CurrentStatus.class).contains(fastatus))
+					authorised = false;
+			}
+			//Comprobacion de inyección de datos en duty
+			String rawDuty = super.getRequest().getData("duty", String.class);
+			Duty duty = null;
+			if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
+				try {
+					duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
+				} catch (IllegalArgumentException ex) {
+					authorised = false;
+				}
+				if (!EnumSet.allOf(Duty.class).contains(duty))
+					authorised = false;
+			}
+		}
+		boolean b = status && authorised;
+		super.getResponse().setAuthorised(b);
 	}
 
 	@Override
@@ -62,7 +101,6 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		fa = this.repository.findFa(id);
-		this.firstLegAssigned = fa.getLeg();
 
 		super.getBuffer().addData(fa);
 
@@ -71,15 +109,15 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	@Override
 	public void bind(final FlightAssignment fa) {
 
-		int crewMemberId;
 		int legId;
-		crewMemberId = super.getRequest().getData("crewMember", int.class);
-		FlightCrewMember member = this.repository.findMemberById(crewMemberId);
+
+		FlightCrewMember actualMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
 
 		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
-		fa.setFlightCrewMember(member);
+		fa.setFlightCrewMember(actualMember);
 		fa.setLeg(legAssigned);
 
 	}
@@ -101,25 +139,21 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	public void unbind(final FlightAssignment fa) {
 		SelectChoices statusChoices;
 		SelectChoices dutyChoices;
-		SelectChoices memberChoices;
 		SelectChoices legChoices;
 		Dataset dataset;
-		List<FlightCrewMember> avaliableMembers;
+
 		List<Leg> posibleLegs;
 
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
-		avaliableMembers = this.getAvailableMembers();
-		posibleLegs = this.getPosibleLegs(fa);
+		posibleLegs = this.getPosibleLegs();
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
-		memberChoices = SelectChoices.from(avaliableMembers, "userAccount.username", fa.getFlightCrewMember());
+
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
 		dataset.put("statuses", statusChoices);
 		dataset.put("duties", dutyChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("crewMember", memberChoices.getSelected().getKey());
-		dataset.put("crewMembers", memberChoices);
 
 		super.getResponse().addData(dataset);
 	}
@@ -131,24 +165,10 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		return avaliableMembers;
 	}
 
-	public List<Leg> getPosibleLegs(final FlightAssignment flightA) {
-		Date currentDate = MomentHelper.getCurrentMoment();
-		List<Leg> posibleLegs;
-		if (flightA.getLeg() == null) {
-			flightA.setLeg(this.firstLegAssigned);
-			if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
-				posibleLegs = this.repository.findUpcomingLegs(currentDate);
-			else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
-				posibleLegs = this.repository.findPreviousLegs(currentDate);
-			else
-				posibleLegs = new ArrayList<>();
-		} else if (MomentHelper.isAfter(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findUpcomingLegs(currentDate);
-		else if (MomentHelper.isBefore(flightA.getLeg().getScheduledArrival(), currentDate))
-			posibleLegs = this.repository.findPreviousLegs(currentDate);
-		else
+	public List<Leg> getPosibleLegs() {
+		List<Leg> posibleLegs = this.repository.findAllLegs();
+		if (posibleLegs == null)
 			posibleLegs = new ArrayList<>();
-		posibleLegs = posibleLegs == null ? new ArrayList<>() : posibleLegs;
 		return posibleLegs;
 	}
 

@@ -4,7 +4,7 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-select path="crewMember" code="flight-crew-member.flight-assignment.form.label.crewMember" choices="${crewMembers}"/>
+	
 	<acme:input-select path="leg" code="flight-crew-member.flight-assignment.form.label.leg" choices="${legs}"/>
 	<acme:input-moment code="flight-crew-member.flight-assignment.form.label.moment" path="moment" />
 	<acme:input-select path="duty" code="flight-crew-member.flight-assignment.form.label.duty" choices="${duties}"  />
@@ -19,14 +19,14 @@
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.update" action="/flight-crew-member/flight-assignment/update"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.delete" action="/flight-crew-member/flight-assignment/delete"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.publish" action="/flight-crew-member/flight-assignment/publish"/>
-			<acme:button code="flight-crew-member.activity-log.list.show.logs" action="/flight-crew-member/activity-log/list?flightAssignmentID=${flightAssignmentId}"/>
+			<acme:button code="flight-crew-member.activity-log.list.show.logs" action="/flight-crew-member/activity-log/list?flightAssignmentID=${id}"/>
 	</jstl:when>
 	<jstl:when test="${_command == 'create'}">
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.create" action="/flight-crew-member/flight-assignment/create"/>
 	</jstl:when>
 	
 	<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') }">
-		<acme:button code="flight-crew-member.activity-log.list.show.logs" action="/flight-crew-member/activity-log/list?flightAssignmentID=${flightAssignmentId}"/>
+		<acme:button code="flight-crew-member.activity-log.list.show.logs" action="/flight-crew-member/activity-log/list?flightAssignmentID=${id}"/>
 	</jstl:when>
 	
 	</jstl:choose>
