@@ -23,7 +23,14 @@ public interface TechnicianInvolvesRepository extends AbstractRepository {
 	@Query("select t from Task t where t.id = :taskId")
 	Task findTaskById(final int taskId);
 
-	@Query("select t from Task t where (t.technician.id = :technicianId OR t.draftMode = false)")
-	List<Task> findAllSelectableTasks(final int technicianId);
+	@Query("select t from Task t where t not in (select i.task from Involves i where "//
+		+ "i.maintenanceRecord.id = :recordId) and (t.draftMode = false or t.technician.id = :technicianId)")
+	List<Task> findAllSelectableTasks(final int technicianId, final int recordId);
 
+	@Query("select t from Task t where t in (select i.task from Involves i where " //
+		+ "i.maintenanceRecord.id = :maintenanceRecordId)")
+	List<Task> findValidTasksToUnlink(final int maintenanceRecordId);
+
+	@Query("select i from Involves i where i.maintenanceRecord = :maintenanceRecord and i.task = :task")
+	Involves findInvolvesByMaintenanceRecordAndTask(MaintenanceRecord maintenanceRecord, Task task);
 }

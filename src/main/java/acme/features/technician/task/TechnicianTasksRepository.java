@@ -10,6 +10,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.maintenanceRecord.Involves;
 import acme.entities.maintenanceRecord.MaintenanceRecord;
 import acme.entities.task.Task;
+import acme.realms.employee.Technician;
 
 @Repository
 public interface TechnicianTasksRepository extends AbstractRepository {
@@ -30,6 +31,8 @@ public interface TechnicianTasksRepository extends AbstractRepository {
 	List<Involves> findInvolvesByTask(final int taskId);
 
 	@Query("select mr.technician from MaintenanceRecord mr where mr.id = :recordId")
-	MaintenanceRecord findTechnicianByRecord(int recordId);
+	Technician findTechnicianByRecord(int recordId);
 
+	@Query("select mr from MaintenanceRecord mr where mr.id = :recordId")
+	MaintenanceRecord findRecord(int recordId);
 }

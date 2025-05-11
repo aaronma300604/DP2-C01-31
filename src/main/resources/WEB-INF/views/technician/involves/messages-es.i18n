@@ -1,7 +1,11 @@
-technician.involves.form.title = Añadir tarea
+technician.involves.form.title = Modificar tareas
 
 technician.involves.list.label.task = Tarea
 technician.involves.form.label.task = Tarea
 
 technician.involves.form.button.create = Añadir
 technician.involves.list.button.create = Añadir
+technician.involves.form.button.delete = Eliminar
+technician.involves.list.button.delete = Eliminar
+
+
