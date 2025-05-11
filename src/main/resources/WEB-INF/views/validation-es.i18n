@@ -64,3 +64,4 @@ acme.validation.activity-log.severityLevel.message = El número debe estar entre
 acme.validation.flight-assignment.memberAvailable.message = Este miembro no está disponible en este momento
 acme.validation.flight-assignment.legIsCompleted.message = The leg must be completed
 acme.validation.flight-assignment.existActivityLog.message = No puedes borrar esta asignación ya que tiene incidencias registradas.
+technician.involves.form.error.no-task-to-unlink = No se puede desvincular esta tarea

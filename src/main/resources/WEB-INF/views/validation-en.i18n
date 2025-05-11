@@ -62,4 +62,5 @@ acme.validation.flight-assignment.faNull.message = May not be null
 acme.validation.flight-assignment.existActivityLog.message = You cannot delete this flight assignment because has activity logs associated.
 acme.validation.activity-log.assignmentInDraftMode.message = Flight Assignment is in draft Mode
 acme.validation.activity-log.severityLevel.message = Number must be between 0 and 10
+technician.involves.form.error.no-task-to-unlink = No task to unlink
 

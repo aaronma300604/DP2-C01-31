@@ -15,7 +15,7 @@ import acme.entities.task.Task;
 import acme.realms.employee.Technician;
 
 @GuiService
-public class TechnicianInvolvesCreateService extends AbstractGuiService<Technician, Involves> {
+public class TechnicianInvolvesDeleteService extends AbstractGuiService<Technician, Involves> {
 
 	@Autowired
 	TechnicianInvolvesRepository repository;
@@ -27,17 +27,16 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		MaintenanceRecord record;
 		Technician technician;
 		boolean status;
-		String method = super.getRequest().getMethod();
 
 		recordId = super.getRequest().getData("recordId", int.class);
 		record = this.repository.findRecordById(recordId);
 		technician = record.getTechnician();
 		status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician);
 
-		if (method.equals("POST")) {
+		if (super.getRequest().hasData("task")) {
 			int taskId = super.getRequest().getData("task", int.class);
 			Task task = this.repository.findTaskById(taskId);
-			List<Task> available = this.repository.findAllSelectableTasks(taskId, recordId);
+			List<Task> available = this.repository.findValidTasksToUnlink(recordId);
 
 			if (task == null && taskId != 0)
 				status = false;
@@ -46,45 +45,45 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		}
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
 	public void load() {
-		Involves involves;
-		MaintenanceRecord record;
-		int recordId;
 
-		recordId = super.getRequest().getData("recordId", int.class);
-		record = this.repository.findRecordById(recordId);
+		Involves object;
+		Integer maintenanceRecordId;
+		MaintenanceRecord maintenanceRecord;
 
-		involves = new Involves();
-		involves.setMaintenanceRecord(record);
+		maintenanceRecordId = super.getRequest().getData("recordId", int.class);
+		maintenanceRecord = this.repository.findRecordById(maintenanceRecordId);
 
-		super.getBuffer().addData(involves);
+		object = new Involves();
+		object.setMaintenanceRecord(maintenanceRecord);
+		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final Involves involves) {
-		int taskId;
-		Task task;
-
-		taskId = super.getRequest().getData("task", int.class);
-
-		task = this.repository.findTaskById(taskId);
-
-		involves.setTask(task);
-		super.bindObject(involves);
-
 	}
 
 	@Override
 	public void validate(final Involves involves) {
-		;
+		List<Task> tasks;
+		tasks = this.repository.findValidTasksToUnlink(involves.getMaintenanceRecord().getId());
+
+		int taskId = super.getRequest().getData("task", int.class);
+		Task task = this.repository.findTaskById(taskId);
+		super.state(task != null && tasks.contains(task), "task", "technician.involves.form.error.no-task-to-unlink");
 	}
 
 	@Override
 	public void perform(final Involves involves) {
-		this.repository.save(involves);
+		int taskId = super.getRequest().getData("task", int.class);
+
+		Task task = this.repository.findTaskById(taskId);
+		MaintenanceRecord maintenanceRecord = involves.getMaintenanceRecord();
+		this.repository.delete(this.repository.findInvolvesByMaintenanceRecordAndTask(maintenanceRecord, task));
 	}
 
 	@Override
@@ -92,10 +91,9 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		Dataset dataset;
 		SelectChoices taskChoices;
 		List<Task> tasks;
-		int technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		int recordId = involves.getMaintenanceRecord().getId();
 
-		tasks = this.repository.findAllSelectableTasks(technicianId, recordId);
+		tasks = this.repository.findValidTasksToUnlink(recordId);
 		taskChoices = SelectChoices.from(tasks, "id", involves.getTask());
 
 		dataset = super.unbindObject(involves);
@@ -105,4 +103,5 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 		super.getResponse().addData(dataset);
 	}
+
 }

@@ -25,7 +25,22 @@ public class TechnicianMaintenanceRecordsCreateService extends AbstractGuiServic
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		String method = super.getRequest().getMethod();
+		boolean authorised = true;
+
+		if (method.equals("POST")) {
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+			List<Aircraft> available = this.repository.findAllAircrafts();
+
+			if (aircraft == null && aircraftId != 0)
+				authorised = false;
+			else if (aircraft != null && !available.contains(aircraft))
+				authorised = false;
+		}
+
+		super.getResponse().setAuthorised(authorised);
+
 	}
 
 	@Override
