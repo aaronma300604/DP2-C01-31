@@ -1,6 +1,7 @@
 
 package acme.features.manager.legs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,12 @@ import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
+import acme.entities.claim.Claim;
 import acme.entities.flight.Flight;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegStatus;
+import acme.entities.trackingLog.TrackingLog;
 import acme.realms.employee.AirlineManager;
 
 @GuiService
@@ -87,11 +90,22 @@ public class ManagerLegsDeleteService extends AbstractGuiService<AirlineManager,
 	public void perform(final Leg leg) {
 		List<FlightAssignment> assignments;
 		List<ActivityLog> logs;
+		List<Claim> claims;
+		List<TrackingLog> trackingLogs;
 
 		assignments = this.repository.findAssigmentsByLeg(leg.getId());
-		logs = this.repository.findActivityLogsByLeg(leg.getId());
-		this.repository.deleteAll(assignments);
+		logs = new ArrayList<>();
+		for (FlightAssignment assignment : assignments)
+			logs.addAll(this.repository.findActivityLogsByAssignment(assignment.getId()));
+		claims = this.repository.findClaimsByLeg(leg.getId());
+		trackingLogs = new ArrayList<>();
+		for (Claim claim : claims)
+			trackingLogs.addAll(this.repository.findLogsByClaim(claim.getId()));
+
 		this.repository.deleteAll(logs);
+		this.repository.deleteAll(assignments);
+		this.repository.deleteAll(trackingLogs);
+		this.repository.deleteAll(claims);
 		this.repository.delete(leg);
 	}
 

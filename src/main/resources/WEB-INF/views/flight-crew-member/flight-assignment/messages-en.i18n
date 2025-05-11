@@ -1,7 +1,7 @@
 flight-crew-member.flight-assignment.list.title = List of My Assignments:
 flight-crew-member.flight-assignment.form.title = Flight Assignment Form:
 
-flight-crew-member.assignments.list.label.duty = Duty:
+flight-crew-member.assignments.list.label.flightNumber = Flight Number:
 flight-crew-member.assignments.list.label.moment = Last update:
 flight-crew-member.assignments.list.label.status = Status of the assignment:
 
@@ -15,6 +15,7 @@ flight-crew-member.flight-assignment.form.label.leg = Leg(FlightNumber)
 
 flight-crew-member.assignments.list.button.create = Create
 flight-crew-member.flight-assignment.form.button.create = Create
+flight-crew-member.activity-log.list.show.logs = ActivityLogs
 
 flight-crew-member.flight-assignment.form.button.publish = Publish
 flight-crew-member.flight-assignment.form.button.delete = Delete

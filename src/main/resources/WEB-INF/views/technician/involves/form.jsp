@@ -9,6 +9,9 @@
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="technician.involves.form.button.create" action="/technician/involves/create?recordId=${recordId}"/>
-		</jstl:when>		
+		</jstl:when>	
+		<jstl:when test="${_command == 'delete'}">
+			<acme:submit code="technician.involves.form.button.delete" action="/technician/involves/delete?recordId=${recordId}"/>
+		</jstl:when>			
 	</jstl:choose>
 </acme:form>

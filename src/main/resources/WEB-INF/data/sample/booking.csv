@@ -1,37 +1,30 @@
-key,lastCreditCardNibble,locatorCode,price,purchaseMoment,travelClass
+key,lastCreditCardNibble,locatorCode,purchaseMoment,travelClass,key:customer,draftMode,key:flight
 # base entity
-booking-01,null,ABC123,EUR 500.01,2015/03/11 10:00,ECONOMY
-booking-02,0000,DEF456,EUR 450.00,2015/03/09 10:00,ECONOMY
-booking-03,9999,GHI789,EUR 99.99,2015/03/07 10:00,ECONOMY
-booking-04,4567,JKL012,EUR 600.00,2015/03/04 10:00,BUSINESS
-booking-05,null,MNO345,EUR 200.50,2015/02/25 10:00,ECONOMY
-booking-06,1234,PQR678,EUR 150.00,2015/03/12 10:00,BUSINESS
-booking-07,0000,STU901,EUR 300.00,2015/03/10 10:00,ECONOMY
-booking-08,9999,VWX234,EUR 750.00,2015/03/05 10:00,BUSINESS
-booking-09,7691,YZ5678,EUR 1000.00,2015/03/03 10:00,ECONOMY
-booking-10,9999,ABC890,EUR 850.00,2015/03/01 10:00,BUSINESS
+booking-01,null,ABC123,2015/03/11 10:00,ECONOMY,customer-01,false,flight-05
+booking-02,0000,DEF456,2015/03/09 10:00,ECONOMY,customer-02,true,flight-05
+booking-03,9999,GHI789,2015/03/07 10:00,ECONOMY,customer-03,true,flight-05
+booking-04,4567,JKL012,2015/03/04 10:00,BUSINESS,customer-01,true,flight-05
+booking-05,null,MNO345,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
+booking-06,1234,PQR678,2015/03/12 10:00,BUSINESS,customer-03,true,flight-05
+booking-07,0000,STU901,2015/03/10 10:00,ECONOMY,customer-01,true,flight-05
+booking-08,9999,VWX234,2015/03/05 10:00,BUSINESS,customer-02,true,flight-05
+booking-09,7691,YZ5678,2015/03/03 10:00,ECONOMY,customer-01,true,flight-05
+booking-10,9999,ABC890,2015/03/01 10:00,BUSINESS,customer-03,true,flight-05
 # last_credit_card_nibble - standard variations
-booking-11,1234,ABC124,EUR 500.01,2015/03/11 10:00,ECONOMY
-booking-12,0000,DEF457,EUR 450.00,2015/03/09 10:00,ECONOMY
-booking-13,9999,GHI790,EUR 99.99,2015/03/07 10:00,ECONOMY
-booking-14,4567,JKL013,EUR 600.00,2015/03/04 10:00,BUSINESS
-booking-15,null,MNO346,EUR 200.50,2015/02/25 10:00,ECONOMY
+booking-11,1234,ABC124,2015/03/11 10:00,ECONOMY,customer-01,true,flight-05
+booking-12,0000,DEF457,2015/03/09 10:00,ECONOMY,customer-02,true,flight-05
+booking-13,9999,GHI790,2015/03/07 10:00,ECONOMY,customer-03,true,flight-05
+booking-14,4567,JKL013,2015/03/04 10:00,BUSINESS,customer-01,true,flight-05
+booking-15,null,MNO346,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
 # locator_code - standard variations
-booking-16,null,ABC125,EUR 500.01,2015/03/11 10:00,ECONOMY
-booking-17,0000,A1B2C3D5,EUR 450.00,2015/03/09 10:00,ECONOMY
-booking-18,9999,999999,EUR 99.99,2015/03/07 10:00,ECONOMY
-booking-19,4567,ABCDEFGI,EUR 600.00,2015/03/04 10:00,BUSINESS
-booking-20,null,A1B2C4,EUR 200.50,2015/02/25 10:00,ECONOMY
-# price - standard variations
-booking-21,null,ABC126,EUR 500.01,2015/03/11 10:00,ECONOMY
-booking-22,0000,DEF458,EUR 001.00,2015/03/09 10:00,ECONOMY
-booking-23,9999,GHI791,EUR 99.99,2015/03/07 10:00,ECONOMY
-booking-24,4567,JKL014,EUR 999999.99,2015/03/04 10:00,BUSINESS
-booking-25,null,MNO347,EUR 1000000.00,2015/02/25 10:00,ECONOMY
-booking-26,1234,PQR679,EUR 200.00,2015/03/12 10:00,BUSINESS
+booking-16,null,ABC125,2015/03/11 10:00,ECONOMY,customer-01,true,flight-05
+booking-17,0000,A1B2C3D5,2015/03/09 10:00,ECONOMY,customer-02,true,flight-05
+booking-18,9999,999999,2015/03/07 10:00,ECONOMY,customer-03,true,flight-05
+booking-19,4567,ABCDEFGI,2015/03/04 10:00,BUSINESS,customer-01,true,flight-05
+booking-20,null,A1B2C4,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
 # purchase_moment  - standard variations
-booking-27,null,ABC127,EUR 500.01,2011/04/16 00:00,ECONOMY
-booking-28,0000,DEF459,EUR 450.00,2000/01/01 00:00,ECONOMY
-booking-29,9999,GHI792,EUR 99.99,2000/01/01 00:01,ECONOMY
-booking-30,4567,JKL015,EUR 600.00,2022/07/29 23:59,BUSINESS
-booking-31,null,MNO348,EUR 200.50,2022/07/30 00:00,ECONOMY
+booking-27,null,ABC127,2011/04/16 00:00,ECONOMY,customer-01,true,flight-05
+booking-28,0000,DEF459,2000/01/01 00:00,ECONOMY,customer-03,true,flight-05
+booking-29,9999,GHI792,2000/01/01 00:01,ECONOMY,customer-01,true,flight-05
+booking-30,4567,JKL015,2022/07/29 23:59,BUSINESS,customer-02,true,flight-05
+booking-31,null,MNO348,2022/07/30 00:00,ECONOMY,customer-02,true,flight-05

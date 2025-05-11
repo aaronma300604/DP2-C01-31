@@ -29,12 +29,12 @@ master.menu.administrator.list-system-config = Configuración del sistema
 
 # feature.menu.administrator ###################################################
 
-feature.menu.administrator = Listados
 feature.menu.administrator.list-airports = Aeropuertos
 feature.menu.administrator.list-aircrafts = Aviones
 feature.menu.administrator.list-maintenance-records = Informes de mantenimiento
 feature.menu.administrator.list-airlines = Aerolineas
-
+feature.menu.administrator.list-services = Servicios
+feature.menu.administrator.list-booking = Reservas
 
 
 # master.menu.provider ########################################################
@@ -68,6 +68,14 @@ master.menu.agent = Agente de Asistencia
 master.menu.agent.list-my-undergoing-claims = Mis Reclamaciones en curso
 master.menu.agent.list-my-completed-claims = Mis Reclamaciones completadas
 
+# master.menu.customer ##########################################################
+
+master.menu.customer = Customer
+master.menu.customer.booking = Mis Reservas
+master.menu.customer.passenger = Mis Pasajeros
+master.menu.customer.passenger-booking =  Asignaciones de pasajeros
+master.menu.customer.customer-dashboard = Mostrar panel
+
 # master.menu.technician ##########################################################
 
 master.menu.technician = Técnico
@@ -87,6 +95,10 @@ master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.user-account.become-technician = Hazte técnico
 master.menu.user-account.technician-profile = Perfil de técnico
+master.menu.user-account.become-manager = Hazte gerente
+master.menu.user-account.manager-profile = Perfil de gerente
+master.menu.user-account.become-customer = Hazte cliente
+master.menu.user-account.customer-profile = Perfil de cliente
 
 # master.menu.member ##########################################################
 
@@ -96,4 +108,5 @@ maste.menu.member.list-my-assignments = Mis asignaciones
 # master.menu.any ##########################################################
 master.menu.any = Cualquiera
 master.menu.any.review-list = Reseñas
-
+master.menu.any.service-list = Servicios
+master.menu.any.flight-list = Vuelos

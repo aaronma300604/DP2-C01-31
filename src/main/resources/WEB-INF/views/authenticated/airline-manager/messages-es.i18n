@@ -1,0 +1,9 @@
+authenticated.airline-manager.form.title = Gerente
+
+authenticated.airline-manager.form.label.experience = Años de Experiencia
+authenticated.airline-manager.form.label.birth = Fecha de Nacimiento
+authenticated.airline-manager.form.label.link = Foto (Opcional)
+authenticated.airline-manager.form.label.airline = Aerolíneas
+
+authenticated.airline-manager.form.button.create = Convertirse en Gerente
+authenticated.airline-manager.form.button.update = Actualizar

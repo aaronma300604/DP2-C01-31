@@ -1,0 +1,15 @@
+flight-crew-member.activity-log.list.title = Registros de Actividad
+flight-crew-member.activity-log.form.title = Registro de Actividad
+
+flight-crew-member.logs.list.label.moment = Momento
+flight-crew-member.logs.list.label.incident = Incidente
+flight-crew-member.logs.list.label.severityLevel  = Nivel de severidad
+flight-crew-member.logs.list.label.description = Descrición
+flight-crew-member.logs.list.label.assignments  = Asignaciones
+
+flight-crew-member.logs.list.button.create = Crear
+
+flight-crew-member.activity-log.form.button.update = Actualizar
+flight-crew-member.activity-log.form.button.delete = Borrar
+flight-crew-member.activity-log.form.button.publish = Publicar
+flight-crew-member.activity-log.form.button.create = Crear

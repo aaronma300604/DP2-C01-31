@@ -3,6 +3,8 @@ package acme.entities.service;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.datatypes.Money;
@@ -19,6 +21,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "promotionCode", unique = true)
+})
 public class Service extends AbstractEntity {
 
 	//Serialisation version  -----------------------------------------
@@ -37,7 +42,7 @@ public class Service extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0)
+	@ValidNumber(min = 0, message = "{acme.validation.positive.number}")
 	Integer						avgDwellTime;
 
 	@Optional

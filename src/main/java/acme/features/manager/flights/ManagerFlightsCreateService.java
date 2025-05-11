@@ -22,7 +22,19 @@ public class ManagerFlightsCreateService extends AbstractGuiService<AirlineManag
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		String method = super.getRequest().getMethod();
+		if (method.equals("POST")) {
+			int airlineId = super.getRequest().getData("airline", int.class);
+			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			Airline airline = this.repository.findAirlineById(airlineId);
+			AirlineManager manager = this.repository.findManagerById(managerId);
+			if (manager == null)
+				status = false;
+			else if (airline != null)
+				status = manager.getAirline().getId() == airlineId;
+		}
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -53,7 +65,15 @@ public class ManagerFlightsCreateService extends AbstractGuiService<AirlineManag
 
 	@Override
 	public void validate(final Flight flight) {
-		;
+		boolean availableCurrency;
+		List<String> currencies;
+		currencies = this.repository.finAllCurrencies();
+		String currency;
+		currency = super.getRequest().getData("cost", String.class);
+		currency = currency.length() >= 3 ? currency.substring(0, 3).toUpperCase() : currency;
+		availableCurrency = currencies.contains(currency);
+
+		super.state(availableCurrency, "cost", "acme.validation.invalid-currency.message");
 	}
 
 	@Override

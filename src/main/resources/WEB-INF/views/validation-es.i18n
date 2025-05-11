@@ -5,12 +5,12 @@ acme.validation.review.score = La puntuación debe estar entre 0 y 10
 acme.validation.currency.is-only-system-currency = No puedes dejar al sistema sin moneda del sistema
 acme.validation.system-currency.current = No puedes borrar la actual moneda del sistema
 acme.validation.sysconf.currency = Debe ser una cadena de 3 letras mayúsculas
-
+acme.validation.positive.number = Debe ser un número positivo
 
 
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
 acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
-
+acme.validation.service.duplicated-code.message = Hay otro servicio con ese código de descuento
 acme.validation.leg.flight_number.message = Debe empezar por el código IATA de la aerolínea, seguido de cuatro dígitos
 acme.validation.leg.duplicated-flight-number.message = Hay otro trayecto con ese código de vuelo
 acme.validation.aircraft.duplicated-registration-number.message = Hay otra aeronave con ese código de registro
@@ -37,9 +37,31 @@ acme.validation.phone = Debe ser un número de teléfono
 acme.validation.technician.years-of-experience = Debe ser un entero entre 0 y 75
 
 
+
+acme.validation.booking.invalid-nibble.message = El valor ingresado debe ser un número de cuatro dígitos o estar en blanco
+acme.validation.booking.cant-be-publish.message = Para poder publicar esta reserva todos los pasajeros deben de estar publicados y los últimos cuatro dígitos de la tarjeta de crédito no pueden estar vacíos
+acme.validation.booking.duplicate-locator-code.message = Ya existe una reserva con ese código
+acme.validation.passport.duplicated_passport_number.message = Ya existe un pasajero con este número de pasaporte
+acme.validation.passenger.passport_number.message = Número de pasaporte inválido. Debe tener entre 6 y 9 caracteres y contener solo letras mayúsculas y números
+acme.validation.booking.booking-publish.message = La reserva ya está publicada y no puede modificarse
+acme.validation.booking.duplicated_passenger_booking.message = Ya existe esa relación entre ese pasejero y esa reserva
+acme.validation.booking.booking-null.message = La reserva no puede ser nula
+acme.validation.booking.passenger-null.message =El pasajero no puede ser nulo
+acme.validation.booking.cant-be-publish-flight.message = Debes elegir un vuelo antes de publicar la reserva
+acme.validation.booking.cant-be-publish-passenger.message = Para publicar un vuelo debes tener al menos un pasajero publicado
+
+acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
+
 acme.validation.flight-assignment.legCurrency.message = El tripulante ya está asignado a otra escala de vuelo que causa un conflicto de concurrencia.
 acme.validation.flight-assignment.dutyPilot.message = Ya se ha asignado un piloto; por lo tanto, el tripulante no puede ser asignado a ese rol.
 acme.validation.flight-assignment.dutyCopilot.message = Ya se ha asignado un copiloto; por lo tanto, el tripulante no puede ser asignado a ese rol.
 acme.validation.flight-assignment.legPublished.message = La escala adjunta debe estar publicada para poder publicar la asignación de vuelo.
 acme.validation.flight-assignment.memberAlreadyAssigned.message = Este miembro ya ha sido asignado a esta escala.
 acme.validation.flight-assignment.cant-be-published.message = No puedes publicar la asignación de vuelo porque la escala no está publicada todavía.
+acme.validation.activity-log.assignmentInDraftMode.message = La asignación de vuelo está en modo borrador
+acme.validation.flight-assignment.faNull.message = No puede ser nulo
+acme.validation.activity-log.severityLevel.message = El número debe estar entre 0 y 10
+acme.validation.flight-assignment.memberAvailable.message = Este miembro no está disponible en este momento
+acme.validation.flight-assignment.legIsCompleted.message = The leg must be completed
+acme.validation.flight-assignment.existActivityLog.message = No puedes borrar esta asignación ya que tiene incidencias registradas.
+technician.involves.form.error.no-task-to-unlink = No se puede desvincular esta tarea

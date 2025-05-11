@@ -50,7 +50,7 @@ public interface AgentLegsRepository extends AbstractRepository {
 	@Query("select a from FlightAssignment a where a.leg.id = :legId")
 	List<FlightAssignment> findAssigmentsByLeg(int legId);
 
-	@Query("select a from ActivityLog a where a.leg.id = :legId")
+	@Query("select a from ActivityLog a where a.flightAssignment.leg.id = :legId")
 	List<ActivityLog> findActivityLogsByLeg(int legId);
 
 	@Query("select l from Leg l")

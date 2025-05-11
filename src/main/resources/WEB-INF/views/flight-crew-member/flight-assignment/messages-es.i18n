@@ -14,3 +14,4 @@ flight-crew-member.flight-assignment.form.label.leg = Escala(Número de vuelo)
 
 flight-crew-member.assignments.list.button.create = Crear
 flight-crew-member.flight-assignment.form.button.create = Crear
+flight-crew-member.activity-log.list.show.logs = Registros de Actividad

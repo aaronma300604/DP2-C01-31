@@ -1,0 +1,6 @@
+customer.passenger-booking.list.title = Gestión de reservas
+customer.passenger-booking.form.title = Reservas
+customer.passenger-booking.list.button.create = Añadir pasajeros a las reservas
+customer.passenger-booking.form.update = Actualizar
+customer.passenger-booking.form.button.create = Crear
+customer.passenger-booking.form.delete = Borrar

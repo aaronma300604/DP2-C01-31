@@ -1,0 +1,23 @@
+any.flight.list.title = Vuelos Publicados:
+any.flight.form.title = Detalles del Vuelo:
+
+any.flight.list.label.tag = Etiqueta:
+any.flight.list.label.cost = Coste:
+any.flight.list.label.scheduledDeparture = Horario de Salida:
+any.flight.list.label.scheduledArrival = Horario de LLegada:
+any.flight.list.label.origin = Origen:
+any.flight.list.label.destination = Destino:
+
+any.flight.form.label.tag = Etiqueta:
+any.flight.form.label.selfTransfer = Auto Transferencia:
+any.flight.form.label.cost = Coste:
+any.flight.form.label.description = Descripción:
+any.flight.form.label.manager = Nombre del Gerente:
+any.flight.form.label.airline = Nombre de Aerolínea:
+any.flight.form.label.scheduledDeparture = Horario de Salida:
+any.flight.form.label.scheduledArrival = Horario de LLegada:
+any.flight.form.label.layovers = Escalas:
+any.flight.form.label.origin = Origen:
+any.flight.form.label.destination = Destino:
+
+any.flight.form.button.leg = Trayectos

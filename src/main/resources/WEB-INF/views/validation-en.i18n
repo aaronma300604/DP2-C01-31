@@ -7,8 +7,9 @@ acme.validation.review.score = Score must be between 0 and 10
 acme.validation.currency.is-only-system-currency = Cannot leave the system without a system currency
 acme.validation.system-currency.current = Cannot delete the current system currency
 acme.validation.sysconf.currency = Must be a 3 letter upper case long string
+acme.validation.positive.number = Must be a positive number
 
-
+acme.validation.service.duplicated-code.message = There is another service with this promotion code
 acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
 acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits
 acme.validation.leg.duplicated-flight-number.message = There is another leg with this flight number
@@ -35,9 +36,31 @@ acme.validation.task.duration = Must be an integer between 1 and 1000
 acme.validation.phone = Must be a phone number
 acme.validation.technician.years-of-experience = Must be an integer between 0 and 75
 
+acme.validation.booking.invalid-nibble.message = The entered value must be a four-digit number or blank
+acme.validation.booking.cant-be-publish.message = To publish this booking, all passengers must be published and the last four digits of the credit card cannot be empty
+acme.validation.booking.duplicate-locator-code.message = A booking with this code already exists.
+acme.validation.passport.duplicated_passport_number.message = A passenger with this passport number already exists
+acme.validation.passenger.passport_number.message = Invalid passport number. It must be between 6 and 9 characters long and contain only uppercase letters and numbers
+acme.validation.booking.booking-publish.message = The booking is already published and cannot be modified
+acme.validation.booking.duplicated_passenger_booking.message = That relationship between the passenger and the booking already exists
+acme.validation.booking.booking-null.message = The booking cannot be null
+acme.validation.booking.passenger-null.message = The passenger cannot be null
+acme.validation.booking.cant-be-publish-flight.message = You must select a flight before publish the booking
+acme.validation.booking.cant-be-publish-passenger.message = To publish a booking, you must have at least one published passenger
+
+acme.validation.flight.cant-be-publish.message = This flight can't be published yet
+
 acme.validation.flight-assignment.legCurrency.message = The member is already assigned to another leg, which causes a scheduling conflict.
 acme.validation.flight-assignment.dutyPilot.message = A pilot has already been assigned; therefore, the member cannot be assigned to this role.
 acme.validation.flight-assignment.dutyCopilot.message = A copilot has already been assigned; therefore, the member cannot be assigned to this role.
 acme.validation.flight-assignment.legPublished.message = The attached leg must be published to publish the flight assignment.
 acme.validation.flight-assignment.memberAlreadyAssigned.message = This member has already been assigned to this leg.
-acme.validation.flight-assignment.cant-be-published.message = You cannot publish the leg because it is not published yet.
+acme.validation.flight-assignment.memberAvailable.message = This member is not available at this moment
+acme.validation.flight-assignment.legIsCompleted.message = The leg must be completed
+acme.validation.flight-assignment.cant-be-published.message = You cannot publish the flight assignment because the leg is not published yet.
+acme.validation.flight-assignment.faNull.message = May not be null
+acme.validation.flight-assignment.existActivityLog.message = You cannot delete this flight assignment because has activity logs associated.
+acme.validation.activity-log.assignmentInDraftMode.message = Flight Assignment is in draft Mode
+acme.validation.activity-log.severityLevel.message = Number must be between 0 and 10
+technician.involves.form.error.no-task-to-unlink = No task to unlink
+

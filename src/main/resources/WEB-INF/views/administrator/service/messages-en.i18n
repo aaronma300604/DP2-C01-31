@@ -1,0 +1,17 @@
+administrator.service.list.title = Services:
+administrator.service.form.title = Service Details:
+
+administrator.service.form.label.name = Name
+administrator.service.form.label.avgDwellTime = Average Dwell Time 
+administrator.service.form.label.picture = Picture
+administrator.service.form.label.promotionCode = Promotion Code (Optional)
+administrator.service.form.label.discountApplied = Discount Applied (Optional)
+
+administrator.service.list.label.name = Name
+administrator.service.list.label.avgDwellTime = Average Dwell Time 
+
+administrator.service.list.button.create = Create
+
+administrator.service.form.button.create = Create
+administrator.service.form.button.update = Update
+administrator.service.form.button.delete = Delete

@@ -4,7 +4,9 @@ package acme.entities.activityLog;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -15,14 +17,16 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
-import acme.entities.leg.Leg;
-import acme.realms.employee.FlightCrewMember;
+import acme.entities.flightAssignment.FlightAssignment;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "flight_assignment_id")
+})
 public class ActivityLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -44,17 +48,16 @@ public class ActivityLog extends AbstractEntity {
 
 	@Mandatory
 	@Automapped
-	@ValidNumber(min = 0, max = 10)
-	private Integer				securityLevel;
+	@ValidNumber(min = 0, max = 10, message = "{acme.validation.activity-log.severityLevel.message}")
+	private Integer				severityLevel;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+	// Relationships -----------------------------------------------
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private FlightCrewMember	flightCrewMember;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Leg					leg;
+	private FlightAssignment	flightAssignment;
 
 }

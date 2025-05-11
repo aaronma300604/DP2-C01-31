@@ -1,0 +1,7 @@
+customer.customer-dashboard.form.title = Mi panel
+customer.customer-dashboard.form.label.lastFiveDestinations = Últimos cinco destinos
+customer.customer-dashboard.form.label.moneySpent = Dinero gastado durante el último año
+customer.customer-dashboard.form.label.bookingsByEconomy = Número de reservas en clase Económica
+customer.customer-dashboard.form.label.bookingsByBusiness = Número de reservas en clase Business
+customer.customer-dashboard.form.label.costBooking = Costes en los últimos cinco años
+customer.customer-dashboard.form.label.passengerBooking = Estadísticas de pasajeros

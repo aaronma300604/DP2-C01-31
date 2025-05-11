@@ -35,6 +35,25 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 		manager = leg == null ? null : leg.getManager();
 		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
 
+		if (status) {
+			int flightId = super.getRequest().getData("flight", int.class);
+			int aircraftId = super.getRequest().getData("aircraft", int.class);
+			int originId = super.getRequest().getData("origin", int.class);
+			int destinationId = super.getRequest().getData("destination", int.class);
+			Flight flight = this.repository.findFlightById(flightId);
+			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+			Airport origin = this.repository.findAirportById(originId);
+			Airport destination = this.repository.findAirportById(destinationId);
+
+			List<Flight> flights = this.repository.findFlightsByManager(manager.getId());
+			List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(manager.getId());
+			List<Airport> airports = this.repository.findAllAirports();
+			if (flight != null && aircraft != null //
+				&& origin != null && destination != null)
+				status = flights.contains(flight) && aircrafts.contains(aircraft) //
+					&& airports.contains(origin) && airports.contains(destination);
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
