@@ -1,6 +1,6 @@
 key,lastUpdate,stepUndergoing,resolutionPercentage,accepted,resolution,draftMode,iteration,key:claim
 tracking-log-01,2000/01/01 00:00,A,0.0,PENDING,,false,1,claim-01
-tracking-log-02,2000/01/02 00:01,AB,0.1,ACCEPTED,Minimal resolution text,false,1,claim-01
+tracking-log-02,2000/01/02 00:01,AB,0.1,ACCEPTED,Minimal resolution text,false,1,claim-02
 tracking-log-03,2022/07/29 23:59,"Lorem ipsum dolor sit amet, consectetur elit.",99.9,REJECTED,This resolution text is long but still within limits.,false,1,claim-03
 tracking-log-04,2022/07/30 00:00,โลเร็ม อิปซัม,100.0,PENDING,โลเร็ม อิปซัม resolution text,false,1,claim-04
 tracking-log-05,2018/06/15 14:20,لوريم إيبسوم,50.5,ACCEPTED,لوريم إيبسوم resolution details,false,1,claim-05
