@@ -40,7 +40,7 @@ acme.validation.technician.years-of-experience = Debe ser un entero entre 0 y 75
 
 acme.validation.booking.invalid-nibble.message = El valor ingresado debe ser un número de cuatro dígitos o estar en blanco
 acme.validation.booking.cant-be-publish.message = Para poder publicar esta reserva todos los pasajeros deben de estar publicados y los últimos cuatro dígitos de la tarjeta de crédito no pueden estar vacíos
-
+acme.validation.booking.duplicate-locator-code.message = Ya existe una reserva con ese código
 acme.validation.passport.duplicated_passport_number.message = Ya existe un pasajero con este número de pasaporte
 acme.validation.passenger.passport_number.message = Número de pasaporte inválido. Debe tener entre 6 y 9 caracteres y contener solo letras mayúsculas y números
 acme.validation.booking.booking-publish.message = La reserva ya está publicada y no puede modificarse

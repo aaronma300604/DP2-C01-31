@@ -38,7 +38,7 @@ acme.validation.technician.years-of-experience = Must be an integer between 0 an
 
 acme.validation.booking.invalid-nibble.message = The entered value must be a four-digit number or blank
 acme.validation.booking.cant-be-publish.message = To publish this booking, all passengers must be published and the last four digits of the credit card cannot be empty
-
+acme.validation.booking.duplicate-locator-code.message = A booking with this code already exists.
 acme.validation.passport.duplicated_passport_number.message = A passenger with this passport number already exists
 acme.validation.passenger.passport_number.message = Invalid passport number. It must be between 6 and 9 characters long and contain only uppercase letters and numbers
 acme.validation.booking.booking-publish.message = The booking is already published and cannot be modified

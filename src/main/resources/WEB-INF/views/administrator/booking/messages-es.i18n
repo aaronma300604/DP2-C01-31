@@ -1,0 +1,16 @@
+administrator.booking.list.title = Reservas publicadas
+administrator.booking.list.locatorCode = Código de localización
+administrator.booking.list.purchaseMoment = Fecha de compra
+administrator.booking.list.price = Precio
+administrator.booking.list.travelClass = Clase de vuelo
+administrator.booking.list.button.create = Crear reserva
+
+administrator.booking.form.title = Información de mi reserva
+administrator.booking.form.locatorCode = Código de localización
+administrator.booking.form.purchaseMoment = Momento de compra
+administrator.booking.form.price = Precio
+administrator.booking.form.travelClass = Clase
+administrator.booking.form.lastCreditCardNibble = Últimos cuatro dígitos de la tarjeta de crédito usada
+administrator.booking.form.flight = Etiqueta de vuelo
+administrator.booking.form.button.create = Crear
+administrator.booking.form.show.passengers = Ver pasajeros

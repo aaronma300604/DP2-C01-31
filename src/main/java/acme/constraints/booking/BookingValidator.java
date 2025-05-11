@@ -10,6 +10,7 @@ import acme.client.components.validation.Validator;
 import acme.client.helpers.StringHelper;
 import acme.entities.booking.Booking;
 import acme.entities.booking.BookingRepository;
+import acme.entities.flight.Flight;
 
 @Validator
 public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
@@ -37,6 +38,18 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 				lastNibble = "";
 			if (!StringHelper.matches(lastNibble, "\\d{4}|"))
 				super.state(context, false, "lastCreditCardNibble", "acme.validation.booking.invalid-nibble.message");
+			{
+				Booking existingBooking = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
+				boolean isDuplicate = existingBooking != null && existingBooking.getId() != booking.getId();
+				super.state(context, !isDuplicate, "locatorCode", "acme.validation.booking.duplicate-locator-code.message");
+			}
+			{
+				Flight flightBooking = booking.getFlight();
+				if (flightBooking == null)
+					super.state(context, false, "flight", "javax.validation.constraints.NotNull.message");
+
+			}
+
 		}
 		result = !super.hasErrors(context);
 

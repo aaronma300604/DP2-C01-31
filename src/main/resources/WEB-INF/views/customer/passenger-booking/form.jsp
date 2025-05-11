@@ -9,6 +9,7 @@
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')  && draftMode == true}"  >		
 			<acme:submit code="customer.passenger-booking.form.update" action="/customer/passenger-booking/update"/>
+			<acme:submit code="customer.passenger-booking.form.delete" action="/customer/passenger-booking/delete"/>
 		</jstl:when> 	
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="customer.passenger-booking.form.button.create" action="/customer/passenger-booking/create"/>

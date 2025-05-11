@@ -13,4 +13,5 @@ customer.booking.form.travelClass = Clase
 customer.booking.form.lastCreditCardNibble = Últimos cuatro dígitos de la tarjeta de crédito usada
 customer.booking.form.flight = Etiqueta de vuelo
 customer.booking.form.button.create = Crear
+customer.booking.form.button.delete = Eliminar
 customer.booking.form.show.passengers = Ver pasajeros

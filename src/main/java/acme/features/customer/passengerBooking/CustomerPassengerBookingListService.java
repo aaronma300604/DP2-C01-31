@@ -23,7 +23,14 @@ public class CustomerPassengerBookingListService extends AbstractGuiService<Cust
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean authorised = false;
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+		List<PassengerBooking> passengers = this.repository.findPassengerBookingsByCustomerId(customerId);
+		authorised = passengers != null && !passengers.isEmpty();
+
+		super.getResponse().setAuthorised(authorised);
 	}
 
 	@Override

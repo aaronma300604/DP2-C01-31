@@ -1,0 +1,10 @@
+authenticated.customer.form.title = Customer
+
+authenticated.customer.form.label.phone = Phone
+authenticated.customer.form.label.address = Address
+authenticated.customer.form.label.city = City
+authenticated.customer.form.label.country = Country
+authenticated.customer.form.label.points = Points
+
+authenticated.customer.form.button.create = Become a Customer
+authenticated.customer.form.button.update = Update

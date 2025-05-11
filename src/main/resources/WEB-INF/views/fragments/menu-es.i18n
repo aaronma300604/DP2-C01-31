@@ -34,6 +34,7 @@ feature.menu.administrator.list-aircrafts = Aviones
 feature.menu.administrator.list-maintenance-records = Informes de mantenimiento
 feature.menu.administrator.list-airlines = Aerolineas
 feature.menu.administrator.list-services = Servicios
+feature.menu.administrator.list-booking = Reservas
 
 
 # master.menu.provider ########################################################
@@ -73,6 +74,7 @@ master.menu.customer = Customer
 master.menu.customer.booking = Mis Reservas
 master.menu.customer.passenger = Mis Pasajeros
 master.menu.customer.passenger-booking =  Asignaciones de pasajeros
+master.menu.customer.customer-dashboard = Mostrar panel
 
 # master.menu.technician ##########################################################
 
@@ -95,6 +97,8 @@ master.menu.user-account.become-technician = Hazte técnico
 master.menu.user-account.technician-profile = Perfil de técnico
 master.menu.user-account.become-manager = Hazte gerente
 master.menu.user-account.manager-profile = Perfil de gerente
+master.menu.user-account.become-customer = Hazte cliente
+master.menu.user-account.customer-profile = Perfil de cliente
 
 # master.menu.member ##########################################################
 

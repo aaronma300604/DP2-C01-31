@@ -13,5 +13,6 @@ customer.passenger.form.dateOfBirth =  Date of Birth
 customer.passenger.form.specialNeeds = Special Needs
 
 customer.passenger.form.button.create = Create
+customer.passenger.form.button.delete = Delete
 customer.passenger.form.button.update = Update information
 customer.passenger.form.button.publish = Publish

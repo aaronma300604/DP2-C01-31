@@ -1,30 +1,30 @@
 key,lastCreditCardNibble,locatorCode,purchaseMoment,travelClass,key:customer,draftMode,key:flight
 # base entity
-booking-01,null,ABC123,2015/03/11 10:00,ECONOMY,customer-01,true,flight-01
-booking-02,0000,DEF456,2015/03/09 10:00,ECONOMY,customer-02,true,flight-02
-booking-03,9999,GHI789,2015/03/07 10:00,ECONOMY,customer-03,true,flight-03
-booking-04,4567,JKL012,2015/03/04 10:00,BUSINESS,customer-01,true,flight-04
+booking-01,null,ABC123,2015/03/11 10:00,ECONOMY,customer-01,false,flight-05
+booking-02,0000,DEF456,2015/03/09 10:00,ECONOMY,customer-02,true,flight-05
+booking-03,9999,GHI789,2015/03/07 10:00,ECONOMY,customer-03,true,flight-05
+booking-04,4567,JKL012,2015/03/04 10:00,BUSINESS,customer-01,true,flight-05
 booking-05,null,MNO345,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
-booking-06,1234,PQR678,2015/03/12 10:00,BUSINESS,customer-03,true,flight-06
-booking-07,0000,STU901,2015/03/10 10:00,ECONOMY,customer-01,true,flight-07
-booking-08,9999,VWX234,2015/03/05 10:00,BUSINESS,customer-02,true,flight-08
-booking-09,7691,YZ5678,2015/03/03 10:00,ECONOMY,customer-01,true,flight-09
-booking-10,9999,ABC890,2015/03/01 10:00,BUSINESS,customer-03,true,flight-10
+booking-06,1234,PQR678,2015/03/12 10:00,BUSINESS,customer-03,true,flight-05
+booking-07,0000,STU901,2015/03/10 10:00,ECONOMY,customer-01,true,flight-05
+booking-08,9999,VWX234,2015/03/05 10:00,BUSINESS,customer-02,true,flight-05
+booking-09,7691,YZ5678,2015/03/03 10:00,ECONOMY,customer-01,true,flight-05
+booking-10,9999,ABC890,2015/03/01 10:00,BUSINESS,customer-03,true,flight-05
 # last_credit_card_nibble - standard variations
-booking-11,1234,ABC124,2015/03/11 10:00,ECONOMY,customer-01,true,flight-11
-booking-12,0000,DEF457,2015/03/09 10:00,ECONOMY,customer-02,true,flight-12
-booking-13,9999,GHI790,2015/03/07 10:00,ECONOMY,customer-03,true,flight-13
-booking-14,4567,JKL013,2015/03/04 10:00,BUSINESS,customer-01,true,flight-14
-booking-15,null,MNO346,2015/02/25 10:00,ECONOMY,customer-02,true,flight-15
+booking-11,1234,ABC124,2015/03/11 10:00,ECONOMY,customer-01,true,flight-05
+booking-12,0000,DEF457,2015/03/09 10:00,ECONOMY,customer-02,true,flight-05
+booking-13,9999,GHI790,2015/03/07 10:00,ECONOMY,customer-03,true,flight-05
+booking-14,4567,JKL013,2015/03/04 10:00,BUSINESS,customer-01,true,flight-05
+booking-15,null,MNO346,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
 # locator_code - standard variations
-booking-16,null,ABC125,2015/03/11 10:00,ECONOMY,customer-01,true,flight-16
-booking-17,0000,A1B2C3D5,2015/03/09 10:00,ECONOMY,customer-02,true,flight-17
-booking-18,9999,999999,2015/03/07 10:00,ECONOMY,customer-03,true,flight-18
-booking-19,4567,ABCDEFGI,2015/03/04 10:00,BUSINESS,customer-01,true,flight-19
-booking-20,null,A1B2C4,2015/02/25 10:00,ECONOMY,customer-02,true,flight-20
+booking-16,null,ABC125,2015/03/11 10:00,ECONOMY,customer-01,true,flight-05
+booking-17,0000,A1B2C3D5,2015/03/09 10:00,ECONOMY,customer-02,true,flight-05
+booking-18,9999,999999,2015/03/07 10:00,ECONOMY,customer-03,true,flight-05
+booking-19,4567,ABCDEFGI,2015/03/04 10:00,BUSINESS,customer-01,true,flight-05
+booking-20,null,A1B2C4,2015/02/25 10:00,ECONOMY,customer-02,true,flight-05
 # purchase_moment  - standard variations
-booking-27,null,ABC127,2011/04/16 00:00,ECONOMY,customer-01,true,flight-06
-booking-28,0000,DEF459,2000/01/01 00:00,ECONOMY,customer-03,true,flight-07
-booking-29,9999,GHI792,2000/01/01 00:01,ECONOMY,customer-01,true,flight-08
-booking-30,4567,JKL015,2022/07/29 23:59,BUSINESS,customer-02,true,flight-09
-booking-31,null,MNO348,2022/07/30 00:00,ECONOMY,customer-02,true,flight-10
+booking-27,null,ABC127,2011/04/16 00:00,ECONOMY,customer-01,true,flight-05
+booking-28,0000,DEF459,2000/01/01 00:00,ECONOMY,customer-03,true,flight-05
+booking-29,9999,GHI792,2000/01/01 00:01,ECONOMY,customer-01,true,flight-05
+booking-30,4567,JKL015,2022/07/29 23:59,BUSINESS,customer-02,true,flight-05
+booking-31,null,MNO348,2022/07/30 00:00,ECONOMY,customer-02,true,flight-05

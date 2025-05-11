@@ -3,3 +3,4 @@ customer.passenger-booking.form.title = Booking
 customer.passenger-booking.list.button.create = Add passengers to bookings
 customer.passenger-booking.form.update = Update
 customer.passenger-booking.form.button.create = Create
+customer.passenger-booking.form.delete =Delete

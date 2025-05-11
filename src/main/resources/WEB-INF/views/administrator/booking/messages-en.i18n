@@ -1,0 +1,18 @@
+administrator.booking.list.title = Booking Published
+administrator.booking.list.locatorCode = Locator Code
+administrator.booking.list.purchaseMoment = Purchase Moment
+administrator.booking.list.price = Price
+administrator.booking.list.travelClass = Travel Class
+administrator.booking.list.button.create = Create booking
+
+administrator.booking.form.title = Booking information
+administrator.booking.form.locatorCode = Locator Code
+administrator.booking.form.purchaseMoment = Purchase Moment
+administrator.booking.form.price = Price
+administrator.booking.form.travelClass = Travel Class
+administrator.booking.form.lastCreditCardNibble = Last Credit Card Nibble
+administrator.booking.form.flight = Flight Tag 
+administrator.booking.form.button.create = Create
+administrator.booking.form.button.update = Update
+administrator.booking.form.button.publish = Publish
+administrator.booking.form.show.passengers = View passengers

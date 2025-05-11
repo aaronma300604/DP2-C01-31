@@ -1,0 +1,17 @@
+administrator.passenger.list.title = Passenger Published
+administrator.passenger.list.name = Full name
+administrator.passenger.list.email = Email
+administrator.passenger.list.passportNumber = Passport Number
+administrator.passenger.list.dateOfBirth = Date of Birth
+
+administrator.passenger.list.button.create = Create Passenger
+administrator.passenger.form.title = Passenger information
+administrator.passenger.form.name = Full name
+administrator.passenger.form.email = Email
+administrator.passenger.form.passportNumber = Passport Number (pattern = ^[A-Z0-9]{6,9}$)
+administrator.passenger.form.dateOfBirth =  Date of Birth
+administrator.passenger.form.specialNeeds = Special Needs
+
+administrator.passenger.form.button.create = Create
+administrator.passenger.form.button.update = Update information
+administrator.passenger.form.button.publish = Publish
