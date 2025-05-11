@@ -15,6 +15,7 @@ import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
+import acme.features.flightCrewMember.activityLog.ActivityLogDeleteService;
 import acme.realms.employee.AvaliabilityStatus;
 import acme.realms.employee.FlightCrewMember;
 
@@ -22,7 +23,10 @@ import acme.realms.employee.FlightCrewMember;
 public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	@Autowired
-	private FlightAssignmentRepository repository;
+	private FlightAssignmentRepository	repository;
+
+	@Autowired
+	private ActivityLogDeleteService	activityLogDeleteService;
 
 
 	@Override
@@ -84,16 +88,13 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		boolean existActivityLogsForThisFa;
-		List<ActivityLog> logs = this.repository.findActivityLogsByFa(flightAssignment.getId());
-		existActivityLogsForThisFa = logs.isEmpty();
-		super.state(existActivityLogsForThisFa, "*", "acme.validation.flight-assignment.existActivityLog.message");
+		;
 	}
 
 	@Override
 	public void perform(final FlightAssignment fa) {
-		//List<ActivityLog> logs = this.repository.findActivityLogsByFa(fa.getId());
-
+		List<ActivityLog> logs = this.repository.findActivityLogsByFa(fa.getId());
+		this.repository.deleteAll(logs);
 		this.repository.delete(fa);
 	}
 
