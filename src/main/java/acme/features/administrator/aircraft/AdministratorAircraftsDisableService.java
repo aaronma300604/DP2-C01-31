@@ -2,6 +2,7 @@
 package acme.features.administrator.aircraft;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -63,7 +65,8 @@ public class AdministratorAircraftsDisableService extends AbstractGuiService<Adm
 		boolean canBeDisable;
 		List<Leg> legsByAircraft;
 
-		legsByAircraft = this.repository.findLegsByAircraft(aircraft.getId());
+		Date date = MomentHelper.getCurrentMoment();
+		legsByAircraft = this.repository.findLegsByAircraft(aircraft.getId(), date);
 		canBeDisable = legsByAircraft.isEmpty();
 		super.state(canBeDisable, "*", "acme.validation.aircraft.cant-be-disable");
 

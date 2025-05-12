@@ -1,6 +1,7 @@
 
 package acme.features.administrator.aircraft;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -29,6 +30,6 @@ public interface AdministratorAircraftsRepository extends AbstractRepository {
 	@Query("select a from Airline a where a.id = :airlineId")
 	Airline findAirlineById(int airlineId);
 
-	@Query("select l from Leg l where l.aircraft.id = :aircraftId")
-	List<Leg> findLegsByAircraft(int aircraftId);
+	@Query("select l from Leg l where l.aircraft.id = :aircraftId and l.scheduledDeparture > :date and l.scheduledArrival > :date")
+	List<Leg> findLegsByAircraft(int aircraftId, Date date);
 }
