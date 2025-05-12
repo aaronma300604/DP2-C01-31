@@ -3,7 +3,9 @@ package acme.realms.employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
@@ -24,6 +26,9 @@ import lombok.Setter;
 @Setter
 @Getter
 @ValidFlightCrewMember
+@Table(indexes = {
+	@Index(columnList = "abStat")
+})
 public class FlightCrewMember extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
