@@ -12,7 +12,6 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -26,7 +25,6 @@ import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
-import acme.realms.employee.AvaliabilityStatus;
 import acme.realms.employee.FlightCrewMember;
 
 @GuiService
@@ -55,15 +53,17 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		if (method.equals("POST")) {
 			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
-			int legId = super.getRequest().getData("leg", int.class);
-			Leg legAssigned = this.repository.findLegById(legId);
+			try {
+				int legId = super.getRequest().getData("leg", int.class);
+				Leg legAssigned = this.repository.findLegById(legId);
 
-			if (!"0".equals(rawLeg))
-				if (legAssigned == null)
-					authorised = false;
-				else if (!selectedLegs.contains(legAssigned))
-					authorised = false;
+				if (!"0".equals(rawLeg))
+					if (legAssigned == null)
+						authorised = false;
 
+			} catch (Exception e) {
+				authorised = false;
+			}
 			//Comprobacion de inyección de datos en currentStatus
 
 			String rawStatus = super.getRequest().getData("currentStatus", String.class);
@@ -158,17 +158,8 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		super.getResponse().addData(dataset);
 	}
 
-	public List<FlightCrewMember> getAvailableMembers() {
-		List<FlightCrewMember> avaliableMembers = this.repository.findMembersByStatus(AvaliabilityStatus.AVALIABLE);
-		if (avaliableMembers == null)
-			avaliableMembers = new ArrayList<>();
-		return avaliableMembers;
-	}
-
 	public List<Leg> getPosibleLegs() {
 		List<Leg> posibleLegs = this.repository.findAllLegs();
-		if (posibleLegs == null)
-			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 

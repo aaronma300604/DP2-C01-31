@@ -49,15 +49,18 @@ public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrew
 		if (method.equals("POST")) {
 			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
-			int legId = super.getRequest().getData("leg", int.class);
-			Leg legAssigned = this.repository.findLegById(legId);
+			try {
+				int legId = super.getRequest().getData("leg", int.class);
+				Leg legAssigned = this.repository.findLegById(legId);
 
-			if (!"0".equals(rawLeg))
-				if (legAssigned == null)
-					authorised = false;
-				else if (!selectedLegs.contains(legAssigned))
-					authorised = false;
-
+				if (!"0".equals(rawLeg))
+					if (legAssigned == null)
+						authorised = false;
+					else if (!selectedLegs.contains(legAssigned))
+						authorised = false;
+			} catch (Exception e) {
+				authorised = false;
+			}
 			//Comprobacion de inyección de datos en currentStatus
 
 			String rawStatus = super.getRequest().getData("currentStatus", String.class);

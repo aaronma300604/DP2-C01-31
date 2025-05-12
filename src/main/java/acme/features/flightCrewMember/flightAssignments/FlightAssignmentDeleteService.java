@@ -1,7 +1,7 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
-import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
 import acme.features.flightCrewMember.activityLog.ActivityLogDeleteService;
-import acme.realms.employee.AvaliabilityStatus;
 import acme.realms.employee.FlightCrewMember;
 
 @GuiService
@@ -46,14 +45,43 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		if (method.equals("POST")) {
 			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
-			int legId = super.getRequest().getData("leg", int.class);
-			Leg legAssigned = this.repository.findLegById(legId);
+			try {
+				int legId = super.getRequest().getData("leg", int.class);
+				Leg legAssigned = this.repository.findLegById(legId);
 
-			if (!"0".equals(rawLeg))
-				if (legAssigned == null)
+				if (!"0".equals(rawLeg))
+					if (legAssigned == null)
+						authorised = false;
+
+			} catch (Exception e) {
+				authorised = false;
+			}
+			//Comprobacion de inyección de datos en currentStatus
+
+			String rawStatus = super.getRequest().getData("currentStatus", String.class);
+
+			CurrentStatus Cstatus = null;
+			if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
+				try {
+					Cstatus = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
+				} catch (IllegalArgumentException ex) {
 					authorised = false;
-				else if (!selectedLegs.contains(legAssigned))
+				}
+				if (!EnumSet.allOf(CurrentStatus.class).contains(Cstatus))
 					authorised = false;
+			}
+			//Comprobacion de inyección de datos en duty
+			String rawDuty = super.getRequest().getData("duty", String.class);
+			Duty duty = null;
+			if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
+				try {
+					duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
+				} catch (IllegalArgumentException ex) {
+					authorised = false;
+				}
+				if (!EnumSet.allOf(Duty.class).contains(duty))
+					authorised = false;
+			}
 		}
 		boolean allowed = status && authorised;
 		super.getResponse().setAuthorised(allowed);
@@ -122,17 +150,8 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		super.getResponse().addData(dataset);
 	}
 
-	public List<FlightCrewMember> getAvailableMembers() {
-		List<FlightCrewMember> avaliableMembers = this.repository.findMembersByStatus(AvaliabilityStatus.AVALIABLE);
-		if (avaliableMembers == null)
-			avaliableMembers = new ArrayList<>();
-		return avaliableMembers;
-	}
-
 	public List<Leg> getPosibleLegs() {
 		List<Leg> posibleLegs = this.repository.findAllLegs();
-		if (posibleLegs == null)
-			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 
