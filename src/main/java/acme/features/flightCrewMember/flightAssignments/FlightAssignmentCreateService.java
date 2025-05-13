@@ -14,7 +14,6 @@ package acme.features.flightCrewMember.flightAssignments;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,32 +60,7 @@ public class FlightAssignmentCreateService extends AbstractGuiService<FlightCrew
 			} catch (Exception e) {
 				authorised = false;
 			}
-			//Comprobacion de inyección de datos en currentStatus
 
-			String rawStatus = super.getRequest().getData("currentStatus", String.class);
-
-			CurrentStatus status = null;
-			if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
-				try {
-					status = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
-				} catch (IllegalArgumentException ex) {
-					authorised = false;
-				}
-				if (!EnumSet.allOf(CurrentStatus.class).contains(status))
-					authorised = false;
-			}
-			//Comprobacion de inyección de datos en duty
-			String rawDuty = super.getRequest().getData("duty", String.class);
-			Duty duty = null;
-			if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
-				try {
-					duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
-				} catch (IllegalArgumentException ex) {
-					authorised = false;
-				}
-				if (!EnumSet.allOf(Duty.class).contains(duty))
-					authorised = false;
-			}
 		}
 		super.getResponse().setAuthorised(authorised);
 	}
