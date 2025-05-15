@@ -13,6 +13,7 @@ acme.validation.service.duplicated-code.message = There is another service with 
 acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
 acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits
 acme.validation.leg.duplicated-flight-number.message = There is another leg with this flight number
+acme.validation.airport.duplicated-iata.message = There is another airport with this IATA code
 acme.validation.aircraft.duplicated-registration-number.message = There is another aircraft with this registration number
 acme.validation.airline.duplicated-iata.message = There is another airline with this IATA code
 acme.validation.airline_manager.employee_code.message = Must begin with manager's initials, followed by six digits
@@ -24,6 +25,7 @@ acme.validation.next-inspection.update.message = Next inspection must be after r
 acme.validation.airline.iata.message = Must be two upper case letters, followed by an X
 acme.validation.airport.iata.message = Must be three upper case letters
 
+acme.validation.aircraft.cant-be-disable = There are legs associated to this aircraft. Can't disable the aircraft
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet
 acme.validation.claim.cant-be-publish.message = This claim can't be published yet
 acme.validation.maintenance-record.cant-be-publish.message = This record can't be published yet

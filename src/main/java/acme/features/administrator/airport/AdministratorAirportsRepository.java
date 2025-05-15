@@ -17,4 +17,7 @@ public interface AdministratorAirportsRepository extends AbstractRepository {
 
 	@Query("select a from Airport a where a.id = :airportId")
 	Airport findAirportById(int airportId);
+
+	@Query("select a from Airport a where a.iata = :iataCode")
+	Airport findAirportByIATACode(String iataCode);
 }
