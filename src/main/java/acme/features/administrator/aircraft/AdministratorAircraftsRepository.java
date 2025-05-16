@@ -30,6 +30,7 @@ public interface AdministratorAircraftsRepository extends AbstractRepository {
 	@Query("select a from Airline a where a.id = :airlineId")
 	Airline findAirlineById(int airlineId);
 
-	@Query("select l from Leg l where l.aircraft.id = :aircraftId and l.scheduledDeparture > :date and l.scheduledArrival > :date")
+	@Query("select l from Leg l where l.aircraft.id = :aircraftId and "//
+		+ "(l.draftMode = false and l.scheduledDeparture > :date and l.scheduledArrival > :date or l.draftMode = false)")
 	List<Leg> findLegsByAircraft(int aircraftId, Date date);
 }
