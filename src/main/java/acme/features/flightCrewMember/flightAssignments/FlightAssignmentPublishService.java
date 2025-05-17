@@ -1,9 +1,7 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.EnumSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,41 +42,18 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		if (method.equals("POST")) {
 			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
-			int legId = super.getRequest().getData("leg", int.class);
-			Leg legAssigned = this.repository.findLegById(legId);
+			try {
+				int legId = super.getRequest().getData("leg", int.class);
+				Leg legAssigned = this.repository.findLegById(legId);
 
-			if (!"0".equals(rawLeg))
-				if (legAssigned == null)
-					authorised = false;
-				else if (!selectedLegs.contains(legAssigned))
-					authorised = false;
+				if (!"0".equals(rawLeg))
+					if (legAssigned == null)
+						authorised = false;
 
-			//Comprobacion de inyección de datos en currentStatus
-
-			String rawStatus = super.getRequest().getData("currentStatus", String.class);
-
-			CurrentStatus fastatus = null;
-			if (!"0".equals(rawStatus)) {               // el usuario sí seleccionó algo
-				try {
-					fastatus = CurrentStatus.valueOf(rawStatus); // puede lanzar IllegalArgumentException
-				} catch (IllegalArgumentException ex) {
-					authorised = false;
-				}
-				if (!EnumSet.allOf(CurrentStatus.class).contains(fastatus))
-					authorised = false;
+			} catch (Exception e) {
+				authorised = false;
 			}
-			//Comprobacion de inyección de datos en duty
-			String rawDuty = super.getRequest().getData("duty", String.class);
-			Duty duty = null;
-			if (!"0".equals(rawDuty)) {               // el usuario sí seleccionó algo
-				try {
-					duty = Duty.valueOf(rawDuty); // puede lanzar IllegalArgumentException
-				} catch (IllegalArgumentException ex) {
-					authorised = false;
-				}
-				if (!EnumSet.allOf(Duty.class).contains(duty))
-					authorised = false;
-			}
+
 		}
 		boolean b = status && authorised;
 		super.getResponse().setAuthorised(b);
@@ -135,7 +110,8 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 					existSimultaneousLeg = true;
 			} else
 				existSimultaneousLeg = true;
-		}
+		} else
+			existSimultaneousLeg = true;
 
 		//Comprobación de número de pilotos y copilotos
 		List<FlightAssignment> legCopilotAssignments = this.repository.findFlightAssignmentsByLegAndDuty(legAnalized, Duty.COPILOT);
@@ -155,7 +131,10 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 			}
 
 		//Comprobación de leg publicada
-		if (!legAnalized.isDraftMode())
+		if (legAnalized != null) {
+			if (!legAnalized.isDraftMode())
+				legIsPublished = true;
+		} else
 			legIsPublished = true;
 
 		//Comprobación de doble asignación a una leg
@@ -219,17 +198,9 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		super.getResponse().addData(dataset);
 	}
 
-	public List<FlightCrewMember> getAvailableMembers() {
-		List<FlightCrewMember> avaliableMembers = this.repository.findMembersByStatus(AvaliabilityStatus.AVALIABLE);
-		if (avaliableMembers == null)
-			avaliableMembers = new ArrayList<>();
-		return avaliableMembers;
-	}
-
 	public List<Leg> getPosibleLegs() {
 		List<Leg> posibleLegs = this.repository.findAllLegs();
-		if (posibleLegs == null)
-			posibleLegs = new ArrayList<>();
+
 		return posibleLegs;
 	}
 
