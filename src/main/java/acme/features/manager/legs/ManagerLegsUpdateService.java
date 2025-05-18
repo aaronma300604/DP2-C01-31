@@ -30,37 +30,42 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 		Leg leg;
 		AirlineManager manager;
 
-		legId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLeg(legId);
+		Integer nullValue = super.getRequest().getData("id", Integer.class);
+		if (nullValue == null)
+			super.getResponse().setAuthorised(false);
+		else {
+			legId = super.getRequest().getData("id", int.class);
+			leg = this.repository.findLeg(legId);
 
-		if (leg == null) {
-			manager = null;
-			status = false;
-		} else {
-			manager = leg.getManager();
-			status = super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
+			if (leg == null) {
+				manager = null;
+				status = false;
+			} else {
+				manager = leg.getManager();
+				status = super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
+			}
+
+			if (status) {
+				int flightId = super.getRequest().getData("flight", int.class);
+				int aircraftId = super.getRequest().getData("aircraft", int.class);
+				int originId = super.getRequest().getData("origin", int.class);
+				int destinationId = super.getRequest().getData("destination", int.class);
+				Flight flight = this.repository.findFlightById(flightId);
+				Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+				Airport origin = this.repository.findAirportById(originId);
+				Airport destination = this.repository.findAirportById(destinationId);
+
+				List<Flight> flights = this.repository.findFlightsByManager(manager.getId());
+				List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(manager.getId());
+				List<Airport> airports = this.repository.findAllAirports();
+				if (flight != null && aircraft != null //
+					&& origin != null && destination != null)
+					status = flights.contains(flight) && aircrafts.contains(aircraft) //
+						&& airports.contains(origin) && airports.contains(destination);
+			}
+
+			super.getResponse().setAuthorised(status);
 		}
-
-		if (status) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			int aircraftId = super.getRequest().getData("aircraft", int.class);
-			int originId = super.getRequest().getData("origin", int.class);
-			int destinationId = super.getRequest().getData("destination", int.class);
-			Flight flight = this.repository.findFlightById(flightId);
-			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
-			Airport origin = this.repository.findAirportById(originId);
-			Airport destination = this.repository.findAirportById(destinationId);
-
-			List<Flight> flights = this.repository.findFlightsByManager(manager.getId());
-			List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(manager.getId());
-			List<Airport> airports = this.repository.findAllAirports();
-			if (flight != null && aircraft != null //
-				&& origin != null && destination != null)
-				status = flights.contains(flight) && aircrafts.contains(aircraft) //
-					&& airports.contains(origin) && airports.contains(destination);
-		}
-
-		super.getResponse().setAuthorised(status);
 	}
 
 	@Override

@@ -27,25 +27,30 @@ public class ManagerFlightsUpdateService extends AbstractGuiService<AirlineManag
 		Flight flight;
 		AirlineManager manager;
 
-		flightId = super.getRequest().getData("id", int.class);
-		flight = this.repository.findFlight(flightId);
+		Integer nullValue = super.getRequest().getData("id", Integer.class);
+		if (nullValue == null)
+			super.getResponse().setAuthorised(false);
+		else {
+			flightId = super.getRequest().getData("id", int.class);
+			flight = this.repository.findFlight(flightId);
 
-		if (flight == null) {
-			manager = null;
-			status = false;
-		} else {
-			manager = flight.getManager();
-			status = super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
+			if (flight == null) {
+				manager = null;
+				status = false;
+			} else {
+				manager = flight.getManager();
+				status = super.getRequest().getPrincipal().hasRealm(manager) && flight.isDraftMode();
+			}
+
+			if (status) {
+				int airlineId = super.getRequest().getData("airline", int.class);
+				Airline airline = this.repository.findAirlineById(airlineId);
+				if (airline != null)
+					status = manager.getAirline().getId() == airlineId;
+			}
+
+			super.getResponse().setAuthorised(status);
 		}
-
-		if (status) {
-			int airlineId = super.getRequest().getData("airline", int.class);
-			Airline airline = this.repository.findAirlineById(airlineId);
-			if (airline != null)
-				status = manager.getAirline().getId() == airlineId;
-		}
-
-		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
