@@ -45,7 +45,8 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 				status = super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 			}
 
-			if (status) {
+			if (status && super.getRequest().hasData("flight") && super.getRequest().hasData("aircraft") //
+				&& super.getRequest().hasData("origin") && super.getRequest().hasData("destination")) {
 				int flightId = super.getRequest().getData("flight", int.class);
 				int aircraftId = super.getRequest().getData("aircraft", int.class);
 				int originId = super.getRequest().getData("origin", int.class);
