@@ -30,9 +30,9 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		Customer customer = booking != null ? booking.getCustomer() : null;
 
 		boolean isCustomer = customer != null && super.getRequest().getPrincipal().hasRealm(customer);
-		boolean isPublished = booking != null && !booking.isDraftMode();
+		boolean anyBooking = booking != null;
 
-		boolean status = isCustomer || isPublished;
+		boolean status = isCustomer && anyBooking;
 
 		super.getResponse().setAuthorised(status);
 	}
