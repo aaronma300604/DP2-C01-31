@@ -20,7 +20,7 @@ import acme.entities.trackingLog.TrackingLog;
 @Repository
 public interface ManagerLegsRepository extends AbstractRepository {
 
-	@Query("select l from Leg l where l.manager.id = :managerId and l.flight.airline.id = :airlineId")
+	@Query("select l from Leg l where l.manager.id = :managerId and l.flight.airline.id = :airlineId order by l.scheduledDeparture")
 	List<Leg> findMyLegs(int managerId, int airlineId);
 
 	@Query("select l from Leg l where l.id = :legId")
