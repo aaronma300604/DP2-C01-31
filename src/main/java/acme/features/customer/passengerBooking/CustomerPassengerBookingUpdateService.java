@@ -33,7 +33,7 @@ public class CustomerPassengerBookingUpdateService extends AbstractGuiService<Cu
 		passengerBookingId = super.getRequest().getData("id", int.class);
 		passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
 		customer = passengerBooking == null ? null : passengerBooking.getPassenger().getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer) || passengerBooking != null && passengerBooking.isDraftMode();
+		status = super.getRequest().getPrincipal().hasRealm(customer) || passengerBooking != null;
 
 		super.getResponse().setAuthorised(status);
 
@@ -94,7 +94,7 @@ public class CustomerPassengerBookingUpdateService extends AbstractGuiService<Cu
 		bookingChoices = SelectChoices.from(allBookingByCustomerId, "locatorCode", passengerBooking.getBooking());
 		passengerChoices = SelectChoices.from(allPassengerByCustomerId, "passportNumber", passengerBooking.getPassenger());
 
-		dataset = super.unbindObject(passengerBooking, "draftMode");
+		dataset = super.unbindObject(passengerBooking);
 		dataset.put("booking", bookingChoices.getSelected().getKey());
 		dataset.put("bookingChoices", bookingChoices);
 		dataset.put("passengerChoices", passengerChoices);

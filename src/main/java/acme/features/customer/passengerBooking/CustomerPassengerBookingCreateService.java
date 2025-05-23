@@ -75,7 +75,7 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 			super.bindObject(passengerBooking, "passenger", "booking");
 			passengerBooking.setPassenger(passenger);
 			passengerBooking.setBooking(booking);
-			passengerBooking.setDraftMode(true);
+
 		}
 
 	}
@@ -108,7 +108,7 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 		bookingChoices = SelectChoices.from(allBookingByCustomerId, "locatorCode", passengerBooking.getBooking());
 		passengerChoices = SelectChoices.from(allPassengerByCustomerId, "passportNumber", passengerBooking.getPassenger());
 
-		dataset = super.unbindObject(passengerBooking, "draftMode");
+		dataset = super.unbindObject(passengerBooking);
 		dataset.put("booking", bookingChoices.getSelected().getKey());
 		dataset.put("bookingChoices", bookingChoices);
 		dataset.put("passengerChoices", passengerChoices);
