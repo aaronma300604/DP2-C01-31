@@ -30,11 +30,13 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 			int flightId = super.getRequest().getData("flight", int.class);
 			Flight flight = this.repository.findFlightById(flightId);
 			List<Flight> availableFlights = this.repository.findFlights();
+			//			boolean invalidFlight = flight == null && 
 
 			boolean invalidFlight = flightId != 0 && (flight == null || !availableFlights.contains(flight));
 			status = !invalidFlight;
-
-		} else {
+		} else if (!super.getRequest().hasData("id"))
+			status = false;
+		else {
 			int bookingId = super.getRequest().getData("id", int.class);
 			Booking booking = this.repository.findBookingById(bookingId);
 			Customer customer = booking != null ? booking.getCustomer() : null;
@@ -58,6 +60,7 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	}
 	@Override
 	public void validate(final Booking booking) {
+
 		;
 	}
 

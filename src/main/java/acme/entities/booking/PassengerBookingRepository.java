@@ -9,7 +9,7 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface PassengerBookingRepository extends AbstractRepository {
 
-	@Query("select count(p) > 0 FROM PassengerBooking p WHERE p.booking.id = :bookingId and p.passenger.id = :passengerId")
-	Boolean existsPassengerInBooking(int bookingId, int passengerId);
+	@Query("select p FROM PassengerBooking p WHERE p.booking.id = :bookingId and p.passenger.id = :passengerId")
+	PassengerBooking relationPassengerInBooking(int bookingId, int passengerId);
 
 }
