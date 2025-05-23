@@ -27,22 +27,20 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	@Override
 	public void authorise() {
 		boolean authorised = true;
-
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		if (super.getRequest().getMethod().equals("POST")) {
-			int passengerId = super.getRequest().getData("passenger", int.class);
-			Passenger passenger = this.repository.findPassengerById(passengerId);
-			List<Passenger> myPassengers = this.repository.findPublishedPassengersFromId(customerId);
+		if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("booking") && super.getRequest().hasData("passenger")) {
 
 			int bookingId = super.getRequest().getData("booking", int.class);
+			int passengerId = super.getRequest().getData("passenger", int.class);
+
 			Booking booking = this.repository.findBookingById(bookingId);
+			Passenger passenger = this.repository.findPassengerById(passengerId);
 
-			boolean invalidBooking = booking == null && booking.getCustomer().getId() != customerId && !booking.isDraftMode() && bookingId != 0;
+			boolean validBooking = booking != null && booking.getCustomer().getId() == customerId && booking.isDraftMode();
+			boolean validPassenger = passenger != null && passenger.getCustomer().getId() == customerId && !passenger.isDraftMode();
 
-			boolean passengerInvalid = passengerId == 0 && passenger == null && myPassengers.contains(passenger);
-
-			authorised = passengerInvalid && invalidBooking;
+			authorised = validBooking && validPassenger;
 		}
 
 		super.getResponse().setAuthorised(authorised);
@@ -77,7 +75,7 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	@Override
 
 	public void validate(final PassengerBooking passengerBooking) {
-		if (passengerBooking.getBooking() != null) {
+		if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
 			super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
 			boolean permission = true;
 			PassengerBooking existing;

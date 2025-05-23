@@ -25,24 +25,28 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void authorise() {
-		boolean authorised;
+		boolean authorised = false;
 
-		if (super.getRequest().hasData("flight")) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			Flight flight = this.repository.findFlightById(flightId);
-			List<Flight> availableFlights = this.repository.findFlights();
-
-			boolean invalidFlightId = flightId != 0 && flight == null;
-			boolean flightNotListed = flight != null && !availableFlights.contains(flight);
-
-			authorised = !(invalidFlightId || flightNotListed);
-
-		} else {
+		if (super.getRequest().hasData("id")) {
 			int bookingId = super.getRequest().getData("id", int.class);
 			Booking booking = this.repository.findBookingById(bookingId);
-			Customer customer = booking != null ? booking.getCustomer() : null;
 
-			authorised = customer != null && super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.isDraftMode();
+			if (booking != null) {
+				Customer customer = booking.getCustomer();
+				boolean isOwned = super.getRequest().getPrincipal().hasRealm(customer);
+				boolean isDraft = booking.isDraftMode();
+				authorised = isOwned && isDraft;
+
+				if (authorised && super.getRequest().hasData("flight")) {
+					int flightId = super.getRequest().getData("flight", int.class);
+					Flight flight = this.repository.findFlightById(flightId);
+					List<Flight> availableFlights = this.repository.findFlights();
+
+					boolean invalidFlightId = flightId != 0 && (flight == null || !availableFlights.contains(flight));
+					if (invalidFlightId)
+						authorised = false;
+				}
+			}
 		}
 
 		super.getResponse().setAuthorised(authorised);
@@ -78,7 +82,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		String lastCreditCardNibble = booking.getLastCreditCardNibble();
 		List<Passenger> passengers = this.repository.findPassengerByBookingId(booking.getId());
 		boolean canBePublishFlight = booking.getFlight() != null;
-		//Para poder ser ppublicado debe tener al menos un pasajero publicado
+		//Para poder ser publicado debe tener al menos un pasajero publicado
 		boolean canBePublishPassenger = passengers.isEmpty() || passengers.stream().allMatch(p -> !p.isDraftMode());
 		boolean canBePublishLastCreditCard = !StringHelper.isBlank(lastCreditCardNibble);
 		boolean almenosunpasajero = passengers.size() >= 1;
