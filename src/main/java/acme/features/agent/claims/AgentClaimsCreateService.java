@@ -27,7 +27,25 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		String method = super.getRequest().getMethod();
+
+		if (method.equals("POST")) {
+			int legId = super.getRequest().getData("leg", int.class);
+			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+			if (legId != 0) {
+				Leg leg = this.repository.findLegById(legId);
+				List<Leg> accessibleLegs = this.agentLegsRepository.findAllPublishedLegs();
+
+				// Check that the agent is assigned a valid leg
+				if (agentId == 0 || leg == null || !accessibleLegs.contains(leg))
+					status = false;
+			}
+
+		}
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -61,8 +79,9 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 
 	@Override
 	public void validate(final Claim claim) {
+		boolean legNotNull = claim.getLeg() != null;
+		super.state(legNotNull, "leg", "acme.validation.claim.legNull.message");
 	}
-
 	@Override
 	public void perform(final Claim claim) {
 		this.repository.save(claim);
@@ -84,7 +103,7 @@ public class AgentClaimsCreateService extends AbstractGuiService<AssistanceAgent
 		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 		dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
 
-		List<Leg> allLegs = this.agentLegsRepository.findAllLegs();
+		List<Leg> allLegs = this.agentLegsRepository.findAllPublishedLegs();
 		SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
 		dataset.put("legs", legChoices);
 

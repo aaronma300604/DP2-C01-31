@@ -4,7 +4,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-    <acme:input-moment code="assistance-agent.tracking-log.list.label.last-update" path="lastUpdate"/>
+    
+    <jstl:choose>
+        <jstl:when test="${draftMode == false}">
+            <acme:input-moment code="assistance-agent.tracking-log.list.label.last-update" path="lastUpdate"/>
+        </jstl:when>
+    </jstl:choose>
     <acme:input-textbox code="assistance-agent.tracking-log.list.label.step" path="stepUndergoing"/>
     <acme:input-double code="assistance-agent.tracking-log.list.label.percentage" path="resolutionPercentage"/>
     <acme:input-textarea code="assistance-agent.tracking-log.list.label.resolution" path="resolution"/>

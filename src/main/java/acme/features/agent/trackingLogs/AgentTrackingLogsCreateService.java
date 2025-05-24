@@ -1,6 +1,7 @@
 
 package acme.features.agent.trackingLogs;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,22 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status = true;
+		int claimId;
+		Claim cl;
+		String method = super.getRequest().getMethod();
+
+		if (method.equals("POST")) {
+			claimId = super.getRequest().getData("claimid", int.class);
+			cl = this.claimRepository.findById(claimId);
+			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+
+			if (agentId == 0 || cl == null || !super.getRequest().getPrincipal().hasRealm(cl.getAssistanceAgent()))
+				status = false;
+		}
+
+		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -47,7 +63,7 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 
 	@Override
 	public void bind(final TrackingLog log) {
-		super.bindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "accepted");
+		super.bindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "accepted");
 		List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(log.getClaim().getId());
 
 		if (!trackingLogs.isEmpty()) {
@@ -73,6 +89,9 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 
 	@Override
 	public void perform(final TrackingLog log) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.YEAR, -5);
+		log.setLastUpdate(calendar.getTime());
 		this.repository.save(log);
 	}
 
@@ -84,7 +103,7 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		dataset = super.unbindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim");
+		dataset = super.unbindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim");
 
 		dataset.put("accepted", choices.getSelected().getKey());
 		dataset.put("types", choices);
