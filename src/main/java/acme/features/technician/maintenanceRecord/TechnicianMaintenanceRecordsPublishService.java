@@ -131,7 +131,7 @@ public class TechnicianMaintenanceRecordsPublishService extends AbstractGuiServi
 
 		dataset = super.unbindObject(record, "date", "maintenanceStatus", "nextInspection", "estimatedCost", "notes", "draftMode");
 		dataset.put("maintenanceStatuses", statusChoices);
-		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
+		dataset.put("aircraft", !aircrafts.isEmpty() ? aircraftChoices.getSelected().getKey() : "No aircrafts available");
 		dataset.put("emptyAircrafts", aircrafts.isEmpty());
 		dataset.put("emptyTasks", taskCount > 0);
 		dataset.put("aircrafts", aircraftChoices);

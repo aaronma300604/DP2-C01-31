@@ -35,7 +35,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 			recordId = super.getRequest().getData("recordId", int.class);
 			record = this.repository.findRecordById(recordId);
 			technician = record == null ? null : record.getTechnician();
-			status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician) && record.isDraftMode();
+			status = technician != null && super.getRequest().getPrincipal().hasRealm(technician) && record.isDraftMode();
 
 			if (method.equals("POST")) {
 				int taskId = super.getRequest().getData("task", int.class);
@@ -43,8 +43,7 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 
 				if (task == null && taskId != 0)
 					status = false;
-				else if (task != null && //
-					(technician == null || !this.repository.findAllSelectableTasks(technician.getId(), recordId).contains(task)))
+				else if (task != null && !this.repository.findAllSelectableTasks(technician.getId(), recordId).contains(task))
 					status = false;
 			}
 		}
