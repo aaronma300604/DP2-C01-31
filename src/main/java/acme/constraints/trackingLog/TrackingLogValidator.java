@@ -1,6 +1,7 @@
 
 package acme.constraints.trackingLog;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.ConstraintValidator;
@@ -34,6 +35,13 @@ public class TrackingLogValidator implements ConstraintValidator<ValidTrackingLo
 
 		Claim claim = trackingLog.getClaim();
 		List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(claim.getId());
+
+		Iterator<TrackingLog> iterator = trackingLogs.iterator();
+		while (iterator.hasNext()) {
+			TrackingLog existingLog = iterator.next();
+			if (existingLog.getId() == trackingLog.getId())
+				iterator.remove();
+		}
 
 		if (!trackingLogs.isEmpty()) {
 			TrackingLog highestTrackingLog = trackingLogs.get(0);
