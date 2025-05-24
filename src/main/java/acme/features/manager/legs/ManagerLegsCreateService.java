@@ -41,9 +41,7 @@ public class ManagerLegsCreateService extends AbstractGuiService<AirlineManager,
 			List<Flight> flights = this.repository.findFlightsByManager(managerId);
 			List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(managerId);
 			List<Airport> airports = this.repository.findAllAirports();
-			if (managerId == 0)
-				status = false;
-			else if (flight != null && aircraft != null //
+			if (flight != null && aircraft != null //
 				&& origin != null && destination != null)
 				status = flights.contains(flight) && aircrafts.contains(aircraft) //
 					&& airports.contains(origin) && airports.contains(destination);

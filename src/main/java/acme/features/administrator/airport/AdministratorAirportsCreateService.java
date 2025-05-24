@@ -40,6 +40,13 @@ public class AdministratorAirportsCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void validate(final Airport airport) {
+		boolean uniqueIata;
+		Airport existingAirport;
+
+		existingAirport = this.repository.findAirportByIATACode(airport.getIata());
+		uniqueIata = existingAirport == null || existingAirport.equals(airport);
+		super.state(uniqueIata, "iata", "acme.validation.airport.duplicated-iata.message");
+
 		boolean confirmation;
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
