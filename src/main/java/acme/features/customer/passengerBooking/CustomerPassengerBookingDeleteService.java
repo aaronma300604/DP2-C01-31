@@ -25,23 +25,30 @@ public class CustomerPassengerBookingDeleteService extends AbstractGuiService<Cu
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = false;
 
-		if (!super.getRequest().hasData("id"))
-			status = false;
-		else {
-			int passengerBookingId;
-			PassengerBooking passengerBooking;
-			Customer customer;
+		if (super.getRequest().hasData("id")) {
+			int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			int passengerBookingId = super.getRequest().getData("id", int.class);
 
-			passengerBookingId = super.getRequest().getData("id", int.class);
-			passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
-			customer = passengerBooking == null ? null : passengerBooking.getPassenger().getCustomer();
-			status = super.getRequest().getPrincipal().hasRealm(customer) && passengerBooking != null;
+			if (passengerBookingId > 0) {
+				PassengerBooking passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
+
+				if (passengerBooking != null && passengerBooking.getPassenger() != null && passengerBooking.getBooking() != null) {
+					Passenger passenger = passengerBooking.getPassenger();
+					Booking booking = passengerBooking.getBooking();
+
+					boolean sameCustomer = booking.getCustomer().getId() == customerId && passenger.getCustomer().getId() == customerId;
+
+					boolean inCustomerPassengers = this.repository.findPassengerByCustomerId(customerId).contains(passenger);
+					boolean inCustomerBookings = this.repository.findBookingByCustomerId(customerId).contains(booking);
+
+					status = sameCustomer && inCustomerPassengers && inCustomerBookings;
+				}
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override
