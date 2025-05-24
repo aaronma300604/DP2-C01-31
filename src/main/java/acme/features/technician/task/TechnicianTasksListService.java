@@ -25,13 +25,22 @@ public class TechnicianTasksListService extends AbstractGuiService<Technician, T
 		MaintenanceRecord record;
 		Technician technician;
 		boolean status;
-		recordId = super.getRequest().getData("recordId", int.class);
+
+		if (super.getRequest().hasData("recordId"))
+			try {
+				recordId = super.getRequest().getData("recordId", int.class);
+			} catch (Exception e) {
+				recordId = -1;
+			}
+		else
+			recordId = -1;
+
 		if (recordId == -1)
 			super.getResponse().setAuthorised(true);
 		else {
 			record = this.repository.findRecord(recordId);
 			technician = record == null ? null : record.getTechnician();
-			status = record != null && technician != null && (super.getRequest().getPrincipal().hasRealm(technician) || !record.isDraftMode());
+			status = technician != null && (super.getRequest().getPrincipal().hasRealm(technician) || !record.isDraftMode());
 			super.getResponse().addGlobal("draftMode", record == null ? null : record.isDraftMode());
 			super.getResponse().setAuthorised(status);
 		}
@@ -43,11 +52,26 @@ public class TechnicianTasksListService extends AbstractGuiService<Technician, T
 		int technicianId;
 		boolean mine;
 		int recordId;
-		recordId = super.getRequest().getData("recordId", int.class);
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
+		if (super.getRequest().hasData("recordId"))
+			try {
+				recordId = super.getRequest().getData("recordId", int.class);
+			} catch (Exception e) {
+				recordId = -1;
+			}
+		else
+			recordId = -1;
+
 		if (recordId == -1) {
-			mine = super.getRequest().getData("mine", boolean.class);
+			if (super.getRequest().hasData("mine"))
+				try {
+					mine = super.getRequest().getData("mine", boolean.class);
+				} catch (Exception e) {
+					mine = true;
+				}
+			else
+				mine = false;
 			tasks = mine ? this.repository.findMyTasks(technicianId) : this.repository.findAvailableTasks(technicianId);
 		} else
 			tasks = this.repository.findTasksByRecord(recordId);

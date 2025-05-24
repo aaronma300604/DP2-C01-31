@@ -29,22 +29,25 @@ public class TechnicianInvolvesCreateService extends AbstractGuiService<Technici
 		boolean status;
 		String method = super.getRequest().getMethod();
 
-		recordId = super.getRequest().getData("recordId", int.class);
-		record = this.repository.findRecordById(recordId);
-		technician = record == null ? null : record.getTechnician();
-		status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician) && record.isDraftMode();
+		if (!super.getRequest().hasData("recordId"))
+			status = false;
+		else {
+			recordId = super.getRequest().getData("recordId", int.class);
+			record = this.repository.findRecordById(recordId);
+			technician = record == null ? null : record.getTechnician();
+			status = record != null && technician != null && super.getRequest().getPrincipal().hasRealm(technician) && record.isDraftMode();
 
-		if (method.equals("POST")) {
-			int taskId = super.getRequest().getData("task", int.class);
-			Task task = this.repository.findTaskById(taskId);
+			if (method.equals("POST")) {
+				int taskId = super.getRequest().getData("task", int.class);
+				Task task = this.repository.findTaskById(taskId);
 
-			if (task == null && taskId != 0)
-				status = false;
-			else if (task != null && //
-				(technician == null || !this.repository.findAllSelectableTasks(technician.getId(), recordId).contains(task)))
-				status = false;
+				if (task == null && taskId != 0)
+					status = false;
+				else if (task != null && //
+					(technician == null || !this.repository.findAllSelectableTasks(technician.getId(), recordId).contains(task)))
+					status = false;
+			}
 		}
-
 		super.getResponse().setAuthorised(status);
 	}
 

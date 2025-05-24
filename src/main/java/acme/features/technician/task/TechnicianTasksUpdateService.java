@@ -24,11 +24,17 @@ public class TechnicianTasksUpdateService extends AbstractGuiService<Technician,
 		int taskId;
 		Task task;
 		Technician technician;
-
-		taskId = super.getRequest().getData("id", int.class);
-		task = this.repository.findTask(taskId);
-		technician = task == null ? null : task.getTechnician();
-		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		if (!super.getRequest().hasData("id"))
+			status = false;
+		else
+			try {
+				taskId = super.getRequest().getData("id", int.class);
+				task = this.repository.findTask(taskId);
+				technician = task == null ? null : task.getTechnician();
+				status = technician != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+			} catch (Exception e) {
+				status = false;
+			}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -45,24 +51,21 @@ public class TechnicianTasksUpdateService extends AbstractGuiService<Technician,
 
 	@Override
 	public void bind(final Task task) {
-		assert task != null;
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
 	}
 
 	@Override
 	public void validate(final Task task) {
-		assert task != null;
+		;//All validations are entity level
 	}
 
 	@Override
 	public void perform(final Task task) {
-		assert task != null;
 		this.repository.save(task);
 	}
 
 	@Override
 	public void unbind(final Task task) {
-		assert task != null;
 		Dataset dataset;
 		SelectChoices typeChoices;
 
