@@ -27,6 +27,7 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	@Override
 	public void authorise() {
 		boolean authorised = true;
+
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("booking") && super.getRequest().hasData("passenger")) {

@@ -26,14 +26,19 @@ public class CustomerPassengerBookingDeleteService extends AbstractGuiService<Cu
 	@Override
 	public void authorise() {
 		boolean status;
-		int passengerBookingId;
-		PassengerBooking passengerBooking;
-		Customer customer;
 
-		passengerBookingId = super.getRequest().getData("id", int.class);
-		passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
-		customer = passengerBooking == null ? null : passengerBooking.getPassenger().getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer) && passengerBooking != null;
+		if (!super.getRequest().hasData("id"))
+			status = false;
+		else {
+			int passengerBookingId;
+			PassengerBooking passengerBooking;
+			Customer customer;
+
+			passengerBookingId = super.getRequest().getData("id", int.class);
+			passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
+			customer = passengerBooking == null ? null : passengerBooking.getPassenger().getCustomer();
+			status = super.getRequest().getPrincipal().hasRealm(customer) && passengerBooking != null;
+		}
 
 		super.getResponse().setAuthorised(status);
 

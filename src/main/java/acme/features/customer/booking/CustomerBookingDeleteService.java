@@ -27,18 +27,31 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		boolean status = true;
-		int bookingId;
-		Booking booking;
-		Customer customer;
+		boolean authorised = false;
 
-		bookingId = super.getRequest().getData("id", int.class);
-		booking = this.repository.findBookingById(bookingId);
-		customer = booking == null ? null : booking.getCustomer();
-		status = super.getRequest().getPrincipal().hasRealm(customer) && booking != null && booking.isDraftMode();
+		if (super.getRequest().hasData("id")) {
+			int bookingId = super.getRequest().getData("id", int.class);
+			Booking booking = this.repository.findBookingById(bookingId);
 
-		super.getResponse().setAuthorised(status);
+			if (booking != null) {
+				Customer customer = booking.getCustomer();
+				boolean isOwned = super.getRequest().getPrincipal().hasRealm(customer);
+				boolean isDraft = booking.isDraftMode();
+				authorised = isOwned && isDraft;
 
+				if (authorised && super.getRequest().hasData("flight")) {
+					int flightId = super.getRequest().getData("flight", int.class);
+					Flight flight = this.repository.findFlightById(flightId);
+					List<Flight> availableFlights = this.repository.findFlights();
+
+					boolean invalidFlight = flightId != 0 && (flight == null || !availableFlights.contains(flight));
+					if (invalidFlight)
+						authorised = false;
+				}
+			}
+		}
+
+		super.getResponse().setAuthorised(authorised);
 	}
 
 	@Override
