@@ -42,11 +42,7 @@ public class ActivityLogListService extends AbstractGuiService<FlightCrewMember,
 
 		super.getBuffer().addData(logs);
 	}
-	@Override
-	public void bind(final ActivityLog log) {
-		super.bindObject(log, "moment", "incident", "description", "severityLevel");
 
-	}
 	@Override
 	public void unbind(final ActivityLog log) {
 		Dataset dataset;
