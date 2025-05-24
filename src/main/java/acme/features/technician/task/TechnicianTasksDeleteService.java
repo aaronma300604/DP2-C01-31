@@ -27,14 +27,19 @@ public class TechnicianTasksDeleteService extends AbstractGuiService<Technician,
 		int taskId;
 		Task task;
 		Technician technician;
-
-		taskId = super.getRequest().getData("id", int.class);
-		task = this.repository.findTask(taskId);
-		technician = task == null ? null : task.getTechnician();
-		status = task != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		if (!super.getRequest().hasData("id"))
+			status = false;
+		else
+			try {
+				taskId = super.getRequest().getData("id", int.class);
+				task = this.repository.findTask(taskId);
+				technician = task == null ? null : task.getTechnician();
+				status = technician != null && task.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+			} catch (Exception e) {
+				status = false;
+			}
 
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override
@@ -49,22 +54,20 @@ public class TechnicianTasksDeleteService extends AbstractGuiService<Technician,
 
 	@Override
 	public void bind(final Task task) {
-		assert task != null;
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
 	}
 
 	@Override
 	public void validate(final Task task) {
-		assert task != null;
+		;
 	}
 
 	@Override
 	public void perform(final Task task) {
-		assert task != null;
 		List<Involves> involves;
 		involves = this.repository.findInvolvesByTask(task.getId());
 
-		if (involves != null && !involves.isEmpty())
+		if (!involves.isEmpty())
 			this.repository.deleteAll(involves);
 
 		this.repository.delete(task);
@@ -72,7 +75,6 @@ public class TechnicianTasksDeleteService extends AbstractGuiService<Technician,
 
 	@Override
 	public void unbind(final Task task) {
-		assert task != null;
 		Dataset dataset;
 		SelectChoices typeChoices;
 

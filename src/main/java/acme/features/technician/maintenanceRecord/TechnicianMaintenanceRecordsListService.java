@@ -30,7 +30,14 @@ public class TechnicianMaintenanceRecordsListService extends AbstractGuiService<
 		boolean mine;
 
 		technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		mine = super.getRequest().getData("mine", boolean.class);
+		if (super.getRequest().hasData("mine"))
+			try {
+				mine = super.getRequest().getData("mine", boolean.class);
+			} catch (Exception e) {
+				mine = true;
+			}
+		else
+			mine = false;
 
 		records = mine ? this.repository.findMyRecords(technicianId) : this.repository.findAvailableRecords(technicianId);
 
@@ -39,7 +46,6 @@ public class TechnicianMaintenanceRecordsListService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
-		assert record != null;
 		Dataset dataset;
 
 		dataset = super.unbindObject(record, "id", "date", "maintenanceStatus", "nextInspection");

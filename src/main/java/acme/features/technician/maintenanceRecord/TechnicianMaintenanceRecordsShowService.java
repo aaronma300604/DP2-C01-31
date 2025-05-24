@@ -28,11 +28,14 @@ public class TechnicianMaintenanceRecordsShowService extends AbstractGuiService<
 		MaintenanceRecord record;
 		Technician technician;
 
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecord(recordId);
-		technician = record == null ? null : record.getTechnician();
-		status = technician != null && super.getRequest().getPrincipal().hasRealm(technician) || record != null && !record.isDraftMode();
-
+		if (!super.getRequest().hasData("id"))
+			status = false;
+		else {
+			recordId = super.getRequest().getData("id", int.class);
+			record = this.repository.findRecord(recordId);
+			technician = record == null ? null : record.getTechnician();
+			status = technician != null && super.getRequest().getPrincipal().hasRealm(technician) || record != null && !record.isDraftMode();
+		}
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -49,7 +52,6 @@ public class TechnicianMaintenanceRecordsShowService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
-		assert record != null;
 
 		Dataset dataset;
 		SelectChoices aircraftChoices;

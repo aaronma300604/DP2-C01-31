@@ -69,7 +69,7 @@ public class ActivityLogCreateService extends AbstractGuiService<FlightCrewMembe
 		flightAssignmentId = super.getRequest().getData("assignment", int.class);
 		FlightAssignment fa = this.repository.findAssignmentById(flightAssignmentId);
 
-		super.bindObject(activityLog, "moment", "incident", "description", "severityLevel");
+		super.bindObject(activityLog, "incident", "description", "severityLevel");
 		activityLog.setFlightAssignment(fa);
 	}
 
