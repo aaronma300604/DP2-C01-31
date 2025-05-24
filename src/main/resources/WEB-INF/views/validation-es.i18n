@@ -7,7 +7,8 @@ acme.validation.system-currency.current = No puedes borrar la actual moneda del 
 acme.validation.sysconf.currency = Debe ser una cadena de 3 letras mayúsculas
 acme.validation.positive.number = Debe ser un número positivo
 
-
+acme.validation.leg.scheduledDeparture = El horario de salida debe estar en el futuro
+acme.validation.leg.scheduledArrival = El horario de llegada debe ser más tarde que el de salida
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
 acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
 acme.validation.service.duplicated-code.message = Hay otro servicio con ese código de descuento
