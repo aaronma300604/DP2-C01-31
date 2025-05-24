@@ -1,7 +1,6 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import acme.entities.flightAssignment.CurrentStatus;
 import acme.entities.flightAssignment.Duty;
 import acme.entities.flightAssignment.FlightAssignment;
 import acme.entities.leg.Leg;
-import acme.realms.employee.AvaliabilityStatus;
 import acme.realms.employee.FlightCrewMember;
 
 @GuiService
@@ -77,17 +75,8 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 
 	}
 
-	public List<FlightCrewMember> getAvailableMembers() {
-		List<FlightCrewMember> avaliableMembers = this.repository.findMembersByStatus(AvaliabilityStatus.AVALIABLE);
-		if (avaliableMembers == null)
-			avaliableMembers = new ArrayList<>();
-		return avaliableMembers;
-	}
-
 	public List<Leg> getPosibleLegs() {
 		List<Leg> posibleLegs = this.repository.findAllLegs();
-		if (posibleLegs == null)
-			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 
