@@ -31,7 +31,7 @@ public class CustomerPassengerBookingDeleteService extends AbstractGuiService<Cu
 			int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 			int passengerBookingId = super.getRequest().getData("id", int.class);
 
-			if (passengerBookingId > 0) {
+			if (passengerBookingId != 0) {
 				PassengerBooking passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
 
 				if (passengerBooking != null && passengerBooking.getPassenger() != null && passengerBooking.getBooking() != null) {
