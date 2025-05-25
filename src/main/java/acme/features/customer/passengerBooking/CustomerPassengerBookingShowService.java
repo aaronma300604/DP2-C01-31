@@ -40,7 +40,7 @@ public class CustomerPassengerBookingShowService extends AbstractGuiService<Cust
 					boolean sameCustomer = booking.getCustomer().getId() == customerId && passenger.getCustomer().getId() == customerId;
 
 					boolean inCustomerPassengers = this.repository.findPassengerByCustomerId(customerId).contains(passenger);
-					boolean inCustomerBookings = this.repository.findBookingByCustomerId(customerId).contains(booking);
+					boolean inCustomerBookings = this.repository.findAllBookingsFromCustomer(customerId).contains(booking);
 
 					status = sameCustomer && inCustomerPassengers && inCustomerBookings;
 				}
@@ -84,7 +84,7 @@ public class CustomerPassengerBookingShowService extends AbstractGuiService<Cust
 		List<Booking> allBookingByCustomerId;
 		List<Passenger> allPassengerByCustomerId;
 
-		allBookingByCustomerId = this.repository.findBookingByCustomerId(customerId);
+		allBookingByCustomerId = this.repository.findAllBookingsFromCustomer(customerId);
 		allPassengerByCustomerId = this.repository.findPassengerByCustomerId(customerId);
 
 		bookingChoices = SelectChoices.from(allBookingByCustomerId, "locatorCode", passengerBooking.getBooking());
@@ -95,6 +95,9 @@ public class CustomerPassengerBookingShowService extends AbstractGuiService<Cust
 		dataset.put("bookingChoices", bookingChoices);
 		dataset.put("passengerChoices", passengerChoices);
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
+
+		if (passengerBooking.getBooking() != null)
+			super.getResponse().addGlobal("bookingDraftMode", passengerBooking.getBooking().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}
