@@ -29,20 +29,24 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 		MaintenanceRecord record;
 		Technician technician;
 
-		recordId = super.getRequest().getData("id", int.class);
-		record = this.repository.findRecord(recordId);
-		technician = record == null ? null : record.getTechnician();
-		status = record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
+		if (!super.getRequest().hasData("id"))
+			status = false;
+		else {
+			recordId = super.getRequest().getData("id", int.class);
+			record = this.repository.findRecord(recordId);
+			technician = record == null ? null : record.getTechnician();
+			status = record != null && record.isDraftMode() && super.getRequest().getPrincipal().hasRealm(technician);
 
-		if (super.getRequest().hasData("aircraft")) {
-			int aircraftId = super.getRequest().getData("aircraft", int.class);
-			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
-			List<Aircraft> available = this.repository.findAllAircrafts();
+			if (super.getRequest().hasData("aircraft")) {
+				int aircraftId = super.getRequest().getData("aircraft", int.class);
+				Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+				List<Aircraft> available = this.repository.findAllAircrafts();
 
-			if (aircraft == null && aircraftId != 0)
-				status = false;
-			else if (aircraft != null && !available.contains(aircraft))
-				status = false;
+				if (aircraft == null && aircraftId != 0)
+					status = false;
+				else if (aircraft != null && !available.contains(aircraft))
+					status = false;
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -61,7 +65,6 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 
 	@Override
 	public void bind(final MaintenanceRecord record) {
-		assert record != null;
 
 		int aircraftId;
 		Aircraft aircraft;
@@ -75,7 +78,6 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 
 	@Override
 	public void validate(final MaintenanceRecord record) {
-		assert record != null;
 
 		boolean nextInspectionIsAfterDate;
 		boolean availableCurrency;
@@ -105,14 +107,12 @@ public class TechnicianMaintenanceRecordsUpdateService extends AbstractGuiServic
 
 	@Override
 	public void perform(final MaintenanceRecord record) {
-		assert record != null;
 
 		this.repository.save(record);
 	}
 
 	@Override
 	public void unbind(final MaintenanceRecord record) {
-		assert record != null;
 
 		Dataset dataset;
 		SelectChoices aircraftChoices;

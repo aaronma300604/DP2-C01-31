@@ -2,16 +2,20 @@
 package acme.features.administrator.aircraft;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airline.Airline;
+import acme.entities.leg.Leg;
 
 @GuiService
 public class AdministratorAircraftsUpdateService extends AbstractGuiService<Administrator, Aircraft> {
@@ -22,7 +26,14 @@ public class AdministratorAircraftsUpdateService extends AbstractGuiService<Admi
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int aircraftId;
+		Aircraft aircraft;
+
+		aircraftId = super.getRequest().getData("id", int.class);
+		aircraft = this.repository.findAircraftById(aircraftId);
+		status = aircraft != null;
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -51,6 +62,17 @@ public class AdministratorAircraftsUpdateService extends AbstractGuiService<Admi
 
 	@Override
 	public void validate(final Aircraft aircraft) {
+		boolean canBeDisable;
+		List<Leg> legsByAircraft;
+
+		Aircraft oldAircraft = this.repository.findAircraftById(aircraft.getId());
+		if (!aircraft.isActive() && oldAircraft.isActive()) {
+			Date date = MomentHelper.getCurrentMoment();
+			legsByAircraft = this.repository.findLegsByAircraft(aircraft.getId(), date);
+			canBeDisable = legsByAircraft.isEmpty();
+			super.state(canBeDisable, "*", "acme.validation.aircraft.cant-be-disable");
+		}
+
 		boolean uniqueRegistrationNumber;
 		Aircraft existingAircraft;
 

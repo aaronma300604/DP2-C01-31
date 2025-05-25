@@ -23,7 +23,8 @@ import lombok.Setter;
 @Setter
 @Table(indexes = {
 	@Index(columnList = "active"), //
-	@Index(columnList = "registrationNumber", unique = true)
+	@Index(columnList = "registrationNumber", unique = true),//
+	@Index(columnList = "active, airline_id")
 })
 public class Aircraft extends AbstractEntity {
 
