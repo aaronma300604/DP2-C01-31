@@ -7,8 +7,7 @@
 	<acme:input-select code="customer.passenger.list.passportNumber" path="passenger" choices="${passengerChoices}"/>	
 	<acme:input-select code="customer.booking.list.locatorCode" path="booking" choices="${bookingChoices}"/>	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish')  && draftMode == true}"  >		
-			<acme:submit code="customer.passenger-booking.form.update" action="/customer/passenger-booking/update"/>
+		<jstl:when test="${acme:anyOf(_command, 'show|delete')  }"  >		
 			<acme:submit code="customer.passenger-booking.form.delete" action="/customer/passenger-booking/delete"/>
 		</jstl:when> 	
 		<jstl:when test="${_command == 'create'}">

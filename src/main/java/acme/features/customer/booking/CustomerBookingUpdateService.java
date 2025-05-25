@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,25 +25,37 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean authorised = false;
 
-		if (super.getRequest().hasData("flight")) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			Flight flight = this.repository.findFlightById(flightId);
-			List<Flight> availableFlights = this.repository.findFlights();
-
-			boolean invalidFlight = flightId != 0 && (flight == null || !availableFlights.contains(flight));
-			status = !invalidFlight;
-
-		} else {
+		if (super.getRequest().hasData("id")) {
 			int bookingId = super.getRequest().getData("id", int.class);
 			Booking booking = this.repository.findBookingById(bookingId);
-			Customer customer = booking != null ? booking.getCustomer() : null;
 
-			status = customer != null && super.getRequest().getPrincipal().hasRealm(customer) || booking != null && !booking.isDraftMode();
+			if (booking != null) {
+				Customer customer = booking.getCustomer();
+				boolean isOwned = super.getRequest().getPrincipal().hasRealm(customer);
+				boolean isDraft = booking.isDraftMode();
+				authorised = isOwned && isDraft;
+
+				if (authorised && super.getRequest().hasData("flight")) {
+					int flightId = super.getRequest().getData("flight", int.class);
+					Flight flight = this.repository.findFlightById(flightId);
+					List<Flight> availableFlights = this.repository.findFlights();
+
+					boolean invalidFlight = flightId != 0 && (flight == null || !availableFlights.contains(flight));
+					if (invalidFlight)
+						authorised = false;
+				}
+				if (authorised && super.getRequest().hasData("travelClass")) {
+					String aTravelClass = super.getRequest().getData("travelClass", String.class);
+					if (aTravelClass == null || aTravelClass.trim().isEmpty() || Arrays.stream(TravelClassType.values()).noneMatch(s -> s.name().equals(aTravelClass)) && !aTravelClass.equals("0"))
+						authorised = false;
+				}
+			}
 		}
 
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(authorised);
+
 	}
 
 	@Override
@@ -58,7 +71,9 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	}
 	@Override
 	public void validate(final Booking booking) {
-		;
+		boolean isOwner = booking != null && booking.getCustomer() != null && super.getRequest().getPrincipal().hasRealm(booking.getCustomer());
+
+		super.state(isOwner, "*", "acme.validation.booking.not-owner");
 	}
 
 	@Override
