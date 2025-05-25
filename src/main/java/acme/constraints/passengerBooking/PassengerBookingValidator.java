@@ -29,13 +29,11 @@ public class PassengerBookingValidator extends AbstractValidator<ValidPassengerB
 
 		boolean result;
 
-		if (passengerBooking == null || passengerBooking.getBooking() == null || passengerBooking.getPassenger() == null)
-			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
-		else {
-			boolean existsPassengerBookingRelation;
-			existsPassengerBookingRelation = this.repository.existsPassengerInBooking(passengerBooking.getBooking().getId(), passengerBooking.getPassenger().getId());
+		if (passengerBooking == null || passengerBooking.getBooking() == null || passengerBooking.getPassenger() == null) {
+			super.state(context, false, "booking", "acme.validation.booking.booking-null.message");
+			super.state(context, false, "passenger", "acme.validation.booking.passenger-null.message");
+		} else {
 
-			super.state(context, existsPassengerBookingRelation, "booking", "acme.validation.booking.duplicated_passenger_booking.message");
 		}
 
 		result = !super.hasErrors(context);

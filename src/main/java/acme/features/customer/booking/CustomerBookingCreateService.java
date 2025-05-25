@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -29,16 +30,25 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void authorise() {
 		boolean authorised = true;
+		if (super.getRequest().hasData("id")) {
+			int bookingId = super.getRequest().getData("id", int.class);
+			if (bookingId != 0)
+				authorised = false;
+			else if (super.getRequest().getMethod().equals("POST")) {
+				int flightId = super.getRequest().getData("flight", int.class);
+				Flight flight = this.repository.findFlightById(flightId);
+				List<Flight> allFlights = this.repository.findFlights();
 
-		if (super.getRequest().getMethod().equals("POST")) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			Flight flight = this.repository.findFlightById(flightId);
-			List<Flight> allFlights = this.repository.findFlights();
+				boolean flightInvalid = flightId != 0 && flight == null;
+				boolean flightNotAvailable = flight != null && !allFlights.contains(flight);
 
-			boolean flightInvalid = flightId != 0 && flight == null;
-			boolean flightNotAvailable = flight != null && !allFlights.contains(flight);
+				authorised = !(flightInvalid || flightNotAvailable);
 
-			authorised = !(flightInvalid || flightNotAvailable);
+				String aTravelClass = super.getRequest().getData("travelClass", String.class);
+				if (aTravelClass == null || aTravelClass.trim().isEmpty() || Arrays.stream(TravelClassType.values()).noneMatch(s -> s.name().equals(aTravelClass)) && !aTravelClass.equals("0"))
+					authorised = false;
+
+			}
 		}
 
 		super.getResponse().setAuthorised(authorised);
