@@ -29,9 +29,7 @@ public class ManagerFlightsCreateService extends AbstractGuiService<AirlineManag
 			int managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
 			Airline airline = this.repository.findAirlineById(airlineId);
 			AirlineManager manager = this.repository.findManagerById(managerId);
-			if (manager == null)
-				status = false;
-			else if (airline != null)
+			if (airline != null)
 				status = manager.getAirline().getId() == airlineId;
 		}
 		super.getResponse().setAuthorised(status);

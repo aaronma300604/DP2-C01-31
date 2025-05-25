@@ -39,25 +39,21 @@ public class TechnicianTasksCreateService extends AbstractGuiService<Technician,
 
 	@Override
 	public void bind(final Task task) {
-		assert task != null;
 		super.bindObject(task, "type", "description", "priority", "estimatedDuration");
 	}
 
 	@Override
 	public void validate(final Task task) {
-		assert task != null;
-		;
+		; //All validations are entity level.
 	}
 
 	@Override
 	public void perform(final Task task) {
-		assert task != null;
 		this.repository.save(task);
 	}
 
 	@Override
 	public void unbind(final Task task) {
-		assert task != null;
 
 		Dataset dataset;
 		SelectChoices typeChoices;

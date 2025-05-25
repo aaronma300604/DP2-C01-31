@@ -1,12 +1,14 @@
 
 package acme.features.manager.legs;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -41,9 +43,7 @@ public class ManagerLegsCreateService extends AbstractGuiService<AirlineManager,
 			List<Flight> flights = this.repository.findFlightsByManager(managerId);
 			List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(managerId);
 			List<Airport> airports = this.repository.findAllAirports();
-			if (managerId == 0)
-				status = false;
-			else if (flight != null && aircraft != null //
+			if (flight != null && aircraft != null //
 				&& origin != null && destination != null)
 				status = flights.contains(flight) && aircrafts.contains(aircraft) //
 					&& airports.contains(origin) && airports.contains(destination);
@@ -94,7 +94,22 @@ public class ManagerLegsCreateService extends AbstractGuiService<AirlineManager,
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		Date now = MomentHelper.getCurrentMoment();
+		boolean departureInFuture;
+		boolean arrivalAfterDeparture;
+
+		if (leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null) {
+			if (leg.getScheduledDeparture().after(now))
+				departureInFuture = true;
+			else
+				departureInFuture = false;
+			if (leg.getScheduledArrival().after(leg.getScheduledDeparture()))
+				arrivalAfterDeparture = true;
+			else
+				arrivalAfterDeparture = false;
+			super.state(departureInFuture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
+			super.state(arrivalAfterDeparture, "scheduledArrival", "acme.validation.leg.scheduledArrival");
+		}
 	}
 
 	@Override

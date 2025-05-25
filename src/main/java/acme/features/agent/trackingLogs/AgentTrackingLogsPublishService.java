@@ -1,6 +1,8 @@
 
 package acme.features.agent.trackingLogs;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -24,9 +26,21 @@ public class AgentTrackingLogsPublishService extends AbstractGuiService<Assistan
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
-	}
+		boolean status = true;
+		String method = super.getRequest().getMethod();
 
+		if (method.equals("POST")) {
+			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			int logId = super.getRequest().getData("id", int.class);
+			TrackingLog tl = this.repository.findTrackingLog(logId);
+
+			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(tl.getClaim().getAssistanceAgent()) || tl.isDraftMode() == false)
+				status = false;
+		}
+
+		super.getResponse().setAuthorised(status);
+
+	}
 	@Override
 	public void load() {
 		TrackingLog log;
@@ -43,7 +57,7 @@ public class AgentTrackingLogsPublishService extends AbstractGuiService<Assistan
 
 	@Override
 	public void bind(final TrackingLog log) {
-		super.bindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "accepted");
+		super.bindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "accepted");
 
 	}
 
@@ -55,6 +69,9 @@ public class AgentTrackingLogsPublishService extends AbstractGuiService<Assistan
 	@Override
 	public void perform(final TrackingLog log) {
 		log.setDraftMode(false);
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.YEAR, -5);
+		log.setLastUpdate(calendar.getTime());
 		this.repository.save(log);
 	}
 
@@ -66,7 +83,7 @@ public class AgentTrackingLogsPublishService extends AbstractGuiService<Assistan
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		dataset = super.unbindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "claim");
+		dataset = super.unbindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "claim");
 
 		dataset.put("accepted", choices.getSelected().getKey());
 		dataset.put("types", choices);

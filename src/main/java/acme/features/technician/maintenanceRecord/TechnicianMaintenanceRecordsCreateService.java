@@ -59,7 +59,6 @@ public class TechnicianMaintenanceRecordsCreateService extends AbstractGuiServic
 
 	@Override
 	public void bind(final MaintenanceRecord record) {
-		assert record != null;
 
 		int aircraftId;
 		Aircraft aircraft;
@@ -73,7 +72,6 @@ public class TechnicianMaintenanceRecordsCreateService extends AbstractGuiServic
 
 	@Override
 	public void validate(final MaintenanceRecord record) {
-		assert record != null;
 
 		boolean nextInspectionIsFuture = false;
 		boolean availableCurrency;
@@ -98,7 +96,6 @@ public class TechnicianMaintenanceRecordsCreateService extends AbstractGuiServic
 
 	@Override
 	public void perform(final MaintenanceRecord record) {
-		assert record != null;
 		this.repository.save(record);
 	}
 

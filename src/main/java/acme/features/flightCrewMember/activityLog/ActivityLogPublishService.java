@@ -68,19 +68,23 @@ public class ActivityLogPublishService extends AbstractGuiService<FlightCrewMemb
 		flightAssignmentId = super.getRequest().getData("assignment", int.class);
 		FlightAssignment fa = this.repository.findAssignmentById(flightAssignmentId);
 
-		super.bindObject(activityLog, "moment", "incident", "description", "severityLevel");
+		super.bindObject(activityLog, "incident", "description", "severityLevel");
 		activityLog.setFlightAssignment(fa);
 	}
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
-		boolean isFlightAssingmentDraftMode;
+		boolean isNotFlightAssingmentDraftMode = false;
 		boolean notNullAssignment;
-		isFlightAssingmentDraftMode = activityLog.getFlightAssignment().isDraftMode();
-		notNullAssignment = activityLog.getFlightAssignment() == null ? false : true;
-
+		FlightAssignment faAnalized = activityLog.getFlightAssignment();
+		notNullAssignment = faAnalized == null ? false : true;
+		if (faAnalized != null) {
+			if (!faAnalized.isDraftMode())
+				isNotFlightAssingmentDraftMode = true;
+		} else
+			isNotFlightAssingmentDraftMode = true;
 		super.state(notNullAssignment, "assignment", "acme.validation.flight-assignment.faNull.message");
-		super.state(!isFlightAssingmentDraftMode, "assignment", "acme.validation.activity-log.assignmentInDraftMode.message");
+		super.state(isNotFlightAssingmentDraftMode, "assignment", "acme.validation.activity-log.assignmentInDraftMode.message");
 	}
 
 	@Override

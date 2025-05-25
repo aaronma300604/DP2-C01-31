@@ -9,29 +9,17 @@
 	<acme:input-moment code="technician.maintenance-record.form.label.nextInspection" path="nextInspection"/>	
 	<acme:input-money code="technician.maintenance-record.form.label.estimatedCost" path="estimatedCost"/>
 	<acme:input-textbox code="technician.maintenance-record.form.label.notes" path="notes"/>
-	<jstl:choose>
-		<jstl:when test="${!emptyAircrafts}">
-			<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices="${aircrafts}"/>
-		</jstl:when>
-		<jstl:when test="${emptyAircrafts}">
-			<acme:input-textbox code="technician.maintenance-record.form.label.aircraft" path="aircraft" readonly="true"/>
-		</jstl:when>
-	</jstl:choose>
+	<acme:input-select code="technician.maintenance-record.form.label.aircraft" path="aircraft" choices="${aircrafts}" readonly = "${emptyAircrafts}"/>
+
 
 	<jstl:choose>	 
 		<jstl:when test="${_command == 'show'  && draftMode == false}">
-			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}&draftMode=false"/>
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true && emptyTasks == true}">
-			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
-			<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
-			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}&draftMode=false"/>
-			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete"/>
+			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|publish|delete') && draftMode == true}">
 			<acme:submit code="technician.maintenance-record.form.button.update" action="/technician/maintenance-record/update"/>
 			<acme:submit code="technician.maintenance-record.form.button.publish" action="/technician/maintenance-record/publish"/>
-			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}&draftMode=true"/>
+			<acme:button code="technician.maintenance-record.form.button.tasks" action="/technician/task/list?recordId=${id}"/>
 			<acme:submit code="technician.maintenance-record.form.button.delete" action="/technician/maintenance-record/delete"/>			
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
