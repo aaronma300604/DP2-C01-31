@@ -52,7 +52,7 @@ acme.validation.booking.booking-null.message = The booking cannot be null
 acme.validation.booking.passenger-null.message = The passenger cannot be null
 acme.validation.booking.cant-be-publish-flight.message = You must select a flight before publish the booking
 acme.validation.booking.cant-be-publish-passenger.message = To publish a booking, you must have at least one published passenger
-
+acme.validation.booking.not-owner = You cannot update a booking that does not belong to you.
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet
 
 acme.validation.flight-assignment.legCurrency.message = The member is already assigned to another leg, which causes a scheduling conflict.

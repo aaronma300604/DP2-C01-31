@@ -53,6 +53,7 @@ acme.validation.booking.booking-null.message = La reserva no puede ser nula
 acme.validation.booking.passenger-null.message =El pasajero no puede ser nulo
 acme.validation.booking.cant-be-publish-flight.message = Debes elegir un vuelo antes de publicar la reserva
 acme.validation.booking.cant-be-publish-passenger.message = Para publicar un vuelo debes tener al menos un pasajero publicado
+acme.validation.booking.not-owner = No puedes actualizar una reserva que no te pertenece.
 
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
 
