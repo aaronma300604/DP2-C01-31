@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,16 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 					if (invalidFlight)
 						authorised = false;
 				}
+				if (authorised && super.getRequest().hasData("travelClass")) {
+					String aTravelClass = super.getRequest().getData("travelClass", String.class);
+					if (aTravelClass == null || aTravelClass.trim().isEmpty() || Arrays.stream(TravelClassType.values()).noneMatch(s -> s.name().equals(aTravelClass)) && !aTravelClass.equals("0"))
+						authorised = false;
+				}
 			}
 		}
 
 		super.getResponse().setAuthorised(authorised);
+
 	}
 
 	@Override

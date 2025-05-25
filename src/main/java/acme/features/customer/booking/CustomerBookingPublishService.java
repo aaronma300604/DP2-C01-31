@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.internal.util.StringHelper;
@@ -44,6 +45,11 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 					boolean invalidFlightId = flightId != 0 && (flight == null || !availableFlights.contains(flight));
 					if (invalidFlightId)
+						authorised = false;
+				}
+				if (authorised && super.getRequest().hasData("travelClass")) {
+					String aTravelClass = super.getRequest().getData("travelClass", String.class);
+					if (aTravelClass == null || aTravelClass.trim().isEmpty() || Arrays.stream(TravelClassType.values()).noneMatch(s -> s.name().equals(aTravelClass)) && !aTravelClass.equals("0"))
 						authorised = false;
 				}
 			}

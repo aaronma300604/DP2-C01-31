@@ -27,20 +27,27 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	@Override
 	public void authorise() {
 		boolean authorised = true;
+
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		if (super.getRequest().hasData("id")) {
+			int passengerBookingId = super.getRequest().getData("id", int.class);
+			if (passengerBookingId != 0)
+				authorised = false;
+			else if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("booking") && super.getRequest().hasData("passenger")) {
+				int bookingId = super.getRequest().getData("booking", int.class);
+				int passengerId = super.getRequest().getData("passenger", int.class);
 
-		if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("booking") && super.getRequest().hasData("passenger")) {
+				Booking booking = this.repository.findBookingById(bookingId);
+				Passenger passenger = this.repository.findPassengerById(passengerId);
 
-			int bookingId = super.getRequest().getData("booking", int.class);
-			int passengerId = super.getRequest().getData("passenger", int.class);
+				boolean validBooking = booking != null && booking.getCustomer().getId() == customerId && booking.isDraftMode();
+				boolean validPassenger = passenger != null && passenger.getCustomer().getId() == customerId && !passenger.isDraftMode();
+				boolean sameCustomer = booking.getCustomer().getId() == customerId && passenger.getCustomer().getId() == customerId;
+				boolean inCustomerPassengers = this.repository.findPassengerByCustomerId(customerId).contains(passenger);
+				boolean inCustomerBookings = this.repository.findBookingByCustomerId(customerId).contains(booking);
 
-			Booking booking = this.repository.findBookingById(bookingId);
-			Passenger passenger = this.repository.findPassengerById(passengerId);
-
-			boolean validBooking = booking != null && booking.getCustomer().getId() == customerId && booking.isDraftMode();
-			boolean validPassenger = passenger != null && passenger.getCustomer().getId() == customerId && !passenger.isDraftMode();
-
-			authorised = validBooking && validPassenger;
+				authorised = validBooking && validPassenger && sameCustomer && inCustomerPassengers && inCustomerBookings;
+			}
 		}
 
 		super.getResponse().setAuthorised(authorised);
