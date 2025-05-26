@@ -21,6 +21,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	public void authorise() {
 		boolean authorised = false;
 
+
 		if (super.getRequest().hasData("id")) {
 			int passengerId = super.getRequest().getData("id", int.class);
 			Passenger passenger = this.repository.findPassengerById(passengerId);

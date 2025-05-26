@@ -11,6 +11,7 @@ acme.validation.leg.scheduledDeparture = El horario de salida debe estar en el f
 acme.validation.leg.scheduledArrival = El horario de llegada debe ser más tarde que el de salida
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
 acme.validation.aircraft.cargo = Debe ser un número entre 2000 y 50000
+acme.validation.service.bad-year-promotion-code.message = Los últimos dos dígitos deben ser los últimos dos dígitos del año actual
 acme.validation.service.duplicated-code.message = Hay otro servicio con ese código de descuento
 acme.validation.leg.flight_number.message = Debe empezar por el código IATA de la aerolínea, seguido de cuatro dígitos
 acme.validation.leg.duplicated-flight-number.message = Hay otro trayecto con ese código de vuelo
