@@ -30,9 +30,6 @@ public interface CustomerBookingRepository extends AbstractRepository {
 	@Query("select f from Flight f where f.id = :flightId")
 	Flight findFlightById(int flightId);
 
-	@Query("select count(b) > 0 FROM Booking b WHERE b.locatorCode = :locatorCode")
-	Boolean existsByLocatorCode(String locatorCode);
-
 	@Query("select p from PassengerBooking p where p.booking.id = :bookingId")
 	List<PassengerBooking> findPassengerBookingByBookingId(int bookingId);
 

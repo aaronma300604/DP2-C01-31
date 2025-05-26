@@ -33,20 +33,17 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 			int passengerBookingId = super.getRequest().getData("id", int.class);
 			if (passengerBookingId != 0)
 				authorised = false;
-			else if (super.getRequest().getMethod().equals("POST") && super.getRequest().hasData("booking") && super.getRequest().hasData("passenger")) {
+			else if (super.getRequest().getMethod().equals("POST")) {
 				int bookingId = super.getRequest().getData("booking", int.class);
 				int passengerId = super.getRequest().getData("passenger", int.class);
-
 				Booking booking = this.repository.findBookingById(bookingId);
 				Passenger passenger = this.repository.findPassengerById(passengerId);
-
-				boolean validBooking = booking != null && booking.getCustomer().getId() == customerId && booking.isDraftMode();
-				boolean validPassenger = passenger != null && passenger.getCustomer().getId() == customerId && !passenger.isDraftMode();
-				boolean sameCustomer = booking.getCustomer().getId() == customerId && passenger.getCustomer().getId() == customerId;
-				boolean inCustomerPassengers = this.repository.findPassengerByCustomerId(customerId).contains(passenger);
-				boolean inCustomerBookings = this.repository.findBookingByCustomerId(customerId).contains(booking);
-
-				authorised = validBooking && validPassenger && sameCustomer && inCustomerPassengers && inCustomerBookings;
+				List<Booking> allowedBookings = this.repository.findBookingByCustomerId(customerId);
+				List<Passenger> allowedPassengers = this.repository.findPassengerByCustomerId(customerId);
+				if (booking == null && bookingId != 0 || booking != null && !allowedBookings.contains(booking))
+					authorised = false;
+				if (passenger == null && passengerId != 0 || passenger != null && !allowedPassengers.contains(passenger))
+					authorised = false;
 			}
 		}
 
@@ -84,15 +81,22 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	public void validate(final PassengerBooking passengerBooking) {
 		if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
 			super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
-			boolean permission = true;
-			PassengerBooking existing;
-			int bookingId = passengerBooking.getBooking().getId();
-			int passengerId = passengerBooking.getPassenger().getId();
 
-			existing = this.repository.relationPassengerInBooking(bookingId, passengerId);
-			if (existing != null)
-				permission = false;
-			super.state(permission, "*", "acme.validation.booking.duplicated_passenger_booking.message");
+			if (passengerBooking.getPassenger() != null)
+				super.state(!passengerBooking.getPassenger().isDraftMode(), "passenger", "acme.validation.booking.booking-publish.message");
+			if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
+				boolean permission = true;
+				PassengerBooking existing;
+				int bookingId = passengerBooking.getBooking().getId();
+				int passengerId = passengerBooking.getPassenger().getId();
+
+				existing = this.repository.relationPassengerInBooking(bookingId, passengerId);
+
+				if (existing != null) {
+					permission = false;
+					super.state(permission, "*", "acme.validation.booking.duplicated_passenger_booking.message");
+				}
+			}
 		}
 	}
 

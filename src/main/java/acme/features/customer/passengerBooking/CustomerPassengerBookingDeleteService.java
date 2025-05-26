@@ -25,7 +25,7 @@ public class CustomerPassengerBookingDeleteService extends AbstractGuiService<Cu
 
 	@Override
 	public void authorise() {
-		boolean status = false;
+		boolean authorised = false;
 
 		if (super.getRequest().hasData("id")) {
 			int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
@@ -34,21 +34,23 @@ public class CustomerPassengerBookingDeleteService extends AbstractGuiService<Cu
 			if (passengerBookingId != 0) {
 				PassengerBooking passengerBooking = this.repository.findPassengerBookingById(passengerBookingId);
 
-				if (passengerBooking != null && passengerBooking.getPassenger() != null && passengerBooking.getBooking() != null) {
+				if (passengerBooking != null) {
 					Passenger passenger = passengerBooking.getPassenger();
 					Booking booking = passengerBooking.getBooking();
 
-					boolean sameCustomer = booking.getCustomer().getId() == customerId && passenger.getCustomer().getId() == customerId;
+					if (passenger != null && booking != null) {
+						boolean sameCustomer = passenger.getCustomer().getId() == customerId && booking.getCustomer().getId() == customerId;
 
-					boolean inCustomerPassengers = this.repository.findPassengerByCustomerId(customerId).contains(passenger);
-					boolean inCustomerBookings = this.repository.findBookingByCustomerId(customerId).contains(booking);
+						boolean inPassengers = this.repository.findPassengerByCustomerId(customerId).contains(passenger);
+						boolean inBookings = this.repository.findBookingByCustomerId(customerId).contains(booking);
 
-					status = sameCustomer && inCustomerPassengers && inCustomerBookings;
+						authorised = sameCustomer && inPassengers && inBookings;
+					}
 				}
 			}
 		}
 
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(authorised);
 	}
 
 	@Override
@@ -111,6 +113,9 @@ public class CustomerPassengerBookingDeleteService extends AbstractGuiService<Cu
 		dataset.put("bookingChoices", bookingChoices);
 		dataset.put("passengerChoices", passengerChoices);
 		dataset.put("passenger", passengerChoices.getSelected().getKey());
+
+		if (passengerBooking.getBooking() != null)
+			super.getResponse().addGlobal("bookingDraftMode", passengerBooking.getBooking().isDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

@@ -3,6 +3,7 @@ package acme.entities.booking;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {})
 public class PassengerBooking extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;

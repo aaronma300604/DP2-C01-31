@@ -21,6 +21,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	public void authorise() {
 		boolean authorised = false;
 
+
 		if (super.getRequest().hasData("id")) {
 			int passengerId = super.getRequest().getData("id", int.class);
 			Passenger passenger = this.repository.findPassengerById(passengerId);
@@ -28,9 +29,7 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 			if (passenger != null) {
 				Customer customer = passenger.getCustomer();
 				boolean isOwned = super.getRequest().getPrincipal().hasRealm(customer);
-				boolean isDraft = passenger.isDraftMode();
-
-				authorised = isOwned && isDraft;
+				authorised = isOwned;
 			}
 		}
 
