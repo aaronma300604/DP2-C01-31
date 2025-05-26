@@ -44,3 +44,5 @@ Planning dashboard: https://github.com/users/aaronma300604/projects/2/views/1
 GitHub Repository: https://github.com/aaronma300604/DP2-C01-31
 
 Video of Informal Testing for Requirement #14 (Group Supplementary I): https://1drv.ms/v/c/7f6cb2186b41ed16/EVt4A19F-LxDprOVG-FzlLgB0HbsyLXFNa5-SrlsxWXnAg?e=osLDGE
+
+Video of Informal Testing for Requirement #21 (Student 2 Supplementary I): https://uses0-my.sharepoint.com/:v:/g/personal/estangpos_alum_us_es/ERUgbG_uMkZMuj9Tw_MS2TkB4RSnQVWdnL34-xjr-OAS8w?e=7cRWIC
