@@ -84,7 +84,6 @@ request-id,request-method,request-path,request-query,request-payload,response-st
 "ad11324f-8640-4e9e-87c6-23d9c25410e3",GET,"/libraries/fontawesome/5.2.0/css/all.min.css",,,200,text/css,,,2179209445399,2179210934100,2179211447100
 "efbb7968-4c2f-47f3-9567-22e9b3a85c52",GET,"/libraries/bootstrap/4.1.3/css/bootstrap.min.css",,,200,text/css,,,2179214072400,2179215334200,2179215631400
 "1ad3031f-e771-41a1-8545-ae51d23e0d31",GET,"/libraries/datatables/1.10.18/css/datatables.min.css",,,200,text/css,,,2179218860399,2179220098899,2179220499200
-"66f6abb0-cab8-4d9d-b103-397ffd3dc50e",GET,"/libraries/jquery/3.3.1/js/jquery.min.js",,,200,application/javascript,,,2179222841700,2179224136700,2179224443900
 "3f57d82e-acbd-470e-8d44-6dd1b6d893ec",GET,"/libraries/popper.js/1.14.4/js/popper.min.js",,,200,application/javascript,,,2179226756300,2179228053400,2179228359900
 "b8b44f19-5a23-49cc-88f1-c8a61e1d1f0d",GET,"/libraries/bootstrap/4.1.3/js/bootstrap.min.js",,,200,application/javascript,,,2179230819200,2179232088700,2179232401700
 "10647a44-3b40-417d-bbf3-4e9c5a653e74",GET,"/libraries/chart.js/2.7.2/js/chart.bundle.min.js",,,200,application/javascript,,,2179235111200,2179236608300,2179236984100

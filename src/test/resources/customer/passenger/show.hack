@@ -217,7 +217,6 @@ request-id,request-method,request-path,request-query,request-payload,response-st
 "714de5a9-0d1b-46e8-9761-5cc836509e2d",GET,/images/banner.png,,,200,image/png,,,970691455266800,970691458222100,970691459129900
 "49f9c6dd-8aa8-4d90-8653-ff925142a582",GET,/images/logo.png,,,200,image/png,,,970691468098100,970691470594000,970691471058100
 "0775c157-0451-4d84-bc5b-f75fec759269",GET,/customer/passenger/show,id=,,500,text/html;charset=utf-8,service=368,"Failed to convert from type [java.lang.String] to type [int] for value [null]; nested exception is java.lang.IllegalArgumentException: A null value cannot be assigned to a primitive type",970698920667800,970698931535500,970699151432100
-"a68bf410-1255-4322-8343-c69d3747c57c",GET,"/libraries/fontawesome/5.2.0/css/all.min.css",,,200,text/css,,,970699188532200,970699191499900,970699192359300
 "ab00b6dc-5e52-404f-b6e3-2993cd2c92cf",GET,"/libraries/bootstrap/4.1.3/css/bootstrap.min.css",,,200,text/css,,,970699196249100,970699198936400,970699199747500
 "a98d87db-f690-45d4-9d08-d783a8ea9eed",GET,"/libraries/datatables/1.10.18/css/datatables.min.css",,,200,text/css,,,970699205920100,970699208206200,970699208992500
 "1be942f7-a1c2-4079-874a-ebcd4973580e",GET,"/libraries/jquery/3.3.1/js/jquery.min.js",,,200,application/javascript,,,970699213549100,970699216463900,970699217667100
