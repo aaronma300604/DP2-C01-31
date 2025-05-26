@@ -30,7 +30,7 @@ public class AgentTrackingLogsDeleteService extends AbstractGuiService<Assistanc
 		Claim cl;
 		String method = super.getRequest().getMethod();
 
-		if (method.equals("POST")) {
+		if (method.equals("POST") || method.equals("GET")) {
 			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 			int logId = super.getRequest().getData("id", int.class);
 			TrackingLog tl = this.repository.findTrackingLog(logId);
@@ -55,7 +55,7 @@ public class AgentTrackingLogsDeleteService extends AbstractGuiService<Assistanc
 
 	@Override
 	public void bind(final TrackingLog log) {
-		super.bindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "accepted");
+		super.bindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "accepted");
 
 	}
 
@@ -77,7 +77,7 @@ public class AgentTrackingLogsDeleteService extends AbstractGuiService<Assistanc
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		dataset = super.unbindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim");
+		dataset = super.unbindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim");
 
 		dataset.put("accepted", choices.getSelected().getKey());
 		dataset.put("types", choices);
