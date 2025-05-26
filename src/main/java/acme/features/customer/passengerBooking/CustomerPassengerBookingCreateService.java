@@ -82,19 +82,20 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 		if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
 			super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
 
-		if (passengerBooking.getPassenger() != null)
-			super.state(!passengerBooking.getPassenger().isDraftMode(), "passenger", "acme.validation.booking.booking-publish.message");
-		if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
-			boolean permission = true;
-			PassengerBooking existing;
-			int bookingId = passengerBooking.getBooking().getId();
-			int passengerId = passengerBooking.getPassenger().getId();
+			if (passengerBooking.getPassenger() != null)
+				super.state(!passengerBooking.getPassenger().isDraftMode(), "passenger", "acme.validation.booking.booking-publish.message");
+			if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
+				boolean permission = true;
+				PassengerBooking existing;
+				int bookingId = passengerBooking.getBooking().getId();
+				int passengerId = passengerBooking.getPassenger().getId();
 
-			existing = this.repository.relationPassengerInBooking(bookingId, passengerId);
+				existing = this.repository.relationPassengerInBooking(bookingId, passengerId);
 
-			if (existing != null) {
-				permission = false;
-				super.state(permission, "*", "acme.validation.booking.duplicated_passenger_booking.message");
+				if (existing != null) {
+					permission = false;
+					super.state(permission, "*", "acme.validation.booking.duplicated_passenger_booking.message");
+				}
 			}
 		}
 	}
