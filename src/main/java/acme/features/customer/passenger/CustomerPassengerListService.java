@@ -9,7 +9,6 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
-import acme.entities.booking.PassengerBooking;
 import acme.entities.passenger.Passenger;
 import acme.realms.client.Customer;
 
@@ -38,11 +37,6 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 
 			authorised = booking != null && booking.getCustomer().getId() == customerId;
 
-		} else if (super.getRequest().getData().containsKey("id")) {
-			int passengerId = super.getRequest().getData("id", int.class);
-			List<PassengerBooking> passengerBookings = this.repository.findPassengerBookingByPassengerId(passengerId);
-
-			authorised = passengerBookings.stream().map(PassengerBooking::getBooking).anyMatch(b -> b != null && b.getCustomer().getId() == customerId);
 		}
 
 		super.getResponse().setAuthorised(authorised);
