@@ -250,7 +250,6 @@ request-id,request-method,request-path,request-query,request-payload,response-st
 "9c260cb1-695b-46af-8e17-087f1efb6b97",GET,/images/banner.png,,,200,image/png,,,971617104412800,971617107284000,971617108188900
 "f6b88f4e-4a5e-453a-bbd5-4f1380e3d76d",GET,/images/logo.png,,,200,image/png,,,971617116538600,971617119819500,971617120517300
 "0eefc337-ab23-440a-b274-38dc91a87607",POST,"/customer/passenger/delete",,"id=321&version=0&name=Alice+Johnson&email=alice.johnson%40example.com&passportNumber=A123456&dateOfBirth=2002%2F05%2F12+00%3A00&specialNeeds=",500,text/html;charset=utf-8,service=407,"Access is not authorised",971629081090400,971629131124500,971629378292800
-"ec944306-c712-44fc-a526-01e6a72e91cb",GET,"/libraries/fontawesome/5.2.0/css/all.min.css",,,200,text/css,,,971629453194200,971629456678800,971629457504000
 "68149cd7-561d-4496-acbe-22faab25abc4",GET,"/libraries/bootstrap/4.1.3/css/bootstrap.min.css",,,200,text/css,,,971629461544600,971629464716500,971629465401600
 "828743fc-4c17-4a9c-8272-67212b13a3d9",GET,"/libraries/datatables/1.10.18/css/datatables.min.css",,,200,text/css,,,971629470907700,971629472967400,971629473509300
 "2a7ed242-8de3-4efc-904b-ac501609d443",GET,"/libraries/jquery/3.3.1/js/jquery.min.js",,,200,application/javascript,,,971629477619900,971629480513200,971629481651400
