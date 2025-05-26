@@ -69,10 +69,7 @@ public class CustomerPassengerBookingShowService extends AbstractGuiService<Cust
 		//		super.getBuffer().addData(passengerBookings);
 	}
 
-	@Override
-	public void validate(final PassengerBooking passengerBooking) {
 
-	}
 
 	@Override
 	public void unbind(final PassengerBooking passengerBooking) {
