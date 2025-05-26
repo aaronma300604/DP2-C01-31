@@ -29,9 +29,8 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 			if (passenger != null) {
 				Customer customer = passenger.getCustomer();
 				boolean isOwned = super.getRequest().getPrincipal().hasRealm(customer);
-				boolean isDraft = passenger.isDraftMode();
+				authorised = customer != null && passenger.isDraftMode() && isOwned;
 
-				authorised = isOwned && isDraft;
 			}
 		}
 
