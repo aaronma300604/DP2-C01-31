@@ -11,6 +11,7 @@ acme.validation.positive.number = Must be a positive number
 
 acme.validation.leg.scheduledDeparture = The scheduled of departure must be in the future
 acme.validation.leg.scheduledArrival = The scheduled of arrival must be after the scheduled of departure
+acme.validation.service.bad-year-promotion-code.message = The last two digits must be the last two digits of the current year
 acme.validation.service.duplicated-code.message = There is another service with this promotion code
 acme.validation.assistance-agent.employee_code.message = Must begin with agent's initials, followed by six digits
 acme.validation.leg.flight_number.message =  Must begin with airline's iata code, followed by four digits

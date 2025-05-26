@@ -1,12 +1,14 @@
 
 package acme.features.administrator.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.principals.Administrator;
+import acme.client.helpers.MomentHelper;
 import acme.client.helpers.StringHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -60,6 +62,17 @@ public class AdministratorServicesUpdateService extends AbstractGuiService<Admin
 		existingService = this.repository.findServiceByPromotionCode(service.getPromotionCode());
 		uniquecode = existingService == null || existingService.equals(service);
 		super.state(uniquecode, "promotionCode", "acme.validation.service.duplicated-code.message");
+
+		boolean goodYear;
+
+		if (service.getPromotionCode() != null && !service.getPromotionCode().isBlank()) {
+			Date currentMoment = MomentHelper.getCurrentMoment();
+			int year = currentMoment.getYear();
+			String lastTwoDigits = String.valueOf(year);
+			lastTwoDigits = lastTwoDigits.substring(lastTwoDigits.length() - 2);
+			goodYear = service.getPromotionCode().endsWith(lastTwoDigits);
+			super.state(goodYear, "promotionCode", "acme.validation.service.bad-year-promotion-code.message");
+		}
 	}
 
 	@Override

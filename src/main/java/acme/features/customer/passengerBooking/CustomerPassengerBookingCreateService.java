@@ -29,7 +29,6 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 		boolean authorised = true;
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-
 		if (super.getRequest().hasData("id")) {
 			int passengerBookingId = super.getRequest().getData("id", int.class);
 			if (passengerBookingId != 0)
@@ -80,8 +79,9 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 	@Override
 
 	public void validate(final PassengerBooking passengerBooking) {
-		if (passengerBooking.getBooking() != null)
+		if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
 			super.state(passengerBooking.getBooking().isDraftMode(), "booking", "acme.validation.booking.booking-publish.message");
+
 		if (passengerBooking.getPassenger() != null)
 			super.state(!passengerBooking.getPassenger().isDraftMode(), "passenger", "acme.validation.booking.booking-publish.message");
 		if (passengerBooking.getBooking() != null && passengerBooking.getPassenger() != null) {
@@ -91,6 +91,7 @@ public class CustomerPassengerBookingCreateService extends AbstractGuiService<Cu
 			int passengerId = passengerBooking.getPassenger().getId();
 
 			existing = this.repository.relationPassengerInBooking(bookingId, passengerId);
+
 			if (existing != null) {
 				permission = false;
 				super.state(permission, "*", "acme.validation.booking.duplicated_passenger_booking.message");
