@@ -55,6 +55,18 @@ public class AgentClaimsPublishService extends AbstractGuiService<AssistanceAgen
 
 		}
 
+		if (method.equals("GET")) {
+			int claimId;
+			Claim claim;
+			AssistanceAgent agent;
+
+			claimId = super.getRequest().getData("id", int.class);
+			claim = this.repository.findClaim(claimId);
+			agent = claim == null ? null : claim.getAssistanceAgent();
+			status = super.getRequest().getPrincipal().hasRealm(agent);
+
+		}
+
 		super.getResponse().setAuthorised(status);
 	}
 
