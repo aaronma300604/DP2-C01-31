@@ -43,7 +43,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 					Flight flight = this.repository.findFlightById(flightId);
 					List<Flight> availableFlights = this.repository.findFlights();
 
-					boolean invalidFlightId = flightId != 0 && (flight == null || !availableFlights.contains(flight));
+					boolean invalidFlightId = flightId != 0 && flight == null || flight != null && !availableFlights.contains(flight);
 					if (invalidFlightId)
 						authorised = false;
 				}
@@ -78,8 +78,10 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "travelClass", "lastCreditCardNibble");
+		super.bindObject(booking, "travelClass", "lastCreditCardNibble", "locatorCode");
 		booking.setFlight(flight);
+		booking.setDraftMode(true);
+
 	}
 
 	@Override
