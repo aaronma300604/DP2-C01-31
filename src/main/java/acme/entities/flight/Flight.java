@@ -19,7 +19,6 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
-import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.leg.Leg;
 import acme.realms.employee.AirlineManager;
@@ -31,7 +30,7 @@ import lombok.Setter;
 @Setter
 @Table(indexes = {
 	@Index(columnList = "draftMode"), //
-	@Index(columnList = "manager_id, airline_id")
+	@Index(columnList = "manager_id")
 })
 public class Flight extends AbstractEntity {
 
@@ -64,11 +63,6 @@ public class Flight extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private AirlineManager		manager;
-
-	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				airline;
 
 
 	@Transient

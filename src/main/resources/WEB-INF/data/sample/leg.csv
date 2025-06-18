@@ -1,11 +1,11 @@
-key,duration,flight_number,scheduled_arrival,scheduled_departure,status,draftMode,key:aircraft,key:destination,key:origin,key:flight,key:manager
+key,flight_number,scheduled_arrival,scheduled_departure,status,draftMode,key:aircraft,key:destination,key:origin,key:flight
 # base entity
-leg-01,2.0,ABX1234,2026/06/12 10:00,2026/06/12 08:00,ON_TIME,true,aircraft-01,airport-01,airport-02,flight-01,manager-01
+leg-01,ABX1234,2026/06/12 10:00,2026/06/12 08:00,ON_TIME,true,aircraft-01,airport-01,airport-02,flight-01
 # scheduled_arrival and scheduled_departure - standard variations
-leg-02,1.0,ACX1234,2012/07/02 01:00,2012/07/02 00:00,CANCELLED,true,aircraft-02,airport-02,airport-01,flight-02,manager-02
-leg-03,1.0,ACX1235,2000/01/01 01:00,2000/01/01 00:00,CANCELLED,true,aircraft-02,airport-02,airport-01,flight-02,manager-02
-leg-04,1.0,ABX1236,2000/01/01 01:01,2000/01/01 00:01,DELAYED,true,aircraft-01,airport-02,airport-01,flight-03,manager-01
-leg-05,1.0,ACX1237,2000/01/01 01:01,2000/01/01 00:01,DELAYED,true,aircraft-02,airport-02,airport-01,flight-07,manager-02
-leg-06,3.0,ABX1238,2024/12/31 23:59,2024/12/31 20:59,ON_TIME,false,aircraft-01,airport-03,airport-01,flight-05,manager-01
-leg-07,2.5,ABX4321,2026/06/12 10:30,2026/06/12 08:00,ON_TIME,false,aircraft-01,airport-02,airport-01,flight-27,manager-01
-leg-08,2.0,ACX4321,2000/01/01 02:01,2000/01/01 00:01,LANDED,false,aircraft-02,airport-01,airport-02,flight-16,manager-02
+leg-02,ACX1234,2012/07/02 01:00,2012/07/02 00:00,CANCELLED,true,aircraft-02,airport-02,airport-01,flight-02
+leg-03,ACX1235,2000/01/01 01:00,2000/01/01 00:00,CANCELLED,true,aircraft-02,airport-02,airport-01,flight-02
+leg-04,ABX1236,2000/01/01 01:01,2000/01/01 00:01,DELAYED,true,aircraft-01,airport-02,airport-01,flight-03
+leg-05,ACX1237,2000/01/01 01:01,2000/01/01 00:01,DELAYED,true,aircraft-02,airport-02,airport-01,flight-07
+leg-06,ABX1238,2024/12/31 23:59,2024/12/31 20:59,ON_TIME,false,aircraft-01,airport-03,airport-01,flight-05
+leg-07,ABX4321,2026/06/12 10:30,2026/06/12 08:00,ON_TIME,false,aircraft-01,airport-02,airport-01,flight-27
+leg-08,ACX4321,2000/01/01 02:01,2000/01/01 00:01,LANDED,false,aircraft-02,airport-01,airport-02,flight-16

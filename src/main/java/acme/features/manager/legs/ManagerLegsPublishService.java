@@ -1,6 +1,7 @@
 
 package acme.features.manager.legs;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 				manager = null;
 				status = false;
 			} else {
-				manager = leg.getManager();
+				manager = leg.getFlight().getManager();
 				status = super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 			}
 
@@ -102,7 +103,7 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 		destinationId = super.getRequest().getData("destination", int.class);
 		destination = this.repository.findAirportById(destinationId);
 
-		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
 		leg.setFlight(flight);
 		leg.setAircraft(aircraft);
 		leg.setOrigin(origin);
@@ -126,6 +127,53 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 				arrivalAfterDeparture = false;
 			super.state(departureInFuture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
 			super.state(arrivalAfterDeparture, "scheduledArrival", "acme.validation.leg.scheduledArrival");
+
+			Date departureWithInterval = MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 5, ChronoUnit.MINUTES);
+			if (MomentHelper.isBefore(leg.getScheduledArrival(), departureWithInterval))
+				super.state(false, "scheduledArrival", "acme.validation.leg.dates.difference.message");
+
+			List<Leg> publishedLegs = this.repository.findAllPublishedLegs();
+			for (Leg publishedLeg : publishedLegs)
+				if (publishedLeg.getAircraft().equals(leg.getAircraft()))
+					if (MomentHelper.isBefore(publishedLeg.getScheduledDeparture(), leg.getScheduledArrival()) //
+						&& MomentHelper.isAfter(publishedLeg.getScheduledArrival(), leg.getScheduledDeparture()) //
+						|| MomentHelper.isEqual(publishedLeg.getScheduledDeparture(), leg.getScheduledDeparture()) //
+							&& MomentHelper.isEqual(publishedLeg.getScheduledArrival(), leg.getScheduledArrival())) {
+						super.state(false, "aircraft", "acme.validation.leg.same.aircraft.message");
+						break;
+					}
+
+			List<Leg> publishedLegsByFlight = this.repository.findPublishedLegsByFlight(leg.getFlight().getId());
+			for (Leg publishedLeg : publishedLegsByFlight)
+				if (MomentHelper.isBefore(publishedLeg.getScheduledDeparture(), leg.getScheduledArrival()) //
+					&& MomentHelper.isAfter(publishedLeg.getScheduledArrival(), leg.getScheduledDeparture()) //
+					|| MomentHelper.isEqual(publishedLeg.getScheduledDeparture(), leg.getScheduledDeparture()) //
+						&& MomentHelper.isEqual(publishedLeg.getScheduledArrival(), leg.getScheduledArrival())) {
+					super.state(false, "scheduledDeparture", "acme.validation.leg.overlap.message");
+					super.state(false, "scheduledArrival", "acme.validation.leg.overlap.message");
+					break;
+				}
+		}
+
+		if (leg.getDestination() != null && leg.getDestination().equals(leg.getOrigin())) {
+			super.state(false, "origin", "acme.validation.leg.same.origin");
+			super.state(false, "destination", "acme.validation.leg.same.destination");
+		}
+
+		List<Leg> orderedLegs = this.repository.findOrderedLegsByFlightAndThisLeg(leg.getFlight().getId(), leg.getId());
+		int index = orderedLegs.indexOf(leg);
+		if (index != -1 && leg.getFlight().isSelfTransfer() && leg.getDestination() != null && leg.getOrigin() != null) {
+			if (index > 0) {
+				Leg previous = orderedLegs.get(index - 1);
+				if (!leg.getOrigin().equals(previous.getDestination()))
+					super.state(false, "origin", "acme.validation.leg.origin");
+			}
+
+			if (index < orderedLegs.size() - 1) {
+				Leg next = orderedLegs.get(index + 1);
+				if (!leg.getDestination().equals(next.getOrigin()))
+					super.state(false, "destination", "acme.validation.leg.destination");
+			}
 		}
 	}
 
@@ -158,7 +206,8 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 		originChoices = SelectChoices.from(airports, "name", leg.getOrigin());
 		destinationChoices = SelectChoices.from(airports, "name", leg.getDestination());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode");
+		dataset.put("duration", leg.getDuration());
 		dataset.put("statuses", statusChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);

@@ -1,5 +1,4 @@
 acme.validation.phone.message = Must be a number phone
-acme.validation.leg.duration = Must be a positive number
 acme.validation.aircraft.capacity = Must be an integer between 1 and 255
 acme.validation.aircraft.cargo = Must be a number between 2000 and 50000
 acme.validation.invalid-date-format =Invalid date format
@@ -9,6 +8,13 @@ acme.validation.system-currency.current = Cannot delete the current system curre
 acme.validation.sysconf.currency = Must be a 3 letter upper case long string
 acme.validation.positive.number = Must be a positive number
 
+acme.validation.leg.origin = The origin of the leg doesn't match with the destination of the previous published leg
+acme.validation.leg.destination = The destination of the leg doesn't match with the origin of the next published leg
+acme.validation.leg.overlap.message = The leg is overlaping with another published leg of this flight
+acme.validation.leg.same.aircraft.message = There is another leg associated with this aircraft for this moment
+acme.validation.leg.same.origin = The origin of the leg can't be the same as the destination
+acme.validation.leg.same.destination = The destination of the leg can't be the same as the origin
+acme.validation.leg.dates.difference.message = The scheduled of arrival must be at least 5 minutes later than the departure
 acme.validation.leg.scheduledDeparture = The scheduled of departure must be in the future
 acme.validation.leg.scheduledArrival = The scheduled of arrival must be after the scheduled of departure
 acme.validation.service.bad-year-promotion-code.message = The last two digits must be the last two digits of the current year

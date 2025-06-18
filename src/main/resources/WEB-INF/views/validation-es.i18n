@@ -1,5 +1,4 @@
 acme.validation.phone.message = Debe ser un número de teléfono
-acme.validation.leg.duration = Debe ser un número positivo
 acme.validation.invalid-date-format = Formato de fecha no válido
 acme.validation.review.score = La puntuación debe estar entre 0 y 10
 acme.validation.currency.is-only-system-currency = No puedes dejar al sistema sin moneda del sistema
@@ -7,6 +6,13 @@ acme.validation.system-currency.current = No puedes borrar la actual moneda del 
 acme.validation.sysconf.currency = Debe ser una cadena de 3 letras mayúsculas
 acme.validation.positive.number = Debe ser un número positivo
 
+acme.validation.leg.origin = El origen del trayecto no coincide con el destino del anterior trayecto publicado
+acme.validation.leg.destination = El destino del trayecto no coincide con el origen del siguiente trayecto publicado
+acme.validation.leg.overlap.message = El trayecto se solapa con otro trayecto publicado para el vuelo
+acme.validation.leg.same.aircraft.message = Hay otro trayecto asociado a este aircraft para este momento
+acme.validation.leg.same.origin = El origen del trayecto no puede ser el mismo que el de destino
+acme.validation.leg.same.destination = El destino del trayecto no puede ser el mismo que el de origen
+acme.validation.leg.dates.difference.message = Debe haber un intervalo de al menos 5 minutos entre el horario de entrada y el horario de salida
 acme.validation.leg.scheduledDeparture = El horario de salida debe estar en el futuro
 acme.validation.leg.scheduledArrival = El horario de llegada debe ser más tarde que el de salida
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255

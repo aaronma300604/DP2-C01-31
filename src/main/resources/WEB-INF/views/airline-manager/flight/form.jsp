@@ -8,7 +8,6 @@
 	<acme:input-checkbox code="airline-manager.flight.form.label.selfTransfer" path="selfTransfer"/>
 	<acme:input-money code="airline-manager.flight.form.label.cost" path="cost"/>
 	<acme:input-textarea code="airline-manager.flight.form.label.description" path="description"/>
-	<acme:input-select code="airline-manager.flight.form.label.airline" path="airline" choices="${airlines}"/>
 	<acme:input-moment code="airline-manager.flight.form.label.scheduledDeparture" path="scheduledDeparture" readonly="true"/>
 	<acme:input-moment code="airline-manager.flight.form.label.scheduledArrival" path="scheduledArrival" readonly="true"/>
 	<acme:input-integer code="airline-manager.flight.form.label.layovers" path="layovers" readonly="true"/>
@@ -16,7 +15,7 @@
 	<acme:input-textbox code="airline-manager.flight.form.label.destination" path="destination" readonly="true"/>
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:submit code="airline-manager.flight.form.button.update" action="/airline-manager/flight/update"/>
 			<acme:submit code="airline-manager.flight.form.button.delete" action="/airline-manager/flight/delete"/>
 			<acme:submit code="airline-manager.flight.form.button.publish" action="/airline-manager/flight/publish"/>
