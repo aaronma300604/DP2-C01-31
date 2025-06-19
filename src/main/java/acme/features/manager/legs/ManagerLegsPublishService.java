@@ -146,9 +146,7 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 			List<Leg> publishedLegsByFlight = this.repository.findPublishedLegsByFlight(leg.getFlight().getId());
 			for (Leg publishedLeg : publishedLegsByFlight)
 				if (MomentHelper.isBefore(publishedLeg.getScheduledDeparture(), leg.getScheduledArrival()) //
-					&& MomentHelper.isAfter(publishedLeg.getScheduledArrival(), leg.getScheduledDeparture()) //
-					|| MomentHelper.isEqual(publishedLeg.getScheduledDeparture(), leg.getScheduledDeparture()) //
-						&& MomentHelper.isEqual(publishedLeg.getScheduledArrival(), leg.getScheduledArrival())) {
+					&& MomentHelper.isAfter(publishedLeg.getScheduledArrival(), leg.getScheduledDeparture())) {
 					super.state(false, "scheduledDeparture", "acme.validation.leg.overlap.message");
 					super.state(false, "scheduledArrival", "acme.validation.leg.overlap.message");
 					break;

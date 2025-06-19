@@ -9,3 +9,17 @@ leg-05,ACX1237,2000/01/01 01:01,2000/01/01 00:01,DELAYED,true,aircraft-02,airpor
 leg-06,ABX1238,2024/12/31 23:59,2024/12/31 20:59,ON_TIME,false,aircraft-01,airport-03,airport-01,flight-05
 leg-07,ABX4321,2026/06/12 10:30,2026/06/12 08:00,ON_TIME,false,aircraft-01,airport-02,airport-01,flight-27
 leg-08,ACX4321,2000/01/01 02:01,2000/01/01 00:01,LANDED,false,aircraft-02,airport-01,airport-02,flight-16
+
+leg-09,ABX4322,2027/06/12 10:30,2027/06/12 08:00,ON_TIME,false,aircraft-01,airport-02,airport-01,flight-06
+leg-10,ABX4323,2027/06/12 10:30,2027/06/12 08:00,ON_TIME,false,aircraft-03,airport-02,airport-01,flight-17
+leg-11,ABX4324,2027/06/12 13:30,2027/06/12 11:00,ON_TIME,false,aircraft-01,airport-03,airport-02,flight-06
+leg-12,ABX4325,2027/06/12 15:30,2027/06/12 14:00,ON_TIME,false,aircraft-01,airport-04,airport-03,flight-06
+leg-13,ABX4326,2027/06/12 13:30,2027/06/12 11:00,ON_TIME,false,aircraft-03,airport-03,airport-02,flight-17
+
+leg-14,ABX4327,2002/06/12 13:30,2002/06/12 11:00,ON_TIME,false,aircraft-01,airport-03,airport-02,flight-08
+leg-15,ABX4328,2002/06/12 16:00,2002/06/12 14:00,ON_TIME,false,aircraft-01,airport-01,airport-03,flight-08
+leg-16,ABX4329,2002/06/12 18:30,2002/06/12 16:30,ON_TIME,false,aircraft-01,airport-04,airport-01,flight-08
+leg-17,ABX4330,2002/07/12 18:30,2002/07/12 15:30,ON_TIME,false,aircraft-01,airport-04,airport-01,flight-09
+leg-18,ABX4331,2002/07/12 20:30,2002/07/12 19:00,ON_TIME,false,aircraft-01,airport-02,airport-04,flight-09
+leg-19,ABX4332,2002/07/12 23:30,2002/07/12 21:00,ON_TIME,false,aircraft-01,airport-03,airport-02,flight-09
+leg-20,ABX4333,2002/09/12 23:30,2002/09/12 21:00,ON_TIME,false,aircraft-03,airport-03,airport-02,flight-10

@@ -9,9 +9,9 @@ flight-05,EUR 999.99,very good description,TRUE,the cheapest,manager-01,false
 flight-06,EUR 1000.00,very good description,FALSE,the cheapest,manager-01,true
 # description - standard variations
 flight-07,EUR 59.4,"Lorem ipsum dolor sit amet,consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",FALSE,the cheapest,manager-02,true
-flight-08,EUR 59.4,L,TRUE,the cheapest,manager-01,true
-flight-09,EUR 59.4,Lo,FALSE,the cheapest,manager-01,true
-flight-10,EUR 59.4,โลเร็ม อิปซัม,FALSE,the cheapest,manager-01,true
+flight-08,EUR 59.4,L,TRUE,the cheapest,manager-01,false
+flight-09,EUR 59.4,Lo,TRUE,the cheapest,manager-01,false
+flight-10,EUR 59.4,โลเร็ม อิปซัม,FALSE,the cheapest,manager-01,false
 flight-11,EUR 59.4,لوريم إيبسوم,TRUE,the cheapest,manager-02,true
 flight-12,EUR 59.4,洛伦·伊普森,FALSE,the cheapest,manager-02,true
 flight-13,EUR 59.4,<marquee>Hacked</marquee>,FALSE,the cheapest,manager-01,true

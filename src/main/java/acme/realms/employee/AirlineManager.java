@@ -39,7 +39,7 @@ public class AirlineManager extends AbstractRole {
 
 	@Column(unique = true)
 	@Mandatory
-	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$")
+	@ValidString(min = 8, max = 9, pattern = "^[A-Z]{2,3}\\d{6}$", message = "{acme.validation.airline_manager.employee_code.message}")
 	private String				employeeCode;
 
 	@Mandatory
