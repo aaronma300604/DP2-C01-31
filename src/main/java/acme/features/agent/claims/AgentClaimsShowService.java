@@ -40,7 +40,7 @@ public class AgentClaimsShowService extends AbstractGuiService<AssistanceAgent, 
 		claimId = super.getRequest().getData("id", int.class);
 		claim = this.repository.findClaim(claimId);
 		agent = claim == null ? null : claim.getAssistanceAgent();
-		status = super.getRequest().getPrincipal().hasRealm(agent) || claim != null && !claim.isDraftMode();
+		status = super.getRequest().getPrincipal().hasRealm(agent);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -87,7 +87,7 @@ public class AgentClaimsShowService extends AbstractGuiService<AssistanceAgent, 
 			dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 			dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
 
-			List<Leg> allLegs = this.agentLegsRepository.findAllLegs();
+			List<Leg> allLegs = this.agentLegsRepository.findAllPublishedLegs();
 			SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
 			dataset.put("legs", legChoices);
 		}

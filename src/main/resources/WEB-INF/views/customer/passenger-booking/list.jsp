@@ -6,7 +6,6 @@
 <acme:list>
 	<acme:list-column code="customer.passenger.list.passportNumber" path="passenger.passportNumber" width="25%"/>
 	<acme:list-column code="customer.booking.list.locatorCode" path="booking.locatorCode" width="30%"/>
-	<acme:list-payload path="payload"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list'}">

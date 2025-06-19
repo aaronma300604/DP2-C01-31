@@ -25,10 +25,17 @@ public class TechnicianTasksShowService extends AbstractGuiService<Technician, T
 		Task task;
 		Technician technician;
 
-		taskId = super.getRequest().getData("id", int.class);
-		task = this.repository.findTask(taskId);
-		technician = task == null ? null : task.getTechnician();
-		status = technician != null && super.getRequest().getPrincipal().hasRealm(technician) || task != null && !task.isDraftMode();
+		if (!super.getRequest().hasData("id"))
+			status = false;
+		else
+			try {
+				taskId = super.getRequest().getData("id", int.class);
+				task = this.repository.findTask(taskId);
+				technician = task == null ? null : task.getTechnician();
+				status = technician != null && super.getRequest().getPrincipal().hasRealm(technician) || task != null && !task.isDraftMode();
+			} catch (Exception e) {
+				status = false;
+			}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -46,7 +53,6 @@ public class TechnicianTasksShowService extends AbstractGuiService<Technician, T
 
 	@Override
 	public void unbind(final Task task) {
-		assert task != null;
 		Dataset dataset;
 		SelectChoices typeChoices;
 

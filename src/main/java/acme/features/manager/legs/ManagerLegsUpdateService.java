@@ -1,12 +1,14 @@
 
 package acme.features.manager.legs;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
@@ -30,31 +32,43 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 		Leg leg;
 		AirlineManager manager;
 
-		legId = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLeg(legId);
-		manager = leg == null ? null : leg.getManager();
-		status = leg != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(manager);
+		Integer nullValue = super.getRequest().getData("id", Integer.class);
+		if (nullValue == null)
+			super.getResponse().setAuthorised(false);
+		else {
+			legId = super.getRequest().getData("id", int.class);
+			leg = this.repository.findLeg(legId);
 
-		if (status) {
-			int flightId = super.getRequest().getData("flight", int.class);
-			int aircraftId = super.getRequest().getData("aircraft", int.class);
-			int originId = super.getRequest().getData("origin", int.class);
-			int destinationId = super.getRequest().getData("destination", int.class);
-			Flight flight = this.repository.findFlightById(flightId);
-			Aircraft aircraft = this.repository.findAircraftById(aircraftId);
-			Airport origin = this.repository.findAirportById(originId);
-			Airport destination = this.repository.findAirportById(destinationId);
+			if (leg == null) {
+				manager = null;
+				status = false;
+			} else {
+				manager = leg.getManager();
+				status = super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
+			}
 
-			List<Flight> flights = this.repository.findFlightsByManager(manager.getId());
-			List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(manager.getId());
-			List<Airport> airports = this.repository.findAllAirports();
-			if (flight != null && aircraft != null //
-				&& origin != null && destination != null)
-				status = flights.contains(flight) && aircrafts.contains(aircraft) //
-					&& airports.contains(origin) && airports.contains(destination);
+			if (status && super.getRequest().hasData("flight") && super.getRequest().hasData("aircraft") //
+				&& super.getRequest().hasData("origin") && super.getRequest().hasData("destination")) {
+				int flightId = super.getRequest().getData("flight", int.class);
+				int aircraftId = super.getRequest().getData("aircraft", int.class);
+				int originId = super.getRequest().getData("origin", int.class);
+				int destinationId = super.getRequest().getData("destination", int.class);
+				Flight flight = this.repository.findFlightById(flightId);
+				Aircraft aircraft = this.repository.findAircraftById(aircraftId);
+				Airport origin = this.repository.findAirportById(originId);
+				Airport destination = this.repository.findAirportById(destinationId);
+
+				List<Flight> flights = this.repository.findFlightsByManager(manager.getId());
+				List<Aircraft> aircrafts = this.repository.findActiveAircraftsByManager(manager.getId());
+				List<Airport> airports = this.repository.findAllAirports();
+				if (flight != null && aircraft != null //
+					&& origin != null && destination != null)
+					status = flights.contains(flight) && aircrafts.contains(aircraft) //
+						&& airports.contains(origin) && airports.contains(destination);
+			}
+
+			super.getResponse().setAuthorised(status);
 		}
-
-		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -97,7 +111,22 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 
 	@Override
 	public void validate(final Leg leg) {
-		;
+		Date now = MomentHelper.getCurrentMoment();
+		boolean departureInFuture;
+		boolean arrivalAfterDeparture;
+
+		if (leg.getScheduledDeparture() != null && leg.getScheduledArrival() != null) {
+			if (leg.getScheduledDeparture().after(now))
+				departureInFuture = true;
+			else
+				departureInFuture = false;
+			if (leg.getScheduledArrival().after(leg.getScheduledDeparture()))
+				arrivalAfterDeparture = true;
+			else
+				arrivalAfterDeparture = false;
+			super.state(departureInFuture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
+			super.state(arrivalAfterDeparture, "scheduledArrival", "acme.validation.leg.scheduledArrival");
+		}
 	}
 
 	@Override

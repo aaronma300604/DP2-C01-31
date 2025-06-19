@@ -55,4 +55,7 @@ public interface AgentLegsRepository extends AbstractRepository {
 
 	@Query("select l from Leg l")
 	List<Leg> findAllLegs();
+
+	@Query("select l from Leg l where l.draftMode = false")
+	List<Leg> findAllPublishedLegs();
 }

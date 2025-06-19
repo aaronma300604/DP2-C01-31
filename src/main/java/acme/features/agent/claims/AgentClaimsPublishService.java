@@ -27,15 +27,45 @@ public class AgentClaimsPublishService extends AbstractGuiService<AssistanceAgen
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int claimId;
-		Claim claim;
-		AssistanceAgent agent;
+		boolean status = true;
+		String method = super.getRequest().getMethod();
 
-		claimId = super.getRequest().getData("id", int.class);
-		claim = this.repository.findClaim(claimId);
-		agent = claim == null ? null : claim.getAssistanceAgent();
-		status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(agent);
+		if (method.equals("POST")) {
+			int legId = super.getRequest().getData("leg", int.class);
+			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
+			int claimId;
+			Claim claim;
+			AssistanceAgent agent;
+
+			claimId = super.getRequest().getData("id", int.class);
+			claim = this.repository.findClaim(claimId);
+			agent = claim == null ? null : claim.getAssistanceAgent();
+			status = claim != null && claim.isDraftMode() && super.getRequest().getPrincipal().hasRealm(agent);
+
+			super.getResponse().setAuthorised(status);
+
+			if (legId != 0) {
+				Leg leg = this.repository.findLegById(legId);
+				List<Leg> accessibleLegs = this.agentLegsRepository.findAllPublishedLegs();
+
+				// Check that the agent is assigned a valid leg
+				if (agentId == 0 || leg == null || !accessibleLegs.contains(leg))
+					status = false;
+			}
+
+		}
+
+		if (method.equals("GET")) {
+			int claimId;
+			Claim claim;
+			AssistanceAgent agent;
+
+			claimId = super.getRequest().getData("id", int.class);
+			claim = this.repository.findClaim(claimId);
+			agent = claim == null ? null : claim.getAssistanceAgent();
+			status = super.getRequest().getPrincipal().hasRealm(agent);
+
+		}
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -84,7 +114,7 @@ public class AgentClaimsPublishService extends AbstractGuiService<AssistanceAgen
 		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 		dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
 
-		List<Leg> allLegs = this.agentLegsRepository.findAllLegs();
+		List<Leg> allLegs = this.agentLegsRepository.findAllPublishedLegs();
 		SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
 		dataset.put("legs", legChoices);
 
