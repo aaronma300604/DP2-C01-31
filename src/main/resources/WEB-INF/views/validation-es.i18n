@@ -26,6 +26,8 @@ acme.validation.aircraft.duplicated-registration-number.message = Hay otra aeron
 acme.validation.airline.duplicated-iata.message = Hay otra aerolínea con ese código IATA
 acme.validation.assistance-agent.employee_code.message = Debe comenzar por las iniciales del agente, seguido de seis dígitos
 acme.validation.airline_manager.employee_code.message = Debe comenzar por las iniciales del gerente, seguido de seis dígitos
+acme.validation.manager.duplicated-employee-code.message = Hay otro gerente con este código de empleado
+acme.validation.manager.flights.past-legs-message = No se puede publicar el vuelo porque hay trayectos publicados en pasado
 acme.validation.customer.identifier.message = Debe comenzar por las iniciales del cliente, seguido de seis dígitos
 acme.validation.member.employee_code.message = Debe comenzar por las iniciales del miembro, seguido de seis dígitos
 acme.validation.technician.employee_code.message = Debe comenzar por las iniciales del técnico, seguido de seis dígitos
@@ -33,6 +35,7 @@ acme.validation.next-inspection.update.message = La próxima inspección tiene q
 acme.validation.next-inspection.create.message = La próxima inspección deber estar en el futuro
 acme.validation.airline.iata.message = Debe ser dos letras en mayúsculas, seguido de una X
 acme.validation.airport.iata.message = Debe ser tres letras en mayúculas
+acme.validation.flight.delete = No se puede borrar este vuelo ya que hay trayectos publicados para este
 
 acme.validation.aircraft.cant-be-disable = Hay trayectos asociados a esta aeronave. No es posible desactivar la aeronave
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía

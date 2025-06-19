@@ -69,6 +69,7 @@ public class ManagerFlightsUpdateService extends AbstractGuiService<AirlineManag
 		availableCurrency = currencies.contains(currency);
 
 		super.state(availableCurrency, "cost", "acme.validation.invalid-currency.message");
+
 	}
 
 	@Override

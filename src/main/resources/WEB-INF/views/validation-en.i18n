@@ -26,6 +26,8 @@ acme.validation.airport.duplicated-iata.message = There is another airport with 
 acme.validation.aircraft.duplicated-registration-number.message = There is another aircraft with this registration number
 acme.validation.airline.duplicated-iata.message = There is another airline with this IATA code
 acme.validation.airline_manager.employee_code.message = Must begin with manager's initials, followed by six digits
+acme.validation.manager.duplicated-employee-code.message = There is another manager with this employee code
+acme.validation.manager.flights.past-legs-message = Can't publish the flight because there are legs published in the past
 acme.validation.customer.identifier.message = Must begin with customer's initials, followed by six digits
 acme.validation.member.employee_code.message = Must begin with member's initials, followed by six digits
 acme.validation.technician.employee_code.message = Must begin with technician's initials, followed by six digits
@@ -33,6 +35,7 @@ acme.validation.next-inspection.create.message = Next inspection must be in the 
 acme.validation.next-inspection.update.message = Next inspection must be after record's date
 acme.validation.airline.iata.message = Must be two upper case letters, followed by an X
 acme.validation.airport.iata.message = Must be three upper case letters
+acme.validation.flight.delete = Can't delete this flight because there are legs in this flight published
 
 acme.validation.aircraft.cant-be-disable = There are legs associated to this aircraft. Can't disable the aircraft
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight.Flight;
@@ -68,6 +69,12 @@ public class ManagerFlightsPublishService extends AbstractGuiService<AirlineMana
 		if (!legs.isEmpty())
 			canBePublish = legs.stream().allMatch(l -> !l.isDraftMode());
 		super.state(canBePublish, "*", "acme.validation.flight.cant-be-publish.message");
+
+		boolean notPastLegs = true;
+		for (Leg leg : legs)
+			if (MomentHelper.isBefore(leg.getScheduledDeparture(), MomentHelper.getCurrentMoment()))
+				notPastLegs = false;
+		super.state(notPastLegs, "*", "acme.validation.manager.flights.past-legs-message");
 	}
 
 	@Override
