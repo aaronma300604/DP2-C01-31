@@ -1,6 +1,7 @@
 
 package acme.features.manager.legs;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 				manager = null;
 				status = false;
 			} else {
-				manager = leg.getManager();
+				manager = leg.getFlight().getManager();
 				status = super.getRequest().getPrincipal().hasRealm(manager) && leg.isDraftMode();
 			}
 
@@ -102,7 +103,7 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 		destinationId = super.getRequest().getData("destination", int.class);
 		destination = this.repository.findAirportById(destinationId);
 
-		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status");
+		super.bindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
 		leg.setFlight(flight);
 		leg.setAircraft(aircraft);
 		leg.setOrigin(origin);
@@ -126,6 +127,15 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 				arrivalAfterDeparture = false;
 			super.state(departureInFuture, "scheduledDeparture", "acme.validation.leg.scheduledDeparture");
 			super.state(arrivalAfterDeparture, "scheduledArrival", "acme.validation.leg.scheduledArrival");
+
+			Date departureWithInterval = MomentHelper.deltaFromMoment(leg.getScheduledDeparture(), 5, ChronoUnit.MINUTES);
+			if (MomentHelper.isBefore(leg.getScheduledArrival(), departureWithInterval))
+				super.state(false, "scheduledArrival", "acme.validation.leg.dates.difference.message");
+		}
+
+		if (leg.getDestination() != null && leg.getDestination().equals(leg.getOrigin())) {
+			super.state(false, "origin", "acme.validation.leg.same.origin");
+			super.state(false, "destination", "acme.validation.leg.same.destination");
 		}
 	}
 
@@ -157,7 +167,8 @@ public class ManagerLegsUpdateService extends AbstractGuiService<AirlineManager,
 		originChoices = SelectChoices.from(airports, "name", leg.getOrigin());
 		destinationChoices = SelectChoices.from(airports, "name", leg.getDestination());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode");
+		dataset.put("duration", leg.getDuration());
 		dataset.put("statuses", statusChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);

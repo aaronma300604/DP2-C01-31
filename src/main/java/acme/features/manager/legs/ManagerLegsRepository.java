@@ -20,8 +20,8 @@ import acme.entities.trackingLog.TrackingLog;
 @Repository
 public interface ManagerLegsRepository extends AbstractRepository {
 
-	@Query("select l from Leg l where l.manager.id = :managerId and l.flight.airline.id = :airlineId order by l.scheduledDeparture")
-	List<Leg> findMyLegs(int managerId, int airlineId);
+	@Query("select l from Leg l where l.flight.manager.id = :managerId order by l.scheduledDeparture")
+	List<Leg> findMyLegs(int managerId);
 
 	@Query("select l from Leg l where l.id = :legId")
 	Leg findLeg(final int legId);
@@ -64,4 +64,13 @@ public interface ManagerLegsRepository extends AbstractRepository {
 
 	@Query("select l from ActivityLog l where l.flightAssignment.id = :assignmentId")
 	List<ActivityLog> findActivityLogsByAssignment(int assignmentId);
+
+	@Query("select l from Leg l where l.draftMode = false")
+	List<Leg> findAllPublishedLegs();
+
+	@Query("select l from Leg l where l.draftMode = false and l.flight.id = :flightId")
+	List<Leg> findPublishedLegsByFlight(int flightId);
+
+	@Query("select l from Leg l where l.draftMode = false and l.flight.id = :flightId or l.id = :legId order by l.scheduledDeparture")
+	List<Leg> findOrderedLegsByFlightAndThisLeg(int flightId, int legId);
 }

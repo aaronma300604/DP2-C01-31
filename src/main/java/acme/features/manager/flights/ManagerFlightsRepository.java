@@ -17,8 +17,8 @@ import acme.realms.employee.AirlineManager;
 @Repository
 public interface ManagerFlightsRepository extends AbstractRepository {
 
-	@Query("select f from Flight f where f.manager.id = :managerId and f.airline.id = :airlineId")
-	List<Flight> findMyFlights(final int managerId, int airlineId);
+	@Query("select f from Flight f where f.manager.id = :managerId")
+	List<Flight> findMyFlights(final int managerId);
 
 	@Query("select f from Flight f where f.id = :flightId")
 	Flight findFlight(final int flightId);

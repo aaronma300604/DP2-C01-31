@@ -40,7 +40,7 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 			if (leg == null)
 				super.getResponse().setAuthorised(false);
 			else {
-				manager = leg.getManager();
+				manager = leg.getFlight().getManager();
 				status = super.getRequest().getPrincipal().hasRealm(manager) || !leg.isDraftMode();
 				super.getResponse().setAuthorised(status);
 			}
@@ -88,7 +88,8 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 		originChoices = SelectChoices.from(airports, "name", leg.getOrigin());
 		destinationChoices = SelectChoices.from(airports, "name", leg.getDestination());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status", "draftMode");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status", "draftMode");
+		dataset.put("duration", leg.getDuration());
 		dataset.put("statuses", statusChoices);
 		dataset.put("flight", flightsChoices.getSelected().getKey());
 		dataset.put("flights", flightsChoices);

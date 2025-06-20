@@ -17,7 +17,7 @@ import acme.entities.leg.Leg;
 @Repository
 public interface AgentLegsRepository extends AbstractRepository {
 
-	@Query("select l from Leg l where l.manager.id = :managerId order by l.scheduledDeparture")
+	@Query("select l from Leg l where l.flight.manager.id = :managerId order by l.scheduledDeparture")
 	List<Leg> findMyLegs(int managerId);
 
 	@Query("select l from Leg l where l.id = :legId")

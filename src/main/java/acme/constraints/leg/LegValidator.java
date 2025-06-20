@@ -37,7 +37,7 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 			if (leg.getFlight() != null) {
 				boolean correctFlightNumber;
 				String number = leg.getFlightNumber();
-				String iataCode = leg.getFlight().getAirline().getIata().strip();
+				String iataCode = leg.getAircraft().getAirline().getIata().strip();
 
 				correctFlightNumber = number != null && Pattern.matches("^" + iataCode + "\\d{4}$", number);
 

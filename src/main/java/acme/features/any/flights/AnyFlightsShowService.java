@@ -46,7 +46,6 @@ public class AnyFlightsShowService extends AbstractGuiService<Any, Flight> {
 
 		dataset = super.unbindObject(flight, "tag", "selfTransfer", "cost", "description");
 		dataset.put("manager", flight.getManager().getIdentity().getName());
-		dataset.put("airline", flight.getAirline().getName());
 		dataset.put("scheduledDeparture", flight.getScheduledDeparture());
 		dataset.put("scheduledArrival", flight.getScheduledArrival());
 		dataset.put("origin", flight.getOrigin() != null ? flight.getOrigin().getName() : null);

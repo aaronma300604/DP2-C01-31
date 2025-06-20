@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.entities.airline.Airline;
 import acme.entities.flight.Flight;
 import acme.realms.employee.AirlineManager;
 
@@ -27,12 +26,10 @@ public class ManagerFlightsListService extends AbstractGuiService<AirlineManager
 	@Override
 	public void load() {
 		List<Flight> flights;
-		Airline airline;
 		int managerId;
 
 		managerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		airline = this.repository.findAirlineByManager(managerId);
-		flights = this.repository.findMyFlights(managerId, airline.getId());
+		flights = this.repository.findMyFlights(managerId);
 
 		super.getBuffer().addData(flights);
 	}
@@ -42,7 +39,6 @@ public class ManagerFlightsListService extends AbstractGuiService<AirlineManager
 		Dataset dataset;
 
 		dataset = super.unbindObject(flight, "tag", "cost");
-		dataset.put("airlineName", flight.getAirline().getName());
 		dataset.put("origin", flight.getOrigin() != null ? flight.getOrigin().getName() : flight.getOrigin());
 		dataset.put("destination", flight.getDestination() != null ? flight.getDestination().getName() : flight.getDestination());
 
