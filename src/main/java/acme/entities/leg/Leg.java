@@ -10,17 +10,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidNumber;
 import acme.constraints.leg.ValidLeg;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
-import acme.realms.employee.AirlineManager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,9 +28,12 @@ import lombok.Setter;
 @Setter
 @Table(indexes = {
 	@Index(columnList = "draftMode"), //
+	@Index(columnList = "draftMode,flight_id"), //
+	@Index(columnList = "draftMode,flight_id,id"), //
 	@Index(columnList = "flightNumber", unique = true), //
 	@Index(columnList = "status"), //
-	@Index(columnList = "manager_id, flight_id")
+	@Index(columnList = "flight_id"), //
+	@Index(columnList = "aircraft_id,draftMode,scheduledDeparture,scheduledArrival")
 })
 @ValidLeg
 public class Leg extends AbstractEntity {
@@ -49,11 +51,6 @@ public class Leg extends AbstractEntity {
 	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				scheduledArrival;
-
-	@Mandatory
-	@Automapped
-	@ValidNumber(min = 0., message = "{acme.validation.leg.duration}")
-	private Double				duration;
 
 	@Mandatory
 	@Automapped
@@ -84,8 +81,14 @@ public class Leg extends AbstractEntity {
 	@Valid
 	private Airport				destination;
 
-	@Mandatory
-	@ManyToOne(optional = false)
-	@Valid
-	private AirlineManager		manager;
+
+	@Transient
+	public double getDuration() {
+		double res = 0;
+		long duration = 0;
+		if (this.getScheduledArrival() != null && this.getScheduledDeparture() != null)
+			duration = this.getScheduledArrival().getTime() - this.getScheduledDeparture().getTime();
+		res = (double) duration / (1000 * 60 * 60);
+		return res;
+	}
 }

@@ -9,7 +9,6 @@
 	<acme:input-money code="any.flight.form.label.cost" path="cost" readonly="true"/>
 	<acme:input-textarea code="any.flight.form.label.description" path="description" readonly="true"/>
 	<acme:input-textbox code="any.flight.form.label.manager" path="manager" readonly="true"/>
-	<acme:input-textbox code="any.flight.form.label.airline" path="airline" readonly="true"/>
 	<acme:input-moment code="any.flight.form.label.scheduledDeparture" path="scheduledDeparture" readonly="true"/>
 	<acme:input-moment code="any.flight.form.label.scheduledArrival" path="scheduledArrival" readonly="true"/>
 	<acme:input-integer code="any.flight.form.label.layovers" path="layovers" readonly="true"/>

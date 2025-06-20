@@ -5,12 +5,19 @@ import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
 import acme.realms.employee.AirlineManager;
+import acme.realms.employee.ManagerRepository;
 
 @Validator
 public class ManagerValidator extends AbstractValidator<ValidManager, AirlineManager> {
+
+	@Autowired
+	private ManagerRepository repository;
+
 
 	@Override
 	protected void initialise(final ValidManager annotation) {
@@ -34,6 +41,16 @@ public class ManagerValidator extends AbstractValidator<ValidManager, AirlineMan
 			correctEmployeeCode = code != null && Pattern.matches("^[A-Z]{2,3}\\d{6}$", code) && code.startsWith(initials);
 
 			super.state(context, correctEmployeeCode, "employeeCode", "acme.validation.airline_manager.employee_code.message");
+		}
+
+		{
+			boolean uniqueManager;
+			AirlineManager existingManager;
+
+			existingManager = this.repository.findManagerByCode(manager.getEmployeeCode());
+			uniqueManager = existingManager == null || existingManager.equals(manager);
+
+			super.state(context, uniqueManager, "employeeCode", "acme.validation.manager.duplicated-employee-code.message");
 		}
 
 		result = !super.hasErrors(context);

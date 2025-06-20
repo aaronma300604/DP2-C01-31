@@ -12,5 +12,4 @@
 	<acme:input-textbox code="any.leg.form.label.aircraft" path="aircraft" readonly="true"/>
 	<acme:input-textbox code="any.leg.form.label.origin" path="origin" readonly="true"/>
 	<acme:input-textbox code="any.leg.form.label.destination" path="destination" readonly="true"/>
-	<acme:input-textbox code="any.leg.form.label.manager" path="manager" readonly="true"/>
 </acme:form>

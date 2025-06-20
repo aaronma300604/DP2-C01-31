@@ -1,5 +1,4 @@
 acme.validation.phone.message = Debe ser un número de teléfono
-acme.validation.leg.duration = Debe ser un número positivo
 acme.validation.invalid-date-format = Formato de fecha no válido
 acme.validation.review.score = La puntuación debe estar entre 0 y 10
 acme.validation.currency.is-only-system-currency = No puedes dejar al sistema sin moneda del sistema
@@ -7,6 +6,13 @@ acme.validation.system-currency.current = No puedes borrar la actual moneda del 
 acme.validation.sysconf.currency = Debe ser una cadena de 3 letras mayúsculas
 acme.validation.positive.number = Debe ser un número positivo
 
+acme.validation.leg.origin = El origen del trayecto no coincide con el destino del anterior trayecto publicado
+acme.validation.leg.destination = El destino del trayecto no coincide con el origen del siguiente trayecto publicado
+acme.validation.leg.overlap.message = El trayecto se solapa con otro trayecto publicado para el vuelo
+acme.validation.leg.same.aircraft.message = Hay otro trayecto asociado a este aircraft para este momento
+acme.validation.leg.same.origin = El origen del trayecto no puede ser el mismo que el de destino
+acme.validation.leg.same.destination = El destino del trayecto no puede ser el mismo que el de origen
+acme.validation.leg.dates.difference.message = Debe haber un intervalo de al menos 5 minutos entre el horario de entrada y el horario de salida
 acme.validation.leg.scheduledDeparture = El horario de salida debe estar en el futuro
 acme.validation.leg.scheduledArrival = El horario de llegada debe ser más tarde que el de salida
 acme.validation.aircraft.capacity = Debe ser un entero entre 1 y 255
@@ -20,6 +26,8 @@ acme.validation.aircraft.duplicated-registration-number.message = Hay otra aeron
 acme.validation.airline.duplicated-iata.message = Hay otra aerolínea con ese código IATA
 acme.validation.assistance-agent.employee_code.message = Debe comenzar por las iniciales del agente, seguido de seis dígitos
 acme.validation.airline_manager.employee_code.message = Debe comenzar por las iniciales del gerente, seguido de seis dígitos
+acme.validation.manager.duplicated-employee-code.message = Hay otro gerente con este código de empleado
+acme.validation.manager.flights.past-legs-message = No se puede publicar el vuelo porque hay trayectos publicados en pasado
 acme.validation.customer.identifier.message = Debe comenzar por las iniciales del cliente, seguido de seis dígitos
 acme.validation.member.employee_code.message = Debe comenzar por las iniciales del miembro, seguido de seis dígitos
 acme.validation.technician.employee_code.message = Debe comenzar por las iniciales del técnico, seguido de seis dígitos
@@ -27,6 +35,7 @@ acme.validation.next-inspection.update.message = La próxima inspección tiene q
 acme.validation.next-inspection.create.message = La próxima inspección deber estar en el futuro
 acme.validation.airline.iata.message = Debe ser dos letras en mayúsculas, seguido de una X
 acme.validation.airport.iata.message = Debe ser tres letras en mayúculas
+acme.validation.flight.delete = No se puede borrar este vuelo ya que hay trayectos publicados para este
 
 acme.validation.aircraft.cant-be-disable = Hay trayectos asociados a esta aeronave. No es posible desactivar la aeronave
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía

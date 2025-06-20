@@ -50,12 +50,12 @@ public class AnyLegsShowService extends AbstractGuiService<Any, Leg> {
 
 		statusChoices = SelectChoices.from(LegStatus.class, leg.getStatus());
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration", "status");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "status");
+		dataset.put("duration", leg.getDuration());
 		dataset.put("statuses", statusChoices);
 		dataset.put("aircraft", leg.getAircraft().getModel());
 		dataset.put("origin", leg.getOrigin().getName());
 		dataset.put("destination", leg.getDestination().getName());
-		dataset.put("manager", leg.getManager().getIdentity().getName());
 
 		super.getResponse().addData(dataset);
 	}

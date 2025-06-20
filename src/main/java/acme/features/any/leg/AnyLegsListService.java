@@ -47,7 +47,8 @@ public class AnyLegsListService extends AbstractGuiService<Any, Leg> {
 	public void unbind(final Leg leg) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival", "duration");
+		dataset = super.unbindObject(leg, "flightNumber", "scheduledDeparture", "scheduledArrival");
+		dataset.put("duration", leg.getDuration());
 		dataset.put("origin", leg.getOrigin().getName());
 		dataset.put("destination", leg.getDestination().getName());
 		super.addPayload(dataset, leg, "flightNumber");
