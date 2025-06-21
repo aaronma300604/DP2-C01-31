@@ -12,12 +12,15 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
@@ -32,7 +35,9 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private FlightAssignmentRepository repository;
+	private FlightAssignmentRepository	repository;
+
+	private FlightAssignment			faToListPosibleLegsIfCompletedOrNot;
 
 
 	@Override
@@ -50,7 +55,6 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 		String method = super.getRequest().getMethod();
 		if (method.equals("POST")) {
-			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
 			try {
 				int legId = super.getRequest().getData("leg", int.class);
@@ -75,6 +79,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		int id;
 		id = super.getRequest().getData("id", int.class);
 		fa = this.repository.findFa(id);
+		this.faToListPosibleLegsIfCompletedOrNot = fa;
 
 		super.getBuffer().addData(fa);
 
@@ -89,10 +94,12 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
+		Date lastUpdate = MomentHelper.getCurrentMoment();
 
-		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
+		super.bindObject(fa, "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(actualMember);
 		fa.setLeg(legAssigned);
+		fa.setMoment(lastUpdate);
 
 	}
 
@@ -133,7 +140,10 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 	}
 
 	public List<Leg> getPosibleLegs() {
-		List<Leg> posibleLegs = this.repository.findAllLegs();
+		Date currentDate = MomentHelper.getCurrentMoment();
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
+			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 

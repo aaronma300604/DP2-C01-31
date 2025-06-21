@@ -26,11 +26,11 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.id = :flightAssignmentId")
 	FlightAssignment findFa(final int flightAssignmentId);
 
-	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id AND fa.leg.scheduledArrival > :currentDate")
-	Collection<FlightAssignment> findAssignmentsByMemberIdUnCompletedLegs(@Param("currentDate") Date currentDate, @Param("id") int id);
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id AND fa.leg.scheduledArrival > :currentDate AND fa.leg.draftMode = false")
+	Collection<FlightAssignment> findAssignmentsByMemberIdUnCompletedLegsAndPublishedLegs(@Param("currentDate") Date currentDate, @Param("id") int id);
 
-	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id AND fa.leg.scheduledArrival < :currentDate")
-	Collection<FlightAssignment> findAssignmentsByMemberIdCompletedLegs(@Param("currentDate") Date currentDate, @Param("id") int id);
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id AND fa.leg.scheduledArrival < :currentDate AND fa.leg.draftMode = false")
+	Collection<FlightAssignment> findAssignmentsByMemberIdCompletedLegsAndPublishedLegs(@Param("currentDate") Date currentDate, @Param("id") int id);
 
 	@Query("SELECT fcm FROM FlightCrewMember fcm WHERE fcm.abStat = :status")
 	List<FlightCrewMember> findMembersByStatus(AvaliabilityStatus status);
@@ -38,7 +38,7 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 	@Query("SELECT fcm From FlightCrewMember fcm WHERE fcm.id = :fcmId")
 	FlightCrewMember findMemberById(int fcmId);
 
-	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival > :currentDate")
+	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival > :currentDate AND l.draftMode = false")
 	List<Leg> findUpcomingLegs(@Param("currentDate") Date currentDate);
 
 	@Query("SELECT l FROM Leg l")
@@ -47,7 +47,7 @@ public interface FlightAssignmentRepository extends AbstractRepository {
 	@Query("SELECT al FROM ActivityLog al WHERE al.flightAssignment.id = :faId")
 	List<ActivityLog> findActivityLogsByFa(int faId);
 
-	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival < :currentDate")
+	@Query("SELECT l FROM Leg l WHERE l.scheduledArrival < :currentDate AND l.draftMode = false")
 	List<Leg> findPreviousLegs(@Param("currentDate") Date currentDate);
 
 	@Query("SELECT l from Leg l WHERE l.id = :legId")

@@ -1,12 +1,15 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flightAssignment.CurrentStatus;
@@ -62,6 +65,8 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
 		posibleLegs = this.getPosibleLegs();
+		if (fa.getLeg() != null && !posibleLegs.contains(fa.getLeg()))
+			posibleLegs.add(fa.getLeg());
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -76,7 +81,10 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 	}
 
 	public List<Leg> getPosibleLegs() {
-		List<Leg> posibleLegs = this.repository.findAllLegs();
+		Date currentDate = MomentHelper.getCurrentMoment();
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
+			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 

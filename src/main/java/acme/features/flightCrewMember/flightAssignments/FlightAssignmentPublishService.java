@@ -1,6 +1,7 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -78,10 +79,12 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
+		Date current = MomentHelper.getCurrentMoment();
 
-		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
+		super.bindObject(fa, "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(actualMember);
 		fa.setLeg(legAssigned);
+		fa.setMoment(current);
 
 	}
 
@@ -164,7 +167,7 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		super.state(unproperPilotDuty, "duty", "acme.validation.flight-assignment.dutyPilot.message");
 		super.state(legIsPublished, "*", "acme.validation.flight-assignment.cant-be-published.message");
 		super.state(isMemberAvailable, "*", "acme.validation.flight-assignment.memberAvailable.message");
-		super.state(isFutureLeg, "leg", "acme.validation.flight-assignment.legIsCompleted.message");
+		super.state(isFutureLeg, "leg", "acme.validation.flight-assignment.legIsUNCompleted.message");
 
 	}
 
@@ -186,7 +189,8 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
 		posibleLegs = this.getPosibleLegs();
-
+		if (fa.getLeg() != null && !posibleLegs.contains(fa.getLeg()))
+			posibleLegs.add(fa.getLeg());
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -199,8 +203,10 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 	}
 
 	public List<Leg> getPosibleLegs() {
-		List<Leg> posibleLegs = this.repository.findAllLegs();
-
+		Date currentDate = MomentHelper.getCurrentMoment();
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
+			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 
