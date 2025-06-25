@@ -128,6 +128,8 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 		posibleLegs = this.getPosibleLegs();
+		if (fa.getLeg() != null && !posibleLegs.contains(fa.getLeg()))
+			posibleLegs.add(fa.getLeg());
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -135,6 +137,11 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		dataset.put("duties", dutyChoices);
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
+
+		boolean showActivityLogs = false;
+		if (fa != null && fa.getLeg() != null)
+			showActivityLogs = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+		dataset.put("showActivityLogs", showActivityLogs);
 
 		super.getResponse().addData(dataset);
 	}

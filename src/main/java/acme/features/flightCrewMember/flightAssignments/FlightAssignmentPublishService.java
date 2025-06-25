@@ -199,6 +199,11 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 
+		boolean showActivityLogs = false;
+		if (fa != null && fa.getLeg() != null)
+			showActivityLogs = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+		dataset.put("showActivityLogs", showActivityLogs);
+
 		super.getResponse().addData(dataset);
 	}
 

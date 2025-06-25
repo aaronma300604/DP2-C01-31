@@ -35,6 +35,7 @@ public class FlightCrewMember extends AbstractRole {
 
 	@Mandatory
 	@Column(unique = true)
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$", message = "{acme.validation.member.employee_code.message}")
 	@Automapped
 	private String				employeeCode;
 

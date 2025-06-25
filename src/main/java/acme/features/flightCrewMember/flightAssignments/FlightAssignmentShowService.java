@@ -76,6 +76,11 @@ public class FlightAssignmentShowService extends AbstractGuiService<FlightCrewMe
 		dataset.put("legs", legChoices);
 		dataset.put("flightAssignmentId", fa.getId());
 
+		boolean showActivityLogs = false;
+		if (fa != null && fa.getLeg() != null)
+			showActivityLogs = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+		dataset.put("showActivityLogs", showActivityLogs);
+
 		super.getResponse().addData(dataset);
 
 	}
