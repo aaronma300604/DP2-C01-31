@@ -30,6 +30,7 @@ import lombok.Setter;
 	@Index(columnList = "draftMode"), //
 	@Index(columnList = "draftMode,flight_id"), //
 	@Index(columnList = "draftMode,flight_id,id"), //
+	@Index(columnList = "draftMode,flight_id,id,scheduledDeparture"), //
 	@Index(columnList = "flightNumber", unique = true), //
 	@Index(columnList = "status"), //
 	@Index(columnList = "flight_id"), //
