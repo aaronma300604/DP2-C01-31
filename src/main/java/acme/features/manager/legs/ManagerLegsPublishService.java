@@ -137,8 +137,7 @@ public class ManagerLegsPublishService extends AbstractGuiService<AirlineManager
 				if (publishedLeg.getAircraft().equals(leg.getAircraft()))
 					if (MomentHelper.isBefore(publishedLeg.getScheduledDeparture(), leg.getScheduledArrival()) //
 						&& MomentHelper.isAfter(publishedLeg.getScheduledArrival(), leg.getScheduledDeparture()) //
-						|| MomentHelper.isEqual(publishedLeg.getScheduledDeparture(), leg.getScheduledDeparture()) //
-							&& MomentHelper.isEqual(publishedLeg.getScheduledArrival(), leg.getScheduledArrival())) {
+						|| MomentHelper.isEqual(publishedLeg.getScheduledDeparture(), leg.getScheduledDeparture()) && MomentHelper.isEqual(publishedLeg.getScheduledArrival(), leg.getScheduledArrival())) {
 						super.state(false, "aircraft", "acme.validation.leg.same.aircraft.message");
 						break;
 					}
