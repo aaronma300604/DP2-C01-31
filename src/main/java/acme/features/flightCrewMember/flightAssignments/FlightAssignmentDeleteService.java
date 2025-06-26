@@ -1,12 +1,15 @@
 
 package acme.features.flightCrewMember.flightAssignments;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activityLog.ActivityLog;
@@ -80,10 +83,11 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 
 		legId = super.getRequest().getData("leg", int.class);
 		Leg legAssigned = this.repository.findLegById(legId);
-
-		super.bindObject(fa, "moment", "duty", "currentStatus", "remarks");
+		Date current = MomentHelper.getCurrentMoment();
+		super.bindObject(fa, "duty", "currentStatus", "remarks");
 		fa.setFlightCrewMember(actualMember);
 		fa.setLeg(legAssigned);
+		fa.setMoment(current);
 
 	}
 
@@ -112,6 +116,8 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
 		posibleLegs = this.getPosibleLegs();
+		if (fa.getLeg() != null && !posibleLegs.contains(fa.getLeg()))
+			posibleLegs.add(fa.getLeg());
 		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
@@ -120,11 +126,19 @@ public class FlightAssignmentDeleteService extends AbstractGuiService<FlightCrew
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
 
+		boolean showActivityLogs = false;
+		if (fa != null && fa.getLeg() != null)
+			showActivityLogs = fa.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+		dataset.put("showActivityLogs", showActivityLogs);
+
 		super.getResponse().addData(dataset);
 	}
 
 	public List<Leg> getPosibleLegs() {
-		List<Leg> posibleLegs = this.repository.findAllLegs();
+		Date currentDate = MomentHelper.getCurrentMoment();
+		List<Leg> posibleLegs = this.repository.findUpcomingLegs(currentDate);
+		if (posibleLegs == null)
+			posibleLegs = new ArrayList<>();
 		return posibleLegs;
 	}
 

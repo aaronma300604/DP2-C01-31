@@ -15,3 +15,12 @@ flight-crew-member.flight-assignment.form.label.leg = Escala(Número de vuelo)
 flight-crew-member.assignments.list.button.create = Crear
 flight-crew-member.flight-assignment.form.button.create = Crear
 flight-crew-member.activity-log.list.show.logs = Registros de Actividad
+
+flight-crew-member.flight-assignment.form.button.update = Actualizar
+flight-crew-member.flight-assignment.form.button.delete = Borrar
+flight-crew-member.flight-assignment.form.button.publish = Publicar
+
+master.menu.member.list-my-assignments = Asignaciones de vuelos (ya completadas)
+master.menu.member.list-my-assignmentsUL = Asignaciones de vuelos (no completadas)
+flight-crew-member.flight-assignment.list.title = Lista de asignaciones de vuelo
+flight-crew-member.assignments.list.label.flightNumber = Número de vuelo
