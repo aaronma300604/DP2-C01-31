@@ -4,8 +4,8 @@ flight-crew-member.activity-log.form.title = Registro de Actividad
 flight-crew-member.logs.list.label.moment = Momento
 flight-crew-member.logs.list.label.incident = Incidente
 flight-crew-member.logs.list.label.severityLevel  = Nivel de severidad
-flight-crew-member.logs.list.label.description = Descrición
-flight-crew-member.logs.list.label.assignments  = Asignaciones
+flight-crew-member.logs.list.label.description = Descripción
+flight-crew-member.logs.list.label.assignments  = Asignación de vuelo ya completadas
 
 flight-crew-member.logs.list.button.create = Crear
 

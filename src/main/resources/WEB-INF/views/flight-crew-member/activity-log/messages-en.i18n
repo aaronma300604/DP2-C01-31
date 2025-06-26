@@ -5,7 +5,7 @@ flight-crew-member.logs.list.label.moment = Moment
 flight-crew-member.logs.list.label.incident = Incident
 flight-crew-member.logs.list.label.severityLevel  = Severity Level
 flight-crew-member.logs.list.label.description = Description
-flight-crew-member.logs.list.label.assignments  = Assignments
+flight-crew-member.logs.list.label.assignments  = Completed flight assigment
 
 flight-crew-member.logs.list.button.create = Create
 

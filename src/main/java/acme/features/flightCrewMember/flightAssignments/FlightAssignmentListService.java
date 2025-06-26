@@ -31,7 +31,7 @@ public class FlightAssignmentListService extends AbstractGuiService<FlightCrewMe
 		int flightCrewMemberid;
 		Date currentDate = MomentHelper.getCurrentMoment();
 		flightCrewMemberid = super.getRequest().getPrincipal().getActiveRealm().getId();
-		fs = this.repository.findAssignmentsByMemberIdCompletedLegs(currentDate, flightCrewMemberid);
+		fs = this.repository.findAssignmentsByMemberIdCompletedLegsAndPublishedLegs(currentDate, flightCrewMemberid);
 		super.getBuffer().addData(fs);
 
 	}
