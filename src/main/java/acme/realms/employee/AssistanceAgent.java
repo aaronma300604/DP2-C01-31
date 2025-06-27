@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
@@ -34,6 +35,7 @@ public class AssistanceAgent extends AbstractRole {
 
 	@Mandatory
 	@Column(unique = true)
+	@Pattern(regexp = "^[A-Z]{2,3}\\d{6}$", message = "acme.validation.assistance-agent.employee_code.message")
 	private String				employeeCode;
 
 	@Mandatory
