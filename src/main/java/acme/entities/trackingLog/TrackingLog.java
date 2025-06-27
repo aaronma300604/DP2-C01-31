@@ -35,6 +35,7 @@ public class TrackingLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
+	@Mandatory
 	@Temporal(TemporalType.TIMESTAMP)
 	@ValidMoment(past = true)
 	private Date				lastUpdate;
@@ -66,7 +67,8 @@ public class TrackingLog extends AbstractEntity {
 	@Mandatory
 	@Automapped
 	@ValidNumber(min = 1)
-	private Integer				iteration;
+	private Integer				iteration; // In the case that an exceptional TrackingLog is created after a Claim has been closed
+								// its iteration will be one unit higher.
 
 	@Mandatory
 	@Valid

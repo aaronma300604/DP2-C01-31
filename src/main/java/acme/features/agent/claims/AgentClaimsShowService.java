@@ -1,12 +1,14 @@
 
 package acme.features.agent.claims;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
@@ -87,7 +89,8 @@ public class AgentClaimsShowService extends AbstractGuiService<AssistanceAgent, 
 			dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
 			dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
 
-			List<Leg> allLegs = this.agentLegsRepository.findAllPublishedLegs();
+			Date now = MomentHelper.getCurrentMoment();
+			List<Leg> allLegs = this.agentLegsRepository.findAllPublishedAndOccurredLegs(now);
 			SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
 			dataset.put("legs", legChoices);
 		}
