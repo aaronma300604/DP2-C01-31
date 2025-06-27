@@ -50,6 +50,8 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 				if (!"0".equals(rawLeg))
 					if (legAssigned == null)
 						authorised = false;
+					else if (!selectedLegs.contains(legAssigned))
+						authorised = false;
 
 			} catch (Exception e) {
 				authorised = false;

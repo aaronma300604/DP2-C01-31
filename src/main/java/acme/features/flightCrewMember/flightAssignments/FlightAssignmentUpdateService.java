@@ -55,6 +55,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 		String method = super.getRequest().getMethod();
 		if (method.equals("POST")) {
+			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
 			try {
 				int legId = super.getRequest().getData("leg", int.class);
@@ -62,6 +63,8 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 				if (!"0".equals(rawLeg))
 					if (legAssigned == null)
+						authorised = false;
+					else if (!selectedLegs.contains(legAssigned))
 						authorised = false;
 
 			} catch (Exception e) {

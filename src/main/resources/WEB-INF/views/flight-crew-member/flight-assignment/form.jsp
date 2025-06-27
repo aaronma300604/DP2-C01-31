@@ -18,7 +18,9 @@
 			
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.update" action="/flight-crew-member/flight-assignment/update"/>
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.delete" action="/flight-crew-member/flight-assignment/delete"/>
+			<jstl:if test="${showActivityLogs == false}">
 			<acme:submit code="flight-crew-member.flight-assignment.form.button.publish" action="/flight-crew-member/flight-assignment/publish"/>
+			</jstl:if>	
 			<jstl:if test="${showActivityLogs == true}">
 				<acme:button code="flight-crew-member.activity-log.list.show.logs" action="/flight-crew-member/activity-log/list?flightAssignmentID=${id}"/>
 			</jstl:if>
