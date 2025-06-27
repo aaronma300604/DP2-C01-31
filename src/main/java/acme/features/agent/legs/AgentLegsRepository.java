@@ -1,9 +1,11 @@
 
 package acme.features.agent.legs;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
@@ -58,4 +60,7 @@ public interface AgentLegsRepository extends AbstractRepository {
 
 	@Query("select l from Leg l where l.draftMode = false")
 	List<Leg> findAllPublishedLegs();
+
+	@Query("select l from Leg l where l.draftMode = false and l.scheduledArrival < :now")
+	List<Leg> findAllPublishedAndOccurredLegs(@Param("now") Date now);
 }

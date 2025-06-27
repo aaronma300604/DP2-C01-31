@@ -4,7 +4,6 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-    <acme:input-moment code="assistance-agent.claim.form.label.date" path="date"/>
     <acme:input-email code="assistance-agent.claim.form.label.email" path="email"/>
     <acme:input-textarea code="assistance-agent.claim.form.label.description" path="description"/>
     
