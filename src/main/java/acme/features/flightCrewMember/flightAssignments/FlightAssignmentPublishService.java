@@ -191,9 +191,9 @@ public class FlightAssignmentPublishService extends AbstractGuiService<FlightCre
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 
 		posibleLegs = this.getPosibleLegs();
-		if (fa.getLeg() != null && !posibleLegs.contains(fa.getLeg()))
-			posibleLegs.add(fa.getLeg());
-		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
+		legChoices = SelectChoices.from(posibleLegs, "flightNumber", null);
+		if (fa.getLeg() != null && posibleLegs.contains(fa.getLeg()))
+			legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
 		dataset.put("statuses", statusChoices);
