@@ -54,6 +54,8 @@ public class AgentTrackingLogsUpdateService extends AbstractGuiService<Assistanc
 
 		id = super.getRequest().getData("id", int.class);
 		log = this.repository.findTrackingLog(id);
+		Date date = MomentHelper.getCurrentMoment();
+		log.setLastUpdate(date);
 
 		if (log.getClaim() == null)
 			log.setClaim(this.repository.findClaimByTrackingLogId(id));

@@ -1,6 +1,8 @@
 
 package acme.features.agent.trackingLogs;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -62,6 +64,31 @@ public class AgentTrackingLogsShowService extends AbstractGuiService<AssistanceA
 		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);
+
+		boolean creatable = true;
+
+		Claim cl = log.getClaim();
+
+		if (cl != null) {
+
+			List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(cl.getId());
+
+			if (!trackingLogs.isEmpty()) {
+
+				TrackingLog highestTrackingLog = trackingLogs.get(0);
+				double highestPercentage = highestTrackingLog.getResolutionPercentage();
+				int highestIteration = highestTrackingLog.getIteration();
+
+				boolean isLast100 = highestPercentage == 100.0;
+				boolean isLastFirstIteration = highestIteration == 1;
+
+				if (isLast100)
+					if (!isLastFirstIteration)
+						creatable = false;
+			}
+		}
+
+		super.getResponse().addGlobal("creatable", creatable);
 	}
 
 }
