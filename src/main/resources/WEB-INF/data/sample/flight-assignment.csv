@@ -13,11 +13,11 @@ flight-assignment-08,CABIN_ATTENDANT,2022/07/29 23:59,CONFIRMED,lore-ipsum,true,
 flight-assignment-09,CABIN_ATTENDANT,2022/07/30 00:00,CONFIRMED,ready to publish,true,flight-crew-member-01,leg-09
 #currentStatus-standart variations
 flight-assignment-10,COPILOT,2012/07/02 00:00,CONFIRMED,lore-ipsum,true,flight-crew-member-01,leg-12
-flight-assignment-11,CABIN_ATTENDANT,2012/07/02 00:00,PENDING,lore-ipsum,true,flight-crew-member-01,leg-14
-flight-assignment-12,CABIN_ATTENDANT,2012/07/02 00:00,CANCELLED,lore-ipsum,true,flight-crew-member-01,leg-15
+flight-assignment-11,CABIN_ATTENDANT,2002/05/02 00:00,PENDING,lore-ipsum,false,flight-crew-member-01,leg-14
+flight-assignment-12,CABIN_ATTENDANT,2002/04/02 00:00,CANCELLED,lore-ipsum,false,flight-crew-member-01,leg-15
 #remarks-standart variations
 flight-assignment-13,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",true,flight-crew-member-01,leg-16
 flight-assignment-14,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,,true,flight-crew-member-01,leg-17
 flight-assignment-15,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,L,true,flight-crew-member-01,leg-18
 flight-assignment-16,COPILOT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",false,flight-crew-member-01,leg-06
-flight-assignment-17,CABIN_ATTENDANT,2012/07/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",false,flight-crew-member-01,leg-20
+flight-assignment-17,CABIN_ATTENDANT,2002/06/02 00:00,CONFIRMED,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",false,flight-crew-member-01,leg-20

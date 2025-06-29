@@ -55,6 +55,7 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 		String method = super.getRequest().getMethod();
 		if (method.equals("POST")) {
+			List<Leg> selectedLegs = this.getPosibleLegs();
 			String rawLeg = super.getRequest().getData("leg", String.class);
 			try {
 				int legId = super.getRequest().getData("leg", int.class);
@@ -62,6 +63,8 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 
 				if (!"0".equals(rawLeg))
 					if (legAssigned == null)
+						authorised = false;
+					else if (!selectedLegs.contains(legAssigned))
 						authorised = false;
 
 			} catch (Exception e) {
@@ -128,9 +131,9 @@ public class FlightAssignmentUpdateService extends AbstractGuiService<FlightCrew
 		statusChoices = SelectChoices.from(CurrentStatus.class, fa.getCurrentStatus());
 		dutyChoices = SelectChoices.from(Duty.class, fa.getDuty());
 		posibleLegs = this.getPosibleLegs();
-		if (fa.getLeg() != null && !posibleLegs.contains(fa.getLeg()))
-			posibleLegs.add(fa.getLeg());
-		legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
+		legChoices = SelectChoices.from(posibleLegs, "flightNumber", null);
+		if (fa.getLeg() != null && posibleLegs.contains(fa.getLeg()))
+			legChoices = SelectChoices.from(posibleLegs, "flightNumber", fa.getLeg());
 
 		dataset = super.unbindObject(fa, "moment", "duty", "currentStatus", "remarks", "draftMode");
 		dataset.put("statuses", statusChoices);
