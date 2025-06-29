@@ -15,11 +15,16 @@
     <acme:input-textarea code="assistance-agent.tracking-log.list.label.resolution" path="resolution"/>
     <acme:input-select code="assistance-agent.tracking-log.list.label.acceptance-status" path="accepted" choices="${types}"/>
     
+    
     <jstl:choose>
         <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
-            <acme:submit code="assistance-agent.tracking-log.form.button.update" action="/assistance-agent/tracking-log/update"/>
+        	<jstl:if test="${creatable == true}">
+				<acme:submit code="assistance-agent.tracking-log.form.button.update" action="/assistance-agent/tracking-log/update"/>
+			</jstl:if>
             <acme:submit code="assistance-agent.tracking-log.form.button.delete" action="/assistance-agent/tracking-log/delete"/>
-            <acme:submit code="assistance-agent.tracking-log.form.button.publish" action="/assistance-agent/tracking-log/publish"/>
+            <jstl:if test="${creatable == true}">
+				<acme:submit code="assistance-agent.tracking-log.form.button.publish" action="/assistance-agent/tracking-log/publish"/>
+			</jstl:if>
         </jstl:when>
         <jstl:when test="${_command == 'create'}">
             <acme:submit code="assistance-agent.tracking-log.form.button.create" action="/assistance-agent/tracking-log/create?claimid=${param.claimid}"/>

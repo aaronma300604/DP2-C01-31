@@ -24,21 +24,15 @@ public class ClaimValidator implements ConstraintValidator<ValidClaim, Claim> {
 	public boolean isValid(final Claim claim, final ConstraintValidatorContext context) {
 		Leg leg = claim.getLeg();
 
-		if (leg == null) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("Claim must have an associated leg").addPropertyNode("leg").addConstraintViolation();
+		if (leg == null)
 			return false;
-		}
 
 		Date scheduledArrival = leg.getScheduledArrival();
 
 		LocalDate scheduledArrivalLocalDate = scheduledArrival.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-		if (scheduledArrivalLocalDate.isAfter(LocalDate.now())) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("This leg hasn't occurred yet").addPropertyNode("leg").addConstraintViolation();
+		if (scheduledArrivalLocalDate.isAfter(LocalDate.now()))
 			return false;
-		}
 
 		return true;
 	}

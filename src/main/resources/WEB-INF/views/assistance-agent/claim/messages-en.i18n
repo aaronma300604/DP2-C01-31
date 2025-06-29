@@ -22,3 +22,10 @@ assistance-agent.claim.form.button.update = Update
 assistance-agent.claim.form.button.delete = Delete
 assistance-agent.claim.form.button.publish = Publish
 assistance-agent.claim.form.button.create = Create
+
+acme.validation.claim.legNull.message = You must select a valid leg for the claim
+acme.validation.claim.cant-be-publish.message = This claim can't be published yet
+acme.validation.claim.missing-leg = Claims must have an associated leg
+acme.validation.claim.future-leg = This leg hasn't occurred yet
+
+assistance-agent.claim.formlabel.trackingLogs = View Tracking Logs

@@ -4,6 +4,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
+
+	<jstl:choose>
+        <jstl:when test="${draftMode == false}">
+            <acme:input-moment code="assistance-agent.claim.list.label.date" path="date"/>
+        </jstl:when>
+    </jstl:choose>
     <acme:input-email code="assistance-agent.claim.form.label.email" path="email"/>
     <acme:input-textarea code="assistance-agent.claim.form.label.description" path="description"/>
     

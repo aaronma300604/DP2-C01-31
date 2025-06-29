@@ -34,9 +34,36 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 		Claim cl;
 		String method = super.getRequest().getMethod();
 
-		if (method.equals("POST")) {
+		if (method.equals("GET")) {
 			claimId = super.getRequest().getData("claimid", int.class);
 			cl = this.claimRepository.findById(claimId);
+
+			if (cl != null) {
+
+				List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(cl.getId());
+
+				if (!trackingLogs.isEmpty()) {
+
+					TrackingLog highestTrackingLog = trackingLogs.get(0);
+					double highestPercentage = highestTrackingLog.getResolutionPercentage();
+					int highestIteration = highestTrackingLog.getIteration();
+
+					boolean isLast100 = highestPercentage == 100.0;
+					boolean isLastFirstIteration = highestIteration == 1;
+
+					if (isLast100)
+						if (!isLastFirstIteration)
+							status = false;
+				}
+			}
+		}
+
+		if (method.equals("POST"))
+
+		{
+			claimId = super.getRequest().getData("claimid", int.class);
+			cl = this.claimRepository.findById(claimId);
+
 			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 			if (agentId == 0 || cl == null || !super.getRequest().getPrincipal().hasRealm(cl.getAssistanceAgent()))
@@ -58,6 +85,8 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 		log = new TrackingLog();
 		log.setDraftMode(true);
 		log.setClaim(claim);
+		Date date = MomentHelper.getCurrentMoment();
+		log.setLastUpdate(date);
 
 		super.getBuffer().addData(log);
 	}
@@ -149,6 +178,19 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 	public void perform(final TrackingLog log) {
 		Date date = MomentHelper.getCurrentMoment();
 		log.setLastUpdate(date);
+
+		List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(log.getClaim().getId());
+
+		if (!trackingLogs.isEmpty()) {
+			TrackingLog highestTrackingLog = trackingLogs.get(0);
+
+			if (highestTrackingLog.getResolutionPercentage() == 100.0)
+				log.setIteration(highestTrackingLog.getIteration() + 1);
+			else
+				log.setIteration(highestTrackingLog.getIteration());
+		} else
+			log.setIteration(1);
+
 		this.repository.save(log);
 	}
 

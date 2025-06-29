@@ -1,10 +1,13 @@
 
 package acme.features.agent.trackingLogs;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.AcceptanceStatus;
@@ -49,6 +52,8 @@ public class AgentTrackingLogsDeleteService extends AbstractGuiService<Assistanc
 
 		log = new TrackingLog();
 		log.setDraftMode(true);
+		Date date = MomentHelper.getCurrentMoment();
+		log.setLastUpdate(date);
 
 		super.getBuffer().addData(log);
 	}

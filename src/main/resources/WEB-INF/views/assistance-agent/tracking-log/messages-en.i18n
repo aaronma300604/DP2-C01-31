@@ -14,3 +14,12 @@ assistance-agent.tracking-log.form.button.update = Update
 assistance-agent.tracking-log.form.button.delete = Delete
 assistance-agent.tracking-log.form.button.publish = Publish
 assistance-agent.tracking-log.form.button.create = Create
+
+acme.validation.trackinglog.missing-percentage = Percentage is missing
+acme.validation.trackinglog.missing-status = Status is missing
+acme.validation.trackinglog.must-be-100-after-completion = Percentage must be 100% since this Claim is already completed
+acme.validation.trackinglog.no-more-after-100 = This Claim has already been reclaimed. No more Tracking Logs can be made
+acme.validation.trackinglog.status-must-match-after-100 = Status must match the Tracking Log with 100% completion
+acme.validation.trackinglog.percentage-too-low = Percentage must be higher than the last Tracking Log for this Claim
+acme.validation.trackinglog.status-must-be-pending = Status must be PENDING if the completion percentage isn't 100%
+acme.validation.trackinglog.status-cannot-be-pending = Status cannot be PENDING for a completed Claim
