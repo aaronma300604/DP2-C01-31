@@ -51,6 +51,8 @@ public class AgentTrackingLogsPublishService extends AbstractGuiService<Assistan
 
 		id = super.getRequest().getData("id", int.class);
 		log = this.repository.findTrackingLog(id);
+		Date date = MomentHelper.getCurrentMoment();
+		log.setLastUpdate(date);
 
 		if (log.getClaim() == null)
 			log.setClaim(this.repository.findClaimByTrackingLogId(id));
@@ -131,6 +133,20 @@ public class AgentTrackingLogsPublishService extends AbstractGuiService<Assistan
 		log.setDraftMode(false);
 		Date date = MomentHelper.getCurrentMoment();
 		log.setLastUpdate(date);
+
+		List<TrackingLog> trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(log.getClaim().getId());
+		trackingLogs.removeIf(existingLog -> existingLog.getId() == log.getId());
+
+		if (!trackingLogs.isEmpty()) {
+			TrackingLog highestTrackingLog = trackingLogs.get(0);
+
+			if (highestTrackingLog.getResolutionPercentage() == 100.0)
+				log.setIteration(highestTrackingLog.getIteration() + 1);
+			else
+				log.setIteration(highestTrackingLog.getIteration());
+		} else
+			log.setIteration(1);
+
 		this.repository.save(log);
 	}
 

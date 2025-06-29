@@ -1,24 +1,25 @@
-assistance-agent.claim.list.title = Lista de Mis Reclamaciones:
-assistance-agent.claim.details.title = Detalles de la Reclamación:
+assistance-agent.tracking-log.list.title = Lista de Registros de Seguimiento:
 
-assistance-agent.claim.list.label.date = Fecha:
-assistance-agent.claim.list.label.email = Correo electrónico:
-assistance-agent.claim.list.label.description = Descripción:
-assistance-agent.claim.list.label.type = Tipo:
-assistance-agent.claim.list.label.status = Estado:
-assistance-agent.claim.list.label.leg = Tramo:
+assistance-agent.tracking-log.list.label.last-update = Última Actualización:
+assistance-agent.tracking-log.list.label.step = Paso Actual:
+assistance-agent.tracking-log.list.label.percentage = Porcentaje de Resolución:
+assistance-agent.tracking-log.list.label.resolution = Resolución:
+assistance-agent.tracking-log.list.label.acceptance-status = Estado de Aceptación:
 
-assistance-agent.claim.list.button.create = Crear
+assistance-agent.tracking-log.form.title = Detalles del Registro de Seguimiento:
 
-assistance-agent.claim.form.title = Detalles de la Reclamación
-assistance-agent.claim.form.label.date = Fecha:
-assistance-agent.claim.form.label.email = Correo electrónico:
-assistance-agent.claim.form.label.description = Descripción:
-assistance-agent.claim.form.label.status = Estado:
-assistance-agent.claim.form.label.type = Tipo:
-assistance-agent.claim.form.label.leg = Tramo:
+assistance-agent.tracking-log.list.button.create = Crear
 
-assistance-agent.claim.form.button.update = Actualizar
-assistance-agent.claim.form.button.delete = Eliminar
-assistance-agent.claim.form.button.publish = Publicar
-assistance-agent.claim.form.button.create = Crear
+assistance-agent.tracking-log.form.button.update = Actualizar
+assistance-agent.tracking-log.form.button.delete = Eliminar
+assistance-agent.tracking-log.form.button.publish = Publicar
+assistance-agent.tracking-log.form.button.create = Crear
+
+acme.validation.trackinglog.missing-percentage = Falta el porcentaje
+acme.validation.trackinglog.missing-status = Falta el estado
+acme.validation.trackinglog.must-be-100-after-completion = El porcentaje debe ser del 100% ya que esta reclamación está completada
+acme.validation.trackinglog.no-more-after-100 = Esta reclamación ya ha sido resuelta. No se pueden crear más registros de seguimiento
+acme.validation.trackinglog.status-must-match-after-100 = El estado debe coincidir con el del registro de seguimiento con un 100% de finalización
+acme.validation.trackinglog.percentage-too-low = El porcentaje debe ser mayor que el del último registro de seguimiento de esta reclamación
+acme.validation.trackinglog.status-must-be-pending = El estado debe ser PENDING si el porcentaje de finalización no es del 100%
+acme.validation.trackinglog.status-cannot-be-pending = El estado no puede ser PENDING para una reclamación completada
