@@ -9,8 +9,6 @@
 # they accept any liabilities with respect to them.
 
 - Rafael Corchuelo (corchu@us.es)
-- Aarón Mayoral (aarmayans@alum.us.es)
 - Diego Terrón (dieterher@alum.us.es)
-- Estrella Ángel (estangpos@alum.us.es)
 - Iván Miranda (ivamirbal@alum.us.es)
 - Daniel López (danlopram@alum.us.es)
