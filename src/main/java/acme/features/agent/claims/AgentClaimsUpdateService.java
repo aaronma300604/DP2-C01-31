@@ -39,7 +39,7 @@ public class AgentClaimsUpdateService extends AbstractGuiService<AssistanceAgent
 			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 			Claim claim = this.repository.findClaim(claimId);
 
-			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent()))
+			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent()) || claim.isDraftMode() == false)
 				status = false;
 
 			if (legId != 0) {

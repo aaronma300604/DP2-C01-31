@@ -12,7 +12,6 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
-import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
 import acme.entities.trackingLog.TrackingLog;
 import acme.features.agent.legs.AgentLegsRepository;
@@ -40,7 +39,7 @@ public class AgentClaimsDeleteService extends AbstractGuiService<AssistanceAgent
 			int agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 			Claim claim = this.repository.findClaim(claimId);
 
-			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent()))
+			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent()) || claim.isDraftMode() == false)
 				status = false;
 
 			if (legId != 0) {
@@ -105,22 +104,22 @@ public class AgentClaimsDeleteService extends AbstractGuiService<AssistanceAgent
 		Dataset dataset;
 		SelectChoices choices;
 
-		choices = SelectChoices.from(ClaimType.class, claim.getType());
-
-		dataset = super.unbindObject(claim, "email", "description", "type", "draftMode");
-		dataset.put("type", choices.getSelected().getKey());
-		dataset.put("types", choices);
-
-		dataset.put("claimId", claim.getId());
-
-		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
-		dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
-
-		Date now = MomentHelper.getCurrentMoment();
-		List<Leg> allLegs = this.agentLegsRepository.findAllPublishedAndOccurredLegs(now);
-		SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
-		dataset.put("legs", legChoices);
-
-		super.getResponse().addData(dataset);
+		//		choices = SelectChoices.from(ClaimType.class, claim.getType());
+		//
+		//		dataset = super.unbindObject(claim, "email", "description", "type", "draftMode");
+		//		dataset.put("type", choices.getSelected().getKey());
+		//		dataset.put("types", choices);
+		//
+		//		dataset.put("claimId", claim.getId());
+		//
+		//		dataset.put("leg", claim.getLeg() != null ? claim.getLeg().getFlightNumber() : null);
+		//		dataset.put("legId", claim.getLeg() != null ? claim.getLeg().getId() : null);
+		//
+		//		Date now = MomentHelper.getCurrentMoment();
+		//		List<Leg> allLegs = this.agentLegsRepository.findAllPublishedAndOccurredLegs(now);
+		//		SelectChoices legChoices = SelectChoices.from(allLegs, "flightNumber", claim.getLeg());
+		//		dataset.put("legs", legChoices);
+		//
+		//		super.getResponse().addData(dataset);
 	}
 }

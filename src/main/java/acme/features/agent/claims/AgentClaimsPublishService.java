@@ -52,7 +52,7 @@ public class AgentClaimsPublishService extends AbstractGuiService<AssistanceAgen
 				List<Leg> accessibleLegs = this.agentLegsRepository.findAllPublishedAndOccurredLegs(now);
 
 				// Check that the agent is assigned a valid leg
-				if (agentId == 0 || leg == null || !accessibleLegs.contains(leg))
+				if (agentId == 0 || leg == null || !accessibleLegs.contains(leg) || claim.isDraftMode() == false)
 					status = false;
 			}
 
