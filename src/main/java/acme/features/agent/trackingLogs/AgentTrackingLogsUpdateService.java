@@ -39,7 +39,7 @@ public class AgentTrackingLogsUpdateService extends AbstractGuiService<Assistanc
 			int logId = super.getRequest().getData("id", int.class);
 			TrackingLog tl = this.repository.findTrackingLog(logId);
 
-			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(tl.getClaim().getAssistanceAgent()))
+			if (agentId == 0 || !super.getRequest().getPrincipal().hasRealm(tl.getClaim().getAssistanceAgent()) || tl.isDraftMode() == false)
 				status = false;
 		}
 
