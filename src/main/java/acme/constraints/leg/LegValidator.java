@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.StringHelper;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegRepository;
 
@@ -34,13 +35,15 @@ public class LegValidator extends AbstractValidator<ValidLeg, Leg> {
 		if (leg == null)//^ABX\d{4}$
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			if (leg.getFlight() != null) {
+			if (!StringHelper.isBlank(leg.getFlightNumber())) {
 				boolean correctFlightNumber;
 				String number = leg.getFlightNumber();
-				String iataCode = leg.getAircraft().getAirline().getIata().strip();
+				if (leg.getAircraft() != null && leg.getAircraft().getAirline() != null && leg.getAircraft().getAirline().getIata() != null) {
+					String iataCode = leg.getAircraft().getAirline().getIata().strip();
 
-				correctFlightNumber = number != null && Pattern.matches("^" + iataCode + "\\d{4}$", number);
-
+					correctFlightNumber = number != null && Pattern.matches("^" + iataCode + "\\d{4}$", number);
+				} else
+					correctFlightNumber = number != null && Pattern.matches("^[A-Z]{3}\\d{4}$", number);
 				super.state(context, correctFlightNumber, "flightNumber", "acme.validation.leg.flight_number.message");
 			}
 			{
