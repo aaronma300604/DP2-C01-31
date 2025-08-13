@@ -29,7 +29,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(indexes = {
-	@Index(columnList = "experience"), //
 	@Index(columnList = "employeeCode", unique = true)
 })
 @ValidManager
