@@ -73,6 +73,11 @@ public class AdministratorAircraftsUpdateService extends AbstractGuiService<Admi
 			super.state(canBeDisable, "*", "acme.validation.aircraft.cant-be-disable");
 		}
 
+		boolean canChangeAirline;
+
+		canChangeAirline = this.repository.findDraftModeLegsByAircraft(aircraft.getId()).isEmpty();
+		super.state(canChangeAirline, "*", "acme.validation.aircraft.cant-change-airline");
+
 		boolean uniqueRegistrationNumber;
 		Aircraft existingAircraft;
 

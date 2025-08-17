@@ -39,6 +39,7 @@ acme.validation.flight.delete = No se puede borrar este vuelo ya que hay trayect
 acme.validation.manager.cantChange = Tienes trayectos sin publicar. No puedes cambiar de compañía en este momento
 
 acme.validation.aircraft.cant-be-disable = Hay trayectos asociados a esta aeronave. No es posible desactivar la aeronave
+acme.validation.aircraft.cant-change-airline = Hay trayectos asociados a esta aeronave. No es posible cambiar la aerolínea
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
 acme.validation.maintenance-record.cant-be-publish.message = Este informe no puede ser publicado todavía
 acme.validation.task.cant-be-publish.message  =  Esta tarea no puede ser publicada todavía
