@@ -39,6 +39,7 @@ acme.validation.flight.delete = Can't delete this flight because there are legs 
 acme.validation.manager.cantChange = You have legs not published. You can't change airline at this moment
 
 acme.validation.aircraft.cant-be-disable = There are legs associated to this aircraft. Can't disable the aircraft
+acme.validation.aircraft.cant-change-airline = There are legs associated to this aircraft. Can't change the airline
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet
 
 acme.validation.maintenance-record.cant-be-publish.message = This record can't be published yet
