@@ -55,7 +55,11 @@ public class AuthenticatedManagerUpdateService extends AbstractGuiService<Authen
 
 	@Override
 	public void validate(final AirlineManager manager) {
-		;
+		boolean canChange;
+
+		canChange = this.repository.findDraftModeLegsByManager(manager.getId()).isEmpty();
+
+		super.state(canChange, "*", "acme.validation.manager.cantChange");
 	}
 
 	@Override
