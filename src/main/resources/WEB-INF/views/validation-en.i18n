@@ -36,6 +36,7 @@ acme.validation.next-inspection.update.message = Next inspection must be after r
 acme.validation.airline.iata.message = Must be two upper case letters, followed by an X
 acme.validation.airport.iata.message = Must be three upper case letters
 acme.validation.flight.delete = Can't delete this flight because there are legs in this flight published
+acme.validation.manager.cantChange = You have legs not published. You can't change airline at this moment
 
 acme.validation.aircraft.cant-be-disable = There are legs associated to this aircraft. Can't disable the aircraft
 acme.validation.flight.cant-be-publish.message = This flight can't be published yet

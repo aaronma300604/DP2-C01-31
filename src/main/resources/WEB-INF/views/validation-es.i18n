@@ -36,6 +36,7 @@ acme.validation.next-inspection.create.message = La próxima inspección deber e
 acme.validation.airline.iata.message = Debe ser dos letras en mayúsculas, seguido de una X
 acme.validation.airport.iata.message = Debe ser tres letras en mayúculas
 acme.validation.flight.delete = No se puede borrar este vuelo ya que hay trayectos publicados para este
+acme.validation.manager.cantChange = Tienes trayectos sin publicar. No puedes cambiar de compañía en este momento
 
 acme.validation.aircraft.cant-be-disable = Hay trayectos asociados a esta aeronave. No es posible desactivar la aeronave
 acme.validation.flight.cant-be-publish.message = Este vuelo no puede ser publicado todavía
