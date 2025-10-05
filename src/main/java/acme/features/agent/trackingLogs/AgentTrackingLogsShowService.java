@@ -54,13 +54,62 @@ public class AgentTrackingLogsShowService extends AbstractGuiService<AssistanceA
 	public void unbind(final TrackingLog log) {
 		Dataset dataset;
 		int agentId;
-		SelectChoices choices = SelectChoices.from(AcceptanceStatus.class, log.getAccepted());
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		dataset = super.unbindObject(log, "lastUpdate", "stepUndergoing", "resolutionPercentage", "resolution", "draftMode");
 
-		dataset.put("accepted", log.getAccepted().toString());
+		SelectChoices choices;
+
+		boolean onlyOneChoice = true;
+
+		if (log != null && !log.isDraftMode())
+			choices = SelectChoices.from(AcceptanceStatus.class, log.getAccepted());
+		else {
+			Claim cl = log.getClaim();
+
+			List<TrackingLog> trackingLogs = null;
+			if (cl != null) {
+				trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(cl.getId());
+				trackingLogs.removeIf(existingLog -> existingLog.getId() == log.getId());
+			}
+
+			List<AcceptanceStatus> allowed = TrackingLogValidatorUtil.allowedStatuses(log, trackingLogs);
+
+			choices = new SelectChoices();
+			choices.add("0", "----", log.getAccepted() == null);
+
+			int nonNullCount = 0;
+
+			AcceptanceStatus accepted = log.getAccepted();
+
+			if (allowed.isEmpty()) {
+				if (accepted != null) {
+					String key = accepted.toString();
+					choices.add(key, key, true);
+					nonNullCount++;
+				}
+			} else {
+				boolean found = false;
+				for (AcceptanceStatus s : allowed) {
+					String key = s.toString();
+					boolean selected = s.equals(accepted);
+					choices.add(key, key, selected);
+					nonNullCount++;
+					if (selected)
+						found = true;
+				}
+				if (accepted != null && !found) {
+					String key = accepted.toString();
+					choices.add(key, key, true);
+					nonNullCount++;
+				}
+			}
+
+			onlyOneChoice = nonNullCount == 1;
+		}
+
+		dataset.put("accepted", choices.getSelected().getKey());
 		dataset.put("types", choices);
 
 		super.getResponse().addData(dataset);
@@ -89,6 +138,7 @@ public class AgentTrackingLogsShowService extends AbstractGuiService<AssistanceA
 		}
 
 		super.getResponse().addGlobal("creatable", creatable);
+		super.getResponse().addGlobal("readOnlyStatus", onlyOneChoice);
 	}
 
 }
