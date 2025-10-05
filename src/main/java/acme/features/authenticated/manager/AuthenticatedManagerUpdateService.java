@@ -55,11 +55,13 @@ public class AuthenticatedManagerUpdateService extends AbstractGuiService<Authen
 
 	@Override
 	public void validate(final AirlineManager manager) {
-		boolean canChange;
+		AirlineManager oldManager = this.repository.findManager(manager.getId());
+		if (manager.getAirline() != null && !manager.getAirline().equals(oldManager.getAirline())) {
+			boolean canChange;
+			canChange = this.repository.findDraftModeLegsByManager(manager.getId()).isEmpty();
 
-		canChange = this.repository.findDraftModeLegsByManager(manager.getId()).isEmpty();
-
-		super.state(canChange, "*", "acme.validation.manager.cantChange");
+			super.state(canChange, "*", "acme.validation.manager.cantChange");
+		}
 	}
 
 	@Override
