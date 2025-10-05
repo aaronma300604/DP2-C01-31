@@ -29,7 +29,7 @@
     </jstl:if>
     
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
             <acme:submit code="assistance-agent.claim.form.button.update" action="/assistance-agent/claim/update"/>
             <acme:submit code="assistance-agent.claim.form.button.delete" action="/assistance-agent/claim/delete"/>
             <acme:submit code="assistance-agent.claim.form.button.publish" action="/assistance-agent/claim/publish"/>

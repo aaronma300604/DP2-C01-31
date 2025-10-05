@@ -163,13 +163,9 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 			}
 		}
 
-		if (percentage < 100.0 && status != AcceptanceStatus.PENDING) {
-			super.state(false, "accepted", "acme.validation.trackinglog.status-must-be-pending");
-			return;
-		}
-
-		if (percentage == 100.0 && status == AcceptanceStatus.PENDING) {
-			super.state(false, "accepted", "acme.validation.trackinglog.status-cannot-be-pending");
+		String errorCode = TrackingLogValidatorUtil.validateStatusConsistency(trackingLog);
+		if (errorCode != null) {
+			super.state(false, "accepted", errorCode);
 			return;
 		}
 	}
@@ -198,15 +194,77 @@ public class AgentTrackingLogsCreateService extends AbstractGuiService<Assistanc
 	public void unbind(final TrackingLog log) {
 		Dataset dataset;
 		int agentId;
-		SelectChoices choices = SelectChoices.from(AcceptanceStatus.class, log.getAccepted());
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
 		dataset = super.unbindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim");
 
+		Claim cl = log.getClaim();
+		List<TrackingLog> trackingLogs = null;
+		if (cl != null) {
+			trackingLogs = this.claimRepository.getTrackingLogsByResolutionOrder(cl.getId());
+			trackingLogs.removeIf(existingLog -> existingLog.getId() == log.getId());
+		}
+
+		List<AcceptanceStatus> allowed = TrackingLogValidatorUtil.allowedStatuses(log, trackingLogs);
+
+		SelectChoices choices = new SelectChoices();
+
+		boolean selectNull = log.getAccepted() == null && !(allowed.size() == 1);
+		choices.add("0", "----", selectNull);
+
+		int nonNullCount = 0;
+		AcceptanceStatus accepted = log.getAccepted();
+
+		if (allowed.isEmpty()) {
+			if (accepted != null) {
+				String key = accepted.toString();
+				choices.add(key, key, true);
+				nonNullCount++;
+			}
+		} else {
+			boolean found = false;
+			for (AcceptanceStatus s : allowed) {
+				String key = s.toString();
+				boolean selected = accepted == null && allowed.size() == 1 ? true : s.equals(accepted);
+
+				choices.add(key, key, selected);
+				nonNullCount++;
+				if (selected)
+					found = true;
+			}
+
+			if (accepted != null && !found) {
+				String key = accepted.toString();
+				choices.add(key, key, true);
+				nonNullCount++;
+			}
+		}
+
+		boolean onlyOneChoice = nonNullCount == 1;
+
 		dataset.put("accepted", choices.getSelected().getKey());
 		dataset.put("types", choices);
 
+		boolean creatable = true;
+
+		if (cl != null)
+			if (!trackingLogs.isEmpty()) {
+
+				TrackingLog highestTrackingLog = trackingLogs.get(0);
+				double highestPercentage = highestTrackingLog.getResolutionPercentage();
+				int highestIteration = highestTrackingLog.getIteration();
+
+				boolean isLast100 = highestPercentage == 100.0;
+				boolean isLastFirstIteration = highestIteration == 1;
+
+				if (isLast100)
+					if (!isLastFirstIteration)
+						creatable = false;
+			}
+
+		super.getResponse().addGlobal("creatable", creatable);
+		super.getResponse().addGlobal("readOnlyStatus", onlyOneChoice);
 		super.getResponse().addData(dataset);
 	}
 

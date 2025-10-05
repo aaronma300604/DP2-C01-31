@@ -82,7 +82,7 @@ public class AgentTrackingLogsDeleteService extends AbstractGuiService<Assistanc
 
 		agentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 
-		dataset = super.unbindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim");
+		dataset = super.unbindObject(log, "stepUndergoing", "resolutionPercentage", "resolution", "iteration", "claim", "draftMode");
 
 		dataset.put("accepted", choices.getSelected().getKey());
 		dataset.put("types", choices);

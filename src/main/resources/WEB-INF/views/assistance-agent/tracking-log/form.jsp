@@ -13,11 +13,11 @@
     <acme:input-textbox code="assistance-agent.tracking-log.list.label.step" path="stepUndergoing"/>
     <acme:input-double code="assistance-agent.tracking-log.list.label.percentage" path="resolutionPercentage"/>
     <acme:input-textarea code="assistance-agent.tracking-log.list.label.resolution" path="resolution"/>
-    <acme:input-select code="assistance-agent.tracking-log.list.label.acceptance-status" path="accepted" choices="${types}"/>
+    <acme:input-select code="assistance-agent.tracking-log.list.label.acceptance-status" path="accepted" choices="${types}" readonly="${readOnlyStatus}"/>
     
     
     <jstl:choose>
-        <jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+        <jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
         	<jstl:if test="${creatable == true}">
 				<acme:submit code="assistance-agent.tracking-log.form.button.update" action="/assistance-agent/tracking-log/update"/>
 			</jstl:if>
