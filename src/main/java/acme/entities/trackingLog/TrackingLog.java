@@ -68,7 +68,7 @@ public class TrackingLog extends AbstractEntity {
 	@Automapped
 	@ValidNumber(min = 1)
 	private Integer				iteration; // In the case that an exceptional TrackingLog is created after a Claim has been closed
-								// its iteration will be one unit higher.
+	// its iteration will be one unit higher.
 
 	@Mandatory
 	@Valid
